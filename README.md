@@ -53,12 +53,24 @@ python3 fund_metrics.py --metric alpha --period 5y --provider quoniam \
 python3 fund_metrics.py --list-categories
 ```
 
-Optionen: `--metric {sharpe,sortino,information,alpha}`,
+Optionen: `--metric {sharpe,sortino,information,treynor,alpha}`,
 `--period {1y,3y,5y}`, `--category "<Name ohne 'EAA Fund'-Präfix>"`,
 `--provider {all,union,quoniam}`, `--top N`, `--export DATEI.csv|.xlsx`.
 
 CSV wird Excel-/DE-freundlich exportiert (Semikolon-getrennt, UTF-8-BOM).
 Für `.xlsx` wird `openpyxl` benötigt; fehlt es, wird automatisch CSV erzeugt.
+
+### PowerPoint-Export
+
+`make_pptx.py` erzeugt aus derselben Auswahl eine PowerPoint (Titelfolie +
+gerankte Tabelle, 16:9, paginiert). Benötigt `python-pptx`
+(`pip install python-pptx`):
+```bash
+python3 make_pptx.py --metric treynor --period 3y --provider quoniam \
+    --out treynor_quoniam_3j.pptx
+python3 make_pptx.py --metric sharpe --period 5y \
+    --category "Global Large-Cap Blend Equity" --top 25 --out sharpe.pptx
+```
 
 ## Datenstand & Aktualisierung
 
