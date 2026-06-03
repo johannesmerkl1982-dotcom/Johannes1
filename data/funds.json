@@ -1,6 +1,6 @@
 {
   "meta": {
-    "as_of": "2026-05-30",
+    "as_of": "2026-06-03",
     "source": "Morningstar MCP connector (morningstar-data-tool / screener-tool)",
     "providers": [
       "Quoniam",
@@ -19,6 +19,7 @@
         "5y"
       ],
       "information": [
+        "1y",
         "3y",
         "5y"
       ],
@@ -81,6 +82,7 @@
         "sortino_1y": 3.359,
         "alpha_1y": 0.13,
         "sharpe_1y": 1.683,
+        "information_1y": -0.5326,
         "treynor_1y": 24.2169
       }
     },
@@ -113,6 +115,7 @@
         "sortino_1y": 3.432,
         "alpha_1y": 0.488,
         "sharpe_1y": 1.711,
+        "information_1y": -0.5318,
         "treynor_1y": 24.6236
       }
     },
@@ -147,6 +150,7 @@
         "sharpe_3y": 1.536,
         "sortino_5y": 1.722,
         "sortino_1y": 4.029,
+        "information_1y": 4.221,
         "treynor_1y": 26.3225,
         "treynor_3y": 17.2867,
         "treynor_5y": 13.2294
@@ -176,6 +180,7 @@
         "alpha_1y": 11.478,
         "sortino_1y": 4.166,
         "alpha_5y": 5.198,
+        "information_1y": 4.506,
         "treynor_1y": 26.9557,
         "treynor_3y": 17.8415,
         "treynor_5y": 13.7219
@@ -190,6 +195,7 @@
         "alpha_1y": 11.837,
         "sharpe_1y": 2.199,
         "sortino_1y": 4.241,
+        "information_1y": 4.5116,
         "treynor_1y": 27.2992
       }
     },
@@ -283,6 +289,7 @@
         "sharpe_3y": 0.817,
         "sortino_3y": 1.261,
         "information_5y": 0.328,
+        "information_1y": -1.7076,
         "treynor_1y": 30.848,
         "treynor_3y": 14.6621,
         "treynor_5y": 7.2767
@@ -305,6 +312,7 @@
         "sortino_1y": 2.005,
         "sharpe_3y": 0.875,
         "alpha_5y": 3.217,
+        "information_1y": -1.5755,
         "treynor_1y": 31.8409,
         "treynor_3y": 15.7086,
         "treynor_5y": 8.379
@@ -327,6 +335,7 @@
         "sharpe_3y": 0.875,
         "alpha_3y": 0.602,
         "alpha_5y": 3.217,
+        "information_1y": -1.5753,
         "treynor_1y": 31.8409,
         "treynor_3y": 15.7086,
         "treynor_5y": 8.3796
@@ -356,6 +365,7 @@
         "sharpe_5y": 0.451,
         "alpha_1y": -3.254,
         "sharpe_1y": 1.322,
+        "information_1y": -1.5735,
         "treynor_1y": 31.9337,
         "treynor_3y": 15.7209,
         "treynor_5y": 8.387
@@ -378,6 +388,7 @@
         "sortino_1y": -0.07,
         "sharpe_3y": 0.369,
         "information_5y": -0.159,
+        "information_1y": 1.5763,
         "treynor_1y": -0.1781,
         "treynor_3y": 1.2861,
         "treynor_5y": -2.0618
@@ -400,6 +411,7 @@
         "sharpe_1y": -0.007,
         "sortino_1y": -0.008,
         "sortino_3y": 0.647,
+        "information_1y": 2.1471,
         "treynor_1y": -0.0211,
         "treynor_3y": 1.4469,
         "treynor_5y": -1.9006
@@ -422,6 +434,7 @@
         "sortino_3y": 0.647,
         "information_3y": 0.736,
         "alpha_1y": 0.201,
+        "information_1y": 2.147,
         "treynor_1y": -0.0211,
         "treynor_3y": 1.4469,
         "treynor_5y": -1.9006
@@ -444,6 +457,7 @@
         "sortino_3y": 0.723,
         "sharpe_5y": -0.213,
         "sortino_1y": 0.343,
+        "information_1y": 0.3853,
         "treynor_1y": 1.0711,
         "treynor_3y": 2.6359,
         "treynor_5y": -1.5603
@@ -466,6 +480,7 @@
         "sharpe_3y": 0.543,
         "sharpe_1y": 0.386,
         "information_3y": 0.43,
+        "information_1y": 0.5355,
         "treynor_1y": 1.4271,
         "treynor_3y": 3.0559,
         "treynor_5y": -1.5028
@@ -488,6 +503,7 @@
         "sharpe_1y": 0.434,
         "sharpe_3y": 0.611,
         "information_5y": 0.565,
+        "information_1y": 0.4078,
         "treynor_1y": 1.5831,
         "treynor_3y": 3.4697,
         "treynor_5y": -1.1686
@@ -510,6 +526,7 @@
         "sharpe_3y": 0.554,
         "sortino_3y": 0.893,
         "information_5y": 0.511,
+        "information_1y": 0.1869,
         "treynor_1y": 1.1648,
         "treynor_3y": 3.1268,
         "treynor_5y": -1.397
@@ -532,6 +549,7 @@
         "sortino_5y": -0.282,
         "alpha_1y": 0.395,
         "information_3y": 0.327,
+        "information_1y": 0.2774,
         "treynor_1y": 1.2939,
         "treynor_3y": 3.024,
         "treynor_5y": -1.6377
@@ -554,6 +572,7 @@
         "sharpe_1y": 0.434,
         "sharpe_3y": 0.611,
         "information_5y": 0.565,
+        "information_1y": 0.4078,
         "treynor_1y": 1.5839,
         "treynor_3y": 3.4697,
         "treynor_5y": -1.1762
@@ -596,6 +615,7 @@
         "sortino_1y": 1.635,
         "alpha_1y": -0.235,
         "sharpe_1y": 1.084,
+        "information_1y": -0.9682,
         "treynor_1y": 3.3212
       }
     },
@@ -616,6 +636,7 @@
         "alpha_1y": -0.617,
         "sharpe_5y": -0.048,
         "sharpe_1y": 1.028,
+        "information_1y": -1.3683,
         "treynor_1y": 3.0826,
         "treynor_3y": 3.0126,
         "treynor_5y": -0.323
@@ -638,6 +659,7 @@
         "sharpe_1y": 1.084,
         "alpha_1y": -0.502,
         "information_5y": -0.408,
+        "information_1y": -1.1077,
         "treynor_1y": 3.2505,
         "treynor_3y": 3.1691,
         "treynor_5y": -0.1008
@@ -660,6 +682,7 @@
         "information_5y": -0.533,
         "sharpe_5y": -0.022,
         "alpha_1y": -0.758,
+        "information_1y": -1.4353,
         "treynor_1y": 3.1448,
         "treynor_3y": 3.0835,
         "treynor_5y": -0.1473
@@ -682,6 +705,7 @@
         "information_5y": -0.382,
         "sortino_5y": 0.603,
         "alpha_5y": -0.682,
+        "information_1y": -0.8272,
         "treynor_1y": 29.0665,
         "treynor_3y": 13.6408,
         "treynor_5y": 6.7926
@@ -696,6 +720,7 @@
         "sharpe_1y": 2.017,
         "alpha_1y": 4.114,
         "sortino_1y": 4.076,
+        "information_1y": 1.5262,
         "treynor_1y": 28.5833
       }
     },
@@ -708,6 +733,7 @@
         "sortino_1y": 4.071,
         "sharpe_1y": 2.017,
         "alpha_1y": 4.101,
+        "information_1y": 1.5323,
         "treynor_1y": 28.5478
       }
     },
@@ -728,6 +754,7 @@
         "sharpe_1y": 0.212,
         "alpha_3y": -0.248,
         "sortino_3y": 0.539,
+        "information_1y": 1.0992,
         "treynor_1y": 0.3209,
         "treynor_3y": 0.5961,
         "treynor_5y": -1.2298
@@ -750,6 +777,7 @@
         "alpha_1y": 0.467,
         "sortino_1y": 0.527,
         "alpha_5y": -0.264,
+        "information_1y": 1.4886,
         "treynor_1y": 0.6764,
         "treynor_3y": 1.0219,
         "treynor_5y": -0.7315
@@ -764,6 +792,7 @@
         "sortino_1y": 0.402,
         "alpha_1y": 0.473,
         "sharpe_1y": 0.321,
+        "information_1y": 1.7325,
         "treynor_1y": 1.0278
       }
     },
@@ -776,6 +805,7 @@
         "alpha_1y": 0.577,
         "sharpe_1y": 0.352,
         "sortino_1y": 0.443,
+        "information_1y": 1.954,
         "treynor_1y": 1.1269
       }
     },
@@ -796,6 +826,7 @@
         "sortino_1y": 3.801,
         "alpha_5y": -0.158,
         "sortino_5y": 0.98,
+        "information_1y": 1.8288,
         "treynor_1y": 17.2856,
         "treynor_3y": 11.3128,
         "treynor_5y": 7.1716
@@ -818,6 +849,7 @@
         "alpha_1y": -4.715,
         "alpha_3y": -1.097,
         "sortino_5y": 0.206,
+        "information_1y": -1.7288,
         "treynor_1y": 5.7703,
         "treynor_3y": 4.9282,
         "treynor_5y": 1.4211
@@ -840,6 +872,7 @@
         "information_5y": -0.059,
         "sharpe_1y": 1.367,
         "sharpe_3y": 1.031,
+        "information_1y": 1.2303,
         "treynor_1y": 9.1789,
         "treynor_3y": 7.6005,
         "treynor_5y": 2.7661
@@ -862,6 +895,7 @@
         "sortino_1y": 2.985,
         "alpha_3y": 3.449,
         "sortino_5y": 0.786,
+        "information_1y": 1.858,
         "treynor_1y": 10.5694,
         "treynor_3y": 8.417,
         "treynor_5y": 4.3985
@@ -884,6 +918,7 @@
         "sharpe_3y": 0.918,
         "information_5y": 0.296,
         "alpha_1y": -0.651,
+        "information_1y": 1.2851,
         "treynor_1y": 9.6448,
         "treynor_3y": 6.5507,
         "treynor_5y": 5.4502
@@ -906,6 +941,7 @@
         "information_3y": -0.909,
         "alpha_5y": -3.35,
         "sharpe_1y": 0.816,
+        "information_1y": -0.8576,
         "treynor_1y": 9.9058,
         "treynor_3y": 6.0268,
         "treynor_5y": 5.2748
@@ -942,6 +978,7 @@
         "sortino_1y": -0.037,
         "alpha_3y": 1.11,
         "alpha_1y": 0.129,
+        "information_1y": 1.4775,
         "treynor_1y": -0.0946,
         "treynor_3y": 2.2527,
         "treynor_5y": -1.6908
@@ -978,6 +1015,7 @@
         "sortino_1y": -0.386,
         "alpha_3y": 0.936,
         "sharpe_1y": -0.341,
+        "information_1y": 1.9424,
         "treynor_1y": -1.1518,
         "treynor_3y": 1.0244,
         "treynor_5y": -3.2413
@@ -1028,6 +1066,7 @@
         "sharpe_3y": 0.586,
         "information_5y": -0.43,
         "alpha_5y": -1.181,
+        "information_1y": 1.8699,
         "treynor_1y": 13.3459,
         "treynor_3y": 8.6177,
         "treynor_5y": 5.8212
@@ -1050,6 +1089,7 @@
         "alpha_3y": -0.066,
         "sortino_3y": 0.528,
         "information_5y": -0.586,
+        "information_1y": -0.1769,
         "treynor_1y": 0.8096,
         "treynor_3y": 1.6004,
         "treynor_5y": -1.3953
@@ -1072,6 +1112,7 @@
         "sortino_3y": 0.398,
         "sharpe_3y": 0.283,
         "information_3y": -0.185,
+        "information_1y": 0.1803,
         "treynor_1y": 1.2685,
         "treynor_3y": 1.2557,
         "treynor_5y": -1.0539
@@ -1094,6 +1135,7 @@
         "sharpe_3y": 1.187,
         "alpha_1y": 2.085,
         "information_3y": 1.19,
+        "information_1y": 1.876,
         "treynor_1y": 10.9875,
         "treynor_3y": 8.5647,
         "treynor_5y": 4.9978
@@ -1116,6 +1158,7 @@
         "sharpe_3y": 0.108,
         "sharpe_1y": 0.052,
         "information_3y": 0.429,
+        "information_1y": -0.2488,
         "treynor_1y": 0.1683,
         "treynor_3y": 0.5586,
         "treynor_5y": -2.7906
@@ -1138,6 +1181,7 @@
         "sortino_5y": 0.666,
         "information_5y": -0.265,
         "information_3y": -0.757,
+        "information_1y": -1.2653,
         "treynor_1y": 18.244,
         "treynor_3y": 11.5806,
         "treynor_5y": 6.7221
@@ -1160,6 +1204,7 @@
         "sharpe_1y": 1.018,
         "sharpe_3y": 0.869,
         "information_5y": -0.659,
+        "information_1y": -1.7735,
         "treynor_1y": 15.2575,
         "treynor_3y": 11.8086,
         "treynor_5y": 4.8745
@@ -1182,6 +1227,7 @@
         "sortino_1y": 1.724,
         "information_3y": -0.427,
         "sharpe_1y": 1.066,
+        "information_1y": -1.7781,
         "treynor_1y": 15.9715,
         "treynor_3y": 12.5101,
         "treynor_5y": 5.596
@@ -1204,6 +1250,7 @@
         "alpha_3y": 1.553,
         "alpha_1y": 0.083,
         "sharpe_1y": 0.499,
+        "information_1y": 0.5679,
         "treynor_1y": 2.1656,
         "treynor_3y": 2.9672,
         "treynor_5y": -0.071
@@ -1226,6 +1273,7 @@
         "information_5y": 0.308,
         "sharpe_5y": 0.002,
         "sharpe_3y": 0.665,
+        "information_1y": 0.5595,
         "treynor_1y": 2.2444,
         "treynor_3y": 3.0534,
         "treynor_5y": 0.0118
@@ -1248,6 +1296,7 @@
         "sortino_1y": -0.665,
         "sortino_3y": -0.013,
         "alpha_5y": -0.427,
+        "information_1y": 1.5279,
         "treynor_1y": -2.0197,
         "treynor_3y": -0.0396,
         "treynor_5y": -4.0799
@@ -1266,6 +1315,7 @@
         "sortino_3y": 0.851,
         "sharpe_1y": 0.23,
         "alpha_1y": -1.345,
+        "information_1y": -0.5143,
         "treynor_1y": 0.9098,
         "treynor_3y": 2.7771
       }
@@ -1283,6 +1333,7 @@
         "sortino_1y": 1.73,
         "sharpe_3y": 0.747,
         "sortino_3y": 1.239,
+        "information_1y": -2.2851,
         "treynor_1y": 9.3475,
         "treynor_3y": 7.1605
       }
@@ -1318,6 +1369,7 @@
         "sharpe_1y": 0.757,
         "alpha_3y": 1.677,
         "alpha_1y": 0.705,
+        "information_1y": 1.117,
         "treynor_1y": 2.9309,
         "treynor_3y": 3.0125,
         "treynor_5y": 0.2743
@@ -1340,6 +1392,7 @@
         "sortino_5y": -0.231,
         "sortino_1y": 0.138,
         "alpha_5y": -0.293,
+        "information_1y": -2.3183,
         "treynor_1y": 0.3937,
         "treynor_3y": 1.202,
         "treynor_5y": -1.0215
@@ -1362,6 +1415,7 @@
         "sharpe_3y": 0.643,
         "information_5y": 0.428,
         "sortino_3y": 1.009,
+        "information_1y": 2.3512,
         "treynor_1y": 4.9182,
         "treynor_3y": 2.9386,
         "treynor_5y": 0.5906
@@ -1384,6 +1438,7 @@
         "alpha_5y": -0.215,
         "sharpe_1y": 1.588,
         "information_3y": 0.397,
+        "information_1y": 2.6128,
         "treynor_1y": 10.5196,
         "treynor_3y": 6.9107,
         "treynor_5y": 3.0775
@@ -1420,6 +1475,7 @@
         "alpha_3y": 3.478,
         "sortino_1y": 2.899,
         "alpha_1y": 5.883,
+        "information_1y": 3.3699,
         "treynor_1y": 6.4456,
         "treynor_3y": 4.5376,
         "treynor_5y": 1.2314
@@ -1442,6 +1498,7 @@
         "alpha_3y": 2.047,
         "alpha_1y": 4.098,
         "sharpe_5y": 0.591,
+        "information_1y": 2.7362,
         "treynor_1y": 12.6845,
         "treynor_3y": 7.6449,
         "treynor_5y": 5.0334
@@ -1464,6 +1521,7 @@
         "sortino_1y": 2.453,
         "sharpe_1y": 1.347,
         "alpha_3y": -0.096,
+        "information_1y": 1.33,
         "treynor_1y": 8.904,
         "treynor_3y": 5.9963,
         "treynor_5y": 3.4904
@@ -1486,6 +1544,7 @@
         "alpha_1y": 0.707,
         "information_3y": -0.533,
         "sortino_1y": 1.093,
+        "information_1y": 0.9238,
         "treynor_1y": 2.8528,
         "treynor_3y": -0.8603,
         "treynor_5y": -2.3338
@@ -1504,6 +1563,7 @@
         "sharpe_1y": -0.054,
         "sortino_1y": -0.062,
         "alpha_3y": 0.884,
+        "information_1y": 1.4282,
         "treynor_1y": -0.1863,
         "treynor_3y": 2.0467
       }
@@ -1525,6 +1585,7 @@
         "sortino_5y": 0.152,
         "sortino_1y": 2.535,
         "alpha_1y": 5.596,
+        "information_1y": 4.5881,
         "treynor_1y": 6.3983,
         "treynor_3y": 3.3133,
         "treynor_5y": 0.6935
@@ -1547,6 +1608,7 @@
         "sharpe_5y": -0.147,
         "sortino_1y": 0.834,
         "sortino_5y": -0.194,
+        "information_1y": 2.4622,
         "treynor_1y": 2.6459,
         "treynor_3y": 2.3463,
         "treynor_5y": -1.2354
@@ -1565,6 +1627,7 @@
         "alpha_1y": -2.268,
         "sortino_1y": 1.327,
         "information_3y": -0.428,
+        "information_1y": -0.3797,
         "treynor_1y": 6.0992,
         "treynor_3y": 4.6362
       }
@@ -1586,6 +1649,7 @@
         "sortino_5y": 0.492,
         "sortino_3y": 1.429,
         "information_5y": -0.81,
+        "information_1y": -2.0533,
         "treynor_1y": 18.2765,
         "treynor_3y": 10.9488,
         "treynor_5y": 5.0964
@@ -1608,6 +1672,7 @@
         "sharpe_5y": 0.092,
         "sortino_5y": 0.139,
         "alpha_1y": -0.317,
+        "information_1y": 1.5829,
         "treynor_1y": 31.5335,
         "treynor_3y": 13.3992,
         "treynor_5y": 1.5667
@@ -1630,6 +1695,7 @@
         "sharpe_5y": 0.122,
         "alpha_3y": -2.127,
         "information_3y": 0.239,
+        "information_1y": 1.8809,
         "treynor_1y": 33.5163,
         "treynor_3y": 12.588,
         "treynor_5y": 2.1257
@@ -1652,6 +1718,7 @@
         "information_5y": -0.327,
         "alpha_5y": -2.725,
         "sortino_5y": 0.221,
+        "information_1y": 1.8823,
         "treynor_1y": 33.7384,
         "treynor_3y": 12.8527,
         "treynor_5y": 2.4049
@@ -1674,6 +1741,7 @@
         "alpha_5y": 0.008,
         "sortino_3y": 1.273,
         "sharpe_5y": 0.39,
+        "information_1y": 0.3065,
         "treynor_1y": 11.6647,
         "treynor_3y": 5.594,
         "treynor_5y": 3.3159
@@ -1696,6 +1764,7 @@
         "alpha_1y": -0.282,
         "sharpe_3y": 0.968,
         "sortino_3y": 1.569,
+        "information_1y": -0.6143,
         "treynor_1y": 9.6226,
         "treynor_3y": 6.8387,
         "treynor_5y": 2.4845
@@ -1718,6 +1787,7 @@
         "sharpe_5y": 0.234,
         "information_5y": -0.532,
         "alpha_5y": -0.825,
+        "information_1y": -0.6098,
         "treynor_1y": 9.2415,
         "treynor_3y": 6.3893,
         "treynor_5y": 2.0284
@@ -1740,6 +1810,7 @@
         "sharpe_5y": 0.35,
         "information_5y": -0.186,
         "sharpe_1y": 1.455,
+        "information_1y": 0.3025,
         "treynor_1y": 11.2713,
         "treynor_3y": 5.2651,
         "treynor_5y": 2.9769
@@ -1762,6 +1833,7 @@
         "sortino_1y": -0.468,
         "sortino_3y": -0.098,
         "sortino_5y": -0.443,
+        "information_1y": -2.1607,
         "treynor_1y": -6.0063,
         "treynor_3y": -1.1377,
         "treynor_5y": -6.5348
@@ -1784,6 +1856,7 @@
         "sortino_5y": 0.97,
         "sortino_3y": 1.557,
         "alpha_1y": -4.816,
+        "information_1y": -1.1916,
         "treynor_1y": 14.4995,
         "treynor_3y": 9.1022,
         "treynor_5y": 7.7632
@@ -1806,6 +1879,7 @@
         "sortino_5y": 1.021,
         "sortino_3y": 1.637,
         "information_3y": -0.96,
+        "information_1y": -1.1931,
         "treynor_1y": 14.8761,
         "treynor_3y": 9.4733,
         "treynor_5y": 8.1178
@@ -1820,6 +1894,7 @@
         "sortino_1y": 2.609,
         "sharpe_1y": 1.412,
         "alpha_1y": -4.4,
+        "information_1y": 0.0792,
         "treynor_1y": 13.5617
       }
     },
@@ -1840,6 +1915,7 @@
         "sharpe_5y": 0.243,
         "sharpe_1y": 0.104,
         "sortino_5y": 0.352,
+        "information_1y": -1.8538,
         "treynor_1y": 1.4916,
         "treynor_3y": 2.3678,
         "treynor_5y": 3.6196
@@ -1862,6 +1938,7 @@
         "sortino_5y": 0.386,
         "information_5y": -0.539,
         "sharpe_3y": 0.209,
+        "information_1y": -1.7936,
         "treynor_1y": 1.9069,
         "treynor_3y": 2.6876,
         "treynor_5y": 3.9423
@@ -1884,6 +1961,7 @@
         "sortino_3y": 1.962,
         "sharpe_5y": 0.431,
         "alpha_1y": 2.286,
+        "information_1y": 1.1792,
         "treynor_1y": 26.9753,
         "treynor_3y": 16.8303,
         "treynor_5y": 7.8029
@@ -1906,6 +1984,7 @@
         "alpha_3y": 1.535,
         "sortino_1y": 3.066,
         "information_5y": 0.346,
+        "information_1y": 1.0872,
         "treynor_1y": 27.1711,
         "treynor_3y": 17.12,
         "treynor_5y": 8.0929
@@ -1928,6 +2007,7 @@
         "sortino_5y": 0.062,
         "alpha_1y": -0.019,
         "information_3y": -0.13,
+        "information_1y": 2.1487,
         "treynor_1y": 35.9449,
         "treynor_3y": 13.5096,
         "treynor_5y": 0.7524
@@ -1964,6 +2044,7 @@
         "sortino_1y": 0.926,
         "sharpe_5y": 0.33,
         "sortino_3y": 1.232,
+        "information_1y": 1.8625,
         "treynor_1y": 9.0613,
         "treynor_3y": 10.0212,
         "treynor_5y": 5.1897
@@ -1982,6 +2063,7 @@
         "sharpe_3y": 0.708,
         "sortino_3y": 1.178,
         "alpha_1y": 3.671,
+        "information_1y": 1.8588,
         "treynor_1y": 8.6911,
         "treynor_3y": 9.6439
       }
@@ -2003,6 +2085,7 @@
         "sharpe_3y": 0.774,
         "sortino_5y": 0.558,
         "information_5y": -0.577,
+        "information_1y": 1.8769,
         "treynor_1y": 9.5173,
         "treynor_3y": 10.5401,
         "treynor_5y": 5.742
@@ -2025,6 +2108,7 @@
         "sortino_3y": 0.754,
         "alpha_3y": -3.867,
         "sharpe_1y": 0.922,
+        "information_1y": -0.6932,
         "treynor_1y": 12.384,
         "treynor_3y": 6.4278,
         "treynor_5y": 6.3617
@@ -2047,6 +2131,7 @@
         "sortino_5y": 0.61,
         "sortino_3y": 0.704,
         "information_3y": -1.387,
+        "information_1y": -0.6959,
         "treynor_1y": 12.0491,
         "treynor_3y": 6.0365,
         "treynor_5y": 5.97
@@ -2069,6 +2154,7 @@
         "information_3y": -1.148,
         "alpha_5y": -1.597,
         "sortino_3y": 0.826,
+        "information_1y": -0.696,
         "treynor_1y": 12.8707,
         "treynor_3y": 6.9863,
         "treynor_5y": 6.9887
@@ -2091,6 +2177,7 @@
         "alpha_3y": -5.302,
         "sortino_1y": 1.586,
         "sortino_5y": 0.388,
+        "information_1y": -4.236,
         "treynor_1y": 13.4205,
         "treynor_3y": 9.1281,
         "treynor_5y": 4.0946
@@ -2113,6 +2200,7 @@
         "sortino_5y": 0.354,
         "information_3y": -1.704,
         "sortino_3y": 1.094,
+        "information_1y": -4.2424,
         "treynor_1y": 13.0843,
         "treynor_3y": 8.7843,
         "treynor_5y": 3.7443
@@ -2135,6 +2223,7 @@
         "sortino_3y": 1.142,
         "sortino_1y": 1.586,
         "sortino_5y": 0.388,
+        "information_1y": -4.2361,
         "treynor_1y": 13.4205,
         "treynor_3y": 9.1281,
         "treynor_5y": 4.0946
@@ -2153,6 +2242,7 @@
         "information_3y": -0.903,
         "sharpe_3y": 0.281,
         "sortino_3y": 0.405,
+        "information_1y": -0.8448,
         "treynor_1y": 3.4304,
         "treynor_3y": 4.4309
       }
@@ -2170,6 +2260,7 @@
         "sharpe_1y": 0.255,
         "sortino_3y": 0.369,
         "information_3y": -0.994,
+        "information_1y": -0.8045,
         "treynor_1y": 3.1232,
         "treynor_3y": 4.069
       }
@@ -2183,6 +2274,7 @@
         "sharpe_1y": -0.566,
         "alpha_1y": 0.204,
         "sortino_1y": -0.652,
+        "information_1y": 1.5794,
         "treynor_1y": -2.0399
       }
     },
@@ -2203,6 +2295,7 @@
         "information_5y": -1.011,
         "sharpe_5y": -0.531,
         "sortino_5y": -0.662,
+        "information_1y": 1.8309,
         "treynor_1y": -0.7375,
         "treynor_3y": 0.6517,
         "treynor_5y": -2.9937
@@ -2245,6 +2338,7 @@
         "sharpe_1y": -0.149,
         "sortino_5y": -0.604,
         "alpha_1y": -0.242,
+        "information_1y": 1.5851,
         "treynor_1y": -0.4501,
         "treynor_3y": 0.9636,
         "treynor_5y": -2.7013
@@ -2267,6 +2361,7 @@
         "alpha_1y": 0.802,
         "information_5y": -0.52,
         "alpha_3y": -1.673,
+        "information_1y": 2.1285,
         "treynor_1y": 17.0549,
         "treynor_3y": 8.9896,
         "treynor_5y": 7.4674
@@ -2289,6 +2384,7 @@
         "information_3y": 0.14,
         "sortino_5y": -0.746,
         "sharpe_1y": -0.525,
+        "information_1y": 1.2773,
         "treynor_1y": -1.7526,
         "treynor_3y": -0.0787,
         "treynor_5y": -3.7275
@@ -2311,6 +2407,7 @@
         "sortino_1y": -0.801,
         "sortino_3y": -0.155,
         "alpha_5y": -0.323,
+        "information_1y": 2.4097,
         "treynor_1y": -0.994,
         "treynor_3y": -0.1798,
         "treynor_5y": -1.4062
@@ -2333,6 +2430,7 @@
         "alpha_5y": -0.603,
         "alpha_1y": -0.348,
         "information_5y": -1.612,
+        "information_1y": 2.4336,
         "treynor_1y": -1.2011,
         "treynor_3y": -0.4814,
         "treynor_5y": -1.702
@@ -2355,6 +2453,7 @@
         "information_3y": -4.114,
         "sortino_1y": -0.468,
         "alpha_3y": -0.928,
+        "information_1y": 2.4202,
         "treynor_1y": -0.6353,
         "treynor_3y": 0.0102,
         "treynor_5y": -1.6236
@@ -2377,6 +2476,7 @@
         "sortino_5y": -0.689,
         "alpha_1y": -0.395,
         "sharpe_3y": 0.227,
+        "information_1y": 2.5323,
         "treynor_1y": -0.3552,
         "treynor_3y": 0.3315,
         "treynor_5y": -1.299
@@ -2399,6 +2499,7 @@
         "information_5y": 0.296,
         "alpha_1y": -0.737,
         "sortino_3y": -0.286,
+        "information_1y": 0.5375,
         "treynor_1y": -2.7064,
         "treynor_3y": -0.9303,
         "treynor_5y": -4.736
@@ -2441,6 +2542,7 @@
         "alpha_1y": -0.142,
         "information_3y": 0.46,
         "sortino_1y": -0.134,
+        "information_1y": 1.3718,
         "treynor_1y": -0.35,
         "treynor_3y": 1.4978,
         "treynor_5y": -2.3624
@@ -2463,6 +2565,7 @@
         "information_5y": -0.428,
         "information_3y": 0.106,
         "alpha_3y": 0.086,
+        "information_1y": 1.2759,
         "treynor_1y": -0.5724,
         "treynor_3y": 1.282,
         "treynor_5y": -2.5705
@@ -2485,6 +2588,7 @@
         "sharpe_1y": -0.054,
         "alpha_1y": 0.05,
         "alpha_5y": -0.133,
+        "information_1y": 1.4154,
         "treynor_1y": -0.1642,
         "treynor_3y": 1.6989,
         "treynor_5y": -2.1469
@@ -2507,6 +2611,7 @@
         "alpha_1y": 0.576,
         "sortino_5y": -0.312,
         "information_3y": -0.235,
+        "information_1y": 2.7095,
         "treynor_1y": 6.1739,
         "treynor_3y": 2.2033,
         "treynor_5y": -2.2706
@@ -2529,6 +2634,7 @@
         "sharpe_1y": 0.761,
         "sharpe_5y": 0.011,
         "sortino_1y": 1.026,
+        "information_1y": 1.3589,
         "treynor_1y": 2.9499,
         "treynor_3y": 4.2958,
         "treynor_5y": 0.0686
@@ -2741,6 +2847,7 @@
         "sharpe_5y": 0.395,
         "alpha_5y": 0.573,
         "sortino_3y": 1.162,
+        "information_1y": 5.0264,
         "treynor_1y": 19.8383,
         "treynor_3y": 9.426,
         "treynor_5y": 6.0757
@@ -2763,6 +2870,7 @@
         "information_5y": 0.125,
         "sortino_1y": 2.131,
         "alpha_3y": 4.502,
+        "information_1y": 5.1366,
         "treynor_1y": 20.291,
         "treynor_3y": 9.7143,
         "treynor_5y": 6.2947
@@ -2785,6 +2893,7 @@
         "sharpe_1y": 0.399,
         "alpha_5y": -6.044,
         "sharpe_5y": -0.061,
+        "information_1y": -1.4597,
         "treynor_1y": 5.3559,
         "treynor_3y": 3.2713,
         "treynor_5y": -0.9734
@@ -2807,6 +2916,7 @@
         "information_3y": -1.243,
         "sharpe_1y": -0.592,
         "alpha_5y": -0.62,
+        "information_1y": 0.5019,
         "treynor_1y": -2.059,
         "treynor_3y": -0.4047,
         "treynor_5y": -4.2047
@@ -2829,6 +2939,7 @@
         "alpha_3y": -0.758,
         "sharpe_3y": -0.155,
         "alpha_1y": -0.859,
+        "information_1y": 0.5042,
         "treynor_1y": -2.324,
         "treynor_3y": -0.6966,
         "treynor_5y": -4.5053
@@ -2851,6 +2962,7 @@
         "information_5y": 0.033,
         "sortino_5y": 0.763,
         "alpha_1y": -2.517,
+        "information_1y": 0.3688,
         "treynor_1y": 21.7411,
         "treynor_3y": 13.6016,
         "treynor_5y": 7.5842
@@ -2873,6 +2985,7 @@
         "alpha_1y": -2.866,
         "information_3y": -0.009,
         "sortino_1y": 3.209,
+        "information_1y": 0.3664,
         "treynor_1y": 21.4043,
         "treynor_3y": 13.2656,
         "treynor_5y": 7.2531
@@ -2895,6 +3008,7 @@
         "sharpe_5y": 0.53,
         "information_5y": 0.179,
         "sharpe_1y": 1.561,
+        "information_1y": 0.3706,
         "treynor_1y": 22.1843,
         "treynor_3y": 14.1,
         "treynor_5y": 8.086
@@ -2917,6 +3031,7 @@
         "alpha_1y": 1.638,
         "sharpe_1y": 0.348,
         "sortino_1y": 0.425,
+        "information_1y": 1.4789,
         "treynor_1y": 1.459,
         "treynor_3y": 9.7073,
         "treynor_5y": -1.4985
@@ -2939,6 +3054,7 @@
         "sortino_1y": 0.974,
         "alpha_1y": 4.835,
         "alpha_5y": -3.556,
+        "information_1y": 2.0711,
         "treynor_1y": 9.8641,
         "treynor_3y": 11.1083,
         "treynor_5y": 3.7515
@@ -2961,6 +3077,7 @@
         "sortino_3y": 1.321,
         "sortino_1y": 0.945,
         "information_3y": -0.027,
+        "information_1y": 1.9969,
         "treynor_1y": 9.5891,
         "treynor_3y": 10.8582,
         "treynor_5y": 3.4539
@@ -2983,6 +3100,7 @@
         "sortino_1y": 2.397,
         "sortino_5y": 0.675,
         "sortino_3y": 1.578,
+        "information_1y": -1.3532,
         "treynor_1y": 18.2605,
         "treynor_3y": 11.7898,
         "treynor_5y": 6.8241
@@ -3005,6 +3123,7 @@
         "alpha_1y": -6.56,
         "information_5y": -0.444,
         "alpha_5y": -1.457,
+        "information_1y": -1.3721,
         "treynor_1y": 18.0164,
         "treynor_3y": 11.2798,
         "treynor_5y": 6.2874
@@ -3019,6 +3138,7 @@
         "sharpe_1y": 1.291,
         "alpha_1y": -6.331,
         "sortino_1y": 2.397,
+        "information_1y": -1.3589,
         "treynor_1y": 18.2738
       }
     },
@@ -3039,6 +3159,7 @@
         "sharpe_5y": 0.23,
         "alpha_5y": -4.458,
         "sortino_1y": 1.349,
+        "information_1y": -3.2909,
         "treynor_1y": 10.7081,
         "treynor_3y": 5.7629,
         "treynor_5y": 3.1952
@@ -3061,6 +3182,7 @@
         "information_5y": -1.201,
         "alpha_5y": -4.1,
         "sharpe_5y": 0.257,
+        "information_1y": -3.2873,
         "treynor_1y": 11.0626,
         "treynor_3y": 6.1187,
         "treynor_5y": 3.5711
@@ -3083,6 +3205,7 @@
         "information_3y": -0.46,
         "information_5y": -0.026,
         "sortino_3y": 1.655,
+        "information_1y": -1.3495,
         "treynor_1y": 18.7203,
         "treynor_3y": 12.2506,
         "treynor_5y": 7.3014
@@ -3105,6 +3228,7 @@
         "information_3y": -0.732,
         "sortino_5y": 0.673,
         "alpha_3y": -2.697,
+        "information_1y": -1.3835,
         "treynor_1y": 18.201,
         "treynor_3y": 11.6112,
         "treynor_5y": 6.7992
@@ -3127,6 +3251,7 @@
         "sortino_5y": 0.37,
         "information_5y": -0.977,
         "alpha_5y": -3.594,
+        "information_1y": -3.4926,
         "treynor_1y": 14.0883,
         "treynor_3y": 9.9948,
         "treynor_5y": 3.9919
@@ -3191,6 +3316,7 @@
         "sortino_3y": 1.953,
         "sortino_1y": 3.066,
         "sharpe_3y": 1.04,
+        "information_1y": 1.1658,
         "treynor_1y": 27.4121,
         "treynor_3y": 16.3981,
         "treynor_5y": 5.7565
@@ -3213,6 +3339,7 @@
         "sharpe_1y": 1.461,
         "sortino_3y": 2.061,
         "sharpe_3y": 1.085,
+        "information_1y": 1.1476,
         "treynor_1y": 28.1597,
         "treynor_3y": 17.1012,
         "treynor_5y": 6.512
@@ -3231,6 +3358,7 @@
         "sharpe_3y": 1.017,
         "sharpe_1y": 1.403,
         "alpha_1y": 2.293,
+        "information_1y": 1.1493,
         "treynor_1y": 27.0313,
         "treynor_3y": 16.0375
       }
@@ -3252,6 +3380,7 @@
         "alpha_1y": -9.295,
         "alpha_5y": -3.658,
         "information_3y": -0.976,
+        "information_1y": -2.2289,
         "treynor_1y": 9.4046,
         "treynor_3y": 4.7407,
         "treynor_5y": 1.5453
@@ -3274,6 +3403,7 @@
         "sharpe_1y": 0.659,
         "sortino_5y": -0.21,
         "information_3y": 0.325,
+        "information_1y": 1.2752,
         "treynor_1y": 2.4319,
         "treynor_3y": 1.8304,
         "treynor_5y": -0.9115
@@ -3306,6 +3436,7 @@
         "sortino_3y": 0.988,
         "sortino_1y": -0.265,
         "information_3y": 0.126,
+        "information_1y": 0.1722,
         "treynor_1y": -0.3522,
         "treynor_3y": 0.9983,
         "treynor_5y": -0.5147
@@ -3328,6 +3459,7 @@
         "sharpe_1y": 0.844,
         "alpha_3y": 2.827,
         "sortino_3y": 3.822,
+        "information_1y": 2.801,
         "treynor_1y": 2.6753,
         "treynor_3y": 6.5482,
         "treynor_5y": 0.1602
@@ -3357,6 +3489,7 @@
         "sortino_1y": 1.62,
         "sharpe_1y": 1.123,
         "sharpe_3y": 0.618,
+        "information_1y": -2.6306,
         "treynor_1y": 13.4965,
         "treynor_3y": 8.0896,
         "treynor_5y": 3.7279
@@ -3379,6 +3512,7 @@
         "information_5y": -0.234,
         "sortino_3y": 0.367,
         "sharpe_5y": -0.301,
+        "information_1y": 0.339,
         "treynor_1y": 5.8658,
         "treynor_3y": 1.8321,
         "treynor_5y": -2.8235
@@ -3401,6 +3535,7 @@
         "information_3y": -0.258,
         "information_5y": -0.498,
         "sortino_3y": 0.415,
+        "information_1y": 0.0025,
         "treynor_1y": 6.28,
         "treynor_3y": 2.1068,
         "treynor_5y": -3.2154
@@ -3423,6 +3558,7 @@
         "alpha_1y": -0.907,
         "sharpe_1y": 0.436,
         "sortino_3y": 0.654,
+        "information_1y": -1.0962,
         "treynor_1y": 1.8159,
         "treynor_3y": 2.4314,
         "treynor_5y": -2.8689
@@ -3445,6 +3581,7 @@
         "alpha_5y": 1.04,
         "sharpe_1y": 1.019,
         "information_5y": 0.775,
+        "information_1y": 0.1616,
         "treynor_1y": 3.9142,
         "treynor_3y": 3.5239,
         "treynor_5y": -0.6107
@@ -3467,6 +3604,7 @@
         "alpha_5y": -1.249,
         "sortino_1y": 0.187,
         "sortino_5y": -0.558,
+        "information_1y": -1.8979,
         "treynor_1y": 0.5976,
         "treynor_3y": -0.3493,
         "treynor_5y": -3.7538
@@ -3489,6 +3627,7 @@
         "sortino_3y": 1.16,
         "sharpe_1y": 1.59,
         "alpha_1y": 3.233,
+        "information_1y": 2.2822,
         "treynor_1y": 9.1233,
         "treynor_3y": 5.4071,
         "treynor_5y": -0.9572
@@ -3511,6 +3650,7 @@
         "sortino_5y": -0.482,
         "sortino_3y": 0.212,
         "alpha_1y": -1.089,
+        "information_1y": -1.0659,
         "treynor_1y": 4.2431,
         "treynor_3y": 1.0768,
         "treynor_5y": -3.6255
@@ -3562,6 +3702,7 @@
         "sharpe_1y": -0.62,
         "sortino_1y": -0.703,
         "sortino_5y": -0.805,
+        "information_1y": 0.4379,
         "treynor_1y": -2.1521,
         "treynor_3y": 0.1321,
         "treynor_5y": -4.4974
@@ -3584,6 +3725,7 @@
         "sortino_1y": 0.782,
         "sortino_5y": -0.145,
         "sharpe_5y": -0.12,
+        "information_1y": 1.7481,
         "treynor_1y": 0.8535,
         "treynor_3y": 3.4829,
         "treynor_5y": -0.4128
@@ -3606,6 +3748,7 @@
         "alpha_1y": -0.375,
         "sharpe_1y": 0.416,
         "sharpe_5y": -0.14,
+        "information_1y": 1.8301,
         "treynor_1y": 1.2977,
         "treynor_3y": 3.2265,
         "treynor_5y": -0.8341
@@ -3628,6 +3771,7 @@
         "sharpe_1y": -0.444,
         "sortino_3y": -0.115,
         "sharpe_5y": -0.719,
+        "information_1y": 1.1023,
         "treynor_1y": -1.4772,
         "treynor_3y": -0.3647,
         "treynor_5y": -4.5145
@@ -3650,6 +3794,7 @@
         "alpha_1y": -7.087,
         "sharpe_5y": -0.308,
         "sortino_5y": -0.384,
+        "information_1y": -3.9361,
         "treynor_1y": -0.2267,
         "treynor_3y": 0.6487,
         "treynor_5y": -2.7372
@@ -3672,6 +3817,7 @@
         "information_5y": 0.53,
         "alpha_3y": 3.625,
         "information_3y": 1.536,
+        "information_1y": 3.4667,
         "treynor_1y": 2.9677,
         "treynor_3y": 5.1069,
         "treynor_5y": -0.6619
@@ -3694,6 +3840,7 @@
         "alpha_3y": 2.276,
         "sharpe_3y": 1.072,
         "sortino_1y": 2.935,
+        "information_1y": 0.6345,
         "treynor_1y": 21.4307,
         "treynor_3y": 12.1081,
         "treynor_5y": 8.8127
@@ -3744,6 +3891,7 @@
         "sortino_5y": -0.665,
         "sharpe_5y": -0.547,
         "information_3y": 1.156,
+        "information_1y": 3.7687,
         "treynor_1y": -0.755,
         "treynor_3y": 0.6299,
         "treynor_5y": -3.6403
@@ -3766,6 +3914,7 @@
         "sortino_5y": 0.594,
         "sharpe_1y": 0.368,
         "sharpe_5y": 0.399,
+        "information_1y": -3.9215,
         "treynor_1y": 4.5049,
         "treynor_3y": 4.0013,
         "treynor_5y": 5.1937
@@ -3788,6 +3937,7 @@
         "sharpe_5y": -0.221,
         "information_3y": 0.885,
         "sortino_1y": 0.262,
+        "information_1y": 3.2127,
         "treynor_1y": 0.6557,
         "treynor_3y": 2.2085,
         "treynor_5y": -1.3004
@@ -3824,6 +3974,7 @@
         "sortino_5y": -0.116,
         "alpha_3y": -4.102,
         "alpha_5y": -3.599,
+        "information_1y": -4.4605,
         "treynor_1y": 14.3067,
         "treynor_3y": 7.0598,
         "treynor_5y": -0.9263
@@ -3846,6 +3997,7 @@
         "alpha_3y": -3.16,
         "sharpe_1y": 1.143,
         "sortino_3y": 1.388,
+        "information_1y": -5.6162,
         "treynor_1y": 13.5644,
         "treynor_3y": 8.3306,
         "treynor_5y": -0.5941
@@ -3868,6 +4020,7 @@
         "information_3y": 0.593,
         "alpha_5y": -0.246,
         "sortino_5y": -0.479,
+        "information_1y": 1.0361,
         "treynor_1y": 1.5166,
         "treynor_3y": 2.726,
         "treynor_5y": -3.0563
@@ -3890,6 +4043,7 @@
         "sortino_3y": 0.503,
         "sharpe_1y": 0.224,
         "alpha_5y": 0.295,
+        "information_1y": 0.4477,
         "treynor_1y": 0.7327,
         "treynor_3y": 1.6505,
         "treynor_5y": -2.3807
@@ -3912,6 +4066,7 @@
         "alpha_1y": -0.185,
         "sharpe_1y": 0.113,
         "alpha_3y": 0.925,
+        "information_1y": 0.4594,
         "treynor_1y": 0.3693,
         "treynor_3y": 1.2453,
         "treynor_5y": -2.7214
@@ -3934,6 +4089,7 @@
         "sortino_3y": -0.011,
         "sharpe_1y": -0.715,
         "sortino_1y": -0.789,
+        "information_1y": -0.9282,
         "treynor_1y": -2.3506,
         "treynor_3y": -0.0293,
         "treynor_5y": -4.3199
@@ -3956,6 +4112,7 @@
         "alpha_5y": -0.011,
         "sharpe_1y": 0.034,
         "alpha_1y": -0.434,
+        "information_1y": 0.8135,
         "treynor_1y": 0.1083,
         "treynor_3y": 0.4271,
         "treynor_5y": -2.7065
@@ -3978,6 +4135,7 @@
         "sharpe_3y": 0.134,
         "alpha_3y": 0.543,
         "alpha_5y": -0.208,
+        "information_1y": 2.1338,
         "treynor_1y": 1.3095,
         "treynor_3y": 0.689,
         "treynor_5y": -2.8882
@@ -4000,6 +4158,7 @@
         "sortino_1y": 2.12,
         "alpha_3y": 2.861,
         "alpha_5y": 1.454,
+        "information_1y": 0.8937,
         "treynor_1y": 7.1833,
         "treynor_3y": 26.5363,
         "treynor_5y": 1.4981
@@ -4018,6 +4177,7 @@
         "sharpe_1y": 0.732,
         "alpha_3y": -4.443,
         "alpha_1y": -14.629,
+        "information_1y": -3.1907,
         "treynor_1y": 10.6358,
         "treynor_3y": 9.8291
       }
@@ -4039,6 +4199,7 @@
         "sharpe_5y": 0.32,
         "alpha_5y": -2.88,
         "alpha_3y": -2.09,
+        "information_1y": -2.5926,
         "treynor_1y": 17.258,
         "treynor_3y": 9.5898,
         "treynor_5y": 4.5729
@@ -4061,6 +4222,7 @@
         "sharpe_1y": -0.03,
         "sharpe_5y": -0.502,
         "alpha_3y": -0.68,
+        "information_1y": 1.1046,
         "treynor_1y": -0.0911,
         "treynor_3y": 0.633,
         "treynor_5y": -2.9406
@@ -4083,6 +4245,7 @@
         "information_3y": 0.39,
         "sortino_3y": 3.316,
         "sortino_5y": 0.228,
+        "information_1y": 0.9601,
         "treynor_1y": 2.8892,
         "treynor_3y": 6.4012,
         "treynor_5y": 1.163
@@ -4105,6 +4268,7 @@
         "sortino_3y": 0.647,
         "alpha_3y": 0.437,
         "information_5y": -0.057,
+        "information_1y": -0.0689,
         "treynor_1y": 1.0235,
         "treynor_3y": 2.0613,
         "treynor_5y": -0.6791
@@ -4127,6 +4291,7 @@
         "alpha_3y": 0.511,
         "sortino_1y": 4.429,
         "sortino_3y": 1.734,
+        "information_1y": 1.4657,
         "treynor_1y": 14.0999,
         "treynor_3y": 6.6236,
         "treynor_5y": 2.4865
@@ -4145,6 +4310,7 @@
         "information_3y": -0.983,
         "sortino_3y": 0.926,
         "sharpe_3y": 0.586,
+        "information_1y": 0.3116,
         "treynor_1y": 8.8425,
         "treynor_3y": 3.9651
       }
@@ -4166,6 +4332,7 @@
         "sharpe_1y": 1.903,
         "information_5y": -0.61,
         "alpha_5y": -1.238,
+        "information_1y": 1.4632,
         "treynor_1y": 13.5419,
         "treynor_3y": 6.0779,
         "treynor_5y": 1.9108
@@ -4188,6 +4355,7 @@
         "sortino_5y": -0.56,
         "sharpe_1y": -0.24,
         "sharpe_3y": 0.159,
+        "information_1y": 0.503,
         "treynor_1y": -0.727,
         "treynor_3y": 0.5553,
         "treynor_5y": -2.4313
@@ -4210,6 +4378,7 @@
         "alpha_3y": -0.374,
         "information_3y": -0.797,
         "alpha_5y": -0.185,
+        "information_1y": 0.5133,
         "treynor_1y": -0.4909,
         "treynor_3y": 0.8147,
         "treynor_5y": -2.1761
@@ -4232,6 +4401,7 @@
         "alpha_1y": -7.301,
         "alpha_5y": -4.901,
         "alpha_3y": -5.528,
+        "information_1y": -2.3798,
         "treynor_1y": 17.088,
         "treynor_3y": 8.3873,
         "treynor_5y": 2.1575
@@ -4268,6 +4438,7 @@
         "information_5y": -1.967,
         "sortino_5y": 0.013,
         "alpha_1y": -6.844,
+        "information_1y": -5.8034,
         "treynor_1y": 3.0531,
         "treynor_3y": 3.4115,
         "treynor_5y": 0.0799
@@ -4286,6 +4457,7 @@
         "alpha_3y": -2.528,
         "information_3y": -2.079,
         "sharpe_1y": 0.452,
+        "information_1y": -5.8062,
         "treynor_1y": 2.9304,
         "treynor_3y": 3.3598
       }
@@ -4335,6 +4507,7 @@
         "information_3y": -0.545,
         "alpha_5y": -1.283,
         "sharpe_3y": -0.519,
+        "information_1y": -0.5519,
         "treynor_1y": 29.8985,
         "treynor_3y": -3.4823,
         "treynor_5y": -2.9846
@@ -4357,6 +4530,7 @@
         "information_5y": -0.365,
         "alpha_5y": -1.547,
         "information_3y": -0.617,
+        "information_1y": -0.5204,
         "treynor_1y": 28.8239,
         "treynor_3y": -4.0554,
         "treynor_5y": -3.3551
@@ -4379,6 +4553,7 @@
         "alpha_1y": -9.854,
         "sortino_3y": 1.626,
         "sharpe_3y": 0.961,
+        "information_1y": -2.8526,
         "treynor_1y": 6.9646,
         "treynor_3y": 9.9908,
         "treynor_5y": 4.9208
@@ -4401,6 +4576,7 @@
         "sortino_1y": 2.337,
         "sharpe_5y": 0.444,
         "information_3y": -0.499,
+        "information_1y": -0.849,
         "treynor_1y": 18.4245,
         "treynor_3y": 12.1972,
         "treynor_5y": 6.7336
@@ -4423,6 +4599,7 @@
         "alpha_5y": -0.6,
         "sortino_1y": 2.388,
         "information_5y": -0.245,
+        "information_1y": -0.8038,
         "treynor_1y": 18.7512,
         "treynor_3y": 12.5125,
         "treynor_5y": 7.0677
@@ -4445,6 +4622,7 @@
         "alpha_1y": -8.16,
         "information_5y": -1.056,
         "sortino_3y": 0.195,
+        "information_1y": -2.7542,
         "treynor_1y": -3.0187,
         "treynor_3y": 1.1457,
         "treynor_5y": -3.5899
@@ -4463,6 +4641,7 @@
         "information_3y": -0.451,
         "sharpe_3y": 0.523,
         "alpha_1y": -3.211,
+        "information_1y": -0.6251,
         "treynor_1y": 5.3672,
         "treynor_3y": 4.108
       }
@@ -4484,6 +4663,7 @@
         "alpha_3y": -0.496,
         "sharpe_3y": 0.685,
         "sortino_5y": 0.135,
+        "information_1y": -0.3629,
         "treynor_1y": 5.3452,
         "treynor_3y": 4.833,
         "treynor_5y": 0.8699
@@ -4506,6 +4686,7 @@
         "alpha_1y": -0.499,
         "information_3y": 0.187,
         "sortino_5y": 0.321,
+        "information_1y": 0.6982,
         "treynor_1y": 8.1812,
         "treynor_3y": 5.6916,
         "treynor_5y": 1.9574
@@ -4528,6 +4709,7 @@
         "information_5y": -0.11,
         "sharpe_3y": 0.866,
         "sortino_3y": 1.409,
+        "information_1y": 1.0887,
         "treynor_1y": 8.9169,
         "treynor_3y": 6.0783,
         "treynor_5y": 2.8456
@@ -4546,6 +4728,7 @@
         "sortino_1y": 2.961,
         "alpha_1y": 5.986,
         "alpha_3y": 2.63,
+        "information_1y": 2.3312,
         "treynor_1y": 12.4329,
         "treynor_3y": 7.0713
       }
@@ -4574,6 +4757,7 @@
         "sharpe_3y": 0.526,
         "information_3y": -1.358,
         "alpha_3y": -2.819,
+        "information_1y": -0.6307,
         "treynor_1y": 6.6887,
         "treynor_3y": 3.4603,
         "treynor_5y": 0.5176
@@ -4596,6 +4780,7 @@
         "sharpe_3y": 0.989,
         "sortino_5y": 0.519,
         "sortino_1y": 2.14,
+        "information_1y": 1.3999,
         "treynor_1y": 9.4387,
         "treynor_3y": 6.8084,
         "treynor_5y": 2.9974
@@ -4618,6 +4803,7 @@
         "information_3y": 0.232,
         "alpha_3y": 1.386,
         "sharpe_3y": 0.974,
+        "information_1y": 1.7078,
         "treynor_1y": 15.9177,
         "treynor_3y": 6.9078,
         "treynor_5y": 2.4598
@@ -4640,6 +4826,7 @@
         "sortino_1y": 3.378,
         "sortino_3y": 2.088,
         "alpha_5y": -0.156,
+        "information_1y": 0.6357,
         "treynor_1y": 21.6017,
         "treynor_3y": 15.2159,
         "treynor_5y": 9.0013
@@ -4662,6 +4849,7 @@
         "alpha_5y": -0.421,
         "sharpe_1y": -0.285,
         "alpha_3y": -0.263,
+        "information_1y": 0.768,
         "treynor_1y": -0.0244,
         "treynor_3y": 0.0024,
         "treynor_5y": -0.1314
@@ -4708,6 +4896,7 @@
         "sortino_1y": 0.888,
         "sharpe_3y": 0.437,
         "sortino_3y": 0.654,
+        "information_1y": -0.5668,
         "treynor_1y": 3.899,
         "treynor_3y": 3.2037,
         "treynor_5y": 1.3501
@@ -4730,6 +4919,7 @@
         "alpha_1y": -6.684,
         "sortino_5y": 0.176,
         "sharpe_3y": 0.398,
+        "information_1y": -0.5677,
         "treynor_1y": 3.6414,
         "treynor_3y": 2.9195,
         "treynor_5y": 1.0607
@@ -4752,6 +4942,7 @@
         "alpha_3y": -4.177,
         "information_3y": -0.653,
         "sharpe_3y": 0.446,
+        "information_1y": -1.3045,
         "treynor_1y": 2.3057,
         "treynor_3y": 3.0011,
         "treynor_5y": 0.5899
@@ -4774,6 +4965,7 @@
         "sortino_5y": 0.151,
         "information_3y": -0.551,
         "sortino_1y": 0.594,
+        "information_1y": -1.3071,
         "treynor_1y": 2.5455,
         "treynor_3y": 3.2622,
         "treynor_5y": 0.8647
@@ -4792,6 +4984,7 @@
         "alpha_1y": -11.111,
         "sortino_1y": 0.596,
         "information_3y": -0.551,
+        "information_1y": -1.3054,
         "treynor_1y": 2.5464,
         "treynor_3y": 3.2621
       }
@@ -4813,6 +5006,7 @@
         "information_5y": -0.335,
         "sortino_1y": 2.576,
         "sharpe_5y": -0.027,
+        "information_1y": 1.2763,
         "treynor_1y": 20.0127,
         "treynor_3y": 7.9213,
         "treynor_5y": -0.3827
@@ -4835,6 +5029,7 @@
         "sortino_5y": -0.007,
         "alpha_1y": -2.863,
         "information_5y": -0.265,
+        "information_1y": 1.2769,
         "treynor_1y": 20.2559,
         "treynor_3y": 8.1924,
         "treynor_5y": -0.0708
@@ -4857,6 +5052,7 @@
         "sharpe_3y": 0.17,
         "alpha_3y": -0.97,
         "information_5y": -0.561,
+        "information_1y": 0.2542,
         "treynor_1y": 0.8149,
         "treynor_3y": 0.8313,
         "treynor_5y": -2.0602
@@ -4879,6 +5075,7 @@
         "sortino_3y": 0.322,
         "sharpe_5y": -0.289,
         "sharpe_3y": 0.227,
+        "information_1y": 0.2559,
         "treynor_1y": 1.0431,
         "treynor_3y": 1.1104,
         "treynor_5y": -1.7775
@@ -4901,6 +5098,7 @@
         "information_5y": -0.661,
         "information_3y": -0.262,
         "sharpe_5y": -0.319,
+        "information_1y": -0.3611,
         "treynor_1y": -0.0936,
         "treynor_3y": 0.7932,
         "treynor_5y": -1.8137
@@ -4923,6 +5121,7 @@
         "sharpe_3y": 0.234,
         "alpha_5y": -1.141,
         "alpha_3y": -0.806,
+        "information_1y": -0.3007,
         "treynor_1y": 0.1209,
         "treynor_3y": 1.0601,
         "treynor_5y": -1.5463
@@ -4941,6 +5140,7 @@
         "sortino_1y": 0.042,
         "alpha_3y": -0.805,
         "sharpe_3y": 0.234,
+        "information_1y": -0.3006,
         "treynor_1y": 0.1209,
         "treynor_3y": 1.0599
       }
@@ -4962,6 +5162,7 @@
         "information_5y": 0.653,
         "sortino_3y": 0.294,
         "sharpe_3y": 0.181,
+        "information_1y": 0.8582,
         "treynor_1y": -1.7475,
         "treynor_3y": 0.8524,
         "treynor_5y": -3.1517
@@ -4984,6 +5185,7 @@
         "sharpe_1y": -0.693,
         "sortino_3y": -0.607,
         "information_3y": -1.699,
+        "information_1y": -1.5278,
         "treynor_1y": -3.302,
         "treynor_3y": -3.1853,
         "treynor_5y": -6.2702
@@ -5006,6 +5208,7 @@
         "information_5y": -0.297,
         "alpha_5y": -0.696,
         "sortino_5y": -0.222,
+        "information_1y": 1.3717,
         "treynor_1y": 7.399,
         "treynor_3y": 1.6502,
         "treynor_5y": -1.6385
@@ -5042,6 +5245,7 @@
         "sharpe_1y": 2.233,
         "alpha_5y": 4.49,
         "sharpe_3y": 0.852,
+        "information_1y": 1.6237,
         "treynor_1y": 45.6851,
         "treynor_3y": 16.2246,
         "treynor_5y": 9.7952
@@ -5064,6 +5268,7 @@
         "sharpe_3y": -0.207,
         "sortino_3y": -0.275,
         "sortino_5y": -0.034,
+        "information_1y": -2.8651,
         "treynor_1y": -1.1533,
         "treynor_3y": -2.6987,
         "treynor_5y": -0.3328
@@ -5086,6 +5291,7 @@
         "sortino_3y": 2.588,
         "sortino_1y": 4.241,
         "sortino_5y": 0.969,
+        "information_1y": -0.645,
         "treynor_1y": 36.6828,
         "treynor_3y": 24.8686,
         "treynor_5y": 13.5611
@@ -5108,6 +5314,7 @@
         "sortino_3y": 1.259,
         "information_3y": -0.169,
         "sharpe_5y": 0.248,
+        "information_1y": 1.4433,
         "treynor_1y": 8.5389,
         "treynor_3y": 5.1662,
         "treynor_5y": 1.9842
@@ -5130,6 +5337,7 @@
         "sortino_1y": 2.657,
         "sharpe_5y": 0.376,
         "sortino_5y": 0.558,
+        "information_1y": 0.5132,
         "treynor_1y": 13.6232,
         "treynor_3y": 8.1885,
         "treynor_5y": 4.0982
@@ -5152,6 +5360,7 @@
         "sharpe_1y": 0.996,
         "sortino_3y": 0.738,
         "alpha_1y": 1.893,
+        "information_1y": 2.2433,
         "treynor_1y": 3.8084,
         "treynor_3y": 2.2261,
         "treynor_5y": -0.826
@@ -5174,6 +5383,7 @@
         "alpha_3y": -2.639,
         "sharpe_3y": 0.919,
         "information_3y": 0.23,
+        "information_1y": 1.4562,
         "treynor_1y": 14.679,
         "treynor_3y": 8.558,
         "treynor_5y": 5.5106
@@ -5196,6 +5406,7 @@
         "alpha_1y": 8.373,
         "information_3y": 1.328,
         "sharpe_5y": 0.553,
+        "information_1y": 3.1218,
         "treynor_1y": 7.3668,
         "treynor_3y": 5.3697,
         "treynor_5y": 3.7891
@@ -5234,6 +5445,7 @@
         "alpha_1y": -8.071,
         "sharpe_1y": 1.392,
         "sortino_1y": 3.188,
+        "information_1y": 0.6594,
         "treynor_1y": 36.6795
       }
     },
@@ -5250,6 +5462,7 @@
         "alpha_1y": -12.244,
         "sharpe_1y": 0.585,
         "information_3y": -1.351,
+        "information_1y": -2.8196,
         "treynor_1y": 7.3605,
         "treynor_3y": 3.3951
       }
@@ -5267,6 +5480,7 @@
         "sharpe_1y": 0.558,
         "sharpe_3y": 0.225,
         "alpha_3y": -5.586,
+        "information_1y": -2.8206,
         "treynor_1y": 7.0181,
         "treynor_3y": 3.0298
       }
@@ -5288,6 +5502,7 @@
         "alpha_5y": -3.544,
         "sharpe_1y": 0.963,
         "information_5y": -0.801,
+        "information_1y": -1.8796,
         "treynor_1y": 11.4585,
         "treynor_3y": 6.4778,
         "treynor_5y": 4.5608
@@ -5310,6 +5525,7 @@
         "sortino_1y": 1.59,
         "sharpe_3y": 0.548,
         "alpha_3y": -6.339,
+        "information_1y": -1.8605,
         "treynor_1y": 11.7603,
         "treynor_3y": 6.801,
         "treynor_5y": 4.8913
@@ -5332,6 +5548,7 @@
         "sortino_5y": 0.476,
         "sortino_3y": 0.787,
         "sortino_1y": 1.548,
+        "information_1y": -1.9178,
         "treynor_1y": 11.4951,
         "treynor_3y": 6.5312,
         "treynor_5y": 4.607
@@ -5350,6 +5567,7 @@
         "sharpe_3y": 0.587,
         "sortino_3y": 0.891,
         "alpha_3y": -5.833,
+        "information_1y": -1.9276,
         "treynor_1y": 12.1989,
         "treynor_3y": 7.2867
       }
@@ -5371,6 +5589,7 @@
         "sortino_3y": 0.31,
         "alpha_1y": 1.599,
         "sharpe_5y": -0.14,
+        "information_1y": 1.3769,
         "treynor_1y": 7.696,
         "treynor_3y": 1.8831,
         "treynor_5y": -1.3244
@@ -5389,6 +5608,7 @@
         "sortino_1y": 1.014,
         "sortino_3y": 0.945,
         "sharpe_3y": 0.613,
+        "information_1y": -4.0421,
         "treynor_1y": 4.4154,
         "treynor_3y": 4.0606
       }
@@ -5406,6 +5626,7 @@
         "sortino_3y": 0.844,
         "sharpe_3y": 0.554,
         "sortino_1y": 0.918,
+        "information_1y": -4.0986,
         "treynor_1y": 4.0328,
         "treynor_3y": 3.6688
       }
@@ -5423,6 +5644,7 @@
         "information_3y": -1.596,
         "alpha_1y": -8.47,
         "sharpe_1y": 1.096,
+        "information_1y": -2.5881,
         "treynor_1y": 15.8201,
         "treynor_3y": 7.3184
       }
@@ -5440,6 +5662,7 @@
         "information_3y": -1.515,
         "alpha_3y": -6.238,
         "sharpe_1y": 1.121,
+        "information_1y": -2.6021,
         "treynor_1y": 16.1748,
         "treynor_3y": 7.6779
       }
@@ -5487,6 +5710,7 @@
         "alpha_5y": -4.749,
         "alpha_3y": -6.23,
         "information_3y": -1.636,
+        "information_1y": -2.4909,
         "treynor_1y": 1.4799,
         "treynor_3y": 0.943,
         "treynor_5y": -0.3437
@@ -5509,6 +5733,7 @@
         "sortino_1y": 1.607,
         "alpha_3y": 0.972,
         "information_3y": 0.295,
+        "information_1y": 3.2796,
         "treynor_1y": 4.5244,
         "treynor_3y": 2.8347,
         "treynor_5y": 1.498
@@ -5531,6 +5756,7 @@
         "sortino_3y": 0.903,
         "information_5y": 0.194,
         "alpha_5y": 0.666,
+        "information_1y": 1.427,
         "treynor_1y": 3.6618,
         "treynor_3y": 2.8396,
         "treynor_5y": -0.0063
@@ -5553,6 +5779,7 @@
         "alpha_5y": 0.151,
         "sharpe_3y": 0.337,
         "information_5y": 0.145,
+        "information_1y": 1.2621,
         "treynor_1y": 2.2155,
         "treynor_3y": 1.7569,
         "treynor_5y": -0.4615
@@ -5575,6 +5802,7 @@
         "sortino_5y": -0.036,
         "alpha_3y": -6.28,
         "alpha_1y": -11.542,
+        "information_1y": -5.1783,
         "treynor_1y": 3.8873,
         "treynor_3y": 1.6143,
         "treynor_5y": -0.3345
@@ -5597,6 +5825,7 @@
         "alpha_1y": -11.789,
         "sharpe_5y": -0.048,
         "alpha_5y": -5.381,
+        "information_1y": -5.1835,
         "treynor_1y": 3.6021,
         "treynor_3y": 1.3646,
         "treynor_5y": -0.574
@@ -5619,6 +5848,7 @@
         "sortino_5y": 0.804,
         "sortino_3y": 1.728,
         "alpha_1y": -3.512,
+        "information_1y": 0.7874,
         "treynor_1y": 7.5944,
         "treynor_3y": 7.3998,
         "treynor_5y": 4.4387
@@ -5641,6 +5871,7 @@
         "sortino_1y": 1.496,
         "sortino_5y": 0.203,
         "information_5y": 0.805,
+        "information_1y": 2.78,
         "treynor_1y": 4.0505,
         "treynor_3y": 3.3237,
         "treynor_5y": 0.8456
@@ -5659,6 +5890,7 @@
         "alpha_1y": -10.348,
         "sharpe_1y": 0.92,
         "sharpe_3y": 0.678,
+        "information_1y": -3.3131,
         "treynor_1y": 13.2778,
         "treynor_3y": 9.0808
       }
@@ -5680,6 +5912,7 @@
         "information_3y": -0.29,
         "alpha_5y": -2.367,
         "sortino_1y": 1.501,
+        "information_1y": -0.3537,
         "treynor_1y": 6.0259,
         "treynor_3y": 4.8125,
         "treynor_5y": 1.1702

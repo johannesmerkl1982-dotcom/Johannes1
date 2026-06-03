@@ -94,7 +94,11 @@ HTML = r"""<!DOCTYPE html>
       </select>
     </div>
     <div class="wide">
-      <label for="category">Morningstar-Kategorie</label>
+      <label for="assetclass">Anlageklasse (grobes Raster)</label>
+      <select id="assetclass"></select>
+    </div>
+    <div class="wide">
+      <label for="category">Morningstar-Kategorie (fein)</label>
       <select id="category"></select>
     </div>
   </div>
@@ -124,6 +128,25 @@ const $ = id => document.getElementById(id);
 function normCat(c){ return (c||"").replace(/^EAA Fund /, "").trim(); }
 function providerMatch(f,p){ return p==="all" || f.branding.toLowerCase().startsWith(p); }
 
+// Grobes Raster: ordnet jede Detailkategorie einer Anlageklasse zu.
+function assetClass(catRaw){
+  const c = normCat(catRaw).toLowerCase();
+  if (c.includes("money market") || c.includes("ultra short")) return "Geldmarkt";
+  if (c.includes("property")) return "Immobilien";
+  if (c.includes("commodit")) return "Rohstoffe";
+  if (c.includes("convertible")) return "Wandelanleihen";
+  if (c.includes("allocation") || c.includes("target date") || c.includes("capital protected")
+      || c.includes("guaranteed")) return "Mischfonds";
+  if (c.includes("equity") || c.includes("equities")) return "Aktienfonds";
+  if (c.includes("bond") || c.includes("fixed term") || c.includes("credit")
+      || c.includes("renten")) return "Anleihen";
+  if (c.includes("market neutral") || c.includes("systematic trend")
+      || c.includes("infrastructure direct")) return "Alternative";
+  return "Sonstige";
+}
+const ASSET_ORDER = ["Aktienfonds","Anleihen","Mischfonds","Immobilien","Rohstoffe",
+                     "Wandelanleihen","Geldmarkt","Alternative","Sonstige"];
+
 function fillMetrics(){
   $("metric").innerHTML = Object.entries(METRICS)
     .map(([k,m])=>`<option value="${k}">${m.label}</option>`).join("");
@@ -135,21 +158,33 @@ function fillPeriods(){
     .map(p=>`<option value="${p}">${PLABEL[p]}</option>`).join("");
   if (m.periods.includes(cur)) $("period").value = cur;
 }
-function fillCategories(){
+function fillAssetClasses(){
   const prov = $("provider").value;
+  const present = new Set(DATA.funds.filter(f=>providerMatch(f,prov))
+      .map(f=>assetClass(f.category)));
+  const list = ASSET_ORDER.filter(a=>present.has(a));
+  const cur = $("assetclass").value;
+  $("assetclass").innerHTML = `<option value="">Alle Anlageklassen</option>` +
+      list.map(a=>`<option value="${a}">${a}</option>`).join("");
+  if (cur && list.includes(cur)) $("assetclass").value = cur;
+}
+function fillCategories(){
+  const prov = $("provider").value, ac = $("assetclass").value;
   const cats = [...new Set(DATA.funds.filter(f=>providerMatch(f,prov))
+      .filter(f=> !ac || assetClass(f.category)===ac)
       .map(f=>normCat(f.category)))].sort();
   const cur = $("category").value;
   $("category").innerHTML = `<option value="">Alle Kategorien</option>` +
       cats.map(c=>`<option value="${c}">${c}</option>`).join("");
-  if (cur && cats.includes(cur)) $("category").value = cur;
+  if (cur && cats.includes(cur)) $("category").value = cur; else $("category").value = "";
 }
 
 function currentRows(){
   const metric=$("metric").value, period=$("period").value,
-        prov=$("provider").value, cat=$("category").value;
+        prov=$("provider").value, ac=$("assetclass").value, cat=$("category").value;
   const key = metric+"_"+period;
   let rows = DATA.funds.filter(f=>providerMatch(f,prov))
+    .filter(f=> !ac || assetClass(f.category)===ac)
     .filter(f=> !cat || normCat(f.category)===cat)
     .filter(f=> f.metrics && f.metrics[key]!=null)
     .map(f=>({name:f.name, branding:f.branding, value:f.metrics[key]}));
@@ -158,7 +193,7 @@ function currentRows(){
 }
 
 function render(){
-  fillPeriods(); fillCategories();
+  fillPeriods(); fillAssetClasses(); fillCategories();
   const rows = currentRows();
   const topn = parseInt($("topn").value,10);
   const shown = topn>0 ? rows.slice(0,topn) : rows;
@@ -197,7 +232,7 @@ function exportCSV(){
   }
 }
 
-["metric","period","provider","category","topn"].forEach(id=>$(id).addEventListener("change",render));
+["metric","period","provider","assetclass","category","topn"].forEach(id=>$(id).addEventListener("change",render));
 $("csv").addEventListener("click", exportCSV);
 $("srcline").textContent = `Quelle: Morningstar · Stand: ${DATA.meta.as_of} · ${DATA.meta.fund_count} Fonds`;
 $("foot").textContent = "Treynor berechnet (Sharpe×StdAbw÷Beta). Höhere Werte = besser. Daten-Snapshot, nicht live.";

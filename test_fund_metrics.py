@@ -90,14 +90,17 @@ def test_treynor_query_sort_and_filter():
     assert [r["name"] for r in rows] == ["B", "A"]  # absteigend, C ausgelassen
 
 
-def test_information_ratio_no_1y():
-    # Information Ratio darf 1y nicht zulassen
-    try:
-        fm.query(SAMPLE_FUNDS, "information", "1y")
-    except ValueError:
-        pass
-    else:
-        raise AssertionError("Information Ratio 1y hätte einen ValueError auslösen müssen")
+def test_information_ratio_has_1y():
+    # Information Ratio unterstützt jetzt 1y (Datenpunkt ZS71V).
+    assert fm.METRICS["information"][1] == ["1y", "3y", "5y"]
+    # darf keinen ValueError mehr werfen
+    fm.query(SAMPLE_FUNDS, "information", "1y")
+
+
+def test_all_metrics_support_1_3_5_except_none():
+    # Jede Kennzahl deckt jetzt 1y/3y/5y ab.
+    for k, (_lbl, periods, _hb) in fm.METRICS.items():
+        assert periods == ["1y", "3y", "5y"], f"{k} deckt nicht 1/3/5 ab: {periods}"
 
 
 def test_available_categories():

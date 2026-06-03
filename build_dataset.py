@@ -46,6 +46,10 @@ DATAPOINTS = {
     "RR002": ("alpha", "1y"),
     "RR003": ("alpha", "3y"),
     "RR004": ("alpha", "5y"),
+    # Information Ratio 1 Jahr: eigener Morningstar-Datenpunkt (Active Process
+    # Pillar, gross-of-fee). Methodisch leicht abweichend von RR147/RR148
+    # (Israelson-adjustiert), aber für die 1-Jahres-Sicht die passende Größe.
+    "ZS71V": ("information", "1y"),
 }
 
 # Hilfsdatenpunkte (Standardabweichung & Beta), aus denen die Treynor Ratio
@@ -248,7 +252,7 @@ def main() -> None:
             "metrics_available": {
                 "sharpe": ["1y", "3y", "5y"],
                 "sortino": ["1y", "3y", "5y"],
-                "information": ["3y", "5y"],
+                "information": ["1y", "3y", "5y"],
                 "alpha": ["1y", "3y", "5y"],
                 "treynor": ["1y", "3y", "5y"],
             },

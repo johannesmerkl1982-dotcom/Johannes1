@@ -42,7 +42,7 @@ DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "fu
 METRICS = {
     "sharpe": ("Sharpe Ratio", ["1y", "3y", "5y"], True),
     "sortino": ("Sortino Ratio", ["1y", "3y", "5y"], True),
-    "information": ("Information Ratio", ["3y", "5y"], True),
+    "information": ("Information Ratio", ["1y", "3y", "5y"], True),
     "treynor": ("Treynor Ratio", ["1y", "3y", "5y"], True),
     "alpha": ("Jensens Alpha", ["1y", "3y", "5y"], True),
 }
