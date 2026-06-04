@@ -19,10 +19,14 @@ Frage die folgenden vier Punkte ab – am besten gebündelt mit **AskUserQuestio
 (wenn der Nutzer Werte schon im Text genannt hat, diese übernehmen und nur
 fehlende erfragen):
 
-- **Kennzahl**: `sharpe` (Sharpe Ratio), `sortino` (Sortino Ratio),
-  `information` (Information Ratio, nur 3y/5y), `treynor` (Treynor Ratio,
-  berechnet), `alpha` (Jensens Alpha).
-- **Laufzeit**: `1y`, `3y`, `5y`.  (Bei `information` ist `1y` nicht verfügbar.)
+- **Kennzahl**: `performance` (absolute Rendite), `sharpe` (Sharpe Ratio),
+  `sortino` (Sortino Ratio), `information` (Information Ratio), `treynor`
+  (Treynor Ratio, berechnet), `alpha` (Jensens Alpha), `volatility`
+  (Volatilität/Std.-Abw., niedriger=besser), `beta`, `trackingerror`
+  (Tracking Error, nur 3y/5y, niedriger=besser).
+- **Laufzeit**: `1y`, `3y`, `5y` für alle Kennzahlen; zusätzlich `1m`, `3m`, `6m`
+  **nur** für `performance`. `trackingerror` gibt es erst ab `3y`. Welche
+  Laufzeiten je Kennzahl gültig sind, steht in `fund_metrics.METRICS`.
 - **Anbieter**: `all` (Union + Quoniam), `union`, `quoniam`.
 - **Kategorie**: eine Morningstar-Kategorie (ohne „EAA Fund“-Präfix) oder „Alle
   Kategorien“. Wenn der Nutzer die Liste sehen will, vorher ausgeben mit:
@@ -59,8 +63,9 @@ python3 fund_metrics.py --metric <KENNZAHL> --period <LAUFZEIT> \
 - Kurze Zusammenfassung dazugeben: Auswahl, Anzahl Fonds, Top 3 mit Werten.
 
 ## Hinweise
-- Höhere Werte sind bei allen Kennzahlen besser; Sortierung absteigend. Fonds
-  ohne Wert für die konkrete Kennzahl/Laufzeit werden ausgelassen.
+- Höhere Werte sind besser (Sortierung absteigend) – außer bei `volatility` und
+  `trackingerror`, wo niedrigere Werte besser sind (aufsteigend, kleinster Wert =
+  Rang 1). Fonds ohne Wert für die konkrete Kennzahl/Laufzeit werden ausgelassen.
 - Treynor ist berechnet (`Sharpe × StdAbw ÷ Beta`); ohne Beta kein Wert.
 - Datengrundlage ist ein Snapshot (`data/funds.json`); Stand steht im Feld
   `meta.as_of` und erscheint auf der Titelfolie.

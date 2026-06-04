@@ -40,7 +40,16 @@ def main() -> int:
                 # liegen in [-50, 150] (Sortino kann bei ~0 Downside extrem groß
                 # werden). Treynor ist eine Excess-Return-/Beta-Größe und kann bei
                 # kleinem Beta betragsmäßig deutlich größer ausfallen.
-                lo, hi = (-1000, 1000) if key.startswith("treynor") else (-50, 150)
+                if key.startswith("treynor"):
+                    lo, hi = -1000, 1000
+                elif key.startswith("performance"):
+                    lo, hi = -99, 400          # Renditen in %, auch extreme Kurzfristfälle
+                elif key.startswith("volatility") or key.startswith("trackingerror"):
+                    lo, hi = 0, 200            # Streuungsmaße, nie negativ
+                elif key.startswith("beta"):
+                    lo, hi = -10, 15
+                else:
+                    lo, hi = -50, 150
                 if not (lo <= val <= hi):
                     problems.append(f"{f['id']}: {key}={val} außerhalb Plausibilitätsband")
 

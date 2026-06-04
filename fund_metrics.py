@@ -40,14 +40,19 @@ DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "fu
 
 # Kennzahl -> (Anzeigename, erlaubte Laufzeiten, höher-ist-besser?)
 METRICS = {
+    "performance": ("Performance (Rendite)", ["1m", "3m", "6m", "1y", "3y", "5y"], True),
     "sharpe": ("Sharpe Ratio", ["1y", "3y", "5y"], True),
     "sortino": ("Sortino Ratio", ["1y", "3y", "5y"], True),
     "information": ("Information Ratio", ["1y", "3y", "5y"], True),
     "treynor": ("Treynor Ratio", ["1y", "3y", "5y"], True),
     "alpha": ("Jensens Alpha", ["1y", "3y", "5y"], True),
+    "volatility": ("Volatilität", ["1y", "3y", "5y"], False),
+    "beta": ("Beta", ["1y", "3y", "5y"], True),
+    "trackingerror": ("Tracking Error", ["3y", "5y"], False),
 }
 
-PERIOD_LABELS = {"1y": "1 Jahr", "3y": "3 Jahre", "5y": "5 Jahre"}
+PERIOD_LABELS = {"1m": "1 Monat", "3m": "3 Monate", "6m": "6 Monate",
+                 "1y": "1 Jahr", "3y": "3 Jahre", "5y": "5 Jahre"}
 
 
 # --------------------------------------------------------------------------- #
@@ -272,7 +277,7 @@ def build_parser() -> argparse.ArgumentParser:
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     p.add_argument("--metric", choices=list(METRICS.keys()), help="Kennzahl")
-    p.add_argument("--period", choices=["1y", "3y", "5y"], help="Laufzeit")
+    p.add_argument("--period", choices=["1m", "3m", "6m", "1y", "3y", "5y"], help="Laufzeit")
     p.add_argument("--category", help="Morningstar-Kategorie (ohne 'EAA Fund'-Präfix)")
     p.add_argument(
         "--provider", choices=["all", "union", "quoniam"], default="all", help="Anbieterfilter"

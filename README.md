@@ -1,19 +1,30 @@
 # Union- & Quoniam-Fonds – Kennzahlen-Tool
 
-Ein Kommandozeilen-Tool, das für **alle Union- und Quoniam-Investmentfonds**
-risikoadjustierte Kennzahlen aus **Morningstar** anzeigt. Auswählbar sind
-**Kennzahl**, **Laufzeit** und **Morningstar-Fondskategorie**; Ergebnisse lassen
-sich als **CSV/Excel** exportieren.
+Ein Tool, das für **alle Union- und Quoniam-Investmentfonds**
+Performance- und risikoadjustierte Kennzahlen aus **Morningstar** anzeigt.
+Auswählbar sind **Kennzahl**, **Laufzeit** und **Morningstar-Fondskategorie**;
+Ergebnisse lassen sich als **CSV/Excel** und **PowerPoint** exportieren. Es gibt
+zusätzlich eine eigenständige **Web-App** (`webapp/index.html`) mit Top-/Flop-
+Ranglisten und grobem Anlageklassen-Raster.
 
 ## Kennzahlen & Laufzeiten
 
-| Kennzahl              | 1 Jahr | 3 Jahre | 5 Jahre |
-|-----------------------|:------:|:-------:|:-------:|
-| Sharpe Ratio          |   ✓    |    ✓    |    ✓    |
-| Sortino Ratio         |   ✓    |    ✓    |    ✓    |
-| Information Ratio      |   –    |    ✓    |    ✓    |
-| Treynor Ratio         |   ✓    |    ✓    |    ✓    |
-| Jensens Alpha (Alpha) |   ✓    |    ✓    |    ✓    |
+| Kennzahl                | 1 M | 3 M | 6 M | 1 Jahr | 3 Jahre | 5 Jahre |
+|-------------------------|:---:|:---:|:---:|:------:|:-------:|:-------:|
+| Performance (Rendite)   |  ✓  |  ✓  |  ✓  |   ✓    |    ✓    |    ✓    |
+| Sharpe Ratio            |  –  |  –  |  –  |   ✓    |    ✓    |    ✓    |
+| Sortino Ratio           |  –  |  –  |  –  |   ✓    |    ✓    |    ✓    |
+| Information Ratio        |  –  |  –  |  –  |   ✓    |    ✓    |    ✓    |
+| Treynor Ratio           |  –  |  –  |  –  |   ✓    |    ✓    |    ✓    |
+| Jensens Alpha (Alpha)   |  –  |  –  |  –  |   ✓    |    ✓    |    ✓    |
+| Volatilität (Std.-Abw.) |  –  |  –  |  –  |   ✓    |    ✓    |    ✓    |
+| Beta                    |  –  |  –  |  –  |   ✓    |    ✓    |    ✓    |
+| Tracking Error          |  –  |  –  |  –  |   –    |    ✓    |    ✓    |
+
+Bei **Volatilität** und **Tracking Error** gilt: *niedriger = besser* (kleinster
+Wert = Rang 1). Kurzfrist-Laufzeiten (1/3/6 Monate) liefert Morningstar nur für
+die **Performance**; risikoadjustierte Kennzahlen beginnen methodisch erst ab
+1 Jahr, der Tracking Error ab 3 Jahren.
 
 ### Treynor (berechnet) und warum kein Calmar?
 
@@ -27,8 +38,10 @@ sich als **CSV/Excel** exportieren.
   `|Beta| < 0.05` ist (Division durch ~0 wäre unsinnig).
 * **Calmar Ratio** benötigt den *Maximum Drawdown*, den der Konnektor nicht
   bereitstellt; sie ist daher weder abrufbar noch berechenbar und nicht enthalten.
-* **Information Ratio** liefert Morningstar nur für **3 und 5 Jahre**
-  (kein sauberer 1-Jahres-Wert im Standarddatensatz).
+* **Information Ratio** liefert Morningstar für **3 und 5 Jahre** als
+  Israelson-adjustierten Wert (`RR147/RR148`) sowie für **1 Jahr** über den
+  Active-Process-Pillar-Datenpunkt (`ZS71V`, gross-of-fee). Damit ist die
+  Kennzahl auf allen drei Laufzeiten verfügbar.
 
 ## Verwendung
 
@@ -53,8 +66,9 @@ python3 fund_metrics.py --metric alpha --period 5y --provider quoniam \
 python3 fund_metrics.py --list-categories
 ```
 
-Optionen: `--metric {sharpe,sortino,information,treynor,alpha}`,
-`--period {1y,3y,5y}`, `--category "<Name ohne 'EAA Fund'-Präfix>"`,
+Optionen: `--metric {performance,sharpe,sortino,information,treynor,alpha,volatility,beta,trackingerror}`,
+`--period {1m,3m,6m,1y,3y,5y}` (Kurzfrist nur für `performance`),
+`--category "<Name ohne 'EAA Fund'-Präfix>"`,
 `--provider {all,union,quoniam}`, `--top N`, `--export DATEI.csv|.xlsx`.
 
 CSV wird Excel-/DE-freundlich exportiert (Semikolon-getrennt, UTF-8-BOM).
@@ -96,16 +110,21 @@ data/funds.json            bereinigter Datensatz, den das Tool liest
 ```
 
 Verwendete Morningstar-Datenpunkt-IDs: Sharpe `RR010/RR011/RR012`,
-Sortino `RR122/RR123/RR124`, Information Ratio `RR147/RR148`,
-Alpha `RR002/RR003/RR004`. Für die Treynor-Berechnung zusätzlich:
-Standardabweichung `RR014/RR015/RR016` und Beta `RR00K/RR00L/RR00M`.
+Sortino `RR122/RR123/RR124`, Information Ratio `RR147/RR148` (3/5J) + `ZS71V` (1J),
+Alpha `RR002/RR003/RR004`, Volatilität/Std.-Abw. `RR014/RR015/RR016`,
+Beta `RR00K/RR00L/RR00M`, Tracking Error `RR141/RR142` (3/5J),
+Performance/Total Return `PM004/PM006/PM008` (1/3/6 M) + `PM00C/PM00E/PM00G`
+(1/3/5 J, 3/5J annualisiert). Treynor wird aus Sharpe, Std.-Abw. und Beta
+berechnet; Volatilität und Beta werden direkt aus den Risiko-Datenpunkten
+übernommen.
 
 ## Datenumfang
 
 * **307 Fonds** gesamt: 258 Union Investment + 49 Quoniam (alle Anteilsklassen).
-* **288 Fonds** mit mindestens einer Kennzahl. Sehr junge Fonds ohne
-  ausreichende Historie haben (noch) keine Werte und erscheinen bei der
-  betreffenden Kennzahl/Laufzeit nicht.
+* **Alle 307 Fonds** haben mindestens eine Kennzahl (Performance 1 M/3 M für jeden
+  Fonds). Sehr junge Fonds ohne ausreichende Historie haben bei längeren
+  Laufzeiten bzw. risikoadjustierten Kennzahlen (noch) keine Werte und erscheinen
+  dort nicht.
 * Treynor ist für rund 238 (1J) / 221 (3J) / 198 (5J) Fonds vorhanden – überall
   dort, wo Morningstar ein Beta liefert.
 * Fonds ohne Wert für die konkrete Kennzahl/Laufzeit werden in der Rangliste
@@ -113,7 +132,10 @@ Standardabweichung `RR014/RR015/RR016` und Beta `RR00K/RR00L/RR00M`.
 
 ## Hinweise zur Interpretation
 
-* Höhere Werte sind bei allen fünf Kennzahlen besser; sortiert wird absteigend.
+* Bei Performance, Sharpe, Sortino, Information Ratio, Treynor, Alpha und Beta
+  sind **höhere** Werte besser (absteigend sortiert). Bei **Volatilität** und
+  **Tracking Error** sind **niedrigere** Werte besser (aufsteigend sortiert,
+  kleinster Wert = Rang 1).
 * Vereinzelt liefert Morningstar bei Fonds mit nahezu null Abwärtsabweichung
   **extrem hohe Sortino-1-Jahres-Werte** (z. B. Commodities-Fonds). Diese Werte
   werden unverändert aus der Quelle übernommen.

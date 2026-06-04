@@ -50,6 +50,17 @@ DATAPOINTS = {
     # Pillar, gross-of-fee). Methodisch leicht abweichend von RR147/RR148
     # (Israelson-adjustiert), aber für die 1-Jahres-Sicht die passende Größe.
     "ZS71V": ("information", "1y"),
+    # Performance / absolute Rendite (Total Return Mo-End). 1/3/6 Monate sowie
+    # 1/3/5 Jahre (3/5J annualisiert).
+    "PM004": ("performance", "1m"),
+    "PM006": ("performance", "3m"),
+    "PM008": ("performance", "6m"),
+    "PM00C": ("performance", "1y"),
+    "PM00E": ("performance", "3y"),
+    "PM00G": ("performance", "5y"),
+    # Tracking Error (Volatilität der Aktivrenditen vs. Benchmark), 3/5 Jahre.
+    "RR141": ("trackingerror", "3y"),
+    "RR142": ("trackingerror", "5y"),
 }
 
 # Hilfsdatenpunkte (Standardabweichung & Beta), aus denen die Treynor Ratio
@@ -234,13 +245,26 @@ def main() -> None:
     metrics = load_metrics()
     risk = load_risk()
 
+    # Alle Fonds-IDs, für die Metrik- ODER Risiko-Daten vorliegen.
+    all_ids = set(metrics) | set(risk)
     matched = 0
-    for fid, vals in metrics.items():
-        if fid in universe:
-            treynor = compute_treynor(vals, risk.get(fid, {}))
-            universe[fid]["metrics"] = {**vals, **treynor}
+    for fid in all_ids:
+        if fid not in universe:
+            continue  # sollte nicht vorkommen
+        vals = dict(metrics.get(fid, {}))
+        r = risk.get(fid, {})
+        # Treynor aus Sharpe/StdAbw/Beta berechnen.
+        vals.update(compute_treynor(vals, r))
+        # Volatilität (= Standardabweichung) und Beta direkt als Kennzahlen
+        # aus den Risiko-Daten übernehmen (kein separater Abruf nötig).
+        for period in ("1y", "3y", "5y"):
+            if r.get(f"stddev_{period}") is not None:
+                vals[f"volatility_{period}"] = r[f"stddev_{period}"]
+            if r.get(f"beta_{period}") is not None:
+                vals[f"beta_{period}"] = r[f"beta_{period}"]
+        if vals:
+            universe[fid]["metrics"] = vals
             matched += 1
-        # IDs ohne Universumseintrag werden ignoriert (sollte nicht vorkommen).
 
     funds = sorted(universe.values(), key=lambda f: (f["branding"], f["name"]))
     payload = {
@@ -250,11 +274,15 @@ def main() -> None:
             "providers": sorted({f["branding"] for f in funds}),
             "fund_count": len(funds),
             "metrics_available": {
+                "performance": ["1m", "3m", "6m", "1y", "3y", "5y"],
                 "sharpe": ["1y", "3y", "5y"],
                 "sortino": ["1y", "3y", "5y"],
                 "information": ["1y", "3y", "5y"],
                 "alpha": ["1y", "3y", "5y"],
                 "treynor": ["1y", "3y", "5y"],
+                "volatility": ["1y", "3y", "5y"],
+                "beta": ["1y", "3y", "5y"],
+                "trackingerror": ["3y", "5y"],
             },
             "treynor_note": (
                 "Treynor wird berechnet als Sharpe x Standardabweichung / Beta; "

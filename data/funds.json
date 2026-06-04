@@ -1,6 +1,6 @@
 {
   "meta": {
-    "as_of": "2026-06-03",
+    "as_of": "2026-06-04",
     "source": "Morningstar MCP connector (morningstar-data-tool / screener-tool)",
     "providers": [
       "Quoniam",
@@ -8,6 +8,14 @@
     ],
     "fund_count": 307,
     "metrics_available": {
+      "performance": [
+        "1m",
+        "3m",
+        "6m",
+        "1y",
+        "3y",
+        "5y"
+      ],
       "sharpe": [
         "1y",
         "3y",
@@ -32,6 +40,20 @@
         "1y",
         "3y",
         "5y"
+      ],
+      "volatility": [
+        "1y",
+        "3y",
+        "5y"
+      ],
+      "beta": [
+        "1y",
+        "3y",
+        "5y"
+      ],
+      "trackingerror": [
+        "3y",
+        "5y"
       ]
     },
     "treynor_note": "Treynor wird berechnet als Sharpe x Standardabweichung / Beta; kein Wert, wenn Beta fehlt oder |Beta| < 0.05."
@@ -46,7 +68,13 @@
         "sharpe_1y": 1.911,
         "alpha_1y": 0.792,
         "sortino_1y": 3.674,
-        "treynor_1y": 17.2149
+        "performance_1m": 1.58,
+        "performance_3m": 4.51,
+        "performance_6m": 11.74,
+        "performance_1y": 22.49,
+        "treynor_1y": 17.2149,
+        "volatility_1y": 8.684,
+        "beta_1y": 0.964
       }
     },
     {
@@ -58,7 +86,13 @@
         "alpha_1y": 0.038,
         "sharpe_1y": 1.828,
         "sortino_1y": 3.534,
-        "treynor_1y": 16.4407
+        "performance_1m": 0.87,
+        "performance_3m": 3.8,
+        "performance_6m": 10.96,
+        "performance_1y": 21.7,
+        "treynor_1y": 16.4407,
+        "volatility_1y": 8.724,
+        "beta_1y": 0.97
       }
     },
     {
@@ -70,7 +104,13 @@
         "sharpe_1y": 1.848,
         "sortino_1y": 3.504,
         "alpha_1y": 0.246,
-        "treynor_1y": 16.6397
+        "performance_1m": 0.32,
+        "performance_3m": 4.42,
+        "performance_6m": 11.35,
+        "performance_1y": 7.37,
+        "treynor_1y": 16.6397,
+        "volatility_1y": 8.662,
+        "beta_1y": 0.962
       }
     },
     {
@@ -83,7 +123,15 @@
         "alpha_1y": 0.13,
         "sharpe_1y": 1.683,
         "information_1y": -0.5326,
-        "treynor_1y": 24.2169
+        "performance_1m": 5.08,
+        "performance_3m": 8.19,
+        "performance_6m": 11.26,
+        "performance_1y": 27.22,
+        "performance_3y": 22.54,
+        "trackingerror_3y": 2.651,
+        "treynor_1y": 24.2169,
+        "volatility_1y": 12.979,
+        "beta_1y": 0.902
       }
     },
     {
@@ -93,7 +141,12 @@
       "branding": "Quoniam",
       "metrics": {
         "sharpe_1y": 1.322,
-        "sortino_1y": 2.284
+        "sortino_1y": 2.284,
+        "performance_1m": 4.92,
+        "performance_3m": 7.26,
+        "performance_6m": 8.65,
+        "performance_1y": 22.0,
+        "volatility_1y": 17.536
       }
     },
     {
@@ -103,7 +156,12 @@
       "branding": "Quoniam",
       "metrics": {
         "sortino_1y": 2.793,
-        "sharpe_1y": 1.459
+        "sharpe_1y": 1.459,
+        "performance_1m": 5.1,
+        "performance_3m": 7.96,
+        "performance_6m": 9.93,
+        "performance_1y": 24.78,
+        "volatility_1y": 16.048
       }
     },
     {
@@ -116,7 +174,13 @@
         "alpha_1y": 0.488,
         "sharpe_1y": 1.711,
         "information_1y": -0.5318,
-        "treynor_1y": 24.6236
+        "performance_1m": 5.11,
+        "performance_3m": 8.28,
+        "performance_6m": 11.48,
+        "performance_1y": 27.69,
+        "treynor_1y": 24.6236,
+        "volatility_1y": 12.981,
+        "beta_1y": 0.902
       }
     },
     {
@@ -124,14 +188,21 @@
       "name": "Effectual Capital - Glb Sst EqsHAEURHAcc",
       "category": "EAA Fund Other Equity",
       "branding": "Quoniam",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 5.09,
+        "performance_3m": 7.91,
+        "performance_6m": 9.83
+      }
     },
     {
       "id": "F00001UJX1",
       "name": "QFS SICAV - European Eqs EUR A Acc",
       "category": "EAA Fund Europe Large-Cap Blend Equity",
       "branding": "Quoniam",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 4.62,
+        "performance_3m": 5.04
+      }
     },
     {
       "id": "F00000JNW8",
@@ -151,9 +222,23 @@
         "sortino_5y": 1.722,
         "sortino_1y": 4.029,
         "information_1y": 4.221,
+        "performance_1m": 4.61,
+        "performance_3m": 5.05,
+        "performance_6m": 20.87,
+        "performance_1y": 31.78,
+        "performance_3y": 23.63,
+        "performance_5y": 15.62,
+        "trackingerror_3y": 3.491,
+        "trackingerror_5y": 3.985,
         "treynor_1y": 26.3225,
         "treynor_3y": 17.2867,
-        "treynor_5y": 13.2294
+        "treynor_5y": 13.2294,
+        "volatility_1y": 13.124,
+        "beta_1y": 1.057,
+        "volatility_3y": 10.928,
+        "beta_3y": 0.971,
+        "volatility_5y": 13.453,
+        "beta_5y": 1.023
       }
     },
     {
@@ -161,7 +246,12 @@
       "name": "QFS SICAV - European Eqs EUR I acc",
       "category": "EAA Fund Europe Large-Cap Blend Equity",
       "branding": "Quoniam",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 4.67,
+        "performance_3m": 5.23,
+        "performance_6m": 21.28,
+        "performance_1y": 32.64
+      }
     },
     {
       "id": "F00000V3RT",
@@ -181,9 +271,23 @@
         "sortino_1y": 4.166,
         "alpha_5y": 5.198,
         "information_1y": 4.506,
+        "performance_1m": 4.67,
+        "performance_3m": 5.23,
+        "performance_6m": 21.28,
+        "performance_1y": 32.66,
+        "performance_3y": 24.29,
+        "performance_5y": 16.2,
+        "trackingerror_3y": 3.504,
+        "trackingerror_5y": 3.996,
         "treynor_1y": 26.9557,
         "treynor_3y": 17.8415,
-        "treynor_5y": 13.7219
+        "treynor_5y": 13.7219,
+        "volatility_1y": 13.124,
+        "beta_1y": 1.057,
+        "volatility_3y": 10.93,
+        "beta_3y": 0.971,
+        "volatility_5y": 13.459,
+        "beta_5y": 1.024
       }
     },
     {
@@ -196,7 +300,13 @@
         "sharpe_1y": 2.199,
         "sortino_1y": 4.241,
         "information_1y": 4.5116,
-        "treynor_1y": 27.2992
+        "performance_1m": 4.7,
+        "performance_3m": 5.32,
+        "performance_6m": 21.49,
+        "performance_1y": 33.13,
+        "treynor_1y": 27.2992,
+        "volatility_1y": 13.122,
+        "beta_1y": 1.057
       }
     },
     {
@@ -204,28 +314,45 @@
       "name": "QFS SICAV - European Eqs GBP I acc",
       "category": "EAA Fund Europe Large-Cap Blend Equity",
       "branding": "Quoniam",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 4.97,
+        "performance_3m": 3.76,
+        "performance_6m": 19.96,
+        "performance_1y": 36.52
+      }
     },
     {
       "id": "F00001S9LZ",
       "name": "QFS SICAV - European Small Cap EUR A dis",
       "category": "EAA Fund Europe Small-Cap Equity",
       "branding": "Quoniam",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 3.96,
+        "performance_3m": 1.76,
+        "performance_6m": 11.88
+      }
     },
     {
       "id": "F00001S9LX",
       "name": "QFS SICAV - European Small Cap EUR I acc",
       "category": "EAA Fund Europe Small-Cap Equity",
       "branding": "Quoniam",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 4.03,
+        "performance_3m": 1.99,
+        "performance_6m": 12.39
+      }
     },
     {
       "id": "F00001S9LY",
       "name": "QFS SICAV - European Small Cap EUR I dis",
       "category": "EAA Fund Europe Small-Cap Equity",
       "branding": "Quoniam",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 4.03,
+        "performance_3m": 1.97,
+        "performance_6m": 12.34
+      }
     },
     {
       "id": "F00001OMZJ",
@@ -236,7 +363,13 @@
         "alpha_1y": 3.91,
         "sortino_1y": 3.788,
         "sharpe_1y": 1.801,
-        "treynor_1y": 13.4971
+        "performance_1m": 2.58,
+        "performance_3m": 2.76,
+        "performance_6m": 9.76,
+        "performance_1y": 15.65,
+        "treynor_1y": 13.4971,
+        "volatility_1y": 8.431,
+        "beta_1y": 1.125
       }
     },
     {
@@ -248,7 +381,13 @@
         "sharpe_1y": 2.026,
         "alpha_1y": 5.677,
         "sortino_1y": 4.666,
-        "treynor_1y": 15.4775
+        "performance_1m": 2.49,
+        "performance_3m": 3.05,
+        "performance_6m": 9.98,
+        "performance_1y": 16.63,
+        "treynor_1y": 15.4775,
+        "volatility_1y": 7.945,
+        "beta_1y": 1.04
       }
     },
     {
@@ -256,21 +395,34 @@
       "name": "Quoniam Fds Glb Dt Sntmnt GBP I acc",
       "category": "EAA Fund Systematic Trend EUR",
       "branding": "Quoniam",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 2.64,
+        "performance_3m": 3.44,
+        "performance_6m": 9.64,
+        "performance_1y": 21.54
+      }
     },
     {
       "id": "F00001SFB5",
       "name": "Quoniam Fds Glb Dt Sntmnt USD I acc",
       "category": "EAA Fund Systematic Trend EUR",
       "branding": "Quoniam",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 2.6,
+        "performance_3m": 3.57,
+        "performance_6m": 13.73,
+        "performance_1y": 23.96
+      }
     },
     {
       "id": "F00001UJX0",
       "name": "Quoniam Fds Sel EmMktsEqsMnRsk EUR A Acc",
       "category": "EAA Fund Global Emerging Markets Equity",
       "branding": "Quoniam",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 9.64,
+        "performance_3m": 5.58
+      }
     },
     {
       "id": "F00000HHCC",
@@ -290,9 +442,23 @@
         "sortino_3y": 1.261,
         "information_5y": 0.328,
         "information_1y": -1.7076,
+        "performance_1m": 9.64,
+        "performance_3m": 5.58,
+        "performance_6m": 19.65,
+        "performance_1y": 31.64,
+        "performance_3y": 17.15,
+        "performance_5y": 10.88,
+        "trackingerror_3y": 5.779,
+        "trackingerror_5y": 6.332,
         "treynor_1y": 30.848,
         "treynor_3y": 14.6621,
-        "treynor_5y": 7.2767
+        "treynor_5y": 7.2767,
+        "volatility_1y": 19.277,
+        "beta_1y": 0.798,
+        "volatility_3y": 14.034,
+        "beta_3y": 0.782,
+        "volatility_5y": 13.809,
+        "beta_5y": 0.742
       }
     },
     {
@@ -313,9 +479,23 @@
         "sharpe_3y": 0.875,
         "alpha_5y": 3.217,
         "information_1y": -1.5755,
+        "performance_1m": 9.71,
+        "performance_3m": 5.79,
+        "performance_6m": 20.13,
+        "performance_1y": 32.7,
+        "performance_3y": 18.1,
+        "performance_5y": 11.77,
+        "trackingerror_3y": 5.772,
+        "trackingerror_5y": 6.324,
         "treynor_1y": 31.8409,
         "treynor_3y": 15.7086,
-        "treynor_5y": 8.379
+        "treynor_5y": 8.379,
+        "volatility_1y": 19.288,
+        "beta_1y": 0.799,
+        "volatility_3y": 14.039,
+        "beta_3y": 0.782,
+        "volatility_5y": 13.816,
+        "beta_5y": 0.742
       }
     },
     {
@@ -336,9 +516,23 @@
         "alpha_3y": 0.602,
         "alpha_5y": 3.217,
         "information_1y": -1.5753,
+        "performance_1m": 9.71,
+        "performance_3m": 5.79,
+        "performance_6m": 20.13,
+        "performance_1y": 32.7,
+        "performance_3y": 18.1,
+        "performance_5y": 11.77,
+        "trackingerror_3y": 5.772,
+        "trackingerror_5y": 6.324,
         "treynor_1y": 31.8409,
         "treynor_3y": 15.7086,
-        "treynor_5y": 8.3796
+        "treynor_5y": 8.3796,
+        "volatility_1y": 19.288,
+        "beta_1y": 0.799,
+        "volatility_3y": 14.039,
+        "beta_3y": 0.782,
+        "volatility_5y": 13.817,
+        "beta_5y": 0.742
       }
     },
     {
@@ -346,7 +540,12 @@
       "name": "Quoniam Fds Sel EmMktsEqsMnRsk GBP I acc",
       "category": "EAA Fund Global Emerging Markets Equity",
       "branding": "Quoniam",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 10.02,
+        "performance_3m": 4.25,
+        "performance_6m": 18.65,
+        "performance_1y": 36.26
+      }
     },
     {
       "id": "F00000MG4Q",
@@ -366,9 +565,23 @@
         "alpha_1y": -3.254,
         "sharpe_1y": 1.322,
         "information_1y": -1.5735,
+        "performance_1m": 9.14,
+        "performance_3m": 4.56,
+        "performance_6m": 20.8,
+        "performance_1y": 36.42,
+        "performance_3y": 21.72,
+        "performance_5y": 10.74,
+        "trackingerror_3y": 5.781,
+        "trackingerror_5y": 6.326,
         "treynor_1y": 31.9337,
         "treynor_3y": 15.7209,
-        "treynor_5y": 8.387
+        "treynor_5y": 8.387,
+        "volatility_1y": 19.252,
+        "beta_1y": 0.797,
+        "volatility_3y": 14.016,
+        "beta_3y": 0.781,
+        "volatility_5y": 13.78,
+        "beta_5y": 0.741
       }
     },
     {
@@ -389,9 +602,23 @@
         "sharpe_3y": 0.369,
         "information_5y": -0.159,
         "information_1y": 1.5763,
+        "performance_1m": 0.93,
+        "performance_3m": -0.62,
+        "performance_6m": 0.42,
+        "performance_1y": 2.04,
+        "performance_3y": 4.47,
+        "performance_5y": -0.14,
+        "trackingerror_3y": 0.349,
+        "trackingerror_5y": 0.471,
         "treynor_1y": -0.1781,
         "treynor_3y": 1.2861,
-        "treynor_5y": -2.0618
+        "treynor_5y": -2.0618,
+        "volatility_1y": 3.116,
+        "beta_1y": 1.032,
+        "volatility_3y": 3.468,
+        "beta_3y": 0.995,
+        "volatility_5y": 5.574,
+        "beta_5y": 1.003
       }
     },
     {
@@ -412,9 +639,23 @@
         "sortino_1y": -0.008,
         "sortino_3y": 0.647,
         "information_1y": 2.1471,
+        "performance_1m": 0.94,
+        "performance_3m": -0.59,
+        "performance_6m": 0.5,
+        "performance_1y": 2.2,
+        "performance_3y": 4.63,
+        "performance_5y": 0.02,
+        "trackingerror_3y": 0.349,
+        "trackingerror_5y": 0.47,
         "treynor_1y": -0.0211,
         "treynor_3y": 1.4469,
-        "treynor_5y": -1.9006
+        "treynor_5y": -1.9006,
+        "volatility_1y": 3.124,
+        "beta_1y": 1.034,
+        "volatility_3y": 3.469,
+        "beta_3y": 0.995,
+        "volatility_5y": 5.574,
+        "beta_5y": 1.003
       }
     },
     {
@@ -435,9 +676,23 @@
         "information_3y": 0.736,
         "alpha_1y": 0.201,
         "information_1y": 2.147,
+        "performance_1m": 0.94,
+        "performance_3m": -0.59,
+        "performance_6m": 0.5,
+        "performance_1y": 2.2,
+        "performance_3y": 4.63,
+        "performance_5y": 0.02,
+        "trackingerror_3y": 0.349,
+        "trackingerror_5y": 0.47,
         "treynor_1y": -0.0211,
         "treynor_3y": 1.4469,
-        "treynor_5y": -1.9006
+        "treynor_5y": -1.9006,
+        "volatility_1y": 3.125,
+        "beta_1y": 1.035,
+        "volatility_3y": 3.469,
+        "beta_3y": 0.995,
+        "volatility_5y": 5.574,
+        "beta_5y": 1.003
       }
     },
     {
@@ -458,9 +713,23 @@
         "sharpe_5y": -0.213,
         "sortino_1y": 0.343,
         "information_1y": 0.3853,
+        "performance_1m": 0.41,
+        "performance_3m": -0.72,
+        "performance_6m": -0.41,
+        "performance_1y": 0.49,
+        "performance_3y": 1.89,
+        "performance_5y": -0.2,
+        "trackingerror_3y": 3.316,
+        "trackingerror_5y": 4.257,
         "treynor_1y": 1.0711,
         "treynor_3y": 2.6359,
-        "treynor_5y": -1.5603
+        "treynor_5y": -1.5603,
+        "volatility_1y": 1.976,
+        "beta_1y": 0.535,
+        "volatility_3y": 2.015,
+        "beta_3y": 0.357,
+        "volatility_5y": 2.681,
+        "beta_5y": 0.366
       }
     },
     {
@@ -481,9 +750,23 @@
         "sharpe_1y": 0.386,
         "information_3y": 0.43,
         "information_1y": 0.5355,
+        "performance_1m": 0.4,
+        "performance_3m": -0.7,
+        "performance_6m": -0.33,
+        "performance_1y": 0.66,
+        "performance_3y": 2.04,
+        "performance_5y": -0.18,
+        "trackingerror_3y": 3.299,
+        "trackingerror_5y": 4.256,
         "treynor_1y": 1.4271,
         "treynor_3y": 3.0559,
-        "treynor_5y": -1.5028
+        "treynor_5y": -1.5028,
+        "volatility_1y": 1.978,
+        "beta_1y": 0.535,
+        "volatility_3y": 2.026,
+        "beta_3y": 0.36,
+        "volatility_5y": 2.683,
+        "beta_5y": 0.366
       }
     },
     {
@@ -504,9 +787,23 @@
         "sharpe_3y": 0.611,
         "information_5y": 0.565,
         "information_1y": 0.4078,
+        "performance_1m": 0.58,
+        "performance_3m": -0.13,
+        "performance_6m": 0.78,
+        "performance_1y": 2.84,
+        "performance_3y": 4.43,
+        "performance_5y": 1.48,
+        "trackingerror_3y": 3.305,
+        "trackingerror_5y": 4.282,
         "treynor_1y": 1.5831,
         "treynor_3y": 3.4697,
-        "treynor_5y": -1.1686
+        "treynor_5y": -1.1686,
+        "volatility_1y": 1.988,
+        "beta_1y": 0.545,
+        "volatility_3y": 2.05,
+        "beta_3y": 0.361,
+        "volatility_5y": 2.803,
+        "beta_5y": 0.367
       }
     },
     {
@@ -527,9 +824,23 @@
         "sortino_3y": 0.893,
         "information_5y": 0.511,
         "information_1y": 0.1869,
+        "performance_1m": 0.71,
+        "performance_3m": 0.27,
+        "performance_6m": 1.67,
+        "performance_1y": 4.92,
+        "performance_3y": 6.22,
+        "performance_5y": 3.25,
+        "trackingerror_3y": 3.271,
+        "trackingerror_5y": 4.223,
         "treynor_1y": 1.1648,
         "treynor_3y": 3.1268,
-        "treynor_5y": -1.397
+        "treynor_5y": -1.397,
+        "volatility_1y": 1.983,
+        "beta_1y": 0.555,
+        "volatility_3y": 2.077,
+        "beta_3y": 0.368,
+        "volatility_5y": 2.863,
+        "beta_5y": 0.373
       }
     },
     {
@@ -550,9 +861,23 @@
         "alpha_1y": 0.395,
         "information_3y": 0.327,
         "information_1y": 0.2774,
+        "performance_1m": 0.62,
+        "performance_3m": -0.12,
+        "performance_6m": 0.76,
+        "performance_1y": 2.73,
+        "performance_3y": 4.29,
+        "performance_5y": 1.33,
+        "trackingerror_3y": 3.303,
+        "trackingerror_5y": 4.284,
         "treynor_1y": 1.2939,
         "treynor_3y": 3.024,
-        "treynor_5y": -1.6377
+        "treynor_5y": -1.6377,
+        "volatility_1y": 1.99,
+        "beta_1y": 0.546,
+        "volatility_3y": 2.052,
+        "beta_3y": 0.361,
+        "volatility_5y": 2.801,
+        "beta_5y": 0.366
       }
     },
     {
@@ -573,9 +898,23 @@
         "sharpe_3y": 0.611,
         "information_5y": 0.565,
         "information_1y": 0.4078,
+        "performance_1m": 0.58,
+        "performance_3m": -0.13,
+        "performance_6m": 0.78,
+        "performance_1y": 2.84,
+        "performance_3y": 4.43,
+        "performance_5y": 1.48,
+        "trackingerror_3y": 3.305,
+        "trackingerror_5y": 4.282,
         "treynor_1y": 1.5839,
         "treynor_3y": 3.4697,
-        "treynor_5y": -1.1762
+        "treynor_5y": -1.1762,
+        "volatility_1y": 1.989,
+        "beta_1y": 0.545,
+        "volatility_3y": 2.05,
+        "beta_3y": 0.361,
+        "volatility_5y": 2.803,
+        "beta_5y": 0.367
       }
     },
     {
@@ -589,7 +928,16 @@
         "sharpe_1y": 1.407,
         "sortino_5y": 0.378,
         "sortino_1y": 2.197,
-        "sortino_3y": 1.188
+        "sortino_3y": 1.188,
+        "performance_1m": 4.27,
+        "performance_3m": 3.17,
+        "performance_6m": 10.15,
+        "performance_1y": 22.58,
+        "performance_3y": 16.07,
+        "performance_5y": 7.91,
+        "volatility_1y": 13.415,
+        "volatility_3y": 13.764,
+        "volatility_5y": 15.847
       }
     },
     {
@@ -603,7 +951,16 @@
         "sortino_3y": 1.234,
         "sharpe_1y": 1.441,
         "sortino_1y": 2.266,
-        "sharpe_3y": 0.801
+        "sharpe_3y": 0.801,
+        "performance_1m": 4.28,
+        "performance_3m": 3.29,
+        "performance_6m": 10.37,
+        "performance_1y": 23.1,
+        "performance_3y": 16.49,
+        "performance_5y": 8.28,
+        "volatility_1y": 13.406,
+        "volatility_3y": 13.781,
+        "volatility_5y": 15.867
       }
     },
     {
@@ -616,7 +973,13 @@
         "alpha_1y": -0.235,
         "sharpe_1y": 1.084,
         "information_1y": -0.9682,
-        "treynor_1y": 3.3212
+        "performance_1m": 0.21,
+        "performance_3m": -0.38,
+        "performance_6m": -0.28,
+        "performance_1y": 1.42,
+        "treynor_1y": 3.3212,
+        "volatility_1y": 2.16,
+        "beta_1y": 0.705
       }
     },
     {
@@ -637,9 +1000,23 @@
         "sharpe_5y": -0.048,
         "sharpe_1y": 1.028,
         "information_1y": -1.3683,
+        "performance_1m": 0.38,
+        "performance_3m": 0.24,
+        "performance_6m": 0.96,
+        "performance_1y": 3.41,
+        "performance_3y": 5.4,
+        "performance_5y": 1.57,
+        "trackingerror_3y": 1.295,
+        "trackingerror_5y": 2.152,
         "treynor_1y": 3.0826,
         "treynor_3y": 3.0126,
-        "treynor_5y": -0.323
+        "treynor_5y": -0.323,
+        "volatility_1y": 2.126,
+        "beta_1y": 0.709,
+        "volatility_3y": 2.779,
+        "beta_3y": 0.69,
+        "volatility_5y": 4.589,
+        "beta_5y": 0.682
       }
     },
     {
@@ -660,9 +1037,23 @@
         "alpha_1y": -0.502,
         "information_5y": -0.408,
         "information_1y": -1.1077,
+        "performance_1m": 0.38,
+        "performance_3m": 0.24,
+        "performance_6m": 0.98,
+        "performance_1y": 3.53,
+        "performance_3y": 5.5,
+        "performance_5y": 1.71,
+        "trackingerror_3y": 1.296,
+        "trackingerror_5y": 2.151,
         "treynor_1y": 3.2505,
         "treynor_3y": 3.1691,
-        "treynor_5y": -0.1008
+        "treynor_5y": -0.1008,
+        "volatility_1y": 2.141,
+        "beta_1y": 0.714,
+        "volatility_3y": 2.775,
+        "beta_3y": 0.69,
+        "volatility_5y": 4.589,
+        "beta_5y": 0.683
       }
     },
     {
@@ -683,9 +1074,23 @@
         "sharpe_5y": -0.022,
         "alpha_1y": -0.758,
         "information_1y": -1.4353,
+        "performance_1m": 0.5,
+        "performance_3m": 0.57,
+        "performance_6m": 1.73,
+        "performance_1y": 5.5,
+        "performance_3y": 7.38,
+        "performance_5y": 3.53,
+        "trackingerror_3y": 1.283,
+        "trackingerror_5y": 2.066,
         "treynor_1y": 3.1448,
         "treynor_3y": 3.0835,
-        "treynor_5y": -0.1473
+        "treynor_5y": -0.1473,
+        "volatility_1y": 2.219,
+        "beta_1y": 0.731,
+        "volatility_3y": 2.851,
+        "beta_3y": 0.699,
+        "volatility_5y": 4.641,
+        "beta_5y": 0.693
       }
     },
     {
@@ -706,9 +1111,23 @@
         "sortino_5y": 0.603,
         "alpha_5y": -0.682,
         "information_1y": -0.8272,
+        "performance_1m": 4.13,
+        "performance_3m": 3.25,
+        "performance_6m": 11.32,
+        "performance_1y": 24.9,
+        "performance_3y": 18.32,
+        "performance_5y": 8.79,
+        "trackingerror_3y": 5.852,
+        "trackingerror_5y": 5.831,
         "treynor_1y": 29.0665,
         "treynor_3y": 13.6408,
-        "treynor_5y": 6.7926
+        "treynor_5y": 6.7926,
+        "volatility_1y": 10.197,
+        "beta_1y": 0.602,
+        "volatility_3y": 10.504,
+        "beta_3y": 0.73,
+        "volatility_5y": 12.555,
+        "beta_5y": 0.78
       }
     },
     {
@@ -721,7 +1140,13 @@
         "alpha_1y": 4.114,
         "sortino_1y": 4.076,
         "information_1y": 1.5262,
-        "treynor_1y": 28.5833
+        "performance_1m": 5.4,
+        "performance_3m": 8.98,
+        "performance_6m": 11.61,
+        "performance_1y": 28.13,
+        "treynor_1y": 28.5833,
+        "volatility_1y": 12.995,
+        "beta_1y": 0.917
       }
     },
     {
@@ -734,7 +1159,13 @@
         "sharpe_1y": 2.017,
         "alpha_1y": 4.101,
         "information_1y": 1.5323,
-        "treynor_1y": 28.5478
+        "performance_1m": 5.72,
+        "performance_3m": 7.42,
+        "performance_6m": 10.33,
+        "performance_1y": 31.78,
+        "treynor_1y": 28.5478,
+        "volatility_1y": 12.993,
+        "beta_1y": 0.918
       }
     },
     {
@@ -755,9 +1186,23 @@
         "alpha_3y": -0.248,
         "sortino_3y": 0.539,
         "information_1y": 1.0992,
+        "performance_1m": 0.31,
+        "performance_3m": -0.07,
+        "performance_6m": 0.61,
+        "performance_1y": 2.15,
+        "performance_3y": 3.44,
+        "performance_5y": 1.21,
+        "trackingerror_3y": 0.609,
+        "trackingerror_5y": 1.017,
         "treynor_1y": 0.3209,
         "treynor_3y": 0.5961,
-        "treynor_5y": -1.2298
+        "treynor_5y": -1.2298,
+        "volatility_1y": 1.099,
+        "beta_1y": 0.726,
+        "volatility_3y": 0.993,
+        "beta_3y": 0.643,
+        "volatility_5y": 1.604,
+        "beta_5y": 0.613
       }
     },
     {
@@ -778,9 +1223,23 @@
         "sortino_1y": 0.527,
         "alpha_5y": -0.264,
         "information_1y": 1.4886,
+        "performance_1m": 0.34,
+        "performance_3m": -0.0,
+        "performance_6m": 0.74,
+        "performance_1y": 2.41,
+        "performance_3y": 3.71,
+        "performance_5y": 1.48,
+        "trackingerror_3y": 0.607,
+        "trackingerror_5y": 1.012,
         "treynor_1y": 0.6764,
         "treynor_3y": 1.0219,
-        "treynor_5y": -0.7315
+        "treynor_5y": -0.7315,
+        "volatility_1y": 1.091,
+        "beta_1y": 0.721,
+        "volatility_3y": 0.991,
+        "beta_3y": 0.642,
+        "volatility_5y": 1.604,
+        "beta_5y": 0.614
       }
     },
     {
@@ -793,7 +1252,13 @@
         "alpha_1y": 0.473,
         "sharpe_1y": 0.321,
         "information_1y": 1.7325,
-        "treynor_1y": 1.0278
+        "performance_1m": 0.63,
+        "performance_3m": -1.21,
+        "performance_6m": -0.27,
+        "performance_1y": 3.55,
+        "treynor_1y": 1.0278,
+        "volatility_1y": 3.301,
+        "beta_1y": 1.031
       }
     },
     {
@@ -806,7 +1271,13 @@
         "sharpe_1y": 0.352,
         "sortino_1y": 0.443,
         "information_1y": 1.954,
-        "treynor_1y": 1.1269
+        "performance_1m": 0.64,
+        "performance_3m": -1.19,
+        "performance_6m": -0.22,
+        "performance_1y": 3.65,
+        "treynor_1y": 1.1269,
+        "volatility_1y": 3.304,
+        "beta_1y": 1.032
       }
     },
     {
@@ -827,9 +1298,23 @@
         "alpha_5y": -0.158,
         "sortino_5y": 0.98,
         "information_1y": 1.8288,
+        "performance_1m": 3.19,
+        "performance_3m": 6.85,
+        "performance_6m": 12.26,
+        "performance_1y": 25.25,
+        "performance_3y": 17.91,
+        "performance_5y": 11.51,
+        "trackingerror_3y": 6.2,
+        "trackingerror_5y": 6.701,
         "treynor_1y": 17.2856,
         "treynor_3y": 11.3128,
-        "treynor_5y": 7.1716
+        "treynor_5y": 7.1716,
+        "volatility_1y": 14.873,
+        "beta_1y": 1.498,
+        "volatility_3y": 13.417,
+        "beta_3y": 1.339,
+        "volatility_5y": 15.436,
+        "beta_5y": 1.356
       }
     },
     {
@@ -850,9 +1335,23 @@
         "alpha_3y": -1.097,
         "sortino_5y": 0.206,
         "information_1y": -1.7288,
+        "performance_1m": 2.1,
+        "performance_3m": 1.32,
+        "performance_6m": 3.31,
+        "performance_1y": 8.17,
+        "performance_3y": 7.93,
+        "performance_5y": 3.16,
+        "trackingerror_3y": 1.847,
+        "trackingerror_5y": 5.962,
         "treynor_1y": 5.7703,
         "treynor_3y": 4.9282,
-        "treynor_5y": 1.4211
+        "treynor_5y": 1.4211,
+        "volatility_1y": 7.179,
+        "beta_1y": 1.111,
+        "volatility_3y": 6.282,
+        "beta_3y": 0.942,
+        "volatility_5y": 10.537,
+        "beta_5y": 1.127
       }
     },
     {
@@ -873,9 +1372,23 @@
         "sharpe_1y": 1.367,
         "sharpe_3y": 1.031,
         "information_1y": 1.2303,
+        "performance_1m": 3.44,
+        "performance_3m": 3.28,
+        "performance_6m": 7.82,
+        "performance_1y": 14.61,
+        "performance_3y": 12.17,
+        "performance_5y": 5.43,
+        "trackingerror_3y": 4.221,
+        "trackingerror_5y": 4.409,
         "treynor_1y": 9.1789,
         "treynor_3y": 7.6005,
-        "treynor_5y": 2.7661
+        "treynor_5y": 2.7661,
+        "volatility_1y": 9.199,
+        "beta_1y": 1.37,
+        "volatility_3y": 8.404,
+        "beta_3y": 1.14,
+        "volatility_5y": 10.148,
+        "beta_5y": 1.185
       }
     },
     {
@@ -896,9 +1409,23 @@
         "alpha_3y": 3.449,
         "sortino_5y": 0.786,
         "information_1y": 1.858,
+        "performance_1m": 3.82,
+        "performance_3m": 5.43,
+        "performance_6m": 10.39,
+        "performance_1y": 19.66,
+        "performance_3y": 15.94,
+        "performance_5y": 8.81,
+        "trackingerror_3y": 5.918,
+        "trackingerror_5y": 6.365,
         "treynor_1y": 10.5694,
         "treynor_3y": 8.417,
-        "treynor_5y": 4.3985
+        "treynor_5y": 4.3985,
+        "volatility_1y": 12.007,
+        "beta_1y": 1.779,
+        "volatility_3y": 10.751,
+        "beta_3y": 1.474,
+        "volatility_5y": 12.808,
+        "beta_5y": 1.52
       }
     },
     {
@@ -919,9 +1446,23 @@
         "information_5y": 0.296,
         "alpha_1y": -0.651,
         "information_1y": 1.2851,
+        "performance_1m": 5.81,
+        "performance_3m": 5.56,
+        "performance_6m": 12.47,
+        "performance_1y": 21.37,
+        "performance_3y": 13.44,
+        "performance_5y": 7.6,
+        "trackingerror_3y": 5.074,
+        "trackingerror_5y": 5.406,
         "treynor_1y": 9.6448,
         "treynor_3y": 6.5507,
-        "treynor_5y": 5.4502
+        "treynor_5y": 5.4502,
+        "volatility_1y": 12.092,
+        "beta_1y": 1.764,
+        "volatility_3y": 9.455,
+        "beta_3y": 1.325,
+        "volatility_5y": 8.695,
+        "beta_5y": 0.895
       }
     },
     {
@@ -942,9 +1483,23 @@
         "alpha_5y": -3.35,
         "sharpe_1y": 0.816,
         "information_1y": -0.8576,
+        "performance_1m": 3.57,
+        "performance_3m": 0.36,
+        "performance_6m": 10.16,
+        "performance_1y": 12.79,
+        "performance_3y": 11.19,
+        "performance_5y": 6.53,
+        "trackingerror_3y": 3.688,
+        "trackingerror_5y": 3.941,
         "treynor_1y": 9.9058,
         "treynor_3y": 6.0268,
-        "treynor_5y": 5.2748
+        "treynor_5y": 5.2748,
+        "volatility_1y": 14.968,
+        "beta_1y": 1.233,
+        "volatility_3y": 12.076,
+        "beta_3y": 1.078,
+        "volatility_5y": 13.22,
+        "beta_5y": 1.005
       }
     },
     {
@@ -958,7 +1513,16 @@
         "sharpe_3y": 0.764,
         "sortino_3y": 1.289,
         "sortino_5y": 0.591,
-        "sharpe_5y": 0.399
+        "sharpe_5y": 0.399,
+        "performance_1m": 2.5,
+        "performance_3m": 3.06,
+        "performance_6m": 7.19,
+        "performance_1y": 8.65,
+        "performance_3y": 12.52,
+        "performance_5y": 9.74,
+        "volatility_1y": 15.332,
+        "volatility_3y": 13.089,
+        "volatility_5y": 14.34
       }
     },
     {
@@ -979,9 +1543,23 @@
         "alpha_3y": 1.11,
         "alpha_1y": 0.129,
         "information_1y": 1.4775,
+        "performance_1m": 1.08,
+        "performance_3m": -0.51,
+        "performance_6m": 0.22,
+        "performance_1y": 2.19,
+        "performance_3y": 5.52,
+        "performance_5y": -0.04,
+        "trackingerror_3y": 1.139,
+        "trackingerror_5y": 2.512,
         "treynor_1y": -0.0946,
         "treynor_3y": 2.2527,
-        "treynor_5y": -1.6908
+        "treynor_5y": -1.6908,
+        "volatility_1y": 3.341,
+        "beta_1y": 1.095,
+        "volatility_3y": 3.854,
+        "beta_3y": 1.059,
+        "volatility_5y": 6.674,
+        "beta_5y": 1.121
       }
     },
     {
@@ -995,7 +1573,16 @@
         "sortino_5y": -0.379,
         "sharpe_5y": -0.292,
         "sharpe_1y": -0.097,
-        "sharpe_3y": 0.899
+        "sharpe_3y": 0.899,
+        "performance_1m": 0.23,
+        "performance_3m": 0.06,
+        "performance_6m": 0.62,
+        "performance_1y": 1.72,
+        "performance_3y": 4.75,
+        "performance_5y": 0.25,
+        "volatility_1y": 0.765,
+        "volatility_3y": 2.01,
+        "volatility_5y": 5.234
       }
     },
     {
@@ -1016,9 +1603,23 @@
         "alpha_3y": 0.936,
         "sharpe_1y": -0.341,
         "information_1y": 1.9424,
+        "performance_1m": 0.94,
+        "performance_3m": -1.17,
+        "performance_6m": 0.06,
+        "performance_1y": 1.32,
+        "performance_3y": 3.98,
+        "performance_5y": -0.8,
+        "trackingerror_3y": 1.092,
+        "trackingerror_5y": 1.558,
         "treynor_1y": -1.1518,
         "treynor_3y": 1.0244,
-        "treynor_5y": -3.2413
+        "treynor_5y": -3.2413,
+        "volatility_1y": 3.327,
+        "beta_1y": 0.985,
+        "volatility_3y": 3.612,
+        "beta_3y": 0.811,
+        "volatility_5y": 5.381,
+        "beta_5y": 0.85
       }
     },
     {
@@ -1032,7 +1633,16 @@
         "sharpe_1y": 4.427,
         "sortino_1y": 98.812,
         "sharpe_3y": 0.882,
-        "sortino_5y": 0.813
+        "sortino_5y": 0.813,
+        "performance_1m": -3.51,
+        "performance_3m": 13.67,
+        "performance_6m": 36.18,
+        "performance_1y": 68.46,
+        "performance_3y": 19.86,
+        "performance_5y": 11.43,
+        "volatility_1y": 13.492,
+        "volatility_3y": 17.565,
+        "volatility_5y": 19.309
       }
     },
     {
@@ -1046,7 +1656,16 @@
         "sortino_5y": 0.778,
         "sharpe_3y": 0.86,
         "sharpe_1y": 4.404,
-        "sharpe_5y": 0.496
+        "sharpe_5y": 0.496,
+        "performance_1m": -3.53,
+        "performance_3m": 13.59,
+        "performance_6m": 35.96,
+        "performance_1y": 67.95,
+        "performance_3y": 19.42,
+        "performance_5y": 11.01,
+        "volatility_1y": 13.49,
+        "volatility_3y": 17.565,
+        "volatility_5y": 19.304
       }
     },
     {
@@ -1067,9 +1686,23 @@
         "information_5y": -0.43,
         "alpha_5y": -1.181,
         "information_1y": 1.8699,
+        "performance_1m": 3.05,
+        "performance_3m": -1.76,
+        "performance_6m": 7.86,
+        "performance_1y": 11.52,
+        "performance_3y": 11.34,
+        "performance_5y": 6.05,
+        "trackingerror_3y": 5.734,
+        "trackingerror_5y": 5.593,
         "treynor_1y": 13.3459,
         "treynor_3y": 8.6177,
-        "treynor_5y": 5.8212
+        "treynor_5y": 5.8212,
+        "volatility_1y": 14.034,
+        "beta_1y": 0.877,
+        "volatility_3y": 12.103,
+        "beta_3y": 0.823,
+        "volatility_5y": 13.407,
+        "beta_5y": 0.813
       }
     },
     {
@@ -1090,9 +1723,23 @@
         "sortino_3y": 0.528,
         "information_5y": -0.586,
         "information_1y": -0.1769,
+        "performance_1m": 1.56,
+        "performance_3m": -0.41,
+        "performance_6m": 1.25,
+        "performance_1y": 3.53,
+        "performance_3y": 5.1,
+        "performance_5y": 0.35,
+        "trackingerror_3y": 1.152,
+        "trackingerror_5y": 1.525,
         "treynor_1y": 0.8096,
         "treynor_3y": 1.6004,
-        "treynor_5y": -1.3953
+        "treynor_5y": -1.3953,
+        "volatility_1y": 4.763,
+        "beta_1y": 1.306,
+        "volatility_3y": 4.629,
+        "beta_3y": 1.076,
+        "volatility_5y": 6.217,
+        "beta_5y": 1.105
       }
     },
     {
@@ -1113,9 +1760,23 @@
         "sharpe_3y": 0.283,
         "information_3y": -0.185,
         "information_1y": 0.1803,
+        "performance_1m": 2.65,
+        "performance_3m": 0.81,
+        "performance_6m": 2.76,
+        "performance_1y": 4.98,
+        "performance_3y": 5.04,
+        "performance_5y": 0.93,
+        "trackingerror_3y": 1.877,
+        "trackingerror_5y": 1.916,
         "treynor_1y": 1.2685,
         "treynor_3y": 1.2557,
-        "treynor_5y": -1.0539
+        "treynor_5y": -1.0539,
+        "volatility_1y": 5.396,
+        "beta_1y": 1.425,
+        "volatility_3y": 4.894,
+        "beta_3y": 1.103,
+        "volatility_5y": 6.284,
+        "beta_5y": 1.109
       }
     },
     {
@@ -1136,9 +1797,23 @@
         "alpha_1y": 2.085,
         "information_3y": 1.19,
         "information_1y": 1.876,
+        "performance_1m": 7.38,
+        "performance_3m": 7.89,
+        "performance_6m": 16.02,
+        "performance_1y": 28.12,
+        "performance_3y": 19.09,
+        "performance_5y": 9.69,
+        "trackingerror_3y": 6.773,
+        "trackingerror_5y": 6.469,
         "treynor_1y": 10.9875,
         "treynor_3y": 8.5647,
-        "treynor_5y": 4.9978
+        "treynor_5y": 4.9978,
+        "volatility_1y": 14.675,
+        "beta_1y": 2.153,
+        "volatility_3y": 11.155,
+        "beta_3y": 1.546,
+        "volatility_5y": 11.965,
+        "beta_5y": 1.367
       }
     },
     {
@@ -1159,9 +1834,23 @@
         "sharpe_1y": 0.052,
         "information_3y": 0.429,
         "information_1y": -0.2488,
+        "performance_1m": 0.68,
+        "performance_3m": -1.07,
+        "performance_6m": -0.05,
+        "performance_1y": 2.56,
+        "performance_3y": 3.81,
+        "performance_5y": -0.8,
+        "trackingerror_3y": 0.9,
+        "trackingerror_5y": 1.087,
         "treynor_1y": 0.1683,
         "treynor_3y": 0.5586,
-        "treynor_5y": -2.7906
+        "treynor_5y": -2.7906,
+        "volatility_1y": 2.951,
+        "beta_1y": 0.912,
+        "volatility_3y": 4.474,
+        "beta_3y": 0.865,
+        "volatility_5y": 6.289,
+        "beta_5y": 0.924
       }
     },
     {
@@ -1182,9 +1871,23 @@
         "information_5y": -0.265,
         "information_3y": -0.757,
         "information_1y": -1.2653,
+        "performance_1m": 5.65,
+        "performance_3m": 8.65,
+        "performance_6m": 10.06,
+        "performance_1y": 20.78,
+        "performance_3y": 16.1,
+        "performance_5y": 11.65,
+        "trackingerror_3y": 2.785,
+        "trackingerror_5y": 2.767,
         "treynor_1y": 18.244,
         "treynor_3y": 11.5806,
-        "treynor_5y": 6.7221
+        "treynor_5y": 6.7221,
+        "volatility_1y": 15.559,
+        "beta_1y": 1.101,
+        "volatility_3y": 13.907,
+        "beta_3y": 1.076,
+        "volatility_5y": 16.01,
+        "beta_5y": 1.067
       }
     },
     {
@@ -1205,9 +1908,23 @@
         "sharpe_3y": 0.869,
         "information_5y": -0.659,
         "information_1y": -1.7735,
+        "performance_1m": 2.57,
+        "performance_3m": 3.32,
+        "performance_6m": 7.32,
+        "performance_1y": 12.43,
+        "performance_3y": 14.04,
+        "performance_5y": 8.39,
+        "trackingerror_3y": 5.045,
+        "trackingerror_5y": 4.944,
         "treynor_1y": 15.2575,
         "treynor_3y": 11.8086,
-        "treynor_5y": 4.8745
+        "treynor_5y": 4.8745,
+        "volatility_1y": 14.703,
+        "beta_1y": 0.981,
+        "volatility_3y": 13.548,
+        "beta_3y": 0.997,
+        "volatility_5y": 15.514,
+        "beta_5y": 0.993
       }
     },
     {
@@ -1228,9 +1945,23 @@
         "information_3y": -0.427,
         "sharpe_1y": 1.066,
         "information_1y": -1.7781,
+        "performance_1m": 2.62,
+        "performance_3m": 3.5,
+        "performance_6m": 7.7,
+        "performance_1y": 13.22,
+        "performance_3y": 14.85,
+        "performance_5y": 9.16,
+        "trackingerror_3y": 5.042,
+        "trackingerror_5y": 4.944,
         "treynor_1y": 15.9715,
         "treynor_3y": 12.5101,
-        "treynor_5y": 5.596
+        "treynor_5y": 5.596,
+        "volatility_1y": 14.713,
+        "beta_1y": 0.982,
+        "volatility_3y": 13.556,
+        "beta_3y": 0.998,
+        "volatility_5y": 15.522,
+        "beta_5y": 0.993
       }
     },
     {
@@ -1251,9 +1982,23 @@
         "alpha_1y": 0.083,
         "sharpe_1y": 0.499,
         "information_1y": 0.5679,
+        "performance_1m": 2.3,
+        "performance_3m": 2.02,
+        "performance_6m": 3.1,
+        "performance_1y": 5.29,
+        "performance_3y": 7.3,
+        "performance_5y": 1.9,
+        "trackingerror_3y": 2.013,
+        "trackingerror_5y": 2.393,
         "treynor_1y": 2.1656,
         "treynor_3y": 2.9672,
-        "treynor_5y": -0.071
+        "treynor_5y": -0.071,
+        "volatility_1y": 5.824,
+        "beta_1y": 1.342,
+        "volatility_3y": 5.204,
+        "beta_3y": 1.133,
+        "volatility_5y": 7.078,
+        "beta_5y": 1.197
       }
     },
     {
@@ -1274,9 +2019,23 @@
         "sharpe_5y": 0.002,
         "sharpe_3y": 0.665,
         "information_1y": 0.5595,
+        "performance_1m": 2.31,
+        "performance_3m": 2.06,
+        "performance_6m": 3.15,
+        "performance_1y": 5.4,
+        "performance_3y": 7.41,
+        "performance_5y": 2.0,
+        "trackingerror_3y": 2.019,
+        "trackingerror_5y": 2.396,
         "treynor_1y": 2.2444,
         "treynor_3y": 3.0534,
-        "treynor_5y": 0.0118
+        "treynor_5y": 0.0118,
+        "volatility_1y": 5.826,
+        "beta_1y": 1.342,
+        "volatility_3y": 5.216,
+        "beta_3y": 1.136,
+        "volatility_5y": 7.082,
+        "beta_5y": 1.198
       }
     },
     {
@@ -1297,9 +2056,23 @@
         "sortino_3y": -0.013,
         "alpha_5y": -0.427,
         "information_1y": 1.5279,
+        "performance_1m": 0.83,
+        "performance_3m": -1.15,
+        "performance_6m": -0.11,
+        "performance_1y": 0.69,
+        "performance_3y": 3.05,
+        "performance_5y": -1.6,
+        "trackingerror_3y": 0.901,
+        "trackingerror_5y": 1.211,
         "treynor_1y": -2.0197,
         "treynor_3y": -0.0396,
-        "treynor_5y": -4.0799
+        "treynor_5y": -4.0799,
+        "volatility_1y": 2.986,
+        "beta_1y": 0.89,
+        "volatility_3y": 3.648,
+        "beta_3y": 0.829,
+        "volatility_5y": 5.444,
+        "beta_5y": 0.874
       }
     },
     {
@@ -1316,8 +2089,18 @@
         "sharpe_1y": 0.23,
         "alpha_1y": -1.345,
         "information_1y": -0.5143,
+        "performance_1m": 1.38,
+        "performance_3m": 0.85,
+        "performance_6m": 1.56,
+        "performance_1y": 2.93,
+        "performance_3y": 5.03,
+        "trackingerror_3y": 2.012,
         "treynor_1y": 0.9098,
-        "treynor_3y": 2.7771
+        "treynor_3y": 2.7771,
+        "volatility_1y": 3.378,
+        "beta_1y": 0.854,
+        "volatility_3y": 3.141,
+        "beta_3y": 0.656
       }
     },
     {
@@ -1334,8 +2117,20 @@
         "sharpe_3y": 0.747,
         "sortino_3y": 1.239,
         "information_1y": -2.2851,
+        "performance_1m": 5.99,
+        "performance_3m": 7.19,
+        "performance_6m": 9.5,
+        "performance_1y": 14.58,
+        "performance_3y": 11.77,
+        "performance_5y": 5.35,
+        "trackingerror_3y": 3.367,
+        "trackingerror_5y": 3.564,
         "treynor_1y": 9.3475,
-        "treynor_3y": 7.1605
+        "treynor_3y": 7.1605,
+        "volatility_1y": 11.134,
+        "beta_1y": 1.153,
+        "volatility_3y": 9.787,
+        "beta_3y": 1.021
       }
     },
     {
@@ -1349,7 +2144,16 @@
         "sharpe_5y": 0.045,
         "sortino_5y": 0.062,
         "sortino_1y": 0.857,
-        "sharpe_1y": 0.585
+        "sharpe_1y": 0.585,
+        "performance_1m": 3.03,
+        "performance_3m": 2.55,
+        "performance_6m": 3.65,
+        "performance_1y": 8.38,
+        "performance_3y": 7.68,
+        "performance_5y": 4.65,
+        "volatility_1y": 9.82,
+        "volatility_3y": 9.236,
+        "volatility_5y": 9.897
       }
     },
     {
@@ -1370,9 +2174,23 @@
         "alpha_3y": 1.677,
         "alpha_1y": 0.705,
         "information_1y": 1.117,
+        "performance_1m": 2.4,
+        "performance_3m": 1.54,
+        "performance_6m": 2.5,
+        "performance_1y": 7.08,
+        "performance_3y": 7.24,
+        "performance_5y": 2.3,
+        "trackingerror_3y": 2.667,
+        "trackingerror_5y": 2.525,
         "treynor_1y": 2.9309,
         "treynor_3y": 3.0125,
-        "treynor_5y": 0.2743
+        "treynor_5y": 0.2743,
+        "volatility_1y": 6.125,
+        "beta_1y": 1.582,
+        "volatility_3y": 5.739,
+        "beta_3y": 1.244,
+        "volatility_5y": 7.102,
+        "beta_5y": 1.243
       }
     },
     {
@@ -1393,9 +2211,23 @@
         "sortino_1y": 0.138,
         "alpha_5y": -0.293,
         "information_1y": -2.3183,
+        "performance_1m": 1.27,
+        "performance_3m": -0.18,
+        "performance_6m": 1.43,
+        "performance_1y": 3.16,
+        "performance_3y": 4.49,
+        "performance_5y": 1.1,
+        "trackingerror_3y": 1.232,
+        "trackingerror_5y": 2.003,
         "treynor_1y": 0.3937,
         "treynor_3y": 1.202,
-        "treynor_5y": -1.0215
+        "treynor_5y": -1.0215,
+        "volatility_1y": 3.894,
+        "beta_1y": 1.078,
+        "volatility_3y": 4.661,
+        "beta_3y": 1.078,
+        "volatility_5y": 5.196,
+        "beta_5y": 0.88
       }
     },
     {
@@ -1416,9 +2248,23 @@
         "information_5y": 0.428,
         "sortino_3y": 1.009,
         "information_1y": 2.3512,
+        "performance_1m": 2.89,
+        "performance_3m": 2.48,
+        "performance_6m": 5.36,
+        "performance_1y": 10.45,
+        "performance_3y": 7.94,
+        "performance_5y": 2.96,
+        "trackingerror_3y": 3.296,
+        "trackingerror_5y": 2.983,
         "treynor_1y": 4.9182,
         "treynor_3y": 2.9386,
-        "treynor_5y": 0.5906
+        "treynor_5y": 0.5906,
+        "volatility_1y": 6.225,
+        "beta_1y": 1.572,
+        "volatility_3y": 6.485,
+        "beta_3y": 1.419,
+        "volatility_5y": 6.78,
+        "beta_5y": 1.125
       }
     },
     {
@@ -1439,9 +2285,23 @@
         "sharpe_1y": 1.588,
         "information_3y": 0.397,
         "information_1y": 2.6128,
+        "performance_1m": 2.36,
+        "performance_3m": 1.3,
+        "performance_6m": 6.51,
+        "performance_1y": 13.45,
+        "performance_3y": 10.6,
+        "performance_5y": 4.7,
+        "trackingerror_3y": 1.978,
+        "trackingerror_5y": 2.513,
         "treynor_1y": 10.5196,
         "treynor_3y": 6.9107,
-        "treynor_5y": 3.0775
+        "treynor_5y": 3.0775,
+        "volatility_1y": 7.691,
+        "beta_1y": 1.161,
+        "volatility_3y": 6.519,
+        "beta_3y": 0.982,
+        "volatility_5y": 7.277,
+        "beta_5y": 0.882
       }
     },
     {
@@ -1455,7 +2315,16 @@
         "sharpe_1y": 0.919,
         "sortino_3y": 0.456,
         "sortino_1y": 1.389,
-        "sharpe_5y": -0.138
+        "sharpe_5y": -0.138,
+        "performance_1m": 2.8,
+        "performance_3m": 2.23,
+        "performance_6m": 6.34,
+        "performance_1y": 11.17,
+        "performance_3y": 6.26,
+        "performance_5y": 2.95,
+        "volatility_1y": 9.488,
+        "volatility_3y": 8.917,
+        "volatility_5y": 9.375
       }
     },
     {
@@ -1476,9 +2345,23 @@
         "sortino_1y": 2.899,
         "alpha_1y": 5.883,
         "information_1y": 3.3699,
+        "performance_1m": 2.55,
+        "performance_3m": 3.22,
+        "performance_6m": 6.89,
+        "performance_1y": 12.0,
+        "performance_3y": 9.37,
+        "performance_5y": 3.37,
+        "trackingerror_3y": 3.025,
+        "trackingerror_5y": 2.803,
         "treynor_1y": 6.4456,
         "treynor_3y": 4.5376,
-        "treynor_5y": 1.2314
+        "treynor_5y": 1.2314,
+        "volatility_1y": 5.84,
+        "beta_1y": 1.485,
+        "volatility_3y": 5.776,
+        "beta_3y": 1.208,
+        "volatility_5y": 6.064,
+        "beta_5y": 0.98
       }
     },
     {
@@ -1499,9 +2382,23 @@
         "alpha_1y": 4.098,
         "sharpe_5y": 0.591,
         "information_1y": 2.7362,
+        "performance_1m": 3.3,
+        "performance_3m": 5.37,
+        "performance_6m": 11.21,
+        "performance_1y": 21.8,
+        "performance_3y": 14.06,
+        "performance_5y": 7.55,
+        "trackingerror_3y": 3.8,
+        "trackingerror_5y": 3.641,
         "treynor_1y": 12.6845,
         "treynor_3y": 7.6449,
-        "treynor_5y": 5.0334
+        "treynor_5y": 5.0334,
+        "volatility_1y": 10.543,
+        "beta_1y": 1.536,
+        "volatility_3y": 8.821,
+        "beta_3y": 1.29,
+        "volatility_5y": 8.866,
+        "beta_5y": 1.041
       }
     },
     {
@@ -1522,9 +2419,23 @@
         "sharpe_1y": 1.347,
         "alpha_3y": -0.096,
         "information_1y": 1.33,
+        "performance_1m": 3.52,
+        "performance_3m": 4.6,
+        "performance_6m": 6.82,
+        "performance_1y": 13.45,
+        "performance_3y": 10.43,
+        "performance_5y": 5.62,
+        "trackingerror_3y": 2.374,
+        "trackingerror_5y": 2.401,
         "treynor_1y": 8.904,
         "treynor_3y": 5.9963,
-        "treynor_5y": 3.4904
+        "treynor_5y": 3.4904,
+        "volatility_1y": 8.005,
+        "beta_1y": 1.211,
+        "volatility_3y": 7.395,
+        "beta_3y": 1.105,
+        "volatility_5y": 7.992,
+        "beta_5y": 0.98
       }
     },
     {
@@ -1545,9 +2456,23 @@
         "information_3y": -0.533,
         "sortino_1y": 1.093,
         "information_1y": 0.9238,
+        "performance_1m": 4.81,
+        "performance_3m": 4.62,
+        "performance_6m": 6.97,
+        "performance_1y": 8.16,
+        "performance_3y": 3.11,
+        "performance_5y": -0.51,
+        "trackingerror_3y": 6.43,
+        "trackingerror_5y": 5.057,
         "treynor_1y": 2.8528,
         "treynor_3y": -0.8603,
-        "treynor_5y": -2.3338
+        "treynor_5y": -2.3338,
+        "volatility_1y": 8.229,
+        "beta_1y": 1.924,
+        "volatility_3y": 8.326,
+        "beta_3y": 1.442,
+        "volatility_5y": 8.227,
+        "beta_5y": 1.262
       }
     },
     {
@@ -1564,8 +2489,18 @@
         "sortino_1y": -0.062,
         "alpha_3y": 0.884,
         "information_1y": 1.4282,
+        "performance_1m": 0.59,
+        "performance_3m": -0.52,
+        "performance_6m": 0.57,
+        "performance_1y": 2.04,
+        "performance_3y": 3.93,
+        "trackingerror_3y": 2.639,
         "treynor_1y": -0.1863,
-        "treynor_3y": 2.0467
+        "treynor_3y": 2.0467,
+        "volatility_1y": 2.101,
+        "beta_1y": 0.609,
+        "volatility_3y": 1.934,
+        "beta_3y": 0.412
       }
     },
     {
@@ -1586,9 +2521,23 @@
         "sortino_1y": 2.535,
         "alpha_1y": 5.596,
         "information_1y": 4.5881,
+        "performance_1m": 1.69,
+        "performance_3m": 0.87,
+        "performance_6m": 4.68,
+        "performance_1y": 11.32,
+        "performance_3y": 7.09,
+        "performance_5y": 2.52,
+        "trackingerror_3y": 2.256,
+        "trackingerror_5y": 2.862,
         "treynor_1y": 6.3983,
         "treynor_3y": 3.3133,
-        "treynor_5y": 0.6935
+        "treynor_5y": 0.6935,
+        "volatility_1y": 5.35,
+        "beta_1y": 1.429,
+        "volatility_3y": 4.919,
+        "beta_3y": 1.063,
+        "volatility_5y": 5.491,
+        "beta_5y": 0.863
       }
     },
     {
@@ -1609,9 +2558,23 @@
         "sortino_1y": 0.834,
         "sortino_5y": -0.194,
         "information_1y": 2.4622,
+        "performance_1m": 0.8,
+        "performance_3m": 0.12,
+        "performance_6m": 1.35,
+        "performance_1y": 4.13,
+        "performance_3y": 5.12,
+        "performance_5y": 1.07,
+        "trackingerror_3y": 2.352,
+        "trackingerror_5y": 4.4,
         "treynor_1y": 2.6459,
         "treynor_3y": 2.3463,
-        "treynor_5y": -1.2354
+        "treynor_5y": -1.2354,
+        "volatility_1y": 3.093,
+        "beta_1y": 0.754,
+        "volatility_3y": 3.796,
+        "beta_3y": 0.762,
+        "volatility_5y": 5.16,
+        "beta_5y": 0.614
       }
     },
     {
@@ -1628,8 +2591,18 @@
         "sortino_1y": 1.327,
         "information_3y": -0.428,
         "information_1y": -0.3797,
+        "performance_1m": 2.62,
+        "performance_3m": 2.38,
+        "performance_6m": 2.69,
+        "performance_1y": 7.74,
+        "performance_3y": 7.62,
+        "trackingerror_3y": 2.797,
         "treynor_1y": 6.0992,
-        "treynor_3y": 4.6362
+        "treynor_3y": 4.6362,
+        "volatility_1y": 6.679,
+        "beta_1y": 0.91,
+        "volatility_3y": 6.335,
+        "beta_3y": 0.895
       }
     },
     {
@@ -1650,9 +2623,23 @@
         "sortino_3y": 1.429,
         "information_5y": -0.81,
         "information_1y": -2.0533,
+        "performance_1m": 5.24,
+        "performance_3m": 7.77,
+        "performance_6m": 9.38,
+        "performance_1y": 19.6,
+        "performance_3y": 15.65,
+        "performance_5y": 9.72,
+        "trackingerror_3y": 3.781,
+        "trackingerror_5y": 3.279,
         "treynor_1y": 18.2765,
         "treynor_3y": 10.9488,
-        "treynor_5y": 5.0964
+        "treynor_5y": 5.0964,
+        "volatility_1y": 14.193,
+        "beta_1y": 1.001,
+        "volatility_3y": 14.367,
+        "beta_3y": 1.097,
+        "volatility_5y": 16.0,
+        "beta_5y": 1.058
       }
     },
     {
@@ -1673,9 +2660,23 @@
         "sortino_5y": 0.139,
         "alpha_1y": -0.317,
         "information_1y": 1.5829,
+        "performance_1m": 11.15,
+        "performance_3m": 13.29,
+        "performance_6m": 32.56,
+        "performance_1y": 49.15,
+        "performance_3y": 21.06,
+        "performance_5y": 6.53,
+        "trackingerror_3y": 4.703,
+        "trackingerror_5y": 4.761,
         "treynor_1y": 31.5335,
         "treynor_3y": 13.3992,
-        "treynor_5y": 1.5667
+        "treynor_5y": 1.5667,
+        "volatility_1y": 26.18,
+        "beta_1y": 1.203,
+        "volatility_3y": 18.057,
+        "beta_3y": 1.132,
+        "volatility_5y": 19.005,
+        "beta_5y": 1.116
       }
     },
     {
@@ -1696,9 +2697,23 @@
         "alpha_3y": -2.127,
         "information_3y": 0.239,
         "information_1y": 1.8809,
+        "performance_1m": 15.59,
+        "performance_3m": 20.43,
+        "performance_6m": 50.1,
+        "performance_1y": 70.28,
+        "performance_3y": 24.62,
+        "performance_5y": 7.76,
+        "trackingerror_3y": 9.911,
+        "trackingerror_5y": 8.586,
         "treynor_1y": 33.5163,
         "treynor_3y": 12.588,
-        "treynor_5y": 2.1257
+        "treynor_5y": 2.1257,
+        "volatility_1y": 32.961,
+        "beta_1y": 1.484,
+        "volatility_3y": 22.481,
+        "beta_3y": 1.368,
+        "volatility_5y": 21.989,
+        "beta_5y": 1.262
       }
     },
     {
@@ -1719,9 +2734,23 @@
         "alpha_5y": -2.725,
         "sortino_5y": 0.221,
         "information_1y": 1.8823,
+        "performance_1m": 15.63,
+        "performance_3m": 20.54,
+        "performance_6m": 50.37,
+        "performance_1y": 70.87,
+        "performance_3y": 25.06,
+        "performance_5y": 8.13,
+        "trackingerror_3y": 9.914,
+        "trackingerror_5y": 8.59,
         "treynor_1y": 33.7384,
         "treynor_3y": 12.8527,
-        "treynor_5y": 2.4049
+        "treynor_5y": 2.4049,
+        "volatility_1y": 32.961,
+        "beta_1y": 1.484,
+        "volatility_3y": 22.484,
+        "beta_3y": 1.368,
+        "volatility_5y": 21.993,
+        "beta_5y": 1.262
       }
     },
     {
@@ -1742,9 +2771,23 @@
         "sortino_3y": 1.273,
         "sharpe_5y": 0.39,
         "information_1y": 0.3065,
+        "performance_1m": 0.98,
+        "performance_3m": -0.41,
+        "performance_6m": 5.88,
+        "performance_1y": 10.34,
+        "performance_3y": 8.98,
+        "performance_5y": 4.59,
+        "trackingerror_3y": 3.048,
+        "trackingerror_5y": 3.321,
         "treynor_1y": 11.6647,
         "treynor_3y": 5.594,
-        "treynor_5y": 3.3159
+        "treynor_5y": 3.3159,
+        "volatility_1y": 6.281,
+        "beta_1y": 0.812,
+        "volatility_3y": 6.626,
+        "beta_3y": 0.931,
+        "volatility_5y": 7.771,
+        "beta_5y": 0.914
       }
     },
     {
@@ -1765,9 +2808,23 @@
         "sharpe_3y": 0.968,
         "sortino_3y": 1.569,
         "information_1y": -0.6143,
+        "performance_1m": 1.08,
+        "performance_3m": -0.24,
+        "performance_6m": 4.39,
+        "performance_1y": 8.5,
+        "performance_3y": 8.06,
+        "performance_5y": 3.38,
+        "trackingerror_3y": 3.067,
+        "trackingerror_5y": 3.68,
         "treynor_1y": 9.6226,
         "treynor_3y": 6.8387,
-        "treynor_5y": 2.4845
+        "treynor_5y": 2.4845,
+        "volatility_1y": 5.252,
+        "beta_1y": 0.727,
+        "volatility_3y": 4.691,
+        "beta_3y": 0.664,
+        "volatility_5y": 5.549,
+        "beta_5y": 0.641
       }
     },
     {
@@ -1788,9 +2845,23 @@
         "information_5y": -0.532,
         "alpha_5y": -0.825,
         "information_1y": -0.6098,
+        "performance_1m": 1.05,
+        "performance_3m": -0.32,
+        "performance_6m": 4.23,
+        "performance_1y": 8.19,
+        "performance_3y": 7.75,
+        "performance_5y": 3.07,
+        "trackingerror_3y": 3.068,
+        "trackingerror_5y": 3.69,
         "treynor_1y": 9.2415,
         "treynor_3y": 6.3893,
-        "treynor_5y": 2.0284
+        "treynor_5y": 2.0284,
+        "volatility_1y": 5.254,
+        "beta_1y": 0.726,
+        "volatility_3y": 4.693,
+        "beta_3y": 0.664,
+        "volatility_5y": 5.539,
+        "beta_5y": 0.639
       }
     },
     {
@@ -1811,9 +2882,23 @@
         "information_5y": -0.186,
         "sharpe_1y": 1.455,
         "information_1y": 0.3025,
+        "performance_1m": 0.96,
+        "performance_3m": -0.51,
+        "performance_6m": 5.71,
+        "performance_1y": 10.0,
+        "performance_3y": 8.65,
+        "performance_5y": 4.28,
+        "trackingerror_3y": 3.055,
+        "trackingerror_5y": 3.326,
         "treynor_1y": 11.2713,
         "treynor_3y": 5.2651,
-        "treynor_5y": 2.9769
+        "treynor_5y": 2.9769,
+        "volatility_1y": 6.298,
+        "beta_1y": 0.813,
+        "volatility_3y": 6.633,
+        "beta_3y": 0.931,
+        "volatility_5y": 7.774,
+        "beta_5y": 0.914
       }
     },
     {
@@ -1834,9 +2919,23 @@
         "sortino_3y": -0.098,
         "sortino_5y": -0.443,
         "information_1y": -2.1607,
+        "performance_1m": 13.3142,
+        "performance_3m": 11.4313,
+        "performance_6m": 9.5972,
+        "performance_1y": 1.0527,
+        "performance_3y": 5.6728,
+        "performance_5y": -4.4263,
+        "trackingerror_3y": 8.394,
+        "trackingerror_5y": 7.607,
         "treynor_1y": -6.0063,
         "treynor_3y": -1.1377,
-        "treynor_5y": -6.5348
+        "treynor_5y": -6.5348,
+        "volatility_1y": 21.871,
+        "beta_1y": 1.198,
+        "volatility_3y": 16.464,
+        "beta_3y": 1.013,
+        "volatility_5y": 18.83,
+        "beta_5y": 0.997
       }
     },
     {
@@ -1857,9 +2956,23 @@
         "sortino_3y": 1.557,
         "alpha_1y": -4.816,
         "information_1y": -1.1916,
+        "performance_1m": -0.0732,
+        "performance_3m": -3.1033,
+        "performance_6m": 8.4166,
+        "performance_1y": 13.3278,
+        "performance_3y": 12.9254,
+        "performance_5y": 8.645,
+        "trackingerror_3y": 3.858,
+        "trackingerror_5y": 4.477,
         "treynor_1y": 14.4995,
         "treynor_3y": 9.1022,
-        "treynor_5y": 7.7632
+        "treynor_5y": 7.7632,
+        "volatility_1y": 10.141,
+        "beta_1y": 0.94,
+        "volatility_3y": 9.736,
+        "beta_3y": 0.937,
+        "volatility_5y": 12.123,
+        "beta_5y": 0.976
       }
     },
     {
@@ -1880,9 +2993,23 @@
         "sortino_3y": 1.637,
         "information_3y": -0.96,
         "information_1y": -1.1931,
+        "performance_1m": -0.0452,
+        "performance_3m": -3.0208,
+        "performance_6m": 8.6049,
+        "performance_1y": 13.7231,
+        "performance_3y": 13.3168,
+        "performance_5y": 9.0268,
+        "trackingerror_3y": 3.85,
+        "trackingerror_5y": 4.467,
         "treynor_1y": 14.8761,
         "treynor_3y": 9.4733,
-        "treynor_5y": 8.1178
+        "treynor_5y": 8.1178,
+        "volatility_1y": 10.133,
+        "beta_1y": 0.94,
+        "volatility_3y": 9.733,
+        "beta_3y": 0.937,
+        "volatility_5y": 12.127,
+        "beta_5y": 0.977
       }
     },
     {
@@ -1895,7 +3022,13 @@
         "sharpe_1y": 1.412,
         "alpha_1y": -4.4,
         "information_1y": 0.0792,
-        "treynor_1y": 13.5617
+        "performance_1m": 5.4471,
+        "performance_3m": 6.673,
+        "performance_6m": 10.0378,
+        "performance_1y": 19.3301,
+        "treynor_1y": 13.5617,
+        "volatility_1y": 10.93,
+        "beta_1y": 1.138
       }
     },
     {
@@ -1916,9 +3049,23 @@
         "sharpe_1y": 0.104,
         "sortino_5y": 0.352,
         "information_1y": -1.8538,
+        "performance_1m": 4.1224,
+        "performance_3m": -2.4708,
+        "performance_6m": 1.2436,
+        "performance_1y": 0.4977,
+        "performance_3y": 6.1726,
+        "performance_5y": 4.7161,
+        "trackingerror_3y": 2.973,
+        "trackingerror_5y": 2.999,
         "treynor_1y": 1.4916,
         "treynor_3y": 2.3678,
-        "treynor_5y": 3.6196
+        "treynor_5y": 3.6196,
+        "volatility_1y": 15.16,
+        "beta_1y": 1.057,
+        "volatility_3y": 13.126,
+        "beta_3y": 1.02,
+        "volatility_5y": 15.372,
+        "beta_5y": 1.032
       }
     },
     {
@@ -1939,9 +3086,23 @@
         "information_5y": -0.539,
         "sharpe_3y": 0.209,
         "information_1y": -1.7936,
+        "performance_1m": 4.1544,
+        "performance_3m": -2.3823,
+        "performance_6m": 1.505,
+        "performance_1y": 0.948,
+        "performance_3y": 6.5182,
+        "performance_5y": 5.0705,
+        "trackingerror_3y": 2.88,
+        "trackingerror_5y": 2.898,
         "treynor_1y": 1.9069,
         "treynor_3y": 2.6876,
-        "treynor_5y": 3.9423
+        "treynor_5y": 3.9423,
+        "volatility_1y": 15.169,
+        "beta_1y": 1.058,
+        "volatility_3y": 13.091,
+        "beta_3y": 1.018,
+        "volatility_5y": 15.323,
+        "beta_5y": 1.03
       }
     },
     {
@@ -1962,9 +3123,23 @@
         "sharpe_5y": 0.431,
         "alpha_1y": 2.286,
         "information_1y": 1.1792,
+        "performance_1m": 7.9568,
+        "performance_3m": 13.8762,
+        "performance_6m": 10.4116,
+        "performance_1y": 27.8615,
+        "performance_3y": 21.4378,
+        "performance_5y": 13.498,
+        "trackingerror_3y": 3.089,
+        "trackingerror_5y": 3.739,
         "treynor_1y": 26.9753,
         "treynor_3y": 16.8303,
-        "treynor_5y": 7.8029
+        "treynor_5y": 7.8029,
+        "volatility_1y": 18.623,
+        "beta_1y": 0.961,
+        "volatility_3y": 16.293,
+        "beta_3y": 1.031,
+        "volatility_5y": 19.48,
+        "beta_5y": 1.076
       }
     },
     {
@@ -1985,9 +3160,23 @@
         "sortino_1y": 3.066,
         "information_5y": 0.346,
         "information_1y": 1.0872,
+        "performance_1m": 7.9867,
+        "performance_3m": 13.9774,
+        "performance_6m": 10.4142,
+        "performance_1y": 28.0825,
+        "performance_3y": 21.7899,
+        "performance_5y": 13.8552,
+        "trackingerror_3y": 3.121,
+        "trackingerror_5y": 3.755,
         "treynor_1y": 27.1711,
         "treynor_3y": 17.12,
-        "treynor_5y": 8.0929
+        "treynor_5y": 8.0929,
+        "volatility_1y": 18.651,
+        "beta_1y": 0.961,
+        "volatility_3y": 16.298,
+        "beta_3y": 1.031,
+        "volatility_5y": 19.481,
+        "beta_5y": 1.076
       }
     },
     {
@@ -2008,9 +3197,23 @@
         "alpha_1y": -0.019,
         "information_3y": -0.13,
         "information_1y": 2.1487,
+        "performance_1m": 11.4394,
+        "performance_3m": 13.8211,
+        "performance_6m": 34.5354,
+        "performance_1y": 55.7482,
+        "performance_3y": 20.7567,
+        "performance_5y": 5.3378,
+        "trackingerror_3y": 3.749,
+        "trackingerror_5y": 3.866,
         "treynor_1y": 35.9449,
         "treynor_3y": 13.5096,
-        "treynor_5y": 0.7524
+        "treynor_5y": 0.7524,
+        "volatility_1y": 26.648,
+        "beta_1y": 1.158,
+        "volatility_3y": 18.986,
+        "beta_3y": 1.099,
+        "volatility_5y": 19.205,
+        "beta_5y": 1.072
       }
     },
     {
@@ -2024,7 +3227,16 @@
         "sharpe_3y": -0.246,
         "sortino_5y": -0.121,
         "sharpe_5y": -0.103,
-        "sortino_1y": -0.808
+        "sortino_1y": -0.808,
+        "performance_1m": -49.6863,
+        "performance_3m": -52.597,
+        "performance_6m": -52.4009,
+        "performance_1y": -41.5039,
+        "performance_3y": -16.2881,
+        "performance_5y": -8.8501,
+        "volatility_1y": 53.086,
+        "volatility_3y": 38.551,
+        "volatility_5y": 31.028
       }
     },
     {
@@ -2045,9 +3257,23 @@
         "sharpe_5y": 0.33,
         "sortino_3y": 1.232,
         "information_1y": 1.8625,
+        "performance_1m": 5.4229,
+        "performance_3m": 3.9703,
+        "performance_6m": 11.0046,
+        "performance_1y": 10.4542,
+        "performance_3y": 15.4533,
+        "performance_5y": 6.5563,
+        "trackingerror_3y": 3.528,
+        "trackingerror_5y": 3.318,
         "treynor_1y": 9.0613,
         "treynor_3y": 10.0212,
-        "treynor_5y": 5.1897
+        "treynor_5y": 5.1897,
+        "volatility_1y": 16.579,
+        "beta_1y": 1.074,
+        "volatility_3y": 13.643,
+        "beta_3y": 1.002,
+        "volatility_5y": 15.286,
+        "beta_5y": 0.972
       }
     },
     {
@@ -2064,8 +3290,18 @@
         "sortino_3y": 1.178,
         "alpha_1y": 3.671,
         "information_1y": 1.8588,
+        "performance_1m": 5.3959,
+        "performance_3m": 3.8769,
+        "performance_6m": 10.8063,
+        "performance_1y": 10.0383,
+        "performance_3y": 15.0215,
+        "trackingerror_3y": 3.523,
         "treynor_1y": 8.6911,
-        "treynor_3y": 9.6439
+        "treynor_3y": 9.6439,
+        "volatility_1y": 16.564,
+        "beta_1y": 1.073,
+        "volatility_3y": 13.635,
+        "beta_3y": 1.001
       }
     },
     {
@@ -2086,9 +3322,23 @@
         "sortino_5y": 0.558,
         "information_5y": -0.577,
         "information_1y": 1.8769,
+        "performance_1m": 5.4655,
+        "performance_3m": 4.0988,
+        "performance_6m": 11.2783,
+        "performance_1y": 11.0017,
+        "performance_3y": 16.0423,
+        "performance_5y": 7.1299,
+        "trackingerror_3y": 3.527,
+        "trackingerror_5y": 3.315,
         "treynor_1y": 9.5173,
         "treynor_3y": 10.5401,
-        "treynor_5y": 5.742
+        "treynor_5y": 5.742,
+        "volatility_1y": 16.582,
+        "beta_1y": 1.075,
+        "volatility_3y": 13.645,
+        "beta_3y": 1.002,
+        "volatility_5y": 15.291,
+        "beta_5y": 0.972
       }
     },
     {
@@ -2109,9 +3359,23 @@
         "alpha_3y": -3.867,
         "sharpe_1y": 0.922,
         "information_1y": -0.6932,
+        "performance_1m": 2.7987,
+        "performance_3m": -1.8101,
+        "performance_6m": 7.8757,
+        "performance_1y": 13.0822,
+        "performance_3y": 10.3919,
+        "performance_5y": 6.8513,
+        "trackingerror_3y": 3.943,
+        "trackingerror_5y": 3.991,
         "treynor_1y": 12.384,
         "treynor_3y": 6.4278,
-        "treynor_5y": 6.3617
+        "treynor_5y": 6.3617,
+        "volatility_1y": 14.157,
+        "beta_1y": 1.054,
+        "volatility_3y": 11.696,
+        "beta_3y": 0.928,
+        "volatility_5y": 12.738,
+        "beta_5y": 0.869
       }
     },
     {
@@ -2132,9 +3396,23 @@
         "sortino_3y": 0.704,
         "information_3y": -1.387,
         "information_1y": -0.6959,
+        "performance_1m": 2.7623,
+        "performance_3m": -1.902,
+        "performance_6m": 7.6874,
+        "performance_1y": 12.6714,
+        "performance_3y": 10.0036,
+        "performance_5y": 6.4837,
+        "trackingerror_3y": 3.943,
+        "trackingerror_5y": 3.997,
         "treynor_1y": 12.0491,
         "treynor_3y": 6.0365,
-        "treynor_5y": 5.97
+        "treynor_5y": 5.97,
+        "volatility_1y": 14.158,
+        "beta_1y": 1.054,
+        "volatility_3y": 11.695,
+        "beta_3y": 0.928,
+        "volatility_5y": 12.732,
+        "beta_5y": 0.868
       }
     },
     {
@@ -2155,9 +3433,23 @@
         "alpha_5y": -1.597,
         "sortino_3y": 0.826,
         "information_1y": -0.696,
+        "performance_1m": 2.8476,
+        "performance_3m": -1.6879,
+        "performance_6m": 8.1459,
+        "performance_1y": 13.6446,
+        "performance_3y": 10.9622,
+        "performance_5y": 7.4293,
+        "trackingerror_3y": 3.942,
+        "trackingerror_5y": 3.988,
         "treynor_1y": 12.8707,
         "treynor_3y": 6.9863,
-        "treynor_5y": 6.9887
+        "treynor_5y": 6.9887,
+        "volatility_1y": 14.147,
+        "beta_1y": 1.053,
+        "volatility_3y": 11.69,
+        "beta_3y": 0.927,
+        "volatility_5y": 12.732,
+        "beta_5y": 0.869
       }
     },
     {
@@ -2178,9 +3470,23 @@
         "sortino_1y": 1.586,
         "sortino_5y": 0.388,
         "information_1y": -4.236,
+        "performance_1m": 5.5393,
+        "performance_3m": 7.4199,
+        "performance_6m": 7.2306,
+        "performance_1y": 15.1721,
+        "performance_3y": 13.1181,
+        "performance_5y": 8.4261,
+        "trackingerror_3y": 3.379,
+        "trackingerror_5y": 3.298,
         "treynor_1y": 13.4205,
         "treynor_3y": 9.1281,
-        "treynor_5y": 4.0946
+        "treynor_5y": 4.0946,
+        "volatility_1y": 14.656,
+        "beta_1y": 1.032,
+        "volatility_3y": 13.823,
+        "beta_3y": 1.057,
+        "volatility_5y": 15.62,
+        "beta_5y": 1.03
       }
     },
     {
@@ -2201,9 +3507,23 @@
         "information_3y": -1.704,
         "sortino_3y": 1.094,
         "information_1y": -4.2424,
+        "performance_1m": 5.5134,
+        "performance_3m": 7.3251,
+        "performance_6m": 7.0474,
+        "performance_1y": 14.7726,
+        "performance_3y": 12.7224,
+        "performance_5y": 8.0471,
+        "trackingerror_3y": 3.376,
+        "trackingerror_5y": 3.296,
         "treynor_1y": 13.0843,
         "treynor_3y": 8.7843,
-        "treynor_5y": 3.7443
+        "treynor_5y": 3.7443,
+        "volatility_1y": 14.647,
+        "beta_1y": 1.031,
+        "volatility_3y": 13.817,
+        "beta_3y": 1.057,
+        "volatility_5y": 15.614,
+        "beta_5y": 1.03
       }
     },
     {
@@ -2224,9 +3544,23 @@
         "sortino_1y": 1.586,
         "sortino_5y": 0.388,
         "information_1y": -4.2361,
+        "performance_1m": 5.5389,
+        "performance_3m": 7.4204,
+        "performance_6m": 7.2329,
+        "performance_1y": 15.1729,
+        "performance_3y": 13.1162,
+        "performance_5y": 8.4235,
+        "trackingerror_3y": 3.378,
+        "trackingerror_5y": 3.297,
         "treynor_1y": 13.4205,
         "treynor_3y": 9.1281,
-        "treynor_5y": 4.0946
+        "treynor_5y": 4.0946,
+        "volatility_1y": 14.656,
+        "beta_1y": 1.032,
+        "volatility_3y": 13.823,
+        "beta_3y": 1.057,
+        "volatility_5y": 15.62,
+        "beta_5y": 1.03
       }
     },
     {
@@ -2243,8 +3577,18 @@
         "sharpe_3y": 0.281,
         "sortino_3y": 0.405,
         "information_1y": -0.8448,
+        "performance_1m": -3.7265,
+        "performance_3m": -8.8007,
+        "performance_6m": -3.3777,
+        "performance_1y": -3.6332,
+        "performance_3y": 4.8764,
+        "trackingerror_3y": 4.092,
         "treynor_1y": 3.4304,
-        "treynor_3y": 4.4309
+        "treynor_3y": 4.4309,
+        "volatility_1y": 14.028,
+        "beta_1y": 1.145,
+        "volatility_3y": 14.964,
+        "beta_3y": 0.949
       }
     },
     {
@@ -2261,8 +3605,18 @@
         "sortino_3y": 0.369,
         "information_3y": -0.994,
         "information_1y": -0.8045,
+        "performance_1m": -3.7486,
+        "performance_3m": -8.8751,
+        "performance_6m": -3.5425,
+        "performance_1y": -3.9623,
+        "performance_3y": 4.5122,
+        "trackingerror_3y": 4.089,
         "treynor_1y": 3.1232,
-        "treynor_3y": 4.069
+        "treynor_3y": 4.069,
+        "volatility_1y": 14.024,
+        "beta_1y": 1.145,
+        "volatility_3y": 14.967,
+        "beta_3y": 0.949
       }
     },
     {
@@ -2275,7 +3629,13 @@
         "alpha_1y": 0.204,
         "sortino_1y": -0.652,
         "information_1y": 1.5794,
-        "treynor_1y": -2.0399
+        "performance_1m": 1.2945,
+        "performance_3m": -1.4561,
+        "performance_6m": 0.12,
+        "performance_1y": 0.7751,
+        "treynor_1y": -2.0399,
+        "volatility_1y": 3.878,
+        "beta_1y": 1.076
       }
     },
     {
@@ -2296,9 +3656,23 @@
         "sharpe_5y": -0.531,
         "sortino_5y": -0.662,
         "information_1y": 1.8309,
+        "performance_1m": 0.8434,
+        "performance_3m": -0.748,
+        "performance_6m": 0.1777,
+        "performance_1y": 1.5288,
+        "performance_3y": 3.8463,
+        "performance_5y": -1.1844,
+        "trackingerror_3y": 0.486,
+        "trackingerror_5y": 1.093,
         "treynor_1y": -0.7375,
         "treynor_3y": 0.6517,
-        "treynor_5y": -2.9937
+        "treynor_5y": -2.9937,
+        "volatility_1y": 3.098,
+        "beta_1y": 1.025,
+        "volatility_3y": 3.465,
+        "beta_3y": 0.989,
+        "volatility_5y": 5.869,
+        "beta_5y": 1.041
       }
     },
     {
@@ -2308,7 +3682,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sortino_1y": -0.355,
-        "sharpe_1y": -0.315
+        "sharpe_1y": -0.315,
+        "performance_1m": 0.7964,
+        "performance_3m": -0.9005,
+        "performance_6m": 0.1682,
+        "performance_1y": 1.2399,
+        "volatility_1y": 3.217
       }
     },
     {
@@ -2318,7 +3697,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sortino_1y": -0.444,
-        "sharpe_1y": -0.398
+        "sharpe_1y": -0.398,
+        "performance_1m": 0.7789,
+        "performance_3m": -0.9715,
+        "performance_6m": 0.0198,
+        "performance_1y": 0.9907,
+        "volatility_1y": 3.195
       }
     },
     {
@@ -2339,9 +3723,23 @@
         "sortino_5y": -0.604,
         "alpha_1y": -0.242,
         "information_1y": 1.5851,
+        "performance_1m": 0.8707,
+        "performance_3m": -0.674,
+        "performance_6m": 0.3262,
+        "performance_1y": 1.8379,
+        "performance_3y": 4.1576,
+        "performance_5y": -0.8887,
+        "trackingerror_3y": 0.486,
+        "trackingerror_5y": 1.093,
         "treynor_1y": -0.4501,
         "treynor_3y": 0.9636,
-        "treynor_5y": -2.7013
+        "treynor_5y": -2.7013,
+        "volatility_1y": 3.096,
+        "beta_1y": 1.025,
+        "volatility_3y": 3.462,
+        "beta_3y": 0.988,
+        "volatility_5y": 5.865,
+        "beta_5y": 1.04
       }
     },
     {
@@ -2362,9 +3760,23 @@
         "information_5y": -0.52,
         "alpha_3y": -1.673,
         "information_1y": 2.1285,
+        "performance_1m": 5.0557,
+        "performance_3m": 2.8437,
+        "performance_6m": 13.0996,
+        "performance_1y": 20.6917,
+        "performance_3y": 15.007,
+        "performance_5y": 8.8692,
+        "trackingerror_3y": 2.878,
+        "trackingerror_5y": 3.175,
         "treynor_1y": 17.0549,
         "treynor_3y": 8.9896,
-        "treynor_5y": 7.4674
+        "treynor_5y": 7.4674,
+        "volatility_1y": 14.208,
+        "beta_1y": 1.078,
+        "volatility_3y": 12.785,
+        "beta_3y": 1.051,
+        "volatility_5y": 14.227,
+        "beta_5y": 0.985
       }
     },
     {
@@ -2385,9 +3797,23 @@
         "sortino_5y": -0.746,
         "sharpe_1y": -0.525,
         "information_1y": 1.2773,
+        "performance_1m": 1.2431,
+        "performance_3m": -1.1146,
+        "performance_6m": 0.3839,
+        "performance_1y": 0.9267,
+        "performance_3y": 3.0974,
+        "performance_5y": -1.665,
+        "trackingerror_3y": 0.486,
+        "trackingerror_5y": 0.639,
         "treynor_1y": -1.7526,
         "treynor_3y": -0.0787,
-        "treynor_5y": -3.7275
+        "treynor_5y": -3.7275,
+        "volatility_1y": 3.552,
+        "beta_1y": 1.064,
+        "volatility_3y": 4.3,
+        "beta_3y": 0.983,
+        "volatility_5y": 6.051,
+        "beta_5y": 0.987
       }
     },
     {
@@ -2408,9 +3834,23 @@
         "sortino_3y": -0.155,
         "alpha_5y": -0.323,
         "information_1y": 2.4097,
+        "performance_1m": 0.4892,
+        "performance_3m": -0.4222,
+        "performance_6m": 0.2203,
+        "performance_1y": 1.0521,
+        "performance_3y": 2.8838,
+        "performance_5y": 0.646,
+        "trackingerror_3y": 0.247,
+        "trackingerror_5y": 0.459,
         "treynor_1y": -0.994,
         "treynor_3y": -0.1798,
-        "treynor_5y": -1.4062
+        "treynor_5y": -1.4062,
+        "volatility_1y": 1.465,
+        "beta_1y": 1.129,
+        "volatility_3y": 1.428,
+        "beta_3y": 0.977,
+        "volatility_5y": 1.836,
+        "beta_5y": 0.974
       }
     },
     {
@@ -2431,9 +3871,23 @@
         "alpha_1y": -0.348,
         "information_5y": -1.612,
         "information_1y": 2.4336,
+        "performance_1m": 0.4682,
+        "performance_3m": -0.4639,
+        "performance_6m": 0.0982,
+        "performance_1y": 0.7843,
+        "performance_3y": 2.5844,
+        "performance_5y": 0.3622,
+        "trackingerror_3y": 0.27,
+        "trackingerror_5y": 0.377,
         "treynor_1y": -1.2011,
         "treynor_3y": -0.4814,
-        "treynor_5y": -1.702
+        "treynor_5y": -1.702,
+        "volatility_1y": 1.478,
+        "beta_1y": 1.137,
+        "volatility_3y": 1.447,
+        "beta_3y": 0.989,
+        "volatility_5y": 1.852,
+        "beta_5y": 1.0
       }
     },
     {
@@ -2454,9 +3908,23 @@
         "sortino_1y": -0.468,
         "alpha_3y": -0.928,
         "information_1y": 2.4202,
+        "performance_1m": 0.5032,
+        "performance_3m": -0.222,
+        "performance_6m": 0.4751,
+        "performance_1y": 1.4768,
+        "performance_3y": 3.1157,
+        "performance_5y": 0.3931,
+        "trackingerror_3y": 0.239,
+        "trackingerror_5y": 0.554,
         "treynor_1y": -0.6353,
         "treynor_3y": 0.0102,
-        "treynor_5y": -1.6236
+        "treynor_5y": -1.6236,
+        "volatility_1y": 1.54,
+        "beta_1y": 1.035,
+        "volatility_3y": 1.424,
+        "beta_3y": 0.975,
+        "volatility_5y": 2.27,
+        "beta_5y": 1.022
       }
     },
     {
@@ -2477,9 +3945,23 @@
         "alpha_1y": -0.395,
         "sharpe_3y": 0.227,
         "information_1y": 2.5323,
+        "performance_1m": 0.5091,
+        "performance_3m": -0.1405,
+        "performance_6m": 0.6229,
+        "performance_1y": 1.7788,
+        "performance_3y": 3.4183,
+        "performance_5y": 0.6928,
+        "trackingerror_3y": 0.241,
+        "trackingerror_5y": 0.544,
         "treynor_1y": -0.3552,
         "treynor_3y": 0.3315,
-        "treynor_5y": -1.299
+        "treynor_5y": -1.299,
+        "volatility_1y": 1.522,
+        "beta_1y": 1.024,
+        "volatility_3y": 1.421,
+        "beta_3y": 0.973,
+        "volatility_5y": 2.27,
+        "beta_5y": 1.024
       }
     },
     {
@@ -2500,9 +3982,23 @@
         "alpha_1y": -0.737,
         "sortino_3y": -0.286,
         "information_1y": 0.5375,
+        "performance_1m": 0.7357,
+        "performance_3m": -0.9698,
+        "performance_6m": 0.0,
+        "performance_1y": 0.5966,
+        "performance_3y": 2.4787,
+        "performance_5y": -1.0082,
+        "trackingerror_3y": 1.603,
+        "trackingerror_5y": 2.243,
         "treynor_1y": -2.7064,
         "treynor_3y": -0.9303,
-        "treynor_5y": -4.736
+        "treynor_5y": -4.736,
+        "volatility_1y": 2.409,
+        "beta_1y": 0.721,
+        "volatility_3y": 2.875,
+        "beta_3y": 0.649,
+        "volatility_5y": 3.98,
+        "beta_5y": 0.637
       }
     },
     {
@@ -2512,7 +4008,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sharpe_1y": -0.029,
-        "sortino_1y": -0.034
+        "sortino_1y": -0.034,
+        "performance_1m": 0.8349,
+        "performance_3m": -0.8212,
+        "performance_6m": 0.3575,
+        "performance_1y": 2.0537,
+        "volatility_1y": 3.474
       }
     },
     {
@@ -2522,7 +4023,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sortino_1y": 0.071,
-        "sharpe_1y": 0.06
+        "sharpe_1y": 0.06,
+        "performance_1m": 0.8683,
+        "performance_3m": -0.7266,
+        "performance_6m": 0.5181,
+        "performance_1y": 2.3742,
+        "volatility_1y": 3.462
       }
     },
     {
@@ -2543,9 +4049,23 @@
         "information_3y": 0.46,
         "sortino_1y": -0.134,
         "information_1y": 1.3718,
+        "performance_1m": 0.9194,
+        "performance_3m": -0.8824,
+        "performance_6m": 0.3115,
+        "performance_1y": 2.0896,
+        "performance_3y": 4.6311,
+        "performance_5y": -0.304,
+        "trackingerror_3y": 0.608,
+        "trackingerror_5y": 0.971,
         "treynor_1y": -0.35,
         "treynor_3y": 1.4978,
-        "treynor_5y": -2.3624
+        "treynor_5y": -2.3624,
+        "volatility_1y": 3.132,
+        "beta_1y": 1.029,
+        "volatility_3y": 3.462,
+        "beta_3y": 0.98,
+        "volatility_5y": 5.369,
+        "beta_5y": 0.95
       }
     },
     {
@@ -2566,9 +4086,23 @@
         "information_3y": 0.106,
         "alpha_3y": 0.086,
         "information_1y": 1.2759,
+        "performance_1m": 0.92,
+        "performance_3m": -0.9247,
+        "performance_6m": 0.1957,
+        "performance_1y": 1.8797,
+        "performance_3y": 4.4319,
+        "performance_5y": -0.4877,
+        "trackingerror_3y": 0.612,
+        "trackingerror_5y": 0.973,
         "treynor_1y": -0.5724,
         "treynor_3y": 1.282,
-        "treynor_5y": -2.5705
+        "treynor_5y": -2.5705,
+        "volatility_1y": 3.121,
+        "beta_1y": 1.025,
+        "volatility_3y": 3.461,
+        "beta_3y": 0.98,
+        "volatility_5y": 5.367,
+        "beta_5y": 0.95
       }
     },
     {
@@ -2589,9 +4123,23 @@
         "alpha_1y": 0.05,
         "alpha_5y": -0.133,
         "information_1y": 1.4154,
+        "performance_1m": 0.9546,
+        "performance_3m": -0.8295,
+        "performance_6m": 0.42,
+        "performance_1y": 2.3084,
+        "performance_3y": 4.8486,
+        "performance_5y": -0.1039,
+        "trackingerror_3y": 0.611,
+        "trackingerror_5y": 0.971,
         "treynor_1y": -0.1642,
         "treynor_3y": 1.6989,
-        "treynor_5y": -2.1469
+        "treynor_5y": -2.1469,
+        "volatility_1y": 3.139,
+        "beta_1y": 1.032,
+        "volatility_3y": 3.465,
+        "beta_3y": 0.981,
+        "volatility_5y": 5.373,
+        "beta_5y": 0.951
       }
     },
     {
@@ -2612,9 +4160,23 @@
         "sortino_5y": -0.312,
         "information_3y": -0.235,
         "information_1y": 2.7095,
+        "performance_1m": 0.695,
+        "performance_3m": -0.5544,
+        "performance_6m": 0.7489,
+        "performance_1y": 8.3134,
+        "performance_3y": 5.2873,
+        "performance_5y": -0.5887,
+        "trackingerror_3y": 1.177,
+        "trackingerror_5y": 1.635,
         "treynor_1y": 6.1739,
         "treynor_3y": 2.2033,
-        "treynor_5y": -2.2706
+        "treynor_5y": -2.2706,
+        "volatility_1y": 5.238,
+        "beta_1y": 0.957,
+        "volatility_3y": 6.499,
+        "beta_3y": 0.879,
+        "volatility_5y": 8.726,
+        "beta_5y": 0.93
       }
     },
     {
@@ -2635,9 +4197,23 @@
         "sharpe_5y": 0.011,
         "sortino_1y": 1.026,
         "information_1y": 1.3589,
+        "performance_1m": 0.7514,
+        "performance_3m": -0.0596,
+        "performance_6m": 1.1772,
+        "performance_1y": 3.9892,
+        "performance_3y": 7.0698,
+        "performance_5y": 1.7643,
+        "trackingerror_3y": 0.637,
+        "trackingerror_5y": 1.668,
         "treynor_1y": 2.9499,
         "treynor_3y": 4.2958,
-        "treynor_5y": 0.0686
+        "treynor_5y": 0.0686,
+        "volatility_1y": 3.26,
+        "beta_1y": 0.841,
+        "volatility_3y": 3.013,
+        "beta_3y": 0.909,
+        "volatility_5y": 7.457,
+        "beta_5y": 1.195
       }
     },
     {
@@ -2647,7 +4223,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sharpe_1y": -0.766,
-        "sortino_1y": -0.826
+        "sortino_1y": -0.826,
+        "performance_1m": 0.1704,
+        "performance_3m": 0.1325,
+        "performance_6m": 0.5989,
+        "performance_1y": 1.4626,
+        "volatility_1y": 0.456
       }
     },
     {
@@ -2657,7 +4238,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sortino_1y": -0.093,
-        "sharpe_1y": -0.078
+        "sharpe_1y": -0.078,
+        "performance_1m": 0.1878,
+        "performance_3m": 0.2067,
+        "performance_6m": 0.7556,
+        "performance_1y": 1.7676,
+        "volatility_1y": 0.453
       }
     },
     {
@@ -2667,7 +4253,13 @@
       "branding": "Union Investment",
       "metrics": {
         "sortino_1y": 0.123,
-        "sharpe_1y": 0.103
+        "sharpe_1y": 0.103,
+        "performance_1m": 0.5205,
+        "performance_3m": -0.3541,
+        "performance_6m": 0.6217,
+        "performance_1y": 1.9845,
+        "performance_3y": 4.4059,
+        "volatility_1y": 2.187
       }
     },
     {
@@ -2677,7 +4269,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sortino_1y": -0.049,
-        "sharpe_1y": -0.043
+        "sharpe_1y": -0.043,
+        "performance_1m": 0.6119,
+        "performance_3m": -0.5686,
+        "performance_6m": 0.3827,
+        "performance_1y": 1.7693,
+        "volatility_1y": 2.407
       }
     },
     {
@@ -2687,7 +4284,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sharpe_1y": 0.085,
-        "sortino_1y": 0.1
+        "sortino_1y": 0.1,
+        "performance_1m": 0.6253,
+        "performance_3m": -0.5018,
+        "performance_6m": 0.5251,
+        "performance_1y": 2.0706,
+        "volatility_1y": 2.411
       }
     },
     {
@@ -2697,7 +4299,13 @@
       "branding": "Union Investment",
       "metrics": {
         "sharpe_1y": -0.035,
-        "sortino_1y": -0.041
+        "sortino_1y": -0.041,
+        "performance_1m": 0.5048,
+        "performance_3m": -0.4311,
+        "performance_6m": 0.477,
+        "performance_1y": 1.6856,
+        "performance_3y": 4.0957,
+        "volatility_1y": 2.202
       }
     },
     {
@@ -2705,28 +4313,44 @@
       "name": "UniEuroRenta Unter 2029 III A",
       "category": "EAA Fund Fixed Term Bond",
       "branding": "Union Investment",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 0.6022,
+        "performance_3m": -0.4173,
+        "performance_6m": 0.5215
+      }
     },
     {
       "id": "F00001SCA8",
       "name": "UniEuroRenta Unter 2029 III net A",
       "category": "EAA Fund Fixed Term Bond",
       "branding": "Union Investment",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 0.5833,
+        "performance_3m": -0.4875,
+        "performance_6m": 0.3713
+      }
     },
     {
       "id": "F00001SCA9",
       "name": "UniEuroRenta Unter 2031 II A",
       "category": "EAA Fund Fixed Term Bond",
       "branding": "Union Investment",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 0.9384,
+        "performance_3m": -0.7835,
+        "performance_6m": 0.4317
+      }
     },
     {
       "id": "F00001SCAA",
       "name": "UniEuroRenta Unter 2031 II net A",
       "category": "EAA Fund Fixed Term Bond",
       "branding": "Union Investment",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 0.9199,
+        "performance_3m": -0.8541,
+        "performance_6m": 0.2813
+      }
     },
     {
       "id": "F00001LQ5Y",
@@ -2735,7 +4359,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sortino_1y": -0.461,
-        "sharpe_1y": -0.421
+        "sharpe_1y": -0.421,
+        "performance_1m": 0.2914,
+        "performance_3m": -0.131,
+        "performance_6m": 0.3879,
+        "performance_1y": 1.3732,
+        "volatility_1y": 1.056
       }
     },
     {
@@ -2745,7 +4374,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sharpe_1y": -0.139,
-        "sortino_1y": -0.157
+        "sortino_1y": -0.157,
+        "performance_1m": 0.3104,
+        "performance_3m": -0.063,
+        "performance_6m": 0.532,
+        "performance_1y": 1.6744,
+        "volatility_1y": 1.059
       }
     },
     {
@@ -2755,7 +4389,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sortino_1y": -0.063,
-        "sharpe_1y": -0.054
+        "sharpe_1y": -0.054,
+        "performance_1m": 0.7801,
+        "performance_3m": -0.6611,
+        "performance_6m": 0.2216,
+        "performance_1y": 1.8764,
+        "volatility_1y": 2.873
       }
     },
     {
@@ -2765,7 +4404,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sharpe_1y": 0.049,
-        "sortino_1y": 0.058
+        "sortino_1y": 0.058,
+        "performance_1m": 0.8087,
+        "performance_3m": -0.5814,
+        "performance_6m": 0.3761,
+        "performance_1y": 2.1786,
+        "volatility_1y": 2.863
       }
     },
     {
@@ -2775,7 +4419,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sortino_1y": 0.041,
-        "sharpe_1y": 0.035
+        "sharpe_1y": 0.035,
+        "performance_1m": 0.2606,
+        "performance_3m": 0.0964,
+        "performance_6m": 0.7174,
+        "performance_1y": 1.8249,
+        "volatility_1y": 0.761
       }
     },
     {
@@ -2785,7 +4434,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sortino_1y": -0.406,
-        "sharpe_1y": -0.365
+        "sharpe_1y": -0.365,
+        "performance_1m": 0.2429,
+        "performance_3m": 0.0291,
+        "performance_6m": 0.5751,
+        "performance_1y": 1.5295,
+        "volatility_1y": 0.754
       }
     },
     {
@@ -2795,7 +4449,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sharpe_1y": -0.01,
-        "sortino_1y": -0.012
+        "sortino_1y": -0.012,
+        "performance_1m": 0.6894,
+        "performance_3m": -0.6613,
+        "performance_6m": 0.2479,
+        "performance_1y": 1.9022,
+        "volatility_1y": 2.736
       }
     },
     {
@@ -2807,7 +4466,14 @@
         "sortino_1y": 0.041,
         "sharpe_1y": 0.035,
         "sharpe_3y": 0.747,
-        "sortino_3y": 1.422
+        "sortino_3y": 1.422,
+        "performance_1m": 0.4713,
+        "performance_3m": -0.3463,
+        "performance_6m": 0.4623,
+        "performance_1y": 1.8427,
+        "performance_3y": 5.1294,
+        "volatility_1y": 2.005,
+        "volatility_3y": 2.79
       }
     },
     {
@@ -2817,7 +4483,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sharpe_1y": 0.098,
-        "sortino_1y": 0.115
+        "sortino_1y": 0.115,
+        "performance_1m": 0.7135,
+        "performance_3m": -0.5916,
+        "performance_6m": 0.3983,
+        "performance_1y": 2.2013,
+        "volatility_1y": 2.728
       }
     },
     {
@@ -2827,7 +4498,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sharpe_1y": -0.179,
-        "sortino_1y": -0.202
+        "sortino_1y": -0.202,
+        "performance_1m": 0.5014,
+        "performance_3m": -0.3638,
+        "performance_6m": 0.4618,
+        "performance_1y": 1.6854,
+        "volatility_1y": 2.017
       }
     },
     {
@@ -2848,9 +4524,23 @@
         "alpha_5y": 0.573,
         "sortino_3y": 1.162,
         "information_1y": 5.0264,
+        "performance_1m": 3.3115,
+        "performance_3m": 0.7817,
+        "performance_6m": 12.0922,
+        "performance_1y": 20.2093,
+        "performance_3y": 13.0378,
+        "performance_5y": 7.0801,
+        "trackingerror_3y": 3.222,
+        "trackingerror_5y": 4.549,
         "treynor_1y": 19.8383,
         "treynor_3y": 9.426,
-        "treynor_5y": 6.0757
+        "treynor_5y": 6.0757,
+        "volatility_1y": 13.69,
+        "beta_1y": 0.953,
+        "volatility_3y": 12.086,
+        "beta_3y": 0.936,
+        "volatility_5y": 14.72,
+        "beta_5y": 0.957
       }
     },
     {
@@ -2871,9 +4561,23 @@
         "sortino_1y": 2.131,
         "alpha_3y": 4.502,
         "information_1y": 5.1366,
+        "performance_1m": 3.3235,
+        "performance_3m": 0.8103,
+        "performance_6m": 12.2607,
+        "performance_1y": 20.7434,
+        "performance_3y": 13.388,
+        "performance_5y": 7.3308,
+        "trackingerror_3y": 3.247,
+        "trackingerror_5y": 4.569,
         "treynor_1y": 20.291,
         "treynor_3y": 9.7143,
-        "treynor_5y": 6.2947
+        "treynor_5y": 6.2947,
+        "volatility_1y": 13.714,
+        "beta_1y": 0.955,
+        "volatility_3y": 12.13,
+        "beta_3y": 0.939,
+        "volatility_5y": 14.744,
+        "beta_5y": 0.958
       }
     },
     {
@@ -2894,9 +4598,23 @@
         "alpha_5y": -6.044,
         "sharpe_5y": -0.061,
         "information_1y": -1.4597,
+        "performance_1m": 6.4299,
+        "performance_3m": 5.2536,
+        "performance_6m": 11.5533,
+        "performance_1y": 8.0233,
+        "performance_3y": 9.1379,
+        "performance_5y": 0.7808,
+        "trackingerror_3y": 5.554,
+        "trackingerror_5y": 5.511,
         "treynor_1y": 5.3559,
         "treynor_3y": 3.2713,
-        "treynor_5y": -0.9734
+        "treynor_5y": -0.9734,
+        "volatility_1y": 16.175,
+        "beta_1y": 1.205,
+        "volatility_3y": 14.773,
+        "beta_3y": 1.138,
+        "volatility_5y": 16.484,
+        "beta_5y": 1.033
       }
     },
     {
@@ -2917,9 +4635,23 @@
         "sharpe_1y": -0.592,
         "alpha_5y": -0.62,
         "information_1y": 0.5019,
+        "performance_1m": 1.3517,
+        "performance_3m": -1.1742,
+        "performance_6m": 0.3162,
+        "performance_1y": 0.898,
+        "performance_3y": 2.8827,
+        "performance_5y": -2.3617,
+        "trackingerror_3y": 0.402,
+        "trackingerror_5y": 0.502,
         "treynor_1y": -2.059,
         "treynor_3y": -0.4047,
-        "treynor_5y": -4.2047
+        "treynor_5y": -4.2047,
+        "volatility_1y": 3.631,
+        "beta_1y": 1.044,
+        "volatility_3y": 4.614,
+        "beta_3y": 1.026,
+        "volatility_5y": 6.721,
+        "beta_5y": 1.023
       }
     },
     {
@@ -2940,9 +4672,23 @@
         "sharpe_3y": -0.155,
         "alpha_1y": -0.859,
         "information_1y": 0.5042,
+        "performance_1m": 1.3245,
+        "performance_3m": -1.2667,
+        "performance_6m": 0.1697,
+        "performance_1y": 0.58,
+        "performance_3y": 2.5784,
+        "performance_5y": -2.6522,
+        "trackingerror_3y": 0.404,
+        "trackingerror_5y": 0.503,
         "treynor_1y": -2.324,
         "treynor_3y": -0.6966,
-        "treynor_5y": -4.5053
+        "treynor_5y": -4.5053,
+        "volatility_1y": 3.653,
+        "beta_1y": 1.05,
+        "volatility_3y": 4.611,
+        "beta_3y": 1.026,
+        "volatility_5y": 6.712,
+        "beta_5y": 1.022
       }
     },
     {
@@ -2963,9 +4709,23 @@
         "sortino_5y": 0.763,
         "alpha_1y": -2.517,
         "information_1y": 0.3688,
+        "performance_1m": 7.6841,
+        "performance_3m": 13.5691,
+        "performance_6m": 15.4078,
+        "performance_1y": 28.2999,
+        "performance_3y": 19.2111,
+        "performance_5y": 12.9074,
+        "trackingerror_3y": 4.366,
+        "trackingerror_5y": 3.983,
         "treynor_1y": 21.7411,
         "treynor_3y": 13.6016,
-        "treynor_5y": 7.5842
+        "treynor_5y": 7.5842,
+        "volatility_1y": 15.442,
+        "beta_1y": 1.086,
+        "volatility_3y": 14.291,
+        "beta_3y": 1.078,
+        "volatility_5y": 16.023,
+        "beta_5y": 1.05
       }
     },
     {
@@ -2986,9 +4746,23 @@
         "information_3y": -0.009,
         "sortino_1y": 3.209,
         "information_1y": 0.3664,
+        "performance_1m": 7.6547,
+        "performance_3m": 13.4717,
+        "performance_6m": 15.2093,
+        "performance_1y": 27.8512,
+        "performance_3y": 18.7935,
+        "performance_5y": 12.5132,
+        "trackingerror_3y": 4.365,
+        "trackingerror_5y": 3.982,
         "treynor_1y": 21.4043,
         "treynor_3y": 13.2656,
-        "treynor_5y": 7.2531
+        "treynor_5y": 7.2531,
+        "volatility_1y": 15.435,
+        "beta_1y": 1.086,
+        "volatility_3y": 14.286,
+        "beta_3y": 1.078,
+        "volatility_5y": 16.018,
+        "beta_5y": 1.049
       }
     },
     {
@@ -3009,9 +4783,23 @@
         "information_5y": 0.179,
         "sharpe_1y": 1.561,
         "information_1y": 0.3706,
+        "performance_1m": 7.3477,
+        "performance_3m": 13.309,
+        "performance_6m": 15.2887,
+        "performance_1y": 28.4872,
+        "performance_3y": 19.6712,
+        "performance_5y": 13.3944,
+        "trackingerror_3y": 4.217,
+        "trackingerror_5y": 3.886,
         "treynor_1y": 22.1843,
         "treynor_3y": 14.1,
-        "treynor_5y": 8.086
+        "treynor_5y": 8.086,
+        "volatility_1y": 15.448,
+        "beta_1y": 1.087,
+        "volatility_3y": 14.219,
+        "beta_3y": 1.075,
+        "volatility_5y": 15.989,
+        "beta_5y": 1.048
       }
     },
     {
@@ -3032,9 +4820,23 @@
         "sharpe_1y": 0.348,
         "sortino_1y": 0.425,
         "information_1y": 1.4789,
+        "performance_1m": 0.6849,
+        "performance_3m": -0.2545,
+        "performance_6m": 1.3356,
+        "performance_1y": 3.1622,
+        "performance_3y": 5.9546,
+        "performance_5y": 1.0908,
+        "trackingerror_3y": 3.416,
+        "trackingerror_5y": 5.219,
         "treynor_1y": 1.459,
         "treynor_3y": 9.7073,
-        "treynor_5y": -1.4985
+        "treynor_5y": -1.4985,
+        "volatility_1y": 2.44,
+        "beta_1y": 0.582,
+        "volatility_3y": 2.233,
+        "beta_3y": 0.288,
+        "volatility_5y": 5.3,
+        "beta_5y": 0.481
       }
     },
     {
@@ -3055,9 +4857,23 @@
         "alpha_1y": 4.835,
         "alpha_5y": -3.556,
         "information_1y": 2.0711,
+        "performance_1m": 3.7514,
+        "performance_3m": -0.1841,
+        "performance_6m": 7.6526,
+        "performance_1y": 6.8778,
+        "performance_3y": 16.5332,
+        "performance_5y": 4.7333,
+        "trackingerror_3y": 3.5,
+        "trackingerror_5y": 3.634,
         "treynor_1y": 9.8641,
         "treynor_3y": 11.1083,
-        "treynor_5y": 3.7515
+        "treynor_5y": 3.7515,
+        "volatility_1y": 16.275,
+        "beta_1y": 1.051,
+        "volatility_3y": 13.841,
+        "beta_3y": 1.013,
+        "volatility_5y": 16.019,
+        "beta_5y": 1.012
       }
     },
     {
@@ -3078,9 +4894,23 @@
         "sortino_1y": 0.945,
         "information_3y": -0.027,
         "information_1y": 1.9969,
+        "performance_1m": 3.6341,
+        "performance_3m": -0.2774,
+        "performance_6m": 7.4742,
+        "performance_1y": 6.3588,
+        "performance_3y": 16.139,
+        "performance_5y": 4.4071,
+        "trackingerror_3y": 3.513,
+        "trackingerror_5y": 3.639,
         "treynor_1y": 9.5891,
         "treynor_3y": 10.8582,
-        "treynor_5y": 3.4539
+        "treynor_5y": 3.4539,
+        "volatility_1y": 16.075,
+        "beta_1y": 1.036,
+        "volatility_3y": 13.771,
+        "beta_3y": 1.007,
+        "volatility_5y": 15.891,
+        "beta_5y": 1.003
       }
     },
     {
@@ -3101,9 +4931,23 @@
         "sortino_5y": 0.675,
         "sortino_3y": 1.578,
         "information_1y": -1.3532,
+        "performance_1m": 5.5939,
+        "performance_3m": 8.5983,
+        "performance_6m": 9.9152,
+        "performance_1y": 20.5485,
+        "performance_3y": 16.1281,
+        "performance_5y": 11.7501,
+        "trackingerror_3y": 2.933,
+        "trackingerror_5y": 2.884,
         "treynor_1y": 18.2605,
         "treynor_3y": 11.7898,
-        "treynor_5y": 6.8241
+        "treynor_5y": 6.8241,
+        "volatility_1y": 15.474,
+        "beta_1y": 1.094,
+        "volatility_3y": 13.865,
+        "beta_3y": 1.069,
+        "volatility_5y": 16.008,
+        "beta_5y": 1.065
       }
     },
     {
@@ -3124,9 +4968,23 @@
         "information_5y": -0.444,
         "alpha_5y": -1.457,
         "information_1y": -1.3721,
+        "performance_1m": 5.6255,
+        "performance_3m": 8.5936,
+        "performance_6m": 9.7626,
+        "performance_1y": 20.1757,
+        "performance_3y": 15.6741,
+        "performance_5y": 11.1518,
+        "trackingerror_3y": 2.793,
+        "trackingerror_5y": 2.776,
         "treynor_1y": 18.0164,
         "treynor_3y": 11.2798,
-        "treynor_5y": 6.2874
+        "treynor_5y": 6.2874,
+        "volatility_1y": 15.384,
+        "beta_1y": 1.087,
+        "volatility_3y": 13.854,
+        "beta_3y": 1.071,
+        "volatility_5y": 16.011,
+        "beta_5y": 1.067
       }
     },
     {
@@ -3139,7 +4997,13 @@
         "alpha_1y": -6.331,
         "sortino_1y": 2.397,
         "information_1y": -1.3589,
-        "treynor_1y": 18.2738
+        "performance_1m": 5.5946,
+        "performance_3m": 8.599,
+        "performance_6m": 9.9095,
+        "performance_1y": 20.5434,
+        "treynor_1y": 18.2738,
+        "volatility_1y": 15.457,
+        "beta_1y": 1.092
       }
     },
     {
@@ -3160,9 +5024,23 @@
         "alpha_5y": -4.458,
         "sortino_1y": 1.349,
         "information_1y": -3.2909,
+        "performance_1m": 1.0976,
+        "performance_3m": -2.9519,
+        "performance_6m": 6.0954,
+        "performance_1y": 9.8498,
+        "performance_3y": 8.8925,
+        "performance_5y": 6.522,
+        "trackingerror_3y": 3.602,
+        "trackingerror_5y": 3.975,
         "treynor_1y": 10.7081,
         "treynor_3y": 5.7629,
-        "treynor_5y": 3.1952
+        "treynor_5y": 3.1952,
+        "volatility_1y": 12.361,
+        "beta_1y": 1.032,
+        "volatility_3y": 11.954,
+        "beta_3y": 0.977,
+        "volatility_5y": 13.406,
+        "beta_5y": 0.965
       }
     },
     {
@@ -3183,9 +5061,23 @@
         "alpha_5y": -4.1,
         "sharpe_5y": 0.257,
         "information_1y": -3.2873,
+        "performance_1m": 1.1249,
+        "performance_3m": -2.8704,
+        "performance_6m": 6.2855,
+        "performance_1y": 10.2324,
+        "performance_3y": 9.274,
+        "performance_5y": 6.8952,
+        "trackingerror_3y": 3.603,
+        "trackingerror_5y": 3.976,
         "treynor_1y": 11.0626,
         "treynor_3y": 6.1187,
-        "treynor_5y": 3.5711
+        "treynor_5y": 3.5711,
+        "volatility_1y": 12.369,
+        "beta_1y": 1.032,
+        "volatility_3y": 11.956,
+        "beta_3y": 0.977,
+        "volatility_5y": 13.409,
+        "beta_5y": 0.965
       }
     },
     {
@@ -3206,9 +5098,23 @@
         "information_5y": -0.026,
         "sortino_3y": 1.655,
         "information_1y": -1.3495,
+        "performance_1m": 5.6344,
+        "performance_3m": 8.7323,
+        "performance_6m": 10.1892,
+        "performance_1y": 21.1503,
+        "performance_3y": 16.7092,
+        "performance_5y": 12.3092,
+        "trackingerror_3y": 2.938,
+        "trackingerror_5y": 2.888,
         "treynor_1y": 18.7203,
         "treynor_3y": 12.2506,
-        "treynor_5y": 7.3014
+        "treynor_5y": 7.3014,
+        "volatility_1y": 15.48,
+        "beta_1y": 1.094,
+        "volatility_3y": 13.871,
+        "beta_3y": 1.07,
+        "volatility_5y": 16.015,
+        "beta_5y": 1.066
       }
     },
     {
@@ -3229,9 +5135,23 @@
         "sortino_5y": 0.673,
         "alpha_3y": -2.697,
         "information_1y": -1.3835,
+        "performance_1m": 5.654,
+        "performance_3m": 8.7494,
+        "performance_6m": 9.961,
+        "performance_1y": 20.4583,
+        "performance_3y": 15.9513,
+        "performance_5y": 11.7064,
+        "trackingerror_3y": 2.911,
+        "trackingerror_5y": 2.921,
         "treynor_1y": 18.201,
         "treynor_3y": 11.6112,
-        "treynor_5y": 6.7992
+        "treynor_5y": 6.7992,
+        "volatility_1y": 15.427,
+        "beta_1y": 1.09,
+        "volatility_3y": 13.866,
+        "beta_3y": 1.07,
+        "volatility_5y": 15.96,
+        "beta_5y": 1.061
       }
     },
     {
@@ -3252,9 +5172,23 @@
         "information_5y": -0.977,
         "alpha_5y": -3.594,
         "information_1y": -3.4926,
+        "performance_1m": 2.1528,
+        "performance_3m": 4.8127,
+        "performance_6m": 2.0533,
+        "performance_1y": 10.9034,
+        "performance_3y": 12.1714,
+        "performance_5y": 7.5549,
+        "trackingerror_3y": 3.952,
+        "trackingerror_5y": 4.394,
         "treynor_1y": 14.0883,
         "treynor_3y": 9.9948,
-        "treynor_5y": 3.9919
+        "treynor_5y": 3.9919,
+        "volatility_1y": 13.671,
+        "beta_1y": 0.95,
+        "volatility_3y": 13.278,
+        "beta_3y": 1.007,
+        "volatility_5y": 15.166,
+        "beta_5y": 0.984
       }
     },
     {
@@ -3268,7 +5202,16 @@
         "sharpe_5y": 0.364,
         "sortino_5y": 0.645,
         "sharpe_1y": -3.764,
-        "sortino_3y": -2.844
+        "sortino_3y": -2.844,
+        "performance_1m": 0.223,
+        "performance_3m": 0.4577,
+        "performance_6m": 0.8226,
+        "performance_1y": 0.7986,
+        "performance_3y": 1.5536,
+        "performance_5y": 2.0823,
+        "volatility_1y": 0.339,
+        "volatility_3y": 0.358,
+        "volatility_5y": 0.38
       }
     },
     {
@@ -3282,7 +5225,16 @@
         "sortino_3y": -2.565,
         "sortino_5y": -1.604,
         "sharpe_1y": -8.045,
-        "sharpe_3y": -3.761
+        "sharpe_3y": -3.761,
+        "performance_1m": 0.1088,
+        "performance_3m": -2.1064,
+        "performance_6m": -5.718,
+        "performance_1y": -10.2248,
+        "performance_3y": -3.6096,
+        "performance_5y": -1.3798,
+        "volatility_1y": 1.659,
+        "volatility_3y": 1.939,
+        "volatility_5y": 1.704
       }
     },
     {
@@ -3296,7 +5248,16 @@
         "sortino_1y": -1.899,
         "sharpe_5y": -0.867,
         "sharpe_3y": -1.064,
-        "sharpe_1y": -1.944
+        "sharpe_1y": -1.944,
+        "performance_1m": 0.0992,
+        "performance_3m": -0.1977,
+        "performance_6m": -2.5579,
+        "performance_1y": -10.0272,
+        "performance_3y": -4.7355,
+        "performance_5y": -2.2661,
+        "volatility_1y": 6.358,
+        "volatility_3y": 6.904,
+        "volatility_5y": 7.234
       }
     },
     {
@@ -3317,9 +5278,23 @@
         "sortino_1y": 3.066,
         "sharpe_3y": 1.04,
         "information_1y": 1.1658,
+        "performance_1m": 6.2135,
+        "performance_3m": 12.5212,
+        "performance_6m": 14.6718,
+        "performance_1y": 28.3332,
+        "performance_3y": 19.2716,
+        "performance_5y": 9.8858,
+        "trackingerror_3y": 2.903,
+        "trackingerror_5y": 4.624,
         "treynor_1y": 27.4121,
         "treynor_3y": 16.3981,
-        "treynor_5y": 5.7565
+        "treynor_5y": 5.7565,
+        "volatility_1y": 18.05,
+        "beta_1y": 0.937,
+        "volatility_3y": 15.389,
+        "beta_3y": 0.976,
+        "volatility_5y": 17.048,
+        "beta_5y": 0.924
       }
     },
     {
@@ -3340,9 +5315,23 @@
         "sortino_3y": 2.061,
         "sharpe_3y": 1.085,
         "information_1y": 1.1476,
+        "performance_1m": 6.2789,
+        "performance_3m": 12.7132,
+        "performance_6m": 15.07,
+        "performance_1y": 29.2354,
+        "performance_3y": 20.1049,
+        "performance_5y": 10.6536,
+        "trackingerror_3y": 2.903,
+        "trackingerror_5y": 4.623,
         "treynor_1y": 28.1597,
         "treynor_3y": 17.1012,
-        "treynor_5y": 6.512
+        "treynor_5y": 6.512,
+        "volatility_1y": 18.06,
+        "beta_1y": 0.937,
+        "volatility_3y": 15.399,
+        "beta_3y": 0.977,
+        "volatility_5y": 17.064,
+        "beta_5y": 0.925
       }
     },
     {
@@ -3359,8 +5348,18 @@
         "sharpe_1y": 1.403,
         "alpha_1y": 2.293,
         "information_1y": 1.1493,
+        "performance_1m": 6.1757,
+        "performance_3m": 12.4065,
+        "performance_6m": 14.4651,
+        "performance_1y": 27.8796,
+        "performance_3y": 18.86,
+        "trackingerror_3y": 2.905,
         "treynor_1y": 27.0313,
-        "treynor_3y": 16.0375
+        "treynor_3y": 16.0375,
+        "volatility_1y": 18.053,
+        "beta_1y": 0.937,
+        "volatility_3y": 15.391,
+        "beta_3y": 0.976
       }
     },
     {
@@ -3381,9 +5380,23 @@
         "alpha_5y": -3.658,
         "information_3y": -0.976,
         "information_1y": -2.2289,
+        "performance_1m": -1.4726,
+        "performance_3m": -4.1249,
+        "performance_6m": 5.1699,
+        "performance_1y": 5.9748,
+        "performance_3y": 6.7535,
+        "performance_5y": 4.2845,
+        "trackingerror_3y": 4.725,
+        "trackingerror_5y": 4.329,
         "treynor_1y": 9.4046,
         "treynor_3y": 4.7407,
-        "treynor_5y": 1.5453
+        "treynor_5y": 1.5453,
+        "volatility_1y": 12.453,
+        "beta_1y": 0.96,
+        "volatility_3y": 13.244,
+        "beta_3y": 0.975,
+        "volatility_5y": 14.489,
+        "beta_5y": 0.947
       }
     },
     {
@@ -3404,9 +5417,23 @@
         "sortino_5y": -0.21,
         "information_3y": 0.325,
         "information_1y": 1.2752,
+        "performance_1m": 2.1756,
+        "performance_3m": 0.964,
+        "performance_6m": 3.0084,
+        "performance_1y": 6.21,
+        "performance_3y": 5.6123,
+        "performance_5y": 0.9991,
+        "trackingerror_3y": 1.4,
+        "trackingerror_5y": 1.692,
         "treynor_1y": 2.4319,
         "treynor_3y": 1.8304,
-        "treynor_5y": -0.9115
+        "treynor_5y": -0.9115,
+        "volatility_1y": 5.148,
+        "beta_1y": 1.395,
+        "volatility_3y": 4.934,
+        "beta_3y": 1.151,
+        "volatility_5y": 6.313,
+        "beta_5y": 1.122
       }
     },
     {
@@ -3416,7 +5443,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sharpe_1y": 2.012,
-        "sortino_1y": 4.862
+        "sortino_1y": 4.862,
+        "performance_1m": 2.1812,
+        "performance_3m": 0.4258,
+        "performance_6m": 13.2401,
+        "performance_1y": 40.6969,
+        "volatility_1y": 17.808
       }
     },
     {
@@ -3437,9 +5469,23 @@
         "sortino_1y": -0.265,
         "information_3y": 0.126,
         "information_1y": 0.1722,
+        "performance_1m": 0.5306,
+        "performance_3m": -0.2531,
+        "performance_6m": 0.5204,
+        "performance_1y": 1.7554,
+        "performance_3y": 4.1841,
+        "performance_5y": 0.9972,
+        "trackingerror_3y": 0.908,
+        "trackingerror_5y": 2.981,
         "treynor_1y": -0.3522,
         "treynor_3y": 0.9983,
-        "treynor_5y": -0.5147
+        "treynor_5y": -0.5147,
+        "volatility_1y": 1.694,
+        "beta_1y": 1.14,
+        "volatility_3y": 1.833,
+        "beta_3y": 1.109,
+        "volatility_5y": 4.354,
+        "beta_5y": 1.641
       }
     },
     {
@@ -3460,9 +5506,23 @@
         "alpha_3y": 2.827,
         "sortino_3y": 3.822,
         "information_1y": 2.801,
+        "performance_1m": 1.3344,
+        "performance_3m": -0.1244,
+        "performance_6m": 1.2523,
+        "performance_1y": 5.132,
+        "performance_3y": 10.26,
+        "performance_5y": 1.9518,
+        "trackingerror_3y": 1.771,
+        "trackingerror_5y": 4.33,
         "treynor_1y": 2.6753,
         "treynor_3y": 6.5482,
-        "treynor_5y": 0.1602
+        "treynor_5y": 0.1602,
+        "volatility_1y": 3.585,
+        "beta_1y": 1.131,
+        "volatility_3y": 3.841,
+        "beta_3y": 1.04,
+        "volatility_5y": 9.157,
+        "beta_5y": 1.429
       }
     },
     {
@@ -3470,7 +5530,10 @@
       "name": "UniInstitutional Corp Hybr Bds net R",
       "category": "EAA Fund EUR Subordinated Bond",
       "branding": "Union Investment",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 1.3021,
+        "performance_3m": -0.2286
+      }
     },
     {
       "id": "F00000YMLB",
@@ -3490,9 +5553,23 @@
         "sharpe_1y": 1.123,
         "sharpe_3y": 0.618,
         "information_1y": -2.6306,
+        "performance_1m": 1.7733,
+        "performance_3m": -2.5545,
+        "performance_6m": 7.8466,
+        "performance_1y": 13.5825,
+        "performance_3y": 11.3675,
+        "performance_5y": 6.9259,
+        "trackingerror_3y": 5.744,
+        "trackingerror_5y": 5.152,
         "treynor_1y": 13.4965,
         "treynor_3y": 8.0896,
-        "treynor_5y": 3.7279
+        "treynor_5y": 3.7279,
+        "volatility_1y": 12.487,
+        "beta_1y": 1.039,
+        "volatility_3y": 12.658,
+        "beta_3y": 0.967,
+        "volatility_5y": 13.621,
+        "beta_5y": 0.95
       }
     },
     {
@@ -3513,9 +5590,23 @@
         "sortino_3y": 0.367,
         "sharpe_5y": -0.301,
         "information_1y": 0.339,
+        "performance_1m": 0.7715,
+        "performance_3m": -0.5129,
+        "performance_6m": 0.9469,
+        "performance_1y": 7.4967,
+        "performance_3y": 4.9847,
+        "performance_5y": -1.036,
+        "trackingerror_3y": 1.376,
+        "trackingerror_5y": 1.673,
         "treynor_1y": 5.8658,
         "treynor_3y": 1.8321,
-        "treynor_5y": -2.8235
+        "treynor_5y": -2.8235,
+        "volatility_1y": 4.731,
+        "beta_1y": 0.863,
+        "volatility_3y": 6.213,
+        "beta_3y": 0.841,
+        "volatility_5y": 8.508,
+        "beta_5y": 0.907
       }
     },
     {
@@ -3536,9 +5627,23 @@
         "information_5y": -0.498,
         "sortino_3y": 0.415,
         "information_1y": 0.0025,
+        "performance_1m": 0.9837,
+        "performance_3m": 0.5173,
+        "performance_6m": 1.2971,
+        "performance_1y": 7.0847,
+        "performance_3y": 5.4494,
+        "performance_5y": -1.5788,
+        "trackingerror_3y": 1.72,
+        "trackingerror_5y": 1.953,
         "treynor_1y": 6.28,
         "treynor_3y": 2.1068,
-        "treynor_5y": -3.2154
+        "treynor_5y": -3.2154,
+        "volatility_1y": 4.407,
+        "beta_1y": 0.76,
+        "volatility_3y": 6.373,
+        "beta_3y": 0.85,
+        "volatility_5y": 9.126,
+        "beta_5y": 0.965
       }
     },
     {
@@ -3559,9 +5664,23 @@
         "sharpe_1y": 0.436,
         "sortino_3y": 0.654,
         "information_1y": -1.0962,
+        "performance_1m": 0.1193,
+        "performance_3m": -0.4313,
+        "performance_6m": 0.9401,
+        "performance_1y": 2.6445,
+        "performance_3y": 3.8241,
+        "performance_5y": 0.7163,
+        "trackingerror_3y": 3.297,
+        "trackingerror_5y": 4.296,
         "treynor_1y": 1.8159,
         "treynor_3y": 2.4314,
-        "treynor_5y": -2.8689
+        "treynor_5y": -2.8689,
+        "volatility_1y": 1.97,
+        "beta_1y": 0.473,
+        "volatility_3y": 1.787,
+        "beta_3y": 0.33,
+        "volatility_5y": 2.954,
+        "beta_5y": 0.382
       }
     },
     {
@@ -3582,9 +5701,23 @@
         "sharpe_1y": 1.019,
         "information_5y": 0.775,
         "information_1y": 0.1616,
+        "performance_1m": 0.427,
+        "performance_3m": 0.0,
+        "performance_6m": 0.9595,
+        "performance_1y": 5.0446,
+        "performance_3y": 5.9398,
+        "performance_5y": 1.157,
+        "trackingerror_3y": 1.477,
+        "trackingerror_5y": 1.974,
         "treynor_1y": 3.9142,
         "treynor_3y": 3.5239,
-        "treynor_5y": -0.6107
+        "treynor_5y": -0.6107,
+        "volatility_1y": 3.023,
+        "beta_1y": 0.787,
+        "volatility_3y": 3.842,
+        "beta_3y": 0.761,
+        "volatility_5y": 5.662,
+        "beta_5y": 0.788
       }
     },
     {
@@ -3605,9 +5738,23 @@
         "sortino_1y": 0.187,
         "sortino_5y": -0.558,
         "information_1y": -1.8979,
+        "performance_1m": 0.2364,
+        "performance_3m": -0.8492,
+        "performance_6m": -0.2477,
+        "performance_1y": 2.3607,
+        "performance_3y": 2.7824,
+        "performance_5y": -0.9889,
+        "trackingerror_3y": 2.025,
+        "trackingerror_5y": 3.029,
         "treynor_1y": 0.5976,
         "treynor_3y": -0.3493,
-        "treynor_5y": -3.7538
+        "treynor_5y": -3.7538,
+        "volatility_1y": 2.506,
+        "beta_1y": 0.65,
+        "volatility_3y": 3.19,
+        "beta_3y": 0.621,
+        "volatility_5y": 5.538,
+        "beta_5y": 0.717
       }
     },
     {
@@ -3628,9 +5775,23 @@
         "sharpe_1y": 1.59,
         "alpha_1y": 3.233,
         "information_1y": 2.2822,
+        "performance_1m": 0.9055,
+        "performance_3m": 0.0182,
+        "performance_6m": 2.2663,
+        "performance_1y": 10.6541,
+        "performance_3y": 8.3267,
+        "performance_5y": 0.4834,
+        "trackingerror_3y": 1.795,
+        "trackingerror_5y": 2.019,
         "treynor_1y": 9.1233,
         "treynor_3y": 5.4071,
-        "treynor_5y": -0.9572
+        "treynor_5y": -0.9572,
+        "volatility_1y": 5.233,
+        "beta_1y": 0.912,
+        "volatility_3y": 6.67,
+        "beta_3y": 0.882,
+        "volatility_5y": 9.212,
+        "beta_5y": 0.972
       }
     },
     {
@@ -3651,9 +5812,23 @@
         "sortino_3y": 0.212,
         "alpha_1y": -1.089,
         "information_1y": -1.0659,
+        "performance_1m": 0.8015,
+        "performance_3m": -1.0948,
+        "performance_6m": 0.6118,
+        "performance_1y": 6.0089,
+        "performance_3y": 4.2483,
+        "performance_5y": -1.8274,
+        "trackingerror_3y": 1.265,
+        "trackingerror_5y": 1.394,
         "treynor_1y": 4.2431,
         "treynor_3y": 1.0768,
-        "treynor_5y": -3.6255
+        "treynor_5y": -3.6255,
+        "volatility_1y": 4.526,
+        "beta_1y": 0.816,
+        "volatility_3y": 6.55,
+        "beta_3y": 0.882,
+        "volatility_5y": 8.774,
+        "beta_5y": 0.939
       }
     },
     {
@@ -3661,7 +5836,11 @@
       "name": "UniInstitutional Eqs Mkt Netrl USD Acc",
       "category": "EAA Fund Equity Market Neutral EUR",
       "branding": "Union Investment",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 0.3547,
+        "performance_3m": -0.0294,
+        "performance_6m": 1.677
+      }
     },
     {
       "id": "F000013K2V",
@@ -3680,9 +5859,23 @@
         "sortino_1y": 0.92,
         "information_3y": -0.097,
         "alpha_5y": 1.502,
+        "performance_1m": 0.2367,
+        "performance_3m": -0.34,
+        "performance_6m": 0.7934,
+        "performance_1y": 2.6947,
+        "performance_3y": 4.1982,
+        "performance_5y": 3.3124,
+        "trackingerror_3y": 4.067,
+        "trackingerror_5y": 4.976,
         "treynor_1y": 3.8925,
         "treynor_3y": 12.6282,
-        "treynor_5y": 12.5911
+        "treynor_5y": 12.5911,
+        "volatility_1y": 2.126,
+        "beta_1y": 0.343,
+        "volatility_3y": 1.523,
+        "beta_3y": 0.096,
+        "volatility_5y": 1.598,
+        "beta_5y": 0.116
       }
     },
     {
@@ -3703,9 +5896,23 @@
         "sortino_1y": -0.703,
         "sortino_5y": -0.805,
         "information_1y": 0.4379,
+        "performance_1m": 0.8608,
+        "performance_3m": -1.0892,
+        "performance_6m": 0.2115,
+        "performance_1y": 1.0719,
+        "performance_3y": 3.1834,
+        "performance_5y": -1.1775,
+        "trackingerror_3y": 1.581,
+        "trackingerror_5y": 2.1,
         "treynor_1y": -2.1521,
         "treynor_3y": 0.1321,
-        "treynor_5y": -4.4974
+        "treynor_5y": -4.4974,
+        "volatility_1y": 2.77,
+        "beta_1y": 0.798,
+        "volatility_3y": 3.198,
+        "beta_3y": 0.702,
+        "volatility_5y": 4.523,
+        "beta_5y": 0.706
       }
     },
     {
@@ -3726,9 +5933,23 @@
         "sortino_5y": -0.145,
         "sharpe_5y": -0.12,
         "information_1y": 1.7481,
+        "performance_1m": 0.3048,
+        "performance_3m": 0.364,
+        "performance_6m": 0.99,
+        "performance_1y": 2.2968,
+        "performance_3y": 3.574,
+        "performance_5y": 1.7754,
+        "trackingerror_3y": 1.131,
+        "trackingerror_5y": 1.293,
         "treynor_1y": 0.8535,
         "treynor_3y": 3.4829,
-        "treynor_5y": -0.4128
+        "treynor_5y": -0.4128,
+        "volatility_1y": 0.503,
+        "beta_1y": 0.366,
+        "volatility_3y": 0.49,
+        "beta_3y": 0.213,
+        "volatility_5y": 1.087,
+        "beta_5y": 0.316
       }
     },
     {
@@ -3749,9 +5970,23 @@
         "sharpe_1y": 0.416,
         "sharpe_5y": -0.14,
         "information_1y": 1.8301,
+        "performance_1m": 0.9627,
+        "performance_3m": -0.4404,
+        "performance_6m": 0.7826,
+        "performance_1y": 3.3475,
+        "performance_3y": 6.3734,
+        "performance_5y": 0.9937,
+        "trackingerror_3y": 0.262,
+        "trackingerror_5y": 0.6,
         "treynor_1y": 1.2977,
         "treynor_3y": 3.2265,
-        "treynor_5y": -0.8341
+        "treynor_5y": -0.8341,
+        "volatility_1y": 3.213,
+        "beta_1y": 1.03,
+        "volatility_3y": 3.233,
+        "beta_3y": 0.998,
+        "volatility_5y": 6.309,
+        "beta_5y": 1.059
       }
     },
     {
@@ -3772,9 +6007,23 @@
         "sortino_3y": -0.115,
         "sharpe_5y": -0.719,
         "information_1y": 1.1023,
+        "performance_1m": 0.9156,
+        "performance_3m": -0.6391,
+        "performance_6m": 0.6357,
+        "performance_1y": 1.6333,
+        "performance_3y": 2.8724,
+        "performance_5y": -0.8678,
+        "trackingerror_3y": 1.496,
+        "trackingerror_5y": 2.249,
         "treynor_1y": -1.4772,
         "treynor_3y": -0.3647,
-        "treynor_5y": -4.5145
+        "treynor_5y": -4.5145,
+        "volatility_1y": 2.289,
+        "beta_1y": 0.688,
+        "volatility_3y": 2.935,
+        "beta_3y": 0.668,
+        "volatility_5y": 4.031,
+        "beta_5y": 0.642
       }
     },
     {
@@ -3795,9 +6044,23 @@
         "sharpe_5y": -0.308,
         "sortino_5y": -0.384,
         "information_1y": -3.9361,
+        "performance_1m": 1.52,
+        "performance_3m": -0.8615,
+        "performance_6m": 1.0367,
+        "performance_1y": 2.3108,
+        "performance_3y": 3.7985,
+        "performance_5y": 0.3925,
+        "trackingerror_3y": 3.794,
+        "trackingerror_5y": 4.021,
         "treynor_1y": -0.2267,
         "treynor_3y": 0.6487,
-        "treynor_5y": -2.7372
+        "treynor_5y": -2.7372,
+        "volatility_1y": 4.753,
+        "beta_1y": 0.692,
+        "volatility_3y": 3.9,
+        "beta_3y": 0.511,
+        "volatility_5y": 5.11,
+        "beta_5y": 0.575
       }
     },
     {
@@ -3818,9 +6081,23 @@
         "alpha_3y": 3.625,
         "information_3y": 1.536,
         "information_1y": 3.4667,
+        "performance_1m": 0.1242,
+        "performance_3m": -1.6114,
+        "performance_6m": -0.1057,
+        "performance_1y": 3.9628,
+        "performance_3y": 6.5095,
+        "performance_5y": 1.1086,
+        "trackingerror_3y": 2.597,
+        "trackingerror_5y": 5.521,
         "treynor_1y": 2.9677,
         "treynor_3y": 5.1069,
-        "treynor_5y": -0.6619
+        "treynor_5y": -0.6619,
+        "volatility_1y": 3.321,
+        "beta_1y": 0.893,
+        "volatility_3y": 3.759,
+        "beta_3y": 0.7,
+        "volatility_5y": 7.045,
+        "beta_5y": 0.745
       }
     },
     {
@@ -3841,9 +6118,23 @@
         "sharpe_3y": 1.072,
         "sortino_1y": 2.935,
         "information_1y": 0.6345,
+        "performance_1m": 1.6239,
+        "performance_3m": -0.7397,
+        "performance_6m": 12.9726,
+        "performance_1y": 18.2294,
+        "performance_3y": 14.7075,
+        "performance_5y": 8.7156,
+        "trackingerror_3y": 3.605,
+        "trackingerror_5y": 4.263,
         "treynor_1y": 21.4307,
         "treynor_3y": 12.1081,
-        "treynor_5y": 8.8127
+        "treynor_5y": 8.8127,
+        "volatility_1y": 10.638,
+        "beta_1y": 0.825,
+        "volatility_3y": 9.307,
+        "beta_3y": 0.824,
+        "volatility_5y": 11.136,
+        "beta_5y": 0.834
       }
     },
     {
@@ -3857,7 +6148,16 @@
         "sharpe_1y": 0.607,
         "sortino_3y": -0.712,
         "sharpe_3y": -0.517,
-        "sortino_1y": 1.225
+        "sortino_1y": 1.225,
+        "performance_1m": 0.1595,
+        "performance_3m": 0.2994,
+        "performance_6m": 0.8024,
+        "performance_1y": 2.139,
+        "performance_3y": 2.7403,
+        "performance_5y": 2.8549,
+        "volatility_1y": 0.366,
+        "volatility_3y": 0.352,
+        "volatility_5y": 0.299
       }
     },
     {
@@ -3871,7 +6171,16 @@
         "sharpe_5y": 1.557,
         "sortino_3y": -1.087,
         "sortino_5y": 3.978,
-        "sharpe_3y": -0.848
+        "sharpe_3y": -0.848,
+        "performance_1m": 0.1242,
+        "performance_3m": 0.2487,
+        "performance_6m": 0.7077,
+        "performance_1y": 2.0103,
+        "performance_3y": 2.6087,
+        "performance_5y": 2.7105,
+        "volatility_1y": 0.392,
+        "volatility_3y": 0.354,
+        "volatility_5y": 0.3
       }
     },
     {
@@ -3892,9 +6201,23 @@
         "sharpe_5y": -0.547,
         "information_3y": 1.156,
         "information_1y": 3.7687,
+        "performance_1m": 1.173,
+        "performance_3m": -1.047,
+        "performance_6m": 0.6116,
+        "performance_1y": 2.0404,
+        "performance_3y": 3.6579,
+        "performance_5y": -0.9474,
+        "trackingerror_3y": 1.011,
+        "trackingerror_5y": 1.481,
         "treynor_1y": -0.755,
         "treynor_3y": 0.6299,
-        "treynor_5y": -3.6403
+        "treynor_5y": -3.6403,
+        "volatility_1y": 3.273,
+        "beta_1y": 0.906,
+        "volatility_3y": 4.033,
+        "beta_3y": 0.826,
+        "volatility_5y": 5.344,
+        "beta_5y": 0.803
       }
     },
     {
@@ -3915,9 +6238,23 @@
         "sharpe_1y": 0.368,
         "sharpe_5y": 0.399,
         "information_1y": -3.9215,
+        "performance_1m": 2.4232,
+        "performance_3m": -3.2827,
+        "performance_6m": 2.7996,
+        "performance_1y": 3.5952,
+        "performance_3y": 7.7846,
+        "performance_5y": 6.2719,
+        "trackingerror_3y": 3.526,
+        "trackingerror_5y": 3.511,
         "treynor_1y": 4.5049,
         "treynor_3y": 4.0013,
-        "treynor_5y": 5.1937
+        "treynor_5y": 5.1937,
+        "volatility_1y": 13.221,
+        "beta_1y": 1.08,
+        "volatility_3y": 11.823,
+        "beta_3y": 1.046,
+        "volatility_5y": 13.186,
+        "beta_5y": 1.013
       }
     },
     {
@@ -3938,9 +6275,23 @@
         "information_3y": 0.885,
         "sortino_1y": 0.262,
         "information_1y": 3.2127,
+        "performance_1m": 1.0132,
+        "performance_3m": -0.5629,
+        "performance_6m": 0.8211,
+        "performance_1y": 2.8816,
+        "performance_3y": 5.3769,
+        "performance_5y": 0.5019,
+        "trackingerror_3y": 1.126,
+        "trackingerror_5y": 2.17,
         "treynor_1y": 0.6557,
         "treynor_3y": 2.2085,
-        "treynor_5y": -1.3004
+        "treynor_5y": -1.3004,
+        "volatility_1y": 3.388,
+        "beta_1y": 1.116,
+        "volatility_3y": 3.576,
+        "beta_3y": 0.978,
+        "volatility_5y": 6.29,
+        "beta_5y": 1.069
       }
     },
     {
@@ -3954,7 +6305,16 @@
         "sharpe_3y": 0.076,
         "sortino_5y": 5.06,
         "sharpe_1y": 1.957,
-        "sortino_3y": 0.114
+        "sortino_3y": 0.114,
+        "performance_1m": 0.6001,
+        "performance_3m": 0.9789,
+        "performance_6m": 1.6294,
+        "performance_1y": 3.2106,
+        "performance_3y": 3.0951,
+        "performance_5y": 3.121,
+        "volatility_1y": 0.444,
+        "volatility_3y": 0.424,
+        "volatility_5y": 0.374
       }
     },
     {
@@ -3975,9 +6335,23 @@
         "alpha_3y": -4.102,
         "alpha_5y": -3.599,
         "information_1y": -4.4605,
+        "performance_1m": 6.7026,
+        "performance_3m": 9.5868,
+        "performance_6m": 11.2936,
+        "performance_1y": 17.1508,
+        "performance_3y": 10.398,
+        "performance_5y": 2.2338,
+        "trackingerror_3y": 3.389,
+        "trackingerror_5y": 3.174,
         "treynor_1y": 14.3067,
         "treynor_3y": 7.0598,
-        "treynor_5y": -0.9263
+        "treynor_5y": -0.9263,
+        "volatility_1y": 8.966,
+        "beta_1y": 0.737,
+        "volatility_3y": 7.941,
+        "beta_3y": 0.766,
+        "volatility_5y": 8.712,
+        "beta_5y": 0.79
       }
     },
     {
@@ -3998,9 +6372,23 @@
         "sharpe_1y": 1.143,
         "sortino_3y": 1.388,
         "information_1y": -5.6162,
+        "performance_1m": 5.566,
+        "performance_3m": 7.7859,
+        "performance_6m": 9.9544,
+        "performance_1y": 15.9667,
+        "performance_3y": 11.2357,
+        "performance_5y": 2.2529,
+        "trackingerror_3y": 3.086,
+        "trackingerror_5y": 2.92,
         "treynor_1y": 13.5644,
         "treynor_3y": 8.3306,
-        "treynor_5y": -0.5941
+        "treynor_5y": -0.5941,
+        "volatility_1y": 8.948,
+        "beta_1y": 0.754,
+        "volatility_3y": 7.93,
+        "beta_3y": 0.772,
+        "volatility_5y": 8.999,
+        "beta_5y": 0.818
       }
     },
     {
@@ -4021,9 +6409,23 @@
         "alpha_5y": -0.246,
         "sortino_5y": -0.479,
         "information_1y": 1.0361,
+        "performance_1m": 0.6232,
+        "performance_3m": -0.7682,
+        "performance_6m": 0.3218,
+        "performance_1y": 3.1753,
+        "performance_3y": 4.7676,
+        "performance_5y": -0.4724,
+        "trackingerror_3y": 2.507,
+        "trackingerror_5y": 3.316,
         "treynor_1y": 1.5166,
         "treynor_3y": 2.726,
-        "treynor_5y": -3.0563
+        "treynor_5y": -3.0563,
+        "volatility_1y": 2.788,
+        "beta_1y": 0.796,
+        "volatility_3y": 3.064,
+        "beta_3y": 0.553,
+        "volatility_5y": 5.854,
+        "beta_5y": 0.747
       }
     },
     {
@@ -4044,9 +6446,23 @@
         "sharpe_1y": 0.224,
         "alpha_5y": 0.295,
         "information_1y": 0.4477,
+        "performance_1m": 0.8135,
+        "performance_3m": -0.9164,
+        "performance_6m": 0.209,
+        "performance_1y": 3.1037,
+        "performance_3y": 4.647,
+        "performance_5y": -0.4931,
+        "trackingerror_3y": 1.224,
+        "trackingerror_5y": 1.86,
         "treynor_1y": 0.7327,
         "treynor_3y": 1.6505,
-        "treynor_5y": -2.3807
+        "treynor_5y": -2.3807,
+        "volatility_1y": 3.029,
+        "beta_1y": 0.926,
+        "volatility_3y": 4.326,
+        "beta_3y": 0.823,
+        "volatility_5y": 6.708,
+        "beta_5y": 0.958
       }
     },
     {
@@ -4067,9 +6483,23 @@
         "sharpe_1y": 0.113,
         "alpha_3y": 0.925,
         "information_1y": 0.4594,
+        "performance_1m": 0.7847,
+        "performance_3m": -0.9794,
+        "performance_6m": 0.0632,
+        "performance_1y": 2.7764,
+        "performance_3y": 4.3022,
+        "performance_5y": -0.8168,
+        "trackingerror_3y": 1.215,
+        "trackingerror_5y": 1.845,
         "treynor_1y": 0.3693,
         "treynor_3y": 1.2453,
-        "treynor_5y": -2.7214
+        "treynor_5y": -2.7214,
+        "volatility_1y": 3.007,
+        "beta_1y": 0.92,
+        "volatility_3y": 4.314,
+        "beta_3y": 0.821,
+        "volatility_5y": 6.716,
+        "beta_5y": 0.96
       }
     },
     {
@@ -4090,9 +6520,23 @@
         "sharpe_1y": -0.715,
         "sortino_1y": -0.789,
         "information_1y": -0.9282,
+        "performance_1m": 0.7717,
+        "performance_3m": -1.0542,
+        "performance_6m": 0.0444,
+        "performance_1y": 0.9187,
+        "performance_3y": 3.033,
+        "performance_5y": -1.0878,
+        "trackingerror_3y": 1.136,
+        "trackingerror_5y": 2.11,
         "treynor_1y": -2.3506,
         "treynor_3y": -0.0293,
-        "treynor_5y": -4.3199
+        "treynor_5y": -4.3199,
+        "volatility_1y": 2.515,
+        "beta_1y": 0.765,
+        "volatility_3y": 2.92,
+        "beta_3y": 0.797,
+        "volatility_5y": 4.302,
+        "beta_5y": 0.719
       }
     },
     {
@@ -4113,9 +6557,23 @@
         "sharpe_1y": 0.034,
         "alpha_1y": -0.434,
         "information_1y": 0.8135,
+        "performance_1m": 0.5763,
+        "performance_3m": -1.2975,
+        "performance_6m": -0.4474,
+        "performance_1y": 2.5887,
+        "performance_3y": 3.6965,
+        "performance_5y": -0.6408,
+        "trackingerror_3y": 0.64,
+        "trackingerror_5y": 1.136,
         "treynor_1y": 0.1083,
         "treynor_3y": 0.4271,
-        "treynor_5y": -2.7065
+        "treynor_5y": -2.7065,
+        "volatility_1y": 2.984,
+        "beta_1y": 0.937,
+        "volatility_3y": 4.657,
+        "beta_3y": 0.905,
+        "volatility_5y": 6.127,
+        "beta_5y": 0.901
       }
     },
     {
@@ -4136,9 +6594,23 @@
         "alpha_3y": 0.543,
         "alpha_5y": -0.208,
         "information_1y": 2.1338,
+        "performance_1m": 0.7066,
+        "performance_3m": -1.0771,
+        "performance_6m": -0.0363,
+        "performance_1y": 3.9451,
+        "performance_3y": 4.1105,
+        "performance_5y": -1.3586,
+        "trackingerror_3y": 0.601,
+        "trackingerror_5y": 1.738,
         "treynor_1y": 1.3095,
         "treynor_3y": 0.689,
-        "treynor_5y": -2.8882
+        "treynor_5y": -2.8882,
+        "volatility_1y": 3.049,
+        "beta_1y": 0.943,
+        "volatility_3y": 4.885,
+        "beta_3y": 0.95,
+        "volatility_5y": 7.293,
+        "beta_5y": 1.058
       }
     },
     {
@@ -4159,9 +6631,23 @@
         "alpha_3y": 2.861,
         "alpha_5y": 1.454,
         "information_1y": 0.8937,
+        "performance_1m": 0.5524,
+        "performance_3m": 0.4918,
+        "performance_6m": 1.3258,
+        "performance_1y": 3.85,
+        "performance_3y": 6.084,
+        "performance_5y": 2.3883,
+        "trackingerror_3y": 4.687,
+        "trackingerror_5y": 5.268,
         "treynor_1y": 7.1833,
         "treynor_3y": 26.5363,
-        "treynor_5y": 1.4981
+        "treynor_5y": 1.4981,
+        "volatility_1y": 1.653,
+        "beta_1y": 0.298,
+        "volatility_3y": 1.588,
+        "beta_3y": 0.114,
+        "volatility_5y": 4.114,
+        "beta_5y": 0.357
       }
     },
     {
@@ -4178,8 +6664,18 @@
         "alpha_3y": -4.443,
         "alpha_1y": -14.629,
         "information_1y": -3.1907,
+        "performance_1m": 4.2591,
+        "performance_3m": 7.3164,
+        "performance_6m": 8.1208,
+        "performance_1y": 11.0005,
+        "performance_3y": 12.8605,
+        "trackingerror_3y": 4.491,
         "treynor_1y": 10.6358,
-        "treynor_3y": 9.8291
+        "treynor_3y": 9.8291,
+        "volatility_1y": 15.852,
+        "beta_1y": 1.091,
+        "volatility_3y": 13.844,
+        "beta_3y": 1.031
       }
     },
     {
@@ -4200,9 +6696,23 @@
         "alpha_5y": -2.88,
         "alpha_3y": -2.09,
         "information_1y": -2.5926,
+        "performance_1m": 2.1229,
+        "performance_3m": -0.3639,
+        "performance_6m": 10.0785,
+        "performance_1y": 16.3785,
+        "performance_3y": 11.9326,
+        "performance_5y": 7.7511,
+        "trackingerror_3y": 4.857,
+        "trackingerror_5y": 4.862,
         "treynor_1y": 17.258,
         "treynor_3y": 9.5898,
-        "treynor_5y": 4.5729
+        "treynor_5y": 4.5729,
+        "volatility_1y": 10.822,
+        "beta_1y": 0.908,
+        "volatility_3y": 10.758,
+        "beta_3y": 0.838,
+        "volatility_5y": 12.647,
+        "beta_5y": 0.885
       }
     },
     {
@@ -4223,9 +6733,23 @@
         "sharpe_5y": -0.502,
         "alpha_3y": -0.68,
         "information_1y": 1.1046,
+        "performance_1m": 1.1276,
+        "performance_3m": -0.6331,
+        "performance_6m": 0.5491,
+        "performance_1y": 2.4146,
+        "performance_3y": 4.0278,
+        "performance_5y": -1.6829,
+        "trackingerror_3y": 1.547,
+        "trackingerror_5y": 2.627,
         "treynor_1y": -0.0911,
         "treynor_3y": 0.633,
-        "treynor_5y": -2.9406
+        "treynor_5y": -2.9406,
+        "volatility_1y": 3.425,
+        "beta_1y": 1.128,
+        "volatility_3y": 4.485,
+        "beta_3y": 1.247,
+        "volatility_5y": 7.082,
+        "beta_5y": 1.209
       }
     },
     {
@@ -4246,9 +6770,23 @@
         "sortino_3y": 3.316,
         "sortino_5y": 0.228,
         "information_1y": 0.9601,
+        "performance_1m": 0.8679,
+        "performance_3m": 0.1436,
+        "performance_6m": 1.578,
+        "performance_1y": 3.891,
+        "performance_3y": 8.0934,
+        "performance_5y": 2.8259,
+        "trackingerror_3y": 1.458,
+        "trackingerror_5y": 1.516,
         "treynor_1y": 2.8892,
         "treynor_3y": 6.4012,
-        "treynor_5y": 1.163
+        "treynor_5y": 1.163,
+        "volatility_1y": 3.422,
+        "beta_1y": 0.867,
+        "volatility_3y": 2.893,
+        "beta_3y": 0.79,
+        "volatility_5y": 6.104,
+        "beta_5y": 0.95
       }
     },
     {
@@ -4269,9 +6807,23 @@
         "alpha_3y": 0.437,
         "information_5y": -0.057,
         "information_1y": -0.0689,
+        "performance_1m": 1.6559,
+        "performance_3m": -0.7618,
+        "performance_6m": 1.4531,
+        "performance_1y": 3.3211,
+        "performance_3y": 5.8413,
+        "performance_5y": 1.0294,
+        "trackingerror_3y": 2.212,
+        "trackingerror_5y": 2.996,
         "treynor_1y": 1.0235,
         "treynor_3y": 2.0613,
-        "treynor_5y": -0.6791
+        "treynor_5y": -0.6791,
+        "volatility_1y": 5.505,
+        "beta_1y": 1.42,
+        "volatility_3y": 5.012,
+        "beta_3y": 1.082,
+        "volatility_5y": 6.821,
+        "beta_5y": 1.125
       }
     },
     {
@@ -4292,9 +6844,23 @@
         "sortino_1y": 4.429,
         "sortino_3y": 1.734,
         "information_1y": 1.4657,
+        "performance_1m": 2.0513,
+        "performance_3m": 4.0631,
+        "performance_6m": 8.2366,
+        "performance_1y": 14.5861,
+        "performance_3y": 10.1404,
+        "performance_5y": 4.0505,
+        "trackingerror_3y": 2.292,
+        "trackingerror_5y": 2.713,
         "treynor_1y": 14.0999,
         "treynor_3y": 6.6236,
-        "treynor_5y": 2.4865
+        "treynor_5y": 2.4865,
+        "volatility_1y": 6.378,
+        "beta_1y": 0.897,
+        "volatility_3y": 6.228,
+        "beta_3y": 0.913,
+        "volatility_5y": 7.376,
+        "beta_5y": 0.884
       }
     },
     {
@@ -4311,8 +6877,18 @@
         "sortino_3y": 0.926,
         "sharpe_3y": 0.586,
         "information_1y": 0.3116,
+        "performance_1m": 2.8049,
+        "performance_3m": 2.3222,
+        "performance_6m": 5.3904,
+        "performance_1y": 11.6026,
+        "performance_3y": 7.9852,
+        "trackingerror_3y": 2.305,
         "treynor_1y": 8.8425,
-        "treynor_3y": 3.9651
+        "treynor_3y": 3.9651,
+        "volatility_1y": 7.257,
+        "beta_1y": 1.039,
+        "volatility_3y": 6.746,
+        "beta_3y": 0.997
       }
     },
     {
@@ -4333,9 +6909,23 @@
         "information_5y": -0.61,
         "alpha_5y": -1.238,
         "information_1y": 1.4632,
+        "performance_1m": 2.0105,
+        "performance_3m": 3.9345,
+        "performance_6m": 7.9653,
+        "performance_1y": 14.0092,
+        "performance_3y": 9.5912,
+        "performance_5y": 3.5335,
+        "trackingerror_3y": 2.29,
+        "trackingerror_5y": 2.707,
         "treynor_1y": 13.5419,
         "treynor_3y": 6.0779,
-        "treynor_5y": 1.9108
+        "treynor_5y": 1.9108,
+        "volatility_1y": 6.376,
+        "beta_1y": 0.896,
+        "volatility_3y": 6.228,
+        "beta_3y": 0.913,
+        "volatility_5y": 7.376,
+        "beta_5y": 0.884
       }
     },
     {
@@ -4356,9 +6946,23 @@
         "sharpe_1y": -0.24,
         "sharpe_3y": 0.159,
         "information_1y": 0.503,
+        "performance_1m": 0.8125,
+        "performance_3m": -0.8055,
+        "performance_6m": 0.2738,
+        "performance_1y": 1.4766,
+        "performance_3y": 3.7222,
+        "performance_5y": -0.5462,
+        "trackingerror_3y": 0.468,
+        "trackingerror_5y": 0.524,
         "treynor_1y": -0.727,
         "treynor_3y": 0.5553,
-        "treynor_5y": -2.4313
+        "treynor_5y": -2.4313,
+        "volatility_1y": 3.114,
+        "beta_1y": 1.028,
+        "volatility_3y": 3.517,
+        "beta_3y": 1.007,
+        "volatility_5y": 5.562,
+        "beta_5y": 1.002
       }
     },
     {
@@ -4379,9 +6983,23 @@
         "information_3y": -0.797,
         "alpha_5y": -0.185,
         "information_1y": 0.5133,
+        "performance_1m": 0.8276,
+        "performance_3m": -0.7503,
+        "performance_6m": 0.4066,
+        "performance_1y": 1.734,
+        "performance_3y": 3.9819,
+        "performance_5y": -0.2971,
+        "trackingerror_3y": 0.481,
+        "trackingerror_5y": 0.527,
         "treynor_1y": -0.4909,
         "treynor_3y": 0.8147,
-        "treynor_5y": -2.1761
+        "treynor_5y": -2.1761,
+        "volatility_1y": 3.109,
+        "beta_1y": 1.026,
+        "volatility_3y": 3.514,
+        "beta_3y": 1.005,
+        "volatility_5y": 5.568,
+        "beta_5y": 1.003
       }
     },
     {
@@ -4402,9 +7020,23 @@
         "alpha_5y": -4.901,
         "alpha_3y": -5.528,
         "information_1y": -2.3798,
+        "performance_1m": 4.4487,
+        "performance_3m": 6.5904,
+        "performance_6m": 9.9565,
+        "performance_1y": 17.517,
+        "performance_3y": 12.5157,
+        "performance_5y": 5.9305,
+        "trackingerror_3y": 4.548,
+        "trackingerror_5y": 5.039,
         "treynor_1y": 17.088,
         "treynor_3y": 8.3873,
-        "treynor_5y": 2.1575
+        "treynor_5y": 2.1575,
+        "volatility_1y": 14.228,
+        "beta_1y": 0.985,
+        "volatility_3y": 13.736,
+        "beta_3y": 0.999,
+        "volatility_5y": 15.436,
+        "beta_5y": 0.973
       }
     },
     {
@@ -4418,7 +7050,16 @@
         "sortino_3y": 0.558,
         "sharpe_3y": 0.354,
         "sharpe_1y": 0.399,
-        "sortino_1y": 0.615
+        "sortino_1y": 0.615,
+        "performance_1m": 0.476,
+        "performance_3m": 0.7157,
+        "performance_6m": 1.4195,
+        "performance_1y": 3.1459,
+        "performance_3y": 5.2264,
+        "performance_5y": 2.8262,
+        "volatility_1y": 6.811,
+        "volatility_3y": 7.3,
+        "volatility_5y": 8.34
       }
     },
     {
@@ -4439,9 +7080,23 @@
         "sortino_5y": 0.013,
         "alpha_1y": -6.844,
         "information_1y": -5.8034,
+        "performance_1m": 2.1143,
+        "performance_3m": 1.0705,
+        "performance_6m": 1.7033,
+        "performance_1y": 4.904,
+        "performance_3y": 6.5214,
+        "performance_5y": 2.0068,
+        "trackingerror_3y": 1.494,
+        "trackingerror_5y": 1.673,
         "treynor_1y": 3.0531,
         "treynor_3y": 3.4115,
-        "treynor_5y": 0.0799
+        "treynor_5y": 0.0799,
+        "volatility_1y": 6.372,
+        "beta_1y": 0.983,
+        "volatility_3y": 6.1,
+        "beta_3y": 0.928,
+        "volatility_5y": 7.353,
+        "beta_5y": 0.92
       }
     },
     {
@@ -4458,8 +7113,18 @@
         "information_3y": -2.079,
         "sharpe_1y": 0.452,
         "information_1y": -5.8062,
+        "performance_1m": 2.109,
+        "performance_3m": 1.0604,
+        "performance_6m": 1.6849,
+        "performance_1y": 4.8331,
+        "performance_3y": 6.4692,
+        "trackingerror_3y": 1.51,
         "treynor_1y": 2.9304,
-        "treynor_3y": 3.3598
+        "treynor_3y": 3.3598,
+        "volatility_1y": 6.36,
+        "beta_1y": 0.981,
+        "volatility_3y": 6.095,
+        "beta_3y": 0.927
       }
     },
     {
@@ -4473,7 +7138,16 @@
         "sortino_5y": -0.184,
         "sharpe_5y": -0.136,
         "sharpe_1y": 0.445,
-        "sharpe_3y": 0.324
+        "sharpe_3y": 0.324,
+        "performance_1m": 0.2472,
+        "performance_3m": 0.7253,
+        "performance_6m": 1.6647,
+        "performance_1y": 3.2584,
+        "performance_3y": 4.8937,
+        "performance_5y": 2.6988,
+        "volatility_1y": 6.714,
+        "volatility_3y": 7.195,
+        "volatility_5y": 8.576
       }
     },
     {
@@ -4487,7 +7161,16 @@
         "sortino_1y": 0.772,
         "sortino_3y": 1.704,
         "sharpe_1y": 0.498,
-        "sharpe_3y": 0.934
+        "sharpe_3y": 0.934,
+        "performance_1m": 1.4196,
+        "performance_3m": 1.9495,
+        "performance_6m": 1.8866,
+        "performance_1y": 5.0967,
+        "performance_3y": 10.8393,
+        "performance_5y": 6.2056,
+        "volatility_1y": 8.353,
+        "volatility_3y": 8.281,
+        "volatility_5y": 10.795
       }
     },
     {
@@ -4508,9 +7191,23 @@
         "alpha_5y": -1.283,
         "sharpe_3y": -0.519,
         "information_1y": -0.5519,
+        "performance_1m": 0.4546,
+        "performance_3m": 0.1321,
+        "performance_6m": -0.0283,
+        "performance_1y": -0.6276,
+        "performance_3y": 0.8404,
+        "performance_5y": 0.1496,
+        "trackingerror_3y": 3.067,
+        "trackingerror_5y": 3.377,
         "treynor_1y": 29.8985,
         "treynor_3y": -3.4823,
-        "treynor_5y": -2.9846
+        "treynor_5y": -2.9846,
+        "volatility_1y": 2.358,
+        "beta_1y": -0.103,
+        "volatility_3y": 3.234,
+        "beta_3y": 0.482,
+        "volatility_5y": 3.51,
+        "beta_5y": 0.628
       }
     },
     {
@@ -4531,9 +7228,23 @@
         "alpha_5y": -1.547,
         "information_3y": -0.617,
         "information_1y": -0.5204,
+        "performance_1m": 0.4604,
+        "performance_3m": 0.1147,
+        "performance_6m": -0.143,
+        "performance_1y": -0.8581,
+        "performance_3y": 0.5802,
+        "performance_5y": -0.1164,
+        "trackingerror_3y": 3.114,
+        "trackingerror_5y": 3.436,
         "treynor_1y": 28.8239,
         "treynor_3y": -4.0554,
-        "treynor_5y": -3.3551
+        "treynor_5y": -3.3551,
+        "volatility_1y": 2.383,
+        "beta_1y": -0.115,
+        "volatility_3y": 3.28,
+        "beta_3y": 0.478,
+        "volatility_5y": 3.578,
+        "beta_5y": 0.642
       }
     },
     {
@@ -4554,9 +7265,23 @@
         "sortino_3y": 1.626,
         "sharpe_3y": 0.961,
         "information_1y": -2.8526,
+        "performance_1m": 1.9695,
+        "performance_3m": -1.0853,
+        "performance_6m": 2.228,
+        "performance_1y": 5.3106,
+        "performance_3y": 11.8818,
+        "performance_5y": 6.165,
+        "trackingerror_3y": 4.534,
+        "trackingerror_5y": 4.025,
         "treynor_1y": 6.9646,
         "treynor_3y": 9.9908,
-        "treynor_5y": 4.9208
+        "treynor_5y": 4.9208,
+        "volatility_1y": 9.738,
+        "beta_1y": 0.941,
+        "volatility_3y": 8.265,
+        "beta_3y": 0.795,
+        "volatility_5y": 10.221,
+        "beta_5y": 0.889
       }
     },
     {
@@ -4577,9 +7302,23 @@
         "sharpe_5y": 0.444,
         "information_3y": -0.499,
         "information_1y": -0.849,
+        "performance_1m": 5.7375,
+        "performance_3m": 7.7222,
+        "performance_6m": 10.7932,
+        "performance_1y": 20.9153,
+        "performance_3y": 16.399,
+        "performance_5y": 11.1543,
+        "trackingerror_3y": 3.56,
+        "trackingerror_5y": 3.172,
         "treynor_1y": 18.4245,
         "treynor_3y": 12.1972,
-        "treynor_5y": 6.7336
+        "treynor_5y": 6.7336,
+        "volatility_1y": 15.626,
+        "beta_1y": 1.1,
+        "volatility_3y": 13.694,
+        "beta_3y": 1.043,
+        "volatility_5y": 14.999,
+        "beta_5y": 0.989
       }
     },
     {
@@ -4600,9 +7339,23 @@
         "sortino_1y": 2.388,
         "information_5y": -0.245,
         "information_1y": -0.8038,
+        "performance_1m": 5.7615,
+        "performance_3m": 7.8116,
+        "performance_6m": 10.9847,
+        "performance_1y": 21.3246,
+        "performance_3y": 16.7536,
+        "performance_5y": 11.5004,
+        "trackingerror_3y": 3.525,
+        "trackingerror_5y": 3.138,
         "treynor_1y": 18.7512,
         "treynor_3y": 12.5125,
-        "treynor_5y": 7.0677
+        "treynor_5y": 7.0677,
+        "volatility_1y": 15.626,
+        "beta_1y": 1.1,
+        "volatility_3y": 13.681,
+        "beta_3y": 1.042,
+        "volatility_5y": 15.0,
+        "beta_5y": 0.989
       }
     },
     {
@@ -4623,9 +7376,23 @@
         "information_5y": -1.056,
         "sortino_3y": 0.195,
         "information_1y": -2.7542,
+        "performance_1m": 1.0045,
+        "performance_3m": -2.9138,
+        "performance_6m": -1.762,
+        "performance_1y": 0.0533,
+        "performance_3y": 4.0689,
+        "performance_5y": -0.1872,
+        "trackingerror_3y": 4.292,
+        "trackingerror_5y": 4.749,
         "treynor_1y": -3.0187,
         "treynor_3y": 1.1457,
-        "treynor_5y": -3.5899
+        "treynor_5y": -3.5899,
+        "volatility_1y": 5.57,
+        "beta_1y": 0.703,
+        "volatility_3y": 5.879,
+        "beta_3y": 0.703,
+        "volatility_5y": 5.704,
+        "beta_5y": 0.572
       }
     },
     {
@@ -4642,8 +7409,18 @@
         "sharpe_3y": 0.523,
         "alpha_1y": -3.211,
         "information_1y": -0.6251,
+        "performance_1m": 2.74,
+        "performance_3m": 1.0851,
+        "performance_6m": 4.5048,
+        "performance_1y": 9.1342,
+        "performance_3y": 7.3524,
+        "trackingerror_3y": 4.187,
         "treynor_1y": 5.3672,
-        "treynor_3y": 4.108
+        "treynor_3y": 4.108,
+        "volatility_1y": 7.673,
+        "beta_1y": 0.995,
+        "volatility_3y": 6.81,
+        "beta_3y": 0.867
       }
     },
     {
@@ -4664,9 +7441,23 @@
         "sharpe_3y": 0.685,
         "sortino_5y": 0.135,
         "information_1y": -0.3629,
+        "performance_1m": 2.6727,
+        "performance_3m": 0.097,
+        "performance_6m": 2.7896,
+        "performance_1y": 8.6178,
+        "performance_3y": 9.1222,
+        "performance_5y": 2.74,
+        "trackingerror_3y": 3.357,
+        "trackingerror_5y": 3.699,
         "treynor_1y": 5.3452,
         "treynor_3y": 4.833,
-        "treynor_5y": 0.8699
+        "treynor_5y": 0.8699,
+        "volatility_1y": 8.291,
+        "beta_1y": 1.123,
+        "volatility_3y": 7.373,
+        "beta_3y": 1.045,
+        "volatility_5y": 7.641,
+        "beta_5y": 0.852
       }
     },
     {
@@ -4687,9 +7478,23 @@
         "information_3y": 0.187,
         "sortino_5y": 0.321,
         "information_1y": 0.6982,
+        "performance_1m": 3.424,
+        "performance_3m": 2.0148,
+        "performance_6m": 6.4912,
+        "performance_1y": 13.773,
+        "performance_3y": 10.1582,
+        "performance_5y": 3.9344,
+        "trackingerror_3y": 3.733,
+        "trackingerror_5y": 3.652,
         "treynor_1y": 8.1812,
         "treynor_3y": 5.6916,
-        "treynor_5y": 1.9574
+        "treynor_5y": 1.9574,
+        "volatility_1y": 9.073,
+        "beta_1y": 1.231,
+        "volatility_3y": 7.584,
+        "beta_3y": 1.058,
+        "volatility_5y": 8.191,
+        "beta_5y": 0.929
       }
     },
     {
@@ -4710,9 +7515,23 @@
         "sharpe_3y": 0.866,
         "sortino_3y": 1.409,
         "information_1y": 1.0887,
+        "performance_1m": 4.0559,
+        "performance_3m": 3.3618,
+        "performance_6m": 8.2576,
+        "performance_1y": 17.3228,
+        "performance_3y": 11.7297,
+        "performance_5y": 5.2465,
+        "trackingerror_3y": 4.001,
+        "trackingerror_5y": 3.649,
         "treynor_1y": 8.9169,
         "treynor_3y": 6.0783,
-        "treynor_5y": 2.8456
+        "treynor_5y": 2.8456,
+        "volatility_1y": 10.181,
+        "beta_1y": 1.498,
+        "volatility_3y": 8.556,
+        "beta_3y": 1.219,
+        "volatility_5y": 9.045,
+        "beta_5y": 1.068
       }
     },
     {
@@ -4729,8 +7548,18 @@
         "alpha_1y": 5.986,
         "alpha_3y": 2.63,
         "information_1y": 2.3312,
+        "performance_1m": 4.4676,
+        "performance_3m": 5.4806,
+        "performance_6m": 10.8879,
+        "performance_1y": 22.9484,
+        "performance_3y": 15.6307,
+        "trackingerror_3y": 5.281,
         "treynor_1y": 12.4329,
-        "treynor_3y": 7.0713
+        "treynor_3y": 7.0713,
+        "volatility_1y": 11.428,
+        "beta_1y": 1.558,
+        "volatility_3y": 10.221,
+        "beta_3y": 1.483
       }
     },
     {
@@ -4738,7 +7567,10 @@
       "name": "UniMultiAsset Chance IV ESG",
       "category": "EAA Fund EUR Flexible Allocation",
       "branding": "Union Investment",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 4.629,
+        "performance_3m": 5.2532
+      }
     },
     {
       "id": "F00001DU97",
@@ -4758,9 +7590,23 @@
         "information_3y": -1.358,
         "alpha_3y": -2.819,
         "information_1y": -0.6307,
+        "performance_1m": 2.8924,
+        "performance_3m": 2.8924,
+        "performance_6m": 4.2935,
+        "performance_1y": 9.5591,
+        "performance_3y": 7.7148,
+        "performance_5y": 2.5032,
+        "trackingerror_3y": 1.867,
+        "trackingerror_5y": 2.123,
         "treynor_1y": 6.6887,
         "treynor_3y": 3.4603,
-        "treynor_5y": 0.5176
+        "treynor_5y": 0.5176,
+        "volatility_1y": 7.514,
+        "beta_1y": 1.129,
+        "volatility_3y": 7.085,
+        "beta_3y": 1.077,
+        "volatility_5y": 7.91,
+        "beta_5y": 0.978
       }
     },
     {
@@ -4781,9 +7627,23 @@
         "sortino_5y": 0.519,
         "sortino_1y": 2.14,
         "information_1y": 1.3999,
+        "performance_1m": 3.9888,
+        "performance_3m": 3.324,
+        "performance_6m": 8.3882,
+        "performance_1y": 18.6599,
+        "performance_3y": 14.4243,
+        "performance_5y": 5.6434,
+        "trackingerror_3y": 4.438,
+        "trackingerror_5y": 4.519,
         "treynor_1y": 9.4387,
         "treynor_3y": 6.8084,
-        "treynor_5y": 2.9974
+        "treynor_5y": 2.9974,
+        "volatility_1y": 11.114,
+        "beta_1y": 1.632,
+        "volatility_3y": 9.624,
+        "beta_3y": 1.398,
+        "volatility_5y": 10.273,
+        "beta_5y": 1.203
       }
     },
     {
@@ -4804,9 +7664,23 @@
         "alpha_3y": 1.386,
         "sharpe_3y": 0.974,
         "information_1y": 1.7078,
+        "performance_1m": 2.0603,
+        "performance_3m": 4.031,
+        "performance_6m": 7.862,
+        "performance_1y": 14.4519,
+        "performance_3y": 10.0096,
+        "performance_5y": 3.9303,
+        "trackingerror_3y": 2.985,
+        "trackingerror_5y": 3.065,
         "treynor_1y": 15.9177,
         "treynor_3y": 6.9078,
-        "treynor_5y": 2.4598
+        "treynor_5y": 2.4598,
+        "volatility_1y": 6.124,
+        "beta_1y": 0.786,
+        "volatility_3y": 6.078,
+        "beta_3y": 0.857,
+        "volatility_5y": 7.293,
+        "beta_5y": 0.845
       }
     },
     {
@@ -4827,9 +7701,23 @@
         "sortino_3y": 2.088,
         "alpha_5y": -0.156,
         "information_1y": 0.6357,
+        "performance_1m": 6.2501,
+        "performance_3m": 11.3689,
+        "performance_6m": 10.4533,
+        "performance_1y": 25.5456,
+        "performance_3y": 19.368,
+        "performance_5y": 14.1382,
+        "trackingerror_3y": 2.34,
+        "trackingerror_5y": 2.325,
         "treynor_1y": 21.6017,
         "treynor_3y": 15.2159,
-        "treynor_5y": 9.0013
+        "treynor_5y": 9.0013,
+        "volatility_1y": 14.992,
+        "beta_1y": 1.091,
+        "volatility_3y": 13.966,
+        "beta_3y": 1.028,
+        "volatility_5y": 15.954,
+        "beta_5y": 0.989
       }
     },
     {
@@ -4850,9 +7738,23 @@
         "sharpe_1y": -0.285,
         "alpha_3y": -0.263,
         "information_1y": 0.768,
+        "performance_1m": 0.2737,
+        "performance_3m": 0.2636,
+        "performance_6m": 0.7846,
+        "performance_1y": 1.8134,
+        "performance_3y": 2.962,
+        "performance_5y": 1.642,
+        "trackingerror_3y": 0.316,
+        "trackingerror_5y": 0.419,
         "treynor_1y": -0.0244,
         "treynor_3y": 0.0024,
-        "treynor_5y": -0.1314
+        "treynor_5y": -0.1314,
+        "volatility_1y": 0.469,
+        "beta_1y": 5.471,
+        "volatility_3y": 0.41,
+        "beta_3y": 3.12,
+        "volatility_5y": 0.708,
+        "beta_5y": 2.84
       }
     },
     {
@@ -4862,7 +7764,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sortino_1y": 1.412,
-        "sharpe_1y": 0.678
+        "sharpe_1y": 0.678,
+        "performance_1m": -0.0927,
+        "performance_3m": 5.2364,
+        "performance_6m": 5.2673,
+        "performance_1y": 5.845,
+        "volatility_1y": 4.92
       }
     },
     {
@@ -4876,7 +7783,16 @@
         "sharpe_1y": 0.199,
         "sortino_1y": 0.247,
         "sortino_3y": 0.009,
-        "sharpe_3y": 0.007
+        "sharpe_3y": 0.007,
+        "performance_1m": 1.0666,
+        "performance_3m": 0.0587,
+        "performance_6m": 1.721,
+        "performance_1y": 3.1536,
+        "performance_3y": 3.2681,
+        "performance_5y": -1.2033,
+        "volatility_1y": 3.067,
+        "volatility_3y": 3.101,
+        "volatility_5y": 4.845
       }
     },
     {
@@ -4897,9 +7813,23 @@
         "sharpe_3y": 0.437,
         "sortino_3y": 0.654,
         "information_1y": -0.5668,
+        "performance_1m": 3.2886,
+        "performance_3m": 3.6576,
+        "performance_6m": 5.2622,
+        "performance_1y": 7.0229,
+        "performance_3y": 7.7438,
+        "performance_5y": 3.5663,
+        "trackingerror_3y": 4.834,
+        "trackingerror_5y": 4.177,
         "treynor_1y": 3.899,
         "treynor_3y": 3.2037,
-        "treynor_5y": 1.3501
+        "treynor_5y": 1.3501,
+        "volatility_1y": 9.658,
+        "beta_1y": 1.35,
+        "volatility_3y": 9.01,
+        "beta_3y": 1.229,
+        "volatility_5y": 10.325,
+        "beta_5y": 1.216
       }
     },
     {
@@ -4920,9 +7850,23 @@
         "sortino_5y": 0.176,
         "sharpe_3y": 0.398,
         "information_1y": -0.5677,
+        "performance_1m": 3.2634,
+        "performance_3m": 3.5737,
+        "performance_6m": 5.0896,
+        "performance_1y": 6.6638,
+        "performance_3y": 7.3685,
+        "performance_5y": 3.2074,
+        "trackingerror_3y": 4.835,
+        "trackingerror_5y": 4.178,
         "treynor_1y": 3.6414,
         "treynor_3y": 2.9195,
-        "treynor_5y": 1.0607
+        "treynor_5y": 1.0607,
+        "volatility_1y": 9.658,
+        "beta_1y": 1.35,
+        "volatility_3y": 9.008,
+        "beta_3y": 1.228,
+        "volatility_5y": 10.327,
+        "beta_5y": 1.217
       }
     },
     {
@@ -4943,9 +7887,23 @@
         "information_3y": -0.653,
         "sharpe_3y": 0.446,
         "information_1y": -1.3045,
+        "performance_1m": 4.5721,
+        "performance_3m": 4.4448,
+        "performance_6m": 4.0125,
+        "performance_1y": 6.6949,
+        "performance_3y": 7.9216,
+        "performance_5y": 3.0321,
+        "trackingerror_3y": 3.815,
+        "trackingerror_5y": 3.886,
         "treynor_1y": 2.3057,
         "treynor_3y": 3.0011,
-        "treynor_5y": 0.5899
+        "treynor_5y": 0.5899,
+        "volatility_1y": 9.958,
+        "beta_1y": 1.49,
+        "volatility_3y": 9.111,
+        "beta_3y": 1.354,
+        "volatility_5y": 10.577,
+        "beta_5y": 1.309
       }
     },
     {
@@ -4966,9 +7924,23 @@
         "information_3y": -0.551,
         "sortino_1y": 0.594,
         "information_1y": -1.3071,
+        "performance_1m": 4.5993,
+        "performance_3m": 4.5282,
+        "performance_6m": 4.1947,
+        "performance_1y": 7.0628,
+        "performance_3y": 8.2954,
+        "performance_5y": 3.3925,
+        "trackingerror_3y": 3.816,
+        "trackingerror_5y": 3.887,
         "treynor_1y": 2.5455,
         "treynor_3y": 3.2622,
-        "treynor_5y": 0.8647
+        "treynor_5y": 0.8647,
+        "volatility_1y": 9.948,
+        "beta_1y": 1.489,
+        "volatility_3y": 9.114,
+        "beta_3y": 1.355,
+        "volatility_5y": 10.579,
+        "beta_5y": 1.309
       }
     },
     {
@@ -4985,8 +7957,20 @@
         "sortino_1y": 0.596,
         "information_3y": -0.551,
         "information_1y": -1.3054,
+        "performance_1m": 4.5914,
+        "performance_3m": 4.5358,
+        "performance_6m": 4.2035,
+        "performance_1y": 7.078,
+        "performance_3y": 8.2984,
+        "performance_5y": 3.3988,
+        "trackingerror_3y": 3.808,
+        "trackingerror_5y": 3.881,
         "treynor_1y": 2.5464,
-        "treynor_3y": 3.2621
+        "treynor_3y": 3.2621,
+        "volatility_1y": 9.945,
+        "beta_1y": 1.488,
+        "volatility_3y": 9.107,
+        "beta_3y": 1.354
       }
     },
     {
@@ -5007,9 +7991,23 @@
         "sortino_1y": 2.576,
         "sharpe_5y": -0.027,
         "information_1y": 1.2763,
+        "performance_1m": 7.7416,
+        "performance_3m": 10.8717,
+        "performance_6m": 23.0481,
+        "performance_1y": 35.1885,
+        "performance_3y": 15.1933,
+        "performance_5y": 3.8636,
+        "trackingerror_3y": 4.941,
+        "trackingerror_5y": 5.148,
         "treynor_1y": 20.0127,
         "treynor_3y": 7.9213,
-        "treynor_5y": -0.3827
+        "treynor_5y": -0.3827,
+        "volatility_1y": 19.297,
+        "beta_1y": 1.375,
+        "volatility_3y": 15.245,
+        "beta_3y": 1.301,
+        "volatility_5y": 16.357,
+        "beta_5y": 1.154
       }
     },
     {
@@ -5030,9 +8028,23 @@
         "alpha_1y": -2.863,
         "information_5y": -0.265,
         "information_1y": 1.2769,
+        "performance_1m": 7.7684,
+        "performance_3m": 10.9613,
+        "performance_6m": 23.2559,
+        "performance_1y": 35.6525,
+        "performance_3y": 15.5921,
+        "performance_5y": 4.2242,
+        "trackingerror_3y": 4.942,
+        "trackingerror_5y": 5.15,
         "treynor_1y": 20.2559,
         "treynor_3y": 8.1924,
-        "treynor_5y": -0.0708
+        "treynor_5y": -0.0708,
+        "volatility_1y": 19.302,
+        "beta_1y": 1.376,
+        "volatility_3y": 15.248,
+        "beta_3y": 1.301,
+        "volatility_5y": 16.363,
+        "beta_5y": 1.155
       }
     },
     {
@@ -5053,9 +8065,23 @@
         "alpha_3y": -0.97,
         "information_5y": -0.561,
         "information_1y": 0.2542,
+        "performance_1m": 2.2785,
+        "performance_3m": 1.2579,
+        "performance_6m": 2.2958,
+        "performance_1y": 3.468,
+        "performance_3y": 4.7947,
+        "performance_5y": -0.8035,
+        "trackingerror_3y": 3.299,
+        "trackingerror_5y": 3.398,
         "treynor_1y": 0.8149,
         "treynor_3y": 0.8313,
-        "treynor_5y": -2.0602
+        "treynor_5y": -2.0602,
+        "volatility_1y": 6.532,
+        "beta_1y": 1.547,
+        "volatility_3y": 6.274,
+        "beta_3y": 1.283,
+        "volatility_5y": 7.761,
+        "beta_5y": 1.262
       }
     },
     {
@@ -5076,9 +8102,23 @@
         "sharpe_5y": -0.289,
         "sharpe_3y": 0.227,
         "information_1y": 0.2559,
+        "performance_1m": 2.2981,
+        "performance_3m": 1.3445,
+        "performance_6m": 2.4687,
+        "performance_1y": 3.8311,
+        "performance_3y": 5.1608,
+        "performance_5y": -0.457,
+        "trackingerror_3y": 3.296,
+        "trackingerror_5y": 3.4,
         "treynor_1y": 1.0431,
         "treynor_3y": 1.1104,
-        "treynor_5y": -1.7775
+        "treynor_5y": -1.7775,
+        "volatility_1y": 6.533,
+        "beta_1y": 1.547,
+        "volatility_3y": 6.271,
+        "beta_3y": 1.282,
+        "volatility_5y": 7.762,
+        "beta_5y": 1.262
       }
     },
     {
@@ -5099,9 +8139,23 @@
         "information_3y": -0.262,
         "sharpe_5y": -0.319,
         "information_1y": -0.3611,
+        "performance_1m": 2.6856,
+        "performance_3m": 1.4475,
+        "performance_6m": 1.4846,
+        "performance_1y": 2.7616,
+        "performance_3y": 4.6271,
+        "performance_5y": -0.2776,
+        "trackingerror_3y": 2.843,
+        "trackingerror_5y": 2.878,
         "treynor_1y": -0.0936,
         "treynor_3y": 0.7932,
-        "treynor_5y": -1.8137
+        "treynor_5y": -1.8137,
+        "volatility_1y": 6.327,
+        "beta_1y": 1.623,
+        "volatility_3y": 6.083,
+        "beta_3y": 1.342,
+        "volatility_5y": 7.579,
+        "beta_5y": 1.333
       }
     },
     {
@@ -5122,9 +8176,23 @@
         "alpha_5y": -1.141,
         "alpha_3y": -0.806,
         "information_1y": -0.3007,
+        "performance_1m": 2.7067,
+        "performance_3m": 1.5269,
+        "performance_6m": 1.6546,
+        "performance_1y": 3.1092,
+        "performance_3y": 4.9909,
+        "performance_5y": 0.0698,
+        "trackingerror_3y": 2.842,
+        "trackingerror_5y": 2.875,
         "treynor_1y": 0.1209,
         "treynor_3y": 1.0601,
-        "treynor_5y": -1.5463
+        "treynor_5y": -1.5463,
+        "volatility_1y": 6.324,
+        "beta_1y": 1.622,
+        "volatility_3y": 6.084,
+        "beta_3y": 1.343,
+        "volatility_5y": 7.578,
+        "beta_5y": 1.333
       }
     },
     {
@@ -5141,8 +8209,20 @@
         "alpha_3y": -0.805,
         "sharpe_3y": 0.234,
         "information_1y": -0.3006,
+        "performance_1m": 2.7106,
+        "performance_3m": 1.5311,
+        "performance_6m": 1.6573,
+        "performance_1y": 3.1207,
+        "performance_3y": 4.9946,
+        "performance_5y": 0.0715,
+        "trackingerror_3y": 2.84,
+        "trackingerror_5y": 2.875,
         "treynor_1y": 0.1209,
-        "treynor_3y": 1.0599
+        "treynor_3y": 1.0599,
+        "volatility_1y": 6.325,
+        "beta_1y": 1.622,
+        "volatility_3y": 6.083,
+        "beta_3y": 1.343
       }
     },
     {
@@ -5163,9 +8243,23 @@
         "sortino_3y": 0.294,
         "sharpe_3y": 0.181,
         "information_1y": 0.8582,
+        "performance_1m": 0.4626,
+        "performance_3m": -0.3893,
+        "performance_6m": 0.2844,
+        "performance_1y": 1.3291,
+        "performance_3y": 3.616,
+        "performance_5y": -0.285,
+        "trackingerror_3y": 1.787,
+        "trackingerror_5y": 2.23,
         "treynor_1y": -1.7475,
         "treynor_3y": 0.8524,
-        "treynor_5y": -3.1517
+        "treynor_5y": -3.1517,
+        "volatility_1y": 1.572,
+        "beta_1y": 0.439,
+        "volatility_3y": 3.433,
+        "beta_3y": 0.729,
+        "volatility_5y": 4.42,
+        "beta_5y": 0.69
       }
     },
     {
@@ -5186,9 +8280,23 @@
         "sortino_3y": -0.607,
         "information_3y": -1.699,
         "information_1y": -1.5278,
+        "performance_1m": 0.5902,
+        "performance_3m": -1.5404,
+        "performance_6m": -1.0961,
+        "performance_1y": -2.0164,
+        "performance_3y": -1.2058,
+        "performance_5y": -2.3231,
+        "trackingerror_3y": 0.953,
+        "trackingerror_5y": 0.923,
         "treynor_1y": -3.302,
         "treynor_3y": -3.1853,
-        "treynor_5y": -6.2702
+        "treynor_5y": -6.2702,
+        "volatility_1y": 5.532,
+        "beta_1y": 1.161,
+        "volatility_3y": 7.446,
+        "beta_3y": 1.101,
+        "volatility_5y": 8.262,
+        "beta_5y": 1.037
       }
     },
     {
@@ -5209,9 +8317,23 @@
         "alpha_5y": -0.696,
         "sortino_5y": -0.222,
         "information_1y": 1.3717,
+        "performance_1m": 1.3171,
+        "performance_3m": 0.05,
+        "performance_6m": 2.5115,
+        "performance_1y": 7.3545,
+        "performance_3y": 4.1881,
+        "performance_5y": 2.1933,
+        "trackingerror_3y": 2.483,
+        "trackingerror_5y": 2.538,
         "treynor_1y": 7.399,
         "treynor_3y": 1.6502,
-        "treynor_5y": -1.6385
+        "treynor_5y": -1.6385,
+        "volatility_1y": 7.391,
+        "beta_1y": 0.924,
+        "volatility_3y": 8.787,
+        "beta_3y": 1.033,
+        "volatility_5y": 9.528,
+        "beta_5y": 1.006
       }
     },
     {
@@ -5225,7 +8347,16 @@
         "sharpe_5y": -0.429,
         "sortino_1y": 0.767,
         "sortino_5y": -0.468,
-        "sortino_3y": 0.34
+        "sortino_3y": 0.34,
+        "performance_1m": 1.6433,
+        "performance_3m": -1.493,
+        "performance_6m": 1.0551,
+        "performance_1y": 7.3122,
+        "performance_3y": 4.9847,
+        "performance_5y": -3.134,
+        "volatility_1y": 6.519,
+        "volatility_3y": 6.256,
+        "volatility_5y": 10.778
       }
     },
     {
@@ -5246,9 +8377,23 @@
         "alpha_5y": 4.49,
         "sharpe_3y": 0.852,
         "information_1y": 1.6237,
+        "performance_1m": 0.8151,
+        "performance_3m": -2.9397,
+        "performance_6m": 17.7692,
+        "performance_1y": 35.1072,
+        "performance_3y": 17.4153,
+        "performance_5y": 11.0726,
+        "trackingerror_3y": 5.825,
+        "trackingerror_5y": 6.865,
         "treynor_1y": 45.6851,
         "treynor_3y": 16.2246,
-        "treynor_5y": 9.7952
+        "treynor_5y": 9.7952,
+        "volatility_1y": 15.999,
+        "beta_1y": 0.782,
+        "volatility_3y": 15.52,
+        "beta_3y": 0.815,
+        "volatility_5y": 17.548,
+        "beta_5y": 0.842
       }
     },
     {
@@ -5269,9 +8414,23 @@
         "sortino_3y": -0.275,
         "sortino_5y": -0.034,
         "information_1y": -2.8651,
+        "performance_1m": 1.3598,
+        "performance_3m": -7.192,
+        "performance_6m": -7.2744,
+        "performance_1y": 3.7892,
+        "performance_3y": -0.1365,
+        "performance_5y": 3.0196,
+        "trackingerror_3y": 2.244,
+        "trackingerror_5y": 2.491,
         "treynor_1y": -1.1533,
         "treynor_3y": -2.6987,
-        "treynor_5y": -0.3328
+        "treynor_5y": -0.3328,
+        "volatility_1y": 14.36,
+        "beta_1y": 1.021,
+        "volatility_3y": 13.702,
+        "beta_3y": 1.051,
+        "volatility_5y": 14.588,
+        "beta_5y": 1.052
       }
     },
     {
@@ -5292,9 +8451,23 @@
         "sortino_1y": 4.241,
         "sortino_5y": 0.969,
         "information_1y": -0.645,
+        "performance_1m": 19.8073,
+        "performance_3m": 37.307,
+        "performance_6m": 33.9128,
+        "performance_1y": 55.9541,
+        "performance_3y": 32.9086,
+        "performance_5y": 21.2144,
+        "trackingerror_3y": 3.985,
+        "trackingerror_5y": 3.626,
         "treynor_1y": 36.6828,
         "treynor_3y": 24.8686,
-        "treynor_5y": 13.5611
+        "treynor_5y": 13.5611,
+        "volatility_1y": 26.572,
+        "beta_1y": 1.067,
+        "volatility_3y": 21.812,
+        "beta_3y": 1.049,
+        "volatility_5y": 23.709,
+        "beta_5y": 1.035
       }
     },
     {
@@ -5315,9 +8488,23 @@
         "information_3y": -0.169,
         "sharpe_5y": 0.248,
         "information_1y": 1.4433,
+        "performance_1m": 3.5794,
+        "performance_3m": 3.9343,
+        "performance_6m": 6.6562,
+        "performance_1y": 13.3488,
+        "performance_3y": 9.8413,
+        "performance_5y": 4.0793,
+        "trackingerror_3y": 1.926,
+        "trackingerror_5y": 1.892,
         "treynor_1y": 8.5389,
         "treynor_3y": 5.1662,
-        "treynor_5y": 1.9842
+        "treynor_5y": 1.9842,
+        "volatility_1y": 8.221,
+        "beta_1y": 1.267,
+        "volatility_3y": 7.397,
+        "beta_3y": 1.134,
+        "volatility_5y": 8.073,
+        "beta_5y": 1.009
       }
     },
     {
@@ -5338,9 +8525,23 @@
         "sharpe_5y": 0.376,
         "sortino_5y": 0.558,
         "information_1y": 0.5132,
+        "performance_1m": 5.0781,
+        "performance_3m": 6.3373,
+        "performance_6m": 9.3496,
+        "performance_1y": 19.0759,
+        "performance_3y": 13.4633,
+        "performance_5y": 6.2436,
+        "trackingerror_3y": 2.315,
+        "trackingerror_5y": 2.333,
         "treynor_1y": 13.6232,
         "treynor_3y": 8.1885,
-        "treynor_5y": 4.0982
+        "treynor_5y": 4.0982,
+        "volatility_1y": 11.332,
+        "beta_1y": 1.187,
+        "volatility_3y": 10.201,
+        "beta_3y": 1.105,
+        "volatility_5y": 10.954,
+        "beta_5y": 1.005
       }
     },
     {
@@ -5361,9 +8562,23 @@
         "sortino_3y": 0.738,
         "alpha_1y": 1.893,
         "information_1y": 2.2433,
+        "performance_1m": 2.1512,
+        "performance_3m": 1.4196,
+        "performance_6m": 3.7144,
+        "performance_1y": 7.8031,
+        "performance_3y": 6.0275,
+        "performance_5y": 1.1969,
+        "trackingerror_3y": 2.047,
+        "trackingerror_5y": 1.97,
         "treynor_1y": 3.8084,
         "treynor_3y": 2.2261,
-        "treynor_5y": -0.826
+        "treynor_5y": -0.826,
+        "volatility_1y": 5.464,
+        "beta_1y": 1.429,
+        "volatility_3y": 5.047,
+        "beta_3y": 1.12,
+        "volatility_5y": 5.776,
+        "beta_5y": 0.993
       }
     },
     {
@@ -5384,9 +8599,23 @@
         "sharpe_3y": 0.919,
         "information_3y": 0.23,
         "information_1y": 1.4562,
+        "performance_1m": 6.4597,
+        "performance_3m": 9.1374,
+        "performance_6m": 12.3768,
+        "performance_1y": 25.0128,
+        "performance_3y": 16.5047,
+        "performance_5y": 8.8848,
+        "trackingerror_3y": 4.742,
+        "trackingerror_5y": 4.058,
         "treynor_1y": 14.679,
         "treynor_3y": 8.558,
-        "treynor_5y": 5.5106
+        "treynor_5y": 5.5106,
+        "volatility_1y": 14.217,
+        "beta_1y": 1.477,
+        "volatility_3y": 12.851,
+        "beta_3y": 1.38,
+        "volatility_5y": 13.289,
+        "beta_5y": 1.213
       }
     },
     {
@@ -5407,9 +8636,23 @@
         "information_3y": 1.328,
         "sharpe_5y": 0.553,
         "information_1y": 3.1218,
+        "performance_1m": 1.6821,
+        "performance_3m": 1.8471,
+        "performance_6m": 6.7304,
+        "performance_1y": 14.7903,
+        "performance_3y": 9.9051,
+        "performance_5y": 5.2052,
+        "trackingerror_3y": 3.473,
+        "trackingerror_5y": 3.6,
         "treynor_1y": 7.3668,
         "treynor_3y": 5.3697,
-        "treynor_5y": 3.7891
+        "treynor_5y": 3.7891,
+        "volatility_1y": 7.207,
+        "beta_1y": 1.714,
+        "volatility_3y": 5.806,
+        "beta_3y": 1.131,
+        "volatility_5y": 5.783,
+        "beta_5y": 0.844
       }
     },
     {
@@ -5421,7 +8664,14 @@
         "sharpe_1y": 1.155,
         "sortino_3y": 1.446,
         "sortino_1y": 2.106,
-        "sharpe_3y": 0.837
+        "sharpe_3y": 0.837,
+        "performance_1m": 6.5603,
+        "performance_3m": 9.5128,
+        "performance_6m": 12.0706,
+        "performance_1y": 19.7998,
+        "performance_3y": 14.9981,
+        "volatility_1y": 15.851,
+        "volatility_3y": 13.258
       }
     },
     {
@@ -5433,7 +8683,14 @@
         "sortino_3y": 1.386,
         "sortino_1y": 2.057,
         "sharpe_3y": 0.809,
-        "sharpe_1y": 1.132
+        "sharpe_1y": 1.132,
+        "performance_1m": 6.5343,
+        "performance_3m": 9.423,
+        "performance_6m": 11.8784,
+        "performance_1y": 19.3863,
+        "performance_3y": 14.5438,
+        "volatility_1y": 15.853,
+        "volatility_3y": 13.231
       }
     },
     {
@@ -5446,7 +8703,13 @@
         "sharpe_1y": 1.392,
         "sortino_1y": 3.188,
         "information_1y": 0.6594,
-        "treynor_1y": 36.6795
+        "performance_1m": 15.4076,
+        "performance_3m": 34.9769,
+        "performance_6m": 16.9545,
+        "performance_1y": 57.8289,
+        "treynor_1y": 36.6795,
+        "volatility_1y": 36.416,
+        "beta_1y": 1.382
       }
     },
     {
@@ -5463,8 +8726,18 @@
         "sharpe_1y": 0.585,
         "information_3y": -1.351,
         "information_1y": -2.8196,
+        "performance_1m": 0.247,
+        "performance_3m": -1.2264,
+        "performance_6m": 9.4275,
+        "performance_1y": 6.5947,
+        "performance_3y": 6.0227,
+        "trackingerror_3y": 4.735,
         "treynor_1y": 7.3605,
-        "treynor_3y": 3.3951
+        "treynor_3y": 3.3951,
+        "volatility_1y": 13.123,
+        "beta_1y": 1.043,
+        "volatility_3y": 13.311,
+        "beta_3y": 0.988
       }
     },
     {
@@ -5481,8 +8754,18 @@
         "sharpe_3y": 0.225,
         "alpha_3y": -5.586,
         "information_1y": -2.8206,
+        "performance_1m": 0.2104,
+        "performance_3m": -1.3183,
+        "performance_6m": 9.2235,
+        "performance_1y": 6.2235,
+        "performance_3y": 5.6503,
+        "trackingerror_3y": 4.736,
         "treynor_1y": 7.0181,
-        "treynor_3y": 3.0298
+        "treynor_3y": 3.0298,
+        "volatility_1y": 13.118,
+        "beta_1y": 1.043,
+        "volatility_3y": 13.304,
+        "beta_3y": 0.988
       }
     },
     {
@@ -5503,9 +8786,23 @@
         "sharpe_1y": 0.963,
         "information_5y": -0.801,
         "information_1y": -1.8796,
+        "performance_1m": 2.7831,
+        "performance_3m": 2.9,
+        "performance_6m": 11.6899,
+        "performance_1y": 15.712,
+        "performance_3y": 10.75,
+        "performance_5y": 8.0927,
+        "trackingerror_3y": 4.593,
+        "trackingerror_5y": 5.043,
         "treynor_1y": 11.4585,
         "treynor_3y": 6.4778,
-        "treynor_5y": 4.5608
+        "treynor_5y": 4.5608,
+        "volatility_1y": 13.755,
+        "beta_1y": 1.156,
+        "volatility_3y": 13.117,
+        "beta_3y": 1.057,
+        "volatility_5y": 14.334,
+        "beta_5y": 0.99
       }
     },
     {
@@ -5526,9 +8823,23 @@
         "sharpe_3y": 0.548,
         "alpha_3y": -6.339,
         "information_1y": -1.8605,
+        "performance_1m": 2.8065,
+        "performance_3m": 2.9839,
+        "performance_6m": 11.8778,
+        "performance_1y": 16.1093,
+        "performance_3y": 11.1369,
+        "performance_5y": 8.4545,
+        "trackingerror_3y": 4.595,
+        "trackingerror_5y": 5.032,
         "treynor_1y": 11.7603,
         "treynor_3y": 6.801,
-        "treynor_5y": 4.8913
+        "treynor_5y": 4.8913,
+        "volatility_1y": 13.76,
+        "beta_1y": 1.156,
+        "volatility_3y": 13.118,
+        "beta_3y": 1.057,
+        "volatility_5y": 14.341,
+        "beta_5y": 0.991
       }
     },
     {
@@ -5549,9 +8860,23 @@
         "sortino_3y": 0.787,
         "sortino_1y": 1.548,
         "information_1y": -1.9178,
+        "performance_1m": 2.7852,
+        "performance_3m": 2.9042,
+        "performance_6m": 11.7118,
+        "performance_1y": 15.7647,
+        "performance_3y": 10.8035,
+        "performance_5y": 8.1418,
+        "trackingerror_3y": 4.59,
+        "trackingerror_5y": 5.037,
         "treynor_1y": 11.4951,
         "treynor_3y": 6.5312,
-        "treynor_5y": 4.607
+        "treynor_5y": 4.607,
+        "volatility_1y": 13.756,
+        "beta_1y": 1.156,
+        "volatility_3y": 13.112,
+        "beta_3y": 1.056,
+        "volatility_5y": 14.328,
+        "beta_5y": 0.989
       }
     },
     {
@@ -5568,8 +8893,18 @@
         "sortino_3y": 0.891,
         "alpha_3y": -5.833,
         "information_1y": -1.9276,
+        "performance_1m": 2.8487,
+        "performance_3m": 3.1126,
+        "performance_6m": 12.1622,
+        "performance_1y": 16.687,
+        "performance_3y": 11.6936,
+        "trackingerror_3y": 4.597,
         "treynor_1y": 12.1989,
-        "treynor_3y": 7.2867
+        "treynor_3y": 7.2867,
+        "volatility_1y": 13.758,
+        "beta_1y": 1.156,
+        "volatility_3y": 13.121,
+        "beta_3y": 1.057
       }
     },
     {
@@ -5590,9 +8925,23 @@
         "alpha_1y": 1.599,
         "sharpe_5y": -0.14,
         "information_1y": 1.3769,
+        "performance_1m": 1.3771,
+        "performance_3m": 0.1079,
+        "performance_6m": 2.6788,
+        "performance_1y": 7.6711,
+        "performance_3y": 4.4901,
+        "performance_5y": 2.498,
+        "trackingerror_3y": 2.499,
+        "trackingerror_5y": 2.548,
         "treynor_1y": 7.696,
         "treynor_3y": 1.8831,
-        "treynor_5y": -1.3244
+        "treynor_5y": -1.3244,
+        "volatility_1y": 7.408,
+        "beta_1y": 0.926,
+        "volatility_3y": 9.017,
+        "beta_3y": 1.063,
+        "volatility_5y": 9.649,
+        "beta_5y": 1.02
       }
     },
     {
@@ -5609,8 +8958,18 @@
         "sortino_3y": 0.945,
         "sharpe_3y": 0.613,
         "information_1y": -4.0421,
+        "performance_1m": 1.6623,
+        "performance_3m": 1.0681,
+        "performance_6m": 2.1801,
+        "performance_1y": 5.5959,
+        "performance_3y": 7.1045,
+        "trackingerror_3y": 1.77,
         "treynor_1y": 4.4154,
-        "treynor_3y": 4.0606
+        "treynor_3y": 4.0606,
+        "volatility_1y": 5.963,
+        "beta_1y": 0.917,
+        "volatility_3y": 6.134,
+        "beta_3y": 0.926
       }
     },
     {
@@ -5627,8 +8986,18 @@
         "sharpe_3y": 0.554,
         "sortino_1y": 0.918,
         "information_1y": -4.0986,
+        "performance_1m": 1.6476,
+        "performance_3m": 0.9982,
+        "performance_6m": 2.0165,
+        "performance_1y": 5.2389,
+        "performance_3y": 6.7301,
+        "trackingerror_3y": 1.772,
         "treynor_1y": 4.0328,
-        "treynor_3y": 3.6688
+        "treynor_3y": 3.6688,
+        "volatility_1y": 5.955,
+        "beta_1y": 0.917,
+        "volatility_3y": 6.139,
+        "beta_3y": 0.927
       }
     },
     {
@@ -5645,8 +9014,18 @@
         "alpha_1y": -8.47,
         "sharpe_1y": 1.096,
         "information_1y": -2.5881,
+        "performance_1m": 4.3723,
+        "performance_3m": 6.2069,
+        "performance_6m": 9.1727,
+        "performance_1y": 15.9389,
+        "performance_3y": 11.3267,
+        "trackingerror_3y": 4.626,
         "treynor_1y": 15.8201,
-        "treynor_3y": 7.3184
+        "treynor_3y": 7.3184,
+        "volatility_1y": 14.088,
+        "beta_1y": 0.976,
+        "volatility_3y": 13.741,
+        "beta_3y": 0.997
       }
     },
     {
@@ -5663,8 +9042,18 @@
         "alpha_3y": -6.238,
         "sharpe_1y": 1.121,
         "information_1y": -2.6021,
+        "performance_1m": 4.3993,
+        "performance_3m": 6.3046,
+        "performance_6m": 9.3702,
+        "performance_1y": 16.344,
+        "performance_3y": 11.7195,
+        "trackingerror_3y": 4.623,
         "treynor_1y": 16.1748,
-        "treynor_3y": 7.6779
+        "treynor_3y": 7.6779,
+        "volatility_1y": 14.097,
+        "beta_1y": 0.977,
+        "volatility_3y": 13.743,
+        "beta_3y": 0.997
       }
     },
     {
@@ -5680,7 +9069,18 @@
         "sortino_3y": -0.362,
         "sortino_5y": -1.021,
         "sharpe_3y": -0.286,
-        "information_5y": -0.977
+        "information_5y": -0.977,
+        "performance_1m": 0.2098,
+        "performance_3m": 0.4599,
+        "performance_6m": 0.9216,
+        "performance_1y": 1.9008,
+        "performance_3y": 2.8909,
+        "performance_5y": 1.7339,
+        "trackingerror_3y": 0.108,
+        "trackingerror_5y": 0.137,
+        "volatility_1y": 0.126,
+        "volatility_3y": 0.269,
+        "volatility_5y": 0.533
       }
     },
     {
@@ -5690,7 +9090,12 @@
       "branding": "Union Investment",
       "metrics": {
         "sharpe_1y": -0.328,
-        "sortino_1y": -0.365
+        "sortino_1y": -0.365,
+        "performance_1m": 0.472,
+        "performance_3m": -0.4351,
+        "performance_6m": 0.3031,
+        "performance_1y": 1.3855,
+        "volatility_1y": 2.004
       }
     },
     {
@@ -5711,9 +9116,23 @@
         "alpha_3y": -6.23,
         "information_3y": -1.636,
         "information_1y": -2.4909,
+        "performance_1m": 3.8844,
+        "performance_3m": 0.5262,
+        "performance_6m": 1.5492,
+        "performance_1y": 3.2867,
+        "performance_3y": 4.8349,
+        "performance_5y": 1.3286,
+        "trackingerror_3y": 3.377,
+        "trackingerror_5y": 4.255,
         "treynor_1y": 1.4799,
         "treynor_3y": 0.943,
-        "treynor_5y": -0.3437
+        "treynor_5y": -0.3437,
+        "volatility_1y": 7.863,
+        "beta_1y": 1.137,
+        "volatility_3y": 8.296,
+        "beta_3y": 1.214,
+        "volatility_5y": 10.727,
+        "beta_5y": 1.311
       }
     },
     {
@@ -5734,9 +9153,23 @@
         "alpha_3y": 0.972,
         "information_3y": 0.295,
         "information_1y": 3.2796,
+        "performance_1m": 1.3691,
+        "performance_3m": 0.5765,
+        "performance_6m": 3.8167,
+        "performance_1y": 6.177,
+        "performance_3y": 5.8665,
+        "performance_5y": 2.885,
+        "trackingerror_3y": 2.204,
+        "trackingerror_5y": 2.917,
         "treynor_1y": 4.5244,
         "treynor_3y": 2.8347,
-        "treynor_5y": 1.498
+        "treynor_5y": 1.498,
+        "volatility_1y": 4.47,
+        "beta_1y": 1.069,
+        "volatility_3y": 3.856,
+        "beta_3y": 0.774,
+        "volatility_5y": 4.567,
+        "beta_5y": 0.689
       }
     },
     {
@@ -5757,9 +9190,23 @@
         "information_5y": 0.194,
         "alpha_5y": 0.666,
         "information_1y": 1.427,
+        "performance_1m": 2.5709,
+        "performance_3m": 2.5022,
+        "performance_6m": 3.0893,
+        "performance_1y": 7.6029,
+        "performance_3y": 6.9546,
+        "performance_5y": 2.2184,
+        "trackingerror_3y": 3.109,
+        "trackingerror_5y": 3.185,
         "treynor_1y": 3.6618,
         "treynor_3y": 2.8396,
-        "treynor_5y": -0.0063
+        "treynor_5y": -0.0063,
+        "volatility_1y": 5.999,
+        "beta_1y": 1.404,
+        "volatility_3y": 5.872,
+        "beta_3y": 1.218,
+        "volatility_5y": 6.386,
+        "beta_5y": 1.011
       }
     },
     {
@@ -5780,9 +9227,23 @@
         "sharpe_3y": 0.337,
         "information_5y": 0.145,
         "information_1y": 1.2621,
+        "performance_1m": 1.7267,
+        "performance_3m": 0.1611,
+        "performance_6m": 2.1953,
+        "performance_1y": 4.7617,
+        "performance_3y": 4.564,
+        "performance_5y": 1.6721,
+        "trackingerror_3y": 2.51,
+        "trackingerror_5y": 2.69,
         "treynor_1y": 2.2155,
         "treynor_3y": 1.7569,
-        "treynor_5y": -0.4615
+        "treynor_5y": -0.4615,
+        "volatility_1y": 4.98,
+        "beta_1y": 1.261,
+        "volatility_3y": 3.764,
+        "beta_3y": 0.722,
+        "volatility_5y": 4.52,
+        "beta_5y": 0.715
       }
     },
     {
@@ -5803,9 +9264,23 @@
         "alpha_3y": -6.28,
         "alpha_1y": -11.542,
         "information_1y": -5.1783,
+        "performance_1m": 4.0588,
+        "performance_3m": 1.6717,
+        "performance_6m": 4.4238,
+        "performance_1y": 7.5059,
+        "performance_3y": 5.1009,
+        "performance_5y": 1.6169,
+        "trackingerror_3y": 3.942,
+        "trackingerror_5y": 4.818,
         "treynor_1y": 3.8873,
         "treynor_3y": 1.6143,
-        "treynor_5y": -0.3345
+        "treynor_5y": -0.3345,
+        "volatility_1y": 8.416,
+        "beta_1y": 0.853,
+        "volatility_3y": 7.065,
+        "beta_3y": 0.709,
+        "volatility_5y": 8.218,
+        "beta_5y": 0.688
       }
     },
     {
@@ -5826,9 +9301,23 @@
         "sharpe_5y": -0.048,
         "alpha_5y": -5.381,
         "information_1y": -5.1835,
+        "performance_1m": 4.0397,
+        "performance_3m": 1.6133,
+        "performance_6m": 4.2986,
+        "performance_1y": 7.2481,
+        "performance_3y": 4.9104,
+        "performance_5y": 1.4476,
+        "trackingerror_3y": 3.945,
+        "trackingerror_5y": 4.821,
         "treynor_1y": 3.6021,
         "treynor_3y": 1.3646,
-        "treynor_5y": -0.574
+        "treynor_5y": -0.574,
+        "volatility_1y": 8.418,
+        "beta_1y": 0.853,
+        "volatility_3y": 7.062,
+        "beta_3y": 0.709,
+        "volatility_5y": 8.215,
+        "beta_5y": 0.687
       }
     },
     {
@@ -5849,9 +9338,23 @@
         "sortino_3y": 1.728,
         "alpha_1y": -3.512,
         "information_1y": 0.7874,
+        "performance_1m": 3.9526,
+        "performance_3m": 2.4327,
+        "performance_6m": 6.2444,
+        "performance_1y": 14.5664,
+        "performance_3y": 12.695,
+        "performance_5y": 7.1706,
+        "trackingerror_3y": 3.003,
+        "trackingerror_5y": 3.022,
         "treynor_1y": 7.5944,
         "treynor_3y": 7.3998,
-        "treynor_5y": 4.4387
+        "treynor_5y": 4.4387,
+        "volatility_1y": 9.577,
+        "beta_1y": 1.454,
+        "volatility_3y": 8.038,
+        "beta_3y": 1.184,
+        "volatility_5y": 9.237,
+        "beta_5y": 1.13
       }
     },
     {
@@ -5872,9 +9375,23 @@
         "sortino_5y": 0.203,
         "information_5y": 0.805,
         "information_1y": 2.78,
+        "performance_1m": 1.3555,
+        "performance_3m": 0.0892,
+        "performance_6m": 3.1261,
+        "performance_1y": 7.8669,
+        "performance_3y": 6.3595,
+        "performance_5y": 2.6064,
+        "trackingerror_3y": 1.575,
+        "trackingerror_5y": 1.762,
         "treynor_1y": 4.0505,
         "treynor_3y": 3.3237,
-        "treynor_5y": 0.8456
+        "treynor_5y": 0.8456,
+        "volatility_1y": 4.886,
+        "beta_1y": 1.31,
+        "volatility_3y": 4.026,
+        "beta_3y": 0.9,
+        "volatility_5y": 4.952,
+        "beta_5y": 0.855
       }
     },
     {
@@ -5891,8 +9408,18 @@
         "sharpe_1y": 0.92,
         "sharpe_3y": 0.678,
         "information_1y": -3.3131,
+        "performance_1m": 3.1536,
+        "performance_3m": 4.7814,
+        "performance_6m": 6.4614,
+        "performance_1y": 11.973,
+        "performance_3y": 11.9544,
+        "trackingerror_3y": 4.377,
         "treynor_1y": 13.2778,
-        "treynor_3y": 9.0808
+        "treynor_3y": 9.0808,
+        "volatility_1y": 13.884,
+        "beta_1y": 0.962,
+        "volatility_3y": 13.139,
+        "beta_3y": 0.981
       }
     },
     {
@@ -5913,9 +9440,23 @@
         "alpha_5y": -2.367,
         "sortino_1y": 1.501,
         "information_1y": -0.3537,
+        "performance_1m": 3.3382,
+        "performance_3m": 3.3759,
+        "performance_6m": 4.347,
+        "performance_1y": 10.1283,
+        "performance_3y": 9.1117,
+        "performance_5y": 3.5599,
+        "trackingerror_3y": 2.209,
+        "trackingerror_5y": 2.494,
         "treynor_1y": 6.0259,
         "treynor_3y": 4.8125,
-        "treynor_5y": 1.1702
+        "treynor_5y": 1.1702,
+        "volatility_1y": 7.943,
+        "beta_1y": 1.214,
+        "volatility_3y": 7.655,
+        "beta_3y": 1.158,
+        "volatility_5y": 8.99,
+        "beta_5y": 1.114
       }
     },
     {
@@ -5923,7 +9464,11 @@
       "name": "Werte-Bank-Münsterland Aktien Global",
       "category": "EAA Fund Global Large-Cap Blend Equity",
       "branding": "Union Investment",
-      "metrics": {}
+      "metrics": {
+        "performance_1m": 5.0792,
+        "performance_3m": 1.3222,
+        "performance_6m": 4.8969
+      }
     },
     {
       "id": "F0GBR063TK",
@@ -5936,7 +9481,16 @@
         "sharpe_1y": 1.248,
         "sharpe_3y": -2.889,
         "sortino_5y": 1.866,
-        "sortino_1y": 2.635
+        "sortino_1y": 2.635,
+        "performance_1m": 0.1478,
+        "performance_3m": 0.4844,
+        "performance_6m": 0.962,
+        "performance_1y": 1.9851,
+        "performance_3y": 2.1782,
+        "performance_5y": 2.3196,
+        "volatility_1y": 0.062,
+        "volatility_3y": 0.194,
+        "volatility_5y": 0.385
       }
     },
     {
@@ -5950,7 +9504,16 @@
         "sharpe_3y": -3.181,
         "sharpe_1y": -0.818,
         "sortino_5y": 0.782,
-        "sortino_1y": -0.843
+        "sortino_1y": -0.843,
+        "performance_1m": 0.1489,
+        "performance_3m": 0.4781,
+        "performance_6m": 0.7113,
+        "performance_1y": 1.7244,
+        "performance_3y": 1.9203,
+        "performance_5y": 2.0959,
+        "volatility_1y": 0.22,
+        "volatility_3y": 0.256,
+        "volatility_5y": 0.384
       }
     }
   ]

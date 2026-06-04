@@ -138,7 +138,7 @@ def _style_cell(cell, text, bold=False, fg=RGBColor(0x20, 0x20, 0x20),
 def main(argv=None):
     p = argparse.ArgumentParser(description="PowerPoint-Export der Fonds-Kennzahlen.")
     p.add_argument("--metric", required=True, choices=list(fm.METRICS.keys()))
-    p.add_argument("--period", required=True, choices=["1y", "3y", "5y"])
+    p.add_argument("--period", required=True, choices=list(fm.PERIOD_LABELS.keys()))
     p.add_argument("--category", help="Morningstar-Kategorie (ohne 'EAA Fund'-Präfix)")
     p.add_argument("--provider", choices=["all", "union", "quoniam"], default="all")
     p.add_argument("--top", type=int, default=None)

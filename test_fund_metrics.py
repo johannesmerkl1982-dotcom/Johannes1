@@ -97,10 +97,26 @@ def test_information_ratio_has_1y():
     fm.query(SAMPLE_FUNDS, "information", "1y")
 
 
-def test_all_metrics_support_1_3_5_except_none():
-    # Jede Kennzahl deckt jetzt 1y/3y/5y ab.
-    for k, (_lbl, periods, _hb) in fm.METRICS.items():
-        assert periods == ["1y", "3y", "5y"], f"{k} deckt nicht 1/3/5 ab: {periods}"
+def test_metric_period_config():
+    # Performance deckt Kurz- UND Langfrist ab; risikoadjustierte Kennzahlen
+    # 1/3/5 Jahre; Tracking Error nur 3/5 Jahre.
+    assert fm.METRICS["performance"][1] == ["1m", "3m", "6m", "1y", "3y", "5y"]
+    for k in ("sharpe", "sortino", "information", "treynor", "alpha",
+              "volatility", "beta"):
+        assert fm.METRICS[k][1] == ["1y", "3y", "5y"], k
+    assert fm.METRICS["trackingerror"][1] == ["3y", "5y"]
+
+
+def test_lower_is_better_metrics_sort_ascending():
+    # Volatilität & Tracking Error: niedriger = besser -> kleinster Wert zuerst.
+    funds = [
+        {"id": "A", "name": "Hi", "branding": "Union Investment",
+         "category": "X", "metrics": {"volatility_3y": 12.0}},
+        {"id": "B", "name": "Lo", "branding": "Union Investment",
+         "category": "X", "metrics": {"volatility_3y": 4.0}},
+    ]
+    rows = fm.query(funds, "volatility", "3y")
+    assert [r["name"] for r in rows] == ["Lo", "Hi"]
 
 
 def test_available_categories():

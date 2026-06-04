@@ -118,14 +118,22 @@ HTML = r"""<!DOCTYPE html>
 <script id="data" type="application/json">__DATA__</script>
 <script>
 const DATA = JSON.parse(document.getElementById('data').textContent);
+// higher:true  -> höherer Wert ist besser (absteigend sortiert)
+// higher:false -> niedriger Wert ist besser (Volatilität, Tracking Error)
+// pct:true     -> Prozentgröße (2 Nachkommastellen), sonst Ratio (3 Stellen)
 const METRICS = {
-  sharpe:      {label:"Sharpe Ratio",      periods:["1y","3y","5y"]},
-  sortino:     {label:"Sortino Ratio",     periods:["1y","3y","5y"]},
-  information: {label:"Information Ratio",  periods:["1y","3y","5y"]},
-  treynor:     {label:"Treynor Ratio",     periods:["1y","3y","5y"]},
-  alpha:       {label:"Jensens Alpha",     periods:["1y","3y","5y"]},
+  performance:  {label:"Performance (Rendite)", periods:["1m","3m","6m","1y","3y","5y"], higher:true,  pct:true},
+  sharpe:       {label:"Sharpe Ratio",          periods:["1y","3y","5y"],                higher:true,  pct:false},
+  sortino:      {label:"Sortino Ratio",         periods:["1y","3y","5y"],                higher:true,  pct:false},
+  information:  {label:"Information Ratio",      periods:["1y","3y","5y"],                higher:true,  pct:false},
+  treynor:      {label:"Treynor Ratio",         periods:["1y","3y","5y"],                higher:true,  pct:false},
+  alpha:        {label:"Jensens Alpha",         periods:["1y","3y","5y"],                higher:true,  pct:true},
+  volatility:   {label:"Volatilität",           periods:["1y","3y","5y"],                higher:false, pct:true},
+  beta:         {label:"Beta",                  periods:["1y","3y","5y"],                higher:true,  pct:false},
+  trackingerror:{label:"Tracking Error",        periods:["3y","5y"],                     higher:false, pct:true},
 };
-const PLABEL = {"1y":"1 Jahr","3y":"3 Jahre","5y":"5 Jahre"};
+const PLABEL = {"1m":"1 Monat","3m":"3 Monate","6m":"6 Monate",
+                "1y":"1 Jahr","3y":"3 Jahre","5y":"5 Jahre"};
 const $ = id => document.getElementById(id);
 
 function normCat(c){ return (c||"").replace(/^EAA Fund /, "").trim(); }
@@ -191,7 +199,9 @@ function currentRows(){
     .filter(f=> !cat || normCat(f.category)===cat)
     .filter(f=> f.metrics && f.metrics[key]!=null)
     .map(f=>({name:f.name, branding:f.branding, value:f.metrics[key]}));
-  rows.sort((a,b)=> b.value-a.value);
+  // Beste zuerst: bei "höher=besser" absteigend, sonst aufsteigend.
+  const higher = METRICS[metric].higher;
+  rows.sort((a,b)=> higher ? b.value-a.value : a.value-b.value);
   return rows;
 }
 
@@ -218,10 +228,11 @@ function render(){
   ol.innerHTML = shown.map((r,i)=>{
     const cls = r.branding.toLowerCase().startsWith("quoniam") ? "b-quoniam":"b-union";
     const vcls = r.value>=0 ? "pos":"neg";
+    const txt = m.pct ? r.value.toFixed(2)+" %" : r.value.toFixed(3);
     return `<li><div class="rank">${i+1}</div>
       <div><div class="name">${r.name}</div>
       <span class="badge ${cls}">${r.branding}</span></div>
-      <div class="val ${vcls}">${r.value.toFixed(3)}</div></li>`;
+      <div class="val ${vcls}">${txt}</div></li>`;
   }).join("");
 }
 
@@ -248,7 +259,7 @@ function exportCSV(){
 ["metric","period","provider","assetclass","category","topn"].forEach(id=>$(id).addEventListener("change",render));
 $("csv").addEventListener("click", exportCSV);
 $("srcline").textContent = `Quelle: Morningstar · Stand: ${DATA.meta.as_of} · ${DATA.meta.fund_count} Fonds`;
-$("foot").textContent = "Treynor berechnet (Sharpe×StdAbw÷Beta). Höhere Werte = besser. Daten-Snapshot, nicht live.";
+$("foot").textContent = "Treynor berechnet (Sharpe×StdAbw÷Beta). Bei Volatilität & Tracking Error gilt: niedriger = besser (kleinster Wert = Rang 1). Daten-Snapshot, nicht live.";
 fillMetrics(); render();
 </script>
 </body>
