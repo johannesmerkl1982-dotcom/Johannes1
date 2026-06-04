@@ -1,9 +1,9 @@
 ---
 name: app2-update
 description: >
-  Monatliches Daten-Update für die ZWEITE App (Fonds & ETFs, app2/index.html).
+  Monatliches Daten-Update für die ZWEITE App (Fonds & ETFs, jome/index.html).
   Ruft per Morningstar-Konnektor die aktuellen Monatsultimo-Kennzahlen für die
-  fest hinterlegten 98 Wertpapiere ab, baut data/funds2.json + app2/index.html
+  fest hinterlegten 98 Wertpapiere ab, baut data/funds2.json + jome/index.html
   neu und committet/pusht. Tokensparsam: die Tool-Antworten werden in Dateien
   gespeichert und per Skript geparst (kein Abtippen). Nutzen, wenn der Nutzer das
   App-2-Update / den Datenstand zum Monatsende (30.06., 31.07., …) aktualisieren
@@ -56,8 +56,8 @@ erzeugen mit `python3 -c "import json;u=json.load(open('data/raw2/universe.json'
    ```
    `build_dataset2.py` setzt `as_of` automatisch auf das heutige Datum.
 5. **Commit & Push** auf den Feature-Branch. GitHub Pages liefert App 2 unter
-   `/app2/` aus dem Default-Branch-Root automatisch neu aus
-   (https://johannesmerkl1982-dotcom.github.io/Johannes1/app2/).
+   `/jome/` aus dem Default-Branch-Root automatisch neu aus
+   (https://johannesmerkl1982-dotcom.github.io/Johannes1/jome/).
 
 ## Wichtig
 - **App 1 nicht anfassen** (eigene Dateien: `build_dataset.py`, `build_webapp.py`,

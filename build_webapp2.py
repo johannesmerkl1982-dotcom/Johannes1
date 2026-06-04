@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
-"""Erzeugt die ZWEITE eigenständige Web-App (Fonds & ETFs) als app2/index.html
-aus data/funds2.json. Gleiche Funktionen wie App 1, zusätzlich ETF- und
-Sonstige-Fonds-Kategorie im Anbieterfilter. App 1 wird NICHT verändert.
+"""Erzeugt die ZWEITE eigenständige Web-App "JoMe" (Fonds & ETFs) als
+jome/index.html aus data/funds2.json. Gleiche Funktionen wie App 1, zusätzlich
+ETF-Kategorie im Anbieterfilter (leere Buckets werden ausgeblendet). App 1 wird
+NICHT verändert.
 
-    python3 build_webapp2.py     # schreibt app2/index.html
+    python3 build_webapp2.py     # schreibt jome/index.html
 """
 from __future__ import annotations
 import json, os
 
 DATA = "data/funds2.json"
-OUT = "app2/index.html"
+OUT = "jome/index.html"
 
 HTML = r"""<!DOCTYPE html>
 <html lang="de">
@@ -17,7 +18,7 @@ HTML = r"""<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#1f4e79">
-<title>Fonds- &amp; ETF-Kennzahlen</title>
+<title>JoMe</title>
 <style>
   :root{ --bg:#0f1115; --card:#1a1e26; --fg:#f2f4f8; --muted:#9aa4b2;
          --union:#e3000f; --quoniam:#3b82f6; --etf:#10b981; --sonst:#6b7280;
@@ -59,7 +60,7 @@ HTML = r"""<!DOCTYPE html>
 </head>
 <body>
 <header>
-  <h1>Fonds- &amp; ETF-Kennzahlen</h1>
+  <h1>JoMe</h1>
   <div class="sub" id="srcline"></div>
 </header>
 <main>
@@ -74,13 +75,7 @@ HTML = r"""<!DOCTYPE html>
     </div>
     <div>
       <label for="provider">Anbieter</label>
-      <select id="provider">
-        <option value="all">Alle</option>
-        <option value="Union Investment">Union Investment</option>
-        <option value="Quoniam">Quoniam</option>
-        <option value="Sonstige Fonds">Sonstige Fonds</option>
-        <option value="ETF">ETF</option>
-      </select>
+      <select id="provider"></select>
     </div>
     <div>
       <label for="topn">Anzahl</label>
@@ -153,6 +148,15 @@ function assetClass(catRaw){
 const ASSET_ORDER = ["Aktienfonds","Anleihen","Mischfonds","Immobilien","Rohstoffe",
                      "Wandelanleihen","Geldmarkt","Alternative","Sonstige"];
 
+// Anbieter-Dropdown: nur Buckets zeigen, die tatsächlich Wertpapiere enthalten
+// (leere Kategorien wie "Sonstige Fonds" werden ausgeblendet).
+const PROV_ORDER = ["Union Investment","Quoniam","Sonstige Fonds","ETF"];
+function fillProviders(){
+  const present = new Set(DATA.funds.map(f=>f.branding));
+  const list = PROV_ORDER.filter(p=>present.has(p));
+  $("provider").innerHTML = `<option value="all">Alle</option>` +
+      list.map(p=>`<option value="${p}">${p}</option>`).join("");
+}
 function fillMetrics(){
   $("metric").innerHTML = Object.entries(METRICS)
     .map(([k,m])=>`<option value="${k}">${m.label}</option>`).join("");
@@ -259,7 +263,7 @@ function exportCSV(){
 $("csv").addEventListener("click", exportCSV);
 $("srcline").textContent = `Quelle: Morningstar · Stand: ${DATA.meta.as_of} · ${DATA.meta.fund_count} Wertpapiere`;
 $("foot").textContent = "Treynor berechnet (Sharpe×StdAbw÷Beta). Bei Volatilität & Tracking Error gilt: niedriger = besser. Daten-Snapshot, nicht live.";
-fillMetrics(); render();
+fillProviders(); fillMetrics(); render();
 </script>
 </body>
 </html>
