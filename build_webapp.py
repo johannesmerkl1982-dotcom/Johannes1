@@ -91,6 +91,9 @@ HTML = r"""<!DOCTYPE html>
         <option value="10">Top 10</option>
         <option value="25">Top 25</option>
         <option value="50">Top 50</option>
+        <option value="-10">Flop 10</option>
+        <option value="-25">Flop 25</option>
+        <option value="-50">Flop 50</option>
       </select>
     </div>
     <div class="wide">
@@ -192,14 +195,24 @@ function currentRows(){
   return rows;
 }
 
+// Top-/Flop-Auswahl. topn>0 = Top N (beste zuerst), topn<0 = Flop N
+// (schlechtester zuerst), 0 = alle.
+function selectRows(rows, topn){
+  if (topn > 0) return {list: rows.slice(0, topn), flop:false};
+  if (topn < 0){ const n = Math.min(-topn, rows.length);
+    return {list: rows.slice(rows.length - n).reverse(), flop:true}; }
+  return {list: rows, flop:false};
+}
+
 function render(){
   fillPeriods(); fillAssetClasses(); fillCategories();
   const rows = currentRows();
   const topn = parseInt($("topn").value,10);
-  const shown = topn>0 ? rows.slice(0,topn) : rows;
+  const {list:shown, flop} = selectRows(rows, topn);
   const m = METRICS[$("metric").value];
+  const tag = topn>0 ? `Top ${topn}` : topn<0 ? `Flop ${-topn}` : "alle";
   $("count").textContent =
-    `${shown.length} von ${rows.length} Fonds · ${m.label} (${PLABEL[$("period").value]})`;
+    `${tag}: ${shown.length} von ${rows.length} Fonds · ${m.label} (${PLABEL[$("period").value]})`;
   const ol = $("results");
   if (!shown.length){ ol.innerHTML = `<div class="empty">Keine Fonds mit Werten für diese Auswahl.</div>`; return; }
   ol.innerHTML = shown.map((r,i)=>{
@@ -215,7 +228,7 @@ function render(){
 function exportCSV(){
   const rows = currentRows();
   const topn = parseInt($("topn").value,10);
-  const shown = topn>0 ? rows.slice(0,topn) : rows;
+  const {list:shown} = selectRows(rows, topn);
   const m = METRICS[$("metric").value];
   const col = `${m.label} ${PLABEL[$("period").value]}`;
   const lines = [["Rang","Fonds","Anbieter",col].join(";")]
