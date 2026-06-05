@@ -71,6 +71,28 @@ erzeugen mit `python3 -c "import json;u=json.load(open('data/raw2/universe.json'
    Live unter https://johannesmerkl1982-dotcom.github.io/Johannes1/jome/
    (App 1 = `index.html`, App 1-Webapp = `webapp/`, JoMe = `jome/` auf gh-pages).
 
+## Automatischer Monats-Trigger (Routine) – einmalig einrichten
+In **claude.ai/code/routines** → **New routine**:
+- **Name:** `JoMe Monats-Update`
+- **Repository:** `johannesmerkl1982-dotcom/johannes1`
+- **Trigger:** Schedule → monatlich (z. B. **4. des Monats**, damit das
+  Vormonats-Ultimo bei Morningstar schon verfügbar ist; Mindestintervall 1 h,
+  benutzerdefinierter Cron via `/schedule update`).
+- **Connectors:** Morningstar-Konnektor **aktiviert lassen**.
+- **Permissions:** **Allow unrestricted branch pushes** für dieses Repo
+  **einschalten** (sonst kann der Lauf nicht nach `gh-pages` pushen).
+- **Prompt (selbsterklärend, einfügen):**
+  > Führe das Skill `/app2-update` aus: Hole für alle 98 Wertpapiere aus
+  > `data/raw2/universe.json` die aktuellen Morningstar-Monatsultimo-Kennzahlen
+  > (28 Datenpunkte, 5 Batches), parse die gespeicherten Antworten mit
+  > `parse_tool_result2.py` nach `data/raw2/metrics/b01..b05.json`, baue
+  > `data/funds2.json` und `jome/index.html` mit `build_dataset2.py` /
+  > `build_webapp2.py` neu, committe auf den Branch
+  > `claude/morningstar-fund-metrics-tool-yjpaJ` und **deploye die neue
+  > `jome/index.html` nach `gh-pages`** (siehe Schritt 6). App 1 nicht anfassen.
+  > Erfolg = auf `gh-pages` liegt eine aktualisierte `jome/index.html` mit
+  > heutigem `as_of`-Datum.
+
 ## Wichtig
 - **App 1 nicht anfassen** (eigene Dateien: `build_dataset.py`, `build_webapp.py`,
   `data/funds.json`, `webapp/`, Root-`index.html`).
