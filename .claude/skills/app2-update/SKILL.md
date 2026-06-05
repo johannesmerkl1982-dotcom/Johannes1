@@ -55,9 +55,21 @@ erzeugen mit `python3 -c "import json;u=json.load(open('data/raw2/universe.json'
    python3 build_dataset2.py && python3 build_webapp2.py
    ```
    `build_dataset2.py` setzt `as_of` automatisch auf das heutige Datum.
-5. **Commit & Push** auf den Feature-Branch. GitHub Pages liefert App 2 unter
-   `/jome/` aus dem Default-Branch-Root automatisch neu aus
-   (https://johannesmerkl1982-dotcom.github.io/Johannes1/jome/).
+5. **Commit & Push** der neu gebauten Dateien auf den Feature-Branch.
+6. **WICHTIG – Deploy nach `gh-pages`:** GitHub Pages liefert NICHT aus dem
+   Feature-Branch, sondern aus dem **`gh-pages`-Branch** aus. Daher die neue
+   `jome/index.html` dorthin kopieren:
+   ```bash
+   git fetch origin gh-pages
+   rm -rf /tmp/ghp && git worktree add /tmp/ghp origin/gh-pages
+   cp jome/index.html /tmp/ghp/jome/index.html
+   ( cd /tmp/ghp && git add -A && \
+     git -c user.email=JohannesMerkl1982@gmail.com -c user.name="Claude Code" \
+       commit -m "Update JoMe (gh-pages)" && git push origin HEAD:gh-pages )
+   git worktree remove /tmp/ghp --force
+   ```
+   Live unter https://johannesmerkl1982-dotcom.github.io/Johannes1/jome/
+   (App 1 = `index.html`, App 1-Webapp = `webapp/`, JoMe = `jome/` auf gh-pages).
 
 ## Wichtig
 - **App 1 nicht anfassen** (eigene Dateien: `build_dataset.py`, `build_webapp.py`,
