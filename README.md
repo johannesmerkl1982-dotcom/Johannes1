@@ -1,3 +1,16 @@
+# 📲 Apps starten
+
+> Direkt im Browser/Handy öffnen (kein Download nötig):
+>
+> ### ▶ **[JoMe – Fonds & ETF-Kennzahlen öffnen](https://johannesmerkl1982-dotcom.github.io/Johannes1/jome/)**
+> ### ▶ **[Erste App – Union & Quoniam öffnen](https://johannesmerkl1982-dotcom.github.io/Johannes1/)**
+>
+> Auf GitHub: oben rechts in der Datei-Vorschau wird die README angezeigt – einfach
+> auf die Links klicken. (GitHub zeigt nur den Quelltext; *gestartet* wird die App
+> über die Links oben.)
+
+---
+
 # Union- & Quoniam-Fonds – Kennzahlen-Tool
 
 Ein Tool, das für **alle Union- und Quoniam-Investmentfonds**
