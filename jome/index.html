@@ -255,7 +255,7 @@ function exportCSV(){
 ["metric","period","provider","assetclass","category","topn"].forEach(id=>$(id).addEventListener("change",render));
 $("csv").addEventListener("click", exportCSV);
 $("srcline").textContent = `Quelle: Morningstar · Stand: ${DATA.meta.as_of} · ${DATA.meta.fund_count} Wertpapiere`;
-$("foot").textContent = "Performance 3/5/10 J und „seit Auflage" sind annualisiert (p.a.); „seit Auflage" je Fonds anderer Zeitraum. Treynor berechnet (Sharpe×StdAbw÷Beta). Volatilität & Tracking Error: niedriger = besser. Daten-Snapshot, nicht live.";
+$("foot").textContent = "Performance 3/5/10 J und seit Auflage sind annualisiert (p.a.); seit Auflage je Fonds anderer Zeitraum. Treynor berechnet (Sharpe x StdAbw / Beta). Volatilitaet & Tracking Error: niedriger = besser. Daten-Snapshot, nicht live.";
 fillProviders(); fillMetrics(); render();
 </script>
 </body>
