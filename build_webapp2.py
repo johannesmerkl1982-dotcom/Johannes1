@@ -112,23 +112,27 @@ HTML = r"""<!DOCTYPE html>
 <script>
 const DATA = JSON.parse(document.getElementById('data').textContent);
 const METRICS = {
-  performance:  {label:"Performance (Rendite)", periods:["1m","3m","6m","1y","3y","5y"], higher:true,  pct:true},
-  sharpe:       {label:"Sharpe Ratio",          periods:["1y","3y","5y"],                higher:true,  pct:false},
-  sortino:      {label:"Sortino Ratio",         periods:["1y","3y","5y"],                higher:true,  pct:false},
-  information:  {label:"Information Ratio",      periods:["1y","3y","5y"],                higher:true,  pct:false},
-  treynor:      {label:"Treynor Ratio",         periods:["1y","3y","5y"],                higher:true,  pct:false},
-  alpha:        {label:"Jensens Alpha",         periods:["1y","3y","5y"],                higher:true,  pct:true},
-  volatility:   {label:"Volatilität",           periods:["1y","3y","5y"],                higher:false, pct:true},
-  beta:         {label:"Beta",                  periods:["1y","3y","5y"],                higher:true,  pct:false},
-  trackingerror:{label:"Tracking Error",        periods:["3y","5y"],                     higher:false, pct:true},
+  performance:  {label:"Performance (Rendite)", periods:["1m","3m","6m","1y","3y","5y","10y","incep"], higher:true,  pct:true},
+  sharpe:       {label:"Sharpe Ratio",          periods:["1y","3y","5y","10y"],          higher:true,  pct:false},
+  sortino:      {label:"Sortino Ratio",         periods:["1y","3y","5y","10y"],          higher:true,  pct:false},
+  information:  {label:"Information Ratio",      periods:["1y","3y","5y","10y"],          higher:true,  pct:false},
+  treynor:      {label:"Treynor Ratio",         periods:["1y","3y","5y","10y"],          higher:true,  pct:false},
+  alpha:        {label:"Jensens Alpha",         periods:["1y","3y","5y","10y"],          higher:true,  pct:true},
+  volatility:   {label:"Volatilität",           periods:["1y","3y","5y","10y"],          higher:false, pct:true},
+  beta:         {label:"Beta",                  periods:["1y","3y","5y","10y"],          higher:true,  pct:false},
+  trackingerror:{label:"Tracking Error",        periods:["3y","5y","10y"],               higher:false, pct:true},
 };
 const PLABEL = {"1m":"1 Monat","3m":"3 Monate","6m":"6 Monate",
-                "1y":"1 Jahr","3y":"3 Jahre","5y":"5 Jahre"};
+                "1y":"1 Jahr","3y":"3 Jahre","5y":"5 Jahre","10y":"10 Jahre","incep":"seit Auflage"};
 const $ = id => document.getElementById(id);
 
 function normCat(c){ return (c||"").replace(/^EAA Fund /, "").trim(); }
-// Anbieter-Bucket exakt vergleichen (Union Investment / Quoniam / Sonstige Fonds / ETF)
-function providerMatch(f,p){ return p==="all" || f.branding===p; }
+// Anbieter-Bucket vergleichen; "uq" = Union + Quoniam zusammengefasst.
+function providerMatch(f,p){
+  if (p==="all") return true;
+  if (p==="uq") return f.branding==="Union Investment" || f.branding==="Quoniam";
+  return f.branding===p;
+}
 
 function assetClass(catRaw){
   const c = normCat(catRaw).toLowerCase();
@@ -153,9 +157,12 @@ const ASSET_ORDER = ["Aktienfonds","Anleihen","Mischfonds","Immobilien","Rohstof
 const PROV_ORDER = ["Union Investment","Quoniam","Sonstige Fonds","ETF"];
 function fillProviders(){
   const present = new Set(DATA.funds.map(f=>f.branding));
-  const list = PROV_ORDER.filter(p=>present.has(p));
-  $("provider").innerHTML = `<option value="all">Alle</option>` +
-      list.map(p=>`<option value="${p}">${p}</option>`).join("");
+  let opts = `<option value="all">Alle</option>`;
+  if (present.has("Union Investment") && present.has("Quoniam"))
+    opts += `<option value="uq">Union + Quoniam</option>`;
+  opts += PROV_ORDER.filter(p=>present.has(p))
+      .map(p=>`<option value="${p}">${p}</option>`).join("");
+  $("provider").innerHTML = opts;
 }
 function fillMetrics(){
   $("metric").innerHTML = Object.entries(METRICS)
@@ -262,7 +269,7 @@ function exportCSV(){
 ["metric","period","provider","assetclass","category","topn"].forEach(id=>$(id).addEventListener("change",render));
 $("csv").addEventListener("click", exportCSV);
 $("srcline").textContent = `Quelle: Morningstar · Stand: ${DATA.meta.as_of} · ${DATA.meta.fund_count} Wertpapiere`;
-$("foot").textContent = "Treynor berechnet (Sharpe×StdAbw÷Beta). Bei Volatilität & Tracking Error gilt: niedriger = besser. Daten-Snapshot, nicht live.";
+$("foot").textContent = "Performance 3/5/10 J und „seit Auflage" sind annualisiert (p.a.); „seit Auflage" je Fonds anderer Zeitraum. Treynor berechnet (Sharpe×StdAbw÷Beta). Volatilität & Tracking Error: niedriger = besser. Daten-Snapshot, nicht live.";
 fillProviders(); fillMetrics(); render();
 </script>
 </body>

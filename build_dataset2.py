@@ -26,17 +26,18 @@ OUT = "data/funds2.json"
 BETA_MIN_ABS = 0.05
 
 DATAPOINTS = {
-    "RR010": ("sharpe", "1y"), "RR011": ("sharpe", "3y"), "RR012": ("sharpe", "5y"),
-    "RR122": ("sortino", "1y"), "RR123": ("sortino", "3y"), "RR124": ("sortino", "5y"),
-    "RR147": ("information", "3y"), "RR148": ("information", "5y"), "ZS71V": ("information", "1y"),
-    "RR002": ("alpha", "1y"), "RR003": ("alpha", "3y"), "RR004": ("alpha", "5y"),
+    "RR010": ("sharpe", "1y"), "RR011": ("sharpe", "3y"), "RR012": ("sharpe", "5y"), "RR013": ("sharpe", "10y"),
+    "RR122": ("sortino", "1y"), "RR123": ("sortino", "3y"), "RR124": ("sortino", "5y"), "RR125": ("sortino", "10y"),
+    "RR147": ("information", "3y"), "RR148": ("information", "5y"), "RR149": ("information", "10y"), "ZS71V": ("information", "1y"),
+    "RR002": ("alpha", "1y"), "RR003": ("alpha", "3y"), "RR004": ("alpha", "5y"), "RR005": ("alpha", "10y"),
     "PM004": ("performance", "1m"), "PM006": ("performance", "3m"), "PM008": ("performance", "6m"),
     "PM00C": ("performance", "1y"), "PM00E": ("performance", "3y"), "PM00G": ("performance", "5y"),
-    "RR141": ("trackingerror", "3y"), "RR142": ("trackingerror", "5y"),
+    "PM00I": ("performance", "10y"), "PM00M": ("performance", "incep"),
+    "RR141": ("trackingerror", "3y"), "RR142": ("trackingerror", "5y"), "RR143": ("trackingerror", "10y"),
 }
 RISK_DATAPOINTS = {
-    "RR014": ("stddev", "1y"), "RR015": ("stddev", "3y"), "RR016": ("stddev", "5y"),
-    "RR00K": ("beta", "1y"), "RR00L": ("beta", "3y"), "RR00M": ("beta", "5y"),
+    "RR014": ("stddev", "1y"), "RR015": ("stddev", "3y"), "RR016": ("stddev", "5y"), "RR017": ("stddev", "10y"),
+    "RR00K": ("beta", "1y"), "RR00L": ("beta", "3y"), "RR00M": ("beta", "5y"), "RR00N": ("beta", "10y"),
 }
 
 
@@ -85,7 +86,7 @@ def main() -> None:
                 if fv is not None:
                     risk[f"{m}_{p}"] = fv
         # Volatilitaet & Beta direkt; Treynor = Sharpe x StdAbw / Beta
-        for p in ("1y", "3y", "5y"):
+        for p in ("1y", "3y", "5y", "10y"):
             if risk.get(f"stddev_{p}") is not None:
                 metrics[f"volatility_{p}"] = risk[f"stddev_{p}"]
             if risk.get(f"beta_{p}") is not None:

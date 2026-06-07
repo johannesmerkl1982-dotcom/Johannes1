@@ -22,8 +22,9 @@ parsen sie per Skript. Dadurch fließen die Zahlen **nicht** Wert für Wert durc
 den Chat. Ein Update = 5 Tool-Aufrufe + ein paar Shell-Kommandos.
 
 ## Feste Parameter
-**28 Datenpunkt-IDs** (immer alle gemeinsam abrufen):
-`FC001,OF003,PM004,PM006,PM008,PM00C,PM00E,PM00G,RR141,RR142,RR010,RR011,RR012,RR122,RR123,RR124,RR147,RR148,ZS71V,RR002,RR003,RR004,RR014,RR015,RR016,RR00K,RR00L,RR00M`
+**37 Datenpunkt-IDs** (immer alle gemeinsam abrufen; inkl. 10 J + seit Auflage):
+`FC001,OF003,PM004,PM006,PM008,PM00C,PM00E,PM00G,PM00I,PM00M,RR141,RR142,RR143,RR010,RR011,RR012,RR013,RR122,RR123,RR124,RR125,RR147,RR148,RR149,ZS71V,RR002,RR003,RR004,RR005,RR014,RR015,RR016,RR017,RR00K,RR00L,RR00M,RR00N`
+(PM00I=Perf 10J, PM00M=Perf seit Auflage; RR013/125/149/005/017/00N/143 = Sharpe/Sortino/Info/Alpha/StdAbw/Beta/TrackingError jeweils 10J.)
 
 **Investment-IDs in 5 Batches** (Quelle: `data/raw2/universe.json`; bei Bedarf neu
 erzeugen mit `python3 -c "import json;u=json.load(open('data/raw2/universe.json'))['investments'];ids=list(u);[print(','.join(ids[k:k+20])) for k in range(0,len(ids),20)]"`):
