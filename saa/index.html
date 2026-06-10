@@ -127,9 +127,9 @@
 
   <h2>Grenzen je Assetklasse (Min / Max)</h2>
   <div class="card gold">
-    <div class="mm"><div class="hd" style="text-align:left">Assetklasse</div><div class="hd">Min</div><div class="hd">Max</div></div>
+    <div class="mm"><div class="hd" style="text-align:left">Assetklasse</div><div class="hd">Min&nbsp;%</div><div class="hd">Max&nbsp;%</div></div>
     <div id="bounds"></div>
-    <div class="hint">Anteilsgrenzen als Wert <b>0–1 (kein %)</b>, z. B. 0,2 = 20 %. Leer = 0 bzw. 1 (keine Restriktion).</div>
+    <div class="hint">Anteilsgrenzen <b>in %</b> (z. B. 20 = 20 %). Leer = 0 % bzw. 100 % (keine Restriktion).</div>
   </div>
 
   <h2>Parameter unter Vorbehalt</h2>
@@ -397,7 +397,7 @@ const NOLIM = 1e18;             // interner Platzhalter für „ohne Limit"
     const row=document.createElement('div'); row.className='mm';
     row.innerHTML=`<div class="nm">${NAMES[i]}</div>
       <input id="min${i}" type="text" inputmode="decimal" placeholder="0">
-      <input id="max${i}" type="text" inputmode="decimal" placeholder="1">`;
+      <input id="max${i}" type="text" inputmode="decimal" placeholder="100">`;
     c.appendChild(row);
   }
 })();
@@ -417,8 +417,8 @@ function readInputs(){
   const peur = id => parseFloat(raw(id).replace(/[.\s]/g,'').replace(',','.'));  // EUR (Tausenderpunkte raus)
   const dflt = (id,fn,e) => raw(id)===''||!isFinite(fn(id)) ? e : fn(id);        // leer/ungültig -> Fallback
 
-  const lo=[],hi=[];
-  for(let i=0;i<N;i++){ lo[i]=dflt('min'+i,pnum,0); hi[i]=dflt('max'+i,pnum,1); }
+  const lo=[],hi=[];   // Min/Max je Klasse in % -> Anteil 0–1 (leer = 0 % bzw. 100 %)
+  for(let i=0;i<N;i++){ lo[i]=dflt('min'+i,pnum,0)/100; hi[i]=dflt('max'+i,pnum,100)/100; }
 
   const P={
     // leer = neutral: CVaR/RTF/RWA ohne Limit, Illiquidität 100 %, LCR/Abflüsse 0
