@@ -2,12 +2,43 @@
 
 > Direkt im Browser/Handy öffnen (kein Download nötig):
 >
+> ### ▶ **[SAA-Optimierungsmodell öffnen](https://johannesmerkl1982-dotcom.github.io/Johannes1/saa/)**
 > ### ▶ **[JoMe – Fonds & ETF-Kennzahlen öffnen](https://johannesmerkl1982-dotcom.github.io/Johannes1/jome/)**
 > ### ▶ **[Erste App – Union & Quoniam öffnen](https://johannesmerkl1982-dotcom.github.io/Johannes1/)**
 >
 > Auf GitHub: oben rechts in der Datei-Vorschau wird die README angezeigt – einfach
 > auf die Links klicken. (GitHub zeigt nur den Quelltext; *gestartet* wird die App
 > über die Links oben.)
+
+---
+
+# 📈 SAA-Optimierungsmodell (Handy-App)
+
+Eine vollständig im Browser/Handy laufende Umsetzung des Excel-Modells
+**„Modernes Optimierungsmodell SAA V2"** (`saa/index.html`). Der Nutzer trägt die
+Eingaben in die **goldenen Felder** ein; die beiden **schwarzen Felder**
+(*Parameter für die Regularisierung*, *CVaR-Tail-Dämpfung*) sind – wie im Modell –
+nur unter Vorbehalt änderbar. Auf Knopfdruck rechnet die App die Optimierung und
+zeigt die Ziel-Allokation sowie alle Soll-/Ist-Nebenbedingungen.
+
+**Modell:** Maximiert die **erwartete Rendite** (refined arithmetic mean) über acht
+Assetklassen (Staatsanleihen, Liquidität, Credits IG, Renten EM Staaten EUR, Aktien
+Global, Aktien EM, Gold, Immobilien Direktbestand Büro) unter den Nebenbedingungen:
+
+* Summe der Gewichte = 1
+* **CVaR ≤ Zielwert** — `√(wᵀΣw) · ((wᵀ(CVaR-Cutoff+μ) / wᵀσ) · Tail-Dämpfung) − E[r]`
+* **Regularisierung** — Σ der quadratischen Abweichungen von der Risk-Parity-Benchmark ≤ Parameter
+* **RTF-, RWA- und Illiquiditäts-Obergrenzen**
+* **LCR**: verfügbare HQLA (Stufen 1a/1b, 2a, 2b mit 60 %-/15 %-Grenzen) ≥ erforderliche HQLA
+* **Min/Max je Assetklasse**
+
+Kovarianz- und Korrelationsmatrix, CVaR-Cutoffs, RTF-/RWA-Gewichte und LCR-Einstufung
+sind als Modellkonstanten exakt aus dem Excel hinterlegt. Die Risk-Parity-Benchmark
+(inverse Volatilität, Liquiditätsanteil = Ist-Liquidität / Volumen) wird aus den
+Eingaben berechnet. Gelöst wird mit einem Augmented-Lagrangian-Verfahren samt
+Simplex-Projektion direkt im Browser (keine Server, kein Download). Mit den
+Standardeingaben reproduziert die App die im Excel hinterlegte Lösung
+(E[r] ≈ 4,42 %, CVaR = 0,10, Regularisierung = 0,05).
 
 ---
 

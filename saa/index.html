@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#11151c">
+<title>SAA-Optimierungsmodell</title>
+<style>
+  :root{
+    --bg:#0f1115; --card:#1a1e26; --card2:#161a21; --fg:#f2f4f8; --muted:#9aa4b2;
+    --line:#2a2f3a; --accent:#1f4e79; --ok:#10b981; --bad:#ef4444; --warn:#f59e0b;
+    --gold:#d4af37; --goldbg:#3a3115; --goldborder:#caa93a;
+    --blk:#0b0d11; --blkborder:#3a4150;
+    --bench:#6b7280; --opt:#3b82f6;
+  }
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body{ margin:0; background:var(--bg); color:var(--fg);
+        font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+  header{ position:sticky; top:0; z-index:10;
+          background:linear-gradient(180deg,#11151c,#11151cee);
+          backdrop-filter:blur(6px); padding:14px 16px 10px; border-bottom:1px solid var(--line); }
+  h1{ font-size:18px; margin:0 0 2px; }
+  .sub{ color:var(--muted); font-size:12px; }
+  main{ padding:14px 16px 60px; max-width:820px; margin:0 auto; }
+  h2{ font-size:14px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted);
+      margin:22px 2px 10px; border-bottom:1px solid var(--line); padding-bottom:6px; }
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px; margin-bottom:12px; }
+  .grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .grid .wide{ grid-column:1 / -1; }
+  label{ display:block; font-size:12px; color:var(--muted); margin:0 0 4px 2px; }
+  .hint{ font-size:11px; color:var(--muted); margin:3px 2px 0; }
+  input{ width:100%; padding:11px 12px; font-size:16px; color:var(--fg);
+         background:var(--card2); border:1px solid var(--line); border-radius:10px; }
+  input:focus{ outline:none; border-color:var(--accent); }
+  /* goldene Eingabefelder */
+  .gold input{ background:var(--goldbg); border-color:var(--goldborder); color:#fff5d6; font-weight:600; }
+  .gold label{ color:var(--gold); }
+  /* schwarze (Vorbehalts-)Felder */
+  .blk input{ background:var(--blk); border-color:var(--blkborder); color:#cbd5e1; font-weight:600; }
+  .blk label{ color:#cbd5e1; }
+  .blk .hint{ color:#7f8a9a; }
+  table{ width:100%; border-collapse:collapse; font-size:13px; }
+  th,td{ padding:8px 6px; text-align:right; border-bottom:1px solid var(--line); white-space:nowrap; }
+  th:first-child,td:first-child{ text-align:left; white-space:normal; }
+  th{ color:var(--muted); font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:.03em; }
+  tfoot td{ font-weight:700; border-top:2px solid var(--line); border-bottom:none; }
+  .mm{ display:grid; grid-template-columns:1.4fr .8fr .8fr; gap:8px; align-items:center; margin-bottom:8px; }
+  .mm .nm{ font-size:12px; color:var(--fg); }
+  .mm input{ padding:8px; font-size:14px; text-align:center; }
+  .mm .hd{ font-size:10px; color:var(--muted); text-transform:uppercase; text-align:center; }
+  button{ width:100%; padding:15px; font-size:16px; font-weight:700; color:#fff; border:none;
+          border-radius:12px; background:linear-gradient(180deg,#2563eb,#1d4ed8); margin-top:6px; }
+  button:disabled{ opacity:.6; }
+  .bar{ height:10px; border-radius:5px; background:var(--card2); overflow:hidden; margin-top:3px; position:relative; }
+  .bar > i{ display:block; height:100%; background:var(--opt); }
+  .bar > b{ position:absolute; top:-2px; width:2px; height:14px; background:var(--gold); }
+  .wrow{ margin-bottom:11px; }
+  .wrow .top{ display:flex; justify-content:space-between; font-size:13px; }
+  .wrow .top .b{ color:var(--muted); font-size:11px; }
+  .badge{ display:inline-block; padding:2px 8px; border-radius:20px; font-size:11px; font-weight:700; }
+  .badge.ok{ background:rgba(16,185,129,.15); color:var(--ok); }
+  .badge.bad{ background:rgba(239,68,68,.15); color:var(--bad); }
+  .banner{ padding:12px 14px; border-radius:12px; font-weight:600; margin-bottom:12px; font-size:14px; }
+  .banner.ok{ background:rgba(16,185,129,.12); color:#6ee7b7; border:1px solid rgba(16,185,129,.3); }
+  .banner.bad{ background:rgba(239,68,68,.12); color:#fca5a5; border:1px solid rgba(239,68,68,.3); }
+  .kpi{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .kpi .box{ background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:12px; }
+  .kpi .box .v{ font-size:22px; font-weight:800; }
+  .kpi .box .l{ font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.03em; }
+  .legend{ font-size:11px; color:var(--muted); margin:2px 0 10px; display:flex; gap:14px; }
+  .legend i{ display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:middle; }
+  details{ background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:10px 12px; margin-bottom:12px; }
+  summary{ font-size:13px; color:var(--muted); cursor:pointer; }
+  .small{ font-size:12px; color:var(--muted); }
+  .hidden{ display:none; }
+  .row2{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>SAA-Optimierungsmodell</h1>
+  <div class="sub">Strategische Asset-Allokation · CVaR-Restriktion · Risk-Parity-Regularisierung</div>
+</header>
+
+<main>
+  <h2>Eingaben</h2>
+  <div class="card gold">
+    <div class="grid">
+      <div class="wide">
+        <label>Zielwert für Risiko CVaR</label>
+        <input id="cvarTarget" type="number" step="any" value="0.1">
+        <div class="hint">Obergrenze für das CVaR-Risiko der Allokation.</div>
+      </div>
+      <div>
+        <label>Portfoliovolumen (€)</label>
+        <input id="volume" type="number" step="any" value="100000000">
+      </div>
+      <div>
+        <label>Ist-Liquidität DZ&nbsp;Bank&nbsp;+&nbsp;Buba (€)</label>
+        <input id="istLiq" type="number" step="any" value="10000000">
+      </div>
+      <div>
+        <label>Nettoabflüsse LCR (€)</label>
+        <input id="netout" type="number" step="any" value="0">
+      </div>
+      <div>
+        <label>Gewünschte Mindest-LCR</label>
+        <input id="minLCR" type="number" step="any" value="0">
+      </div>
+      <div>
+        <label>Maximale RTF-Belastung (€)</label>
+        <input id="maxRTF" type="number" step="any" value="1000000000">
+      </div>
+      <div>
+        <label>Maximale RWA-Belastung (€)</label>
+        <input id="maxRWA" type="number" step="any" value="1000000000">
+      </div>
+      <div class="wide">
+        <label>Maximaler Anteil illiquider Assetklassen</label>
+        <input id="maxIlliq" type="number" step="any" value="1">
+        <div class="hint">Anteil 0–1 des Volumens, der in illiquiden Klassen liegen darf.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Grenzen je Assetklasse (Min / Max)</h2>
+  <div class="card gold">
+    <div class="mm"><div class="hd" style="text-align:left">Assetklasse</div><div class="hd">Min</div><div class="hd">Max</div></div>
+    <div id="bounds"></div>
+    <div class="hint">Anteilsgrenzen 0–1. Standard: 0 bis 1 (keine Einzelrestriktion).</div>
+  </div>
+
+  <h2>Parameter unter Vorbehalt</h2>
+  <div class="card blk">
+    <div class="grid">
+      <div>
+        <label>Parameter für die Regularisierung</label>
+        <input id="regParam" type="number" step="any" value="0.05">
+        <div class="hint">Max. Summe der quadr. Abweichungen von der Risk-Parity-Benchmark.</div>
+      </div>
+      <div>
+        <label>CVaR-Tail-Dämpfung</label>
+        <input id="damping" type="number" step="any" value="1">
+        <div class="hint">Skaliert den Tail-Multiplikator in der CVaR-Berechnung.</div>
+      </div>
+    </div>
+    <div class="hint" style="margin-top:8px;color:#9aa4b2">⚠ Diese beiden Felder sind nur unter Vorbehalt zu ändern.</div>
+  </div>
+
+  <button id="run">Optimieren</button>
+
+  <div id="results" class="hidden">
+    <div id="banner"></div>
+
+    <h2>Ergebnis-Allokation</h2>
+    <div class="kpi" style="margin-bottom:12px">
+      <div class="box"><div class="l">Erwartete Rendite</div><div class="v" id="kRet">–</div></div>
+      <div class="box"><div class="l">Risiko CVaR (Ist)</div><div class="v" id="kCvar">–</div></div>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--opt)"></i>Optimierte Gewichte</span>
+      <span><i style="background:var(--gold)"></i>Risk-Parity-Benchmark</span>
+    </div>
+    <div class="card" id="weights"></div>
+
+    <h2>Nebenbedingungen (Soll / Ist)</h2>
+    <div class="card" style="overflow-x:auto">
+      <table id="constraints">
+        <thead><tr><th>Bedingung</th><th>Soll</th><th>Ist</th><th>Status</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <details>
+      <summary>LCR-Details (HQLA)</summary>
+      <div class="card2" style="overflow-x:auto;margin-top:8px">
+        <table id="lcrtab">
+          <thead><tr><th>Stufe</th><th>Verfügbar</th><th>Erforderlich</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </details>
+  </div>
+
+  <details>
+    <summary>Über dieses Modell</summary>
+    <div class="small" style="margin-top:8px">
+      Maximiert die erwartete Rendite (refined arithmetic mean) über acht Assetklassen unter den
+      Nebenbedingungen: Summe der Gewichte = 1, CVaR ≤ Zielwert, quadratische Abweichung von der
+      Risk-Parity-Benchmark ≤ Regularisierungsparameter, RTF-/RWA-/Illiquiditäts-Obergrenzen, LCR-Mindest-HQLA
+      sowie Min/Max je Klasse. Kovarianz, Korrelationen, CVaR-Cutoffs, RTF-/RWA-Gewichte und LCR-Einstufung
+      sind als Modellkonstanten hinterlegt und entsprechen exakt dem Excel-Modell „SAA V2".
+    </div>
+  </details>
+</main>
+
+<script>
+"use strict";
+/* ===================== Modellkonstanten (aus Excel SAA V2) ===================== */
+const NAMES = ["STAATSANLEIHEN","LIQUIDITÄT","CREDITS IG","RENTEN EMERGING MARKETS STAATEN EUR",
+               "AKTIEN GLOBAL","AKTIEN EMERGING MARKETS","GOLD","IMMOBILIEN DIREKTBESTAND BÜRO"];
+const N = 8;
+const Bmean = [2.86,2,3.18,3.34,6.77,8.6,5.32,3.0];                    // Arithmetic Mean (Refined), %
+const SD    = [4.08328,0.52371,4.76054,9.17658,16.167,22.127,17.479,3.42002]; // Std Dev (Refined), %
+const Gcut  = [9.24061,-0.576,11.3205,25.942,36.2826,48.5441,35.5494,7.60912]; // CVaR Cutoff 1.0%, %
+const CORR = [
+ [1,0.096116645669935,0.730974757821577,0.403256826469157,0.158149587018,0.078338059101972,0.120167102704411,-0.036261284617961],
+ [0.096116645669935,1,0.053198511439219,0.001224815948547,-0.107528803918696,-0.139194082002198,0.088843738848417,-0.289644865077072],
+ [0.730974757821577,0.053198511439219,1,0.684754854679112,0.444974232548048,0.421592804261011,0.188138266435884,-0.0476966488873],
+ [0.403256826469157,0.001224815948547,0.684754854679112,1,0.451983197027167,0.603393278046341,0.095955490509786,-0.049284821585047],
+ [0.158149587018,-0.107528803918696,0.444974232548048,0.451983197027167,1,0.729984416868533,-0.081375390331867,0.012618394586136],
+ [0.078338059101972,-0.139194082002198,0.421592804261011,0.603393278046341,0.729984416868533,1,0.052231210802432,0.016569231394826],
+ [0.120167102704411,0.088843738848417,0.188138266435884,0.095955490509786,-0.081375390331867,0.052231210802432,1,-0.072305864580949],
+ [-0.036261284617961,-0.289644865077072,-0.0476966488873,-0.049284821585047,0.012618394586136,0.016569231394826,-0.072305864580949,1]];
+const RTF  = [0.1706,0,0.1822,0.2745,0.6008,0.4574,0.5706,0.16];
+const RWA  = [0,0,0.6,0.77,3.23,3.43,2,1.85];
+const ILLIQ= [0,0,0,0,0,0,0,1];           // Immobilien = illiquide (Ja)
+const LCR1 = [1,1,0,0,0,0,0,0];           // 1a und 1b
+const LCR2A= [0,0,0,0,0,0,0,0];           // 2a
+const LCR2B= [0,0,0.5,0,0,0,0,0];         // 2b
+const LCR_MIN1AB = 0.6;                    // mind. Anteil 1a/1b an HQLA
+const LCR_MAX2B  = 0.15;                    // max Anteil 2b an HQLA
+
+// Kovarianzmatrix Cov = diag(SD/100) * CORR * diag(SD/100)
+const COV = (()=>{ const m=[]; for(let i=0;i<N;i++){m[i]=[];for(let j=0;j<N;j++) m[i][j]=(SD[i]/100)*(SD[j]/100)*CORR[i][j];} return m; })();
+
+/* ===================== Lineare Algebra ===================== */
+const dot=(a,b)=>{let s=0;for(let i=0;i<N;i++)s+=a[i]*b[i];return s;};
+const quad=(w)=>{let s=0;for(let i=0;i<N;i++){let r=0;for(let j=0;j<N;j++)r+=COV[i][j]*w[j];s+=w[i]*r;}return s;};
+
+/* ===================== Modellgrößen ===================== */
+function benchmarkWeights(istLiq, volume){
+  // 1/SD je Klasse (Liquidität bleibt 0), normiert, dann Liquiditätsanteil fix gesetzt
+  const inv=[]; let s=0;
+  for(let i=0;i<N;i++){ const v=(i===1)?0:1/SD[i]; inv[i]=v; s+=v; }
+  const liqRatio = volume>0 ? istLiq/volume : 0;
+  const b=[];
+  for(let i=0;i<N;i++) b[i] = (i===1) ? liqRatio : (inv[i]/s)*(1-liqRatio);
+  return b;
+}
+function expReturn(w){ return dot(w,Bmean)/100; }            // E1
+function cvar(w, damping){
+  const pv=Math.sqrt(Math.max(0,quad(w)));
+  let num=0; for(let i=0;i<N;i++) num+=w[i]*(Gcut[i]+Bmean[i]);
+  const den=dot(w,SD);
+  return pv*((num/den)*damping) - expReturn(w);            // E2
+}
+function regDev(w, bench){ let s=0; for(let i=0;i<N;i++){const d=w[i]-bench[i]; s+=d*d;} return s; }
+
+/* ===================== Solver: Augmented Lagrangian + Simplex-Projektion ===================== */
+function project(w, lo, hi){
+  // projiziere auf { sum=1, lo<=w<=hi } per Bisektion über Offset tau
+  let a=-1e3,b=1e3;
+  for(let k=0;k<60;k++){ const t=(a+b)/2; let s=0; for(let i=0;i<N;i++) s+=Math.min(hi[i],Math.max(lo[i],w[i]+t)); if(s>1) b=t; else a=t; }
+  const t=(a+b)/2, out=[]; for(let i=0;i<N;i++) out[i]=Math.min(hi[i],Math.max(lo[i],w[i]+t)); return out;
+}
+function buildG(P){
+  // gibt Funktion zurück: g(w) -> Array der Constraints (<=0 zulässig)
+  const reqHQLA = P.netout*P.minLCR;
+  return function(w){
+    return [
+      cvar(w,P.damping)-P.cvarTarget,
+      regDev(w,P.bench)-P.regParam,
+      dot(w,RTF)*P.volume - P.maxRTF,
+      dot(w,RWA)*P.volume - P.maxRWA,
+      dot(w,ILLIQ) - P.maxIlliq,
+      reqHQLA*LCR_MIN1AB - dot(w,LCR1)*P.volume,
+      reqHQLA*(1-LCR_MAX2B) - (dot(w,LCR1)+dot(w,LCR2A))*P.volume,
+      reqHQLA - (dot(w,LCR1)+dot(w,LCR2A)+dot(w,LCR2B))*P.volume
+    ];
+  };
+}
+function solveOnce(w0, P, gfun){
+  const M=gfun(w0).length;
+  const merit=(w,lam,rho)=>{
+    const g=gfun(w); let pen=0;
+    for(let k=0;k<M;k++){ const z=Math.max(0,lam[k]+rho*g[k]); pen+=z*z-lam[k]*lam[k]; }
+    return expReturn(w) - pen/(2*rho);
+  };
+  const grad=(w,lam,rho)=>{
+    const eps=1e-7, f0=merit(w,lam,rho), g=[];
+    for(let i=0;i<N;i++){ const wp=w.slice(); wp[i]+=eps; g[i]=(merit(wp,lam,rho)-f0)/eps; }
+    return g;
+  };
+  let w=project(w0.slice(),P.lo,P.hi);
+  let lam=new Array(M).fill(0), rho=10.0;
+  for(let o=0;o<30;o++){
+    for(let it=0;it<60;it++){
+      const gr=grad(w,lam,rho); let step=0.5; const base=merit(w,lam,rho); let wn=w;
+      for(let ls=0;ls<25;ls++){
+        const cand=[]; for(let i=0;i<N;i++) cand[i]=w[i]+step*gr[i];
+        const pc=project(cand,P.lo,P.hi);
+        if(merit(pc,lam,rho)>=base){ wn=pc; break; }
+        step*=0.5;
+      }
+      let mv=0; for(let i=0;i<N;i++) mv=Math.max(mv,Math.abs(wn[i]-w[i]));
+      w=wn; if(mv<1e-11) break;
+    }
+    const g=gfun(w); let maxv=0; for(let k=0;k<M;k++){ lam[k]=Math.max(0,lam[k]+rho*g[k]); maxv=Math.max(maxv,g[k]); }
+    rho = (maxv<1e-9) ? Math.min(rho*1.5,1e8) : Math.min(rho*3,1e8);
+  }
+  return w;
+}
+function optimize(P){
+  const gfun=buildG(P);
+  const starts=[ P.bench.slice(), new Array(N).fill(1/N) ];
+  // ein paar deterministische Pseudo-Zufallsstarts für Robustheit
+  let seed=12345; const rnd=()=>{ seed=(seed*1103515245+12345)&0x7fffffff; return seed/0x7fffffff; };
+  for(let s=0;s<3;s++){ const v=[]; let su=0; for(let i=0;i<N;i++){v[i]=rnd();su+=v[i];} for(let i=0;i<N;i++) v[i]/=su; starts.push(v); }
+  let best=null, bestRet=-1e18;
+  for(const st of starts){
+    const w=solveOnce(st,P,gfun);
+    const g=gfun(w); let maxv=0; for(const x of g) maxv=Math.max(maxv,x);
+    const r=expReturn(w);
+    if(maxv<1e-6 && r>bestRet){ best=w; bestRet=r; }
+  }
+  if(!best){ // kein streng zulässiger Punkt: nimm geringste Verletzung
+    let bv=1e18;
+    for(const st of starts){ const w=solveOnce(st,P,gfun); const g=gfun(w); let mv=0; for(const x of g) mv=Math.max(mv,x); if(mv<bv){bv=mv;best=w;} }
+  }
+  return best;
+}
+
+/* ===================== UI ===================== */
+const $=id=>document.getElementById(id);
+const fmtPct=x=>(x*100).toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' %';
+const fmtEur=x=>x.toLocaleString('de-DE',{maximumFractionDigits:0})+' €';
+const fmtNum=(x,d=4)=>x.toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d});
+
+// Min/Max-Felder aufbauen
+(function buildBounds(){
+  const c=$('bounds');
+  for(let i=0;i<N;i++){
+    const row=document.createElement('div'); row.className='mm';
+    row.innerHTML=`<div class="nm">${NAMES[i]}</div>
+      <input id="min${i}" type="number" step="any" min="0" max="1" value="0">
+      <input id="max${i}" type="number" step="any" min="0" max="1" value="1">`;
+    c.appendChild(row);
+  }
+})();
+
+function readInputs(){
+  const num=id=>{ const v=parseFloat($(id).value.replace(',','.')); return isFinite(v)?v:0; };
+  const lo=[],hi=[]; for(let i=0;i<N;i++){ lo[i]=num('min'+i); hi[i]=num('max'+i); }
+  const P={
+    cvarTarget:num('cvarTarget'), volume:num('volume'), istLiq:num('istLiq'),
+    netout:num('netout'), minLCR:num('minLCR'), maxRTF:num('maxRTF'), maxRWA:num('maxRWA'),
+    maxIlliq:num('maxIlliq'), regParam:num('regParam'), damping:num('damping'), lo, hi
+  };
+  P.bench=benchmarkWeights(P.istLiq,P.volume);
+  return P;
+}
+
+function render(P,w){
+  const ret=expReturn(w), cv=cvar(w,P.damping), reg=regDev(w,P.bench);
+  $('results').classList.remove('hidden');
+
+  // Banner Zulässigkeit
+  const gfun=buildG(P); const g=gfun(w); let maxv=0; for(const x of g) maxv=Math.max(maxv,x);
+  const sum=w.reduce((a,b)=>a+b,0);
+  const feasible = maxv<1e-4 && Math.abs(sum-1)<1e-5;
+  const bn=$('banner');
+  bn.className='banner '+(feasible?'ok':'bad');
+  bn.textContent = feasible
+    ? '✓ Zulässige optimale Allokation gefunden (alle Nebenbedingungen erfüllt).'
+    : '⚠ Keine vollständig zulässige Lösung — bitte Eingaben/Grenzen prüfen.';
+
+  // KPIs
+  $('kRet').textContent=fmtPct(ret);
+  $('kCvar').textContent=fmtNum(cv,4);
+
+  // Gewichte
+  const wc=$('weights'); wc.innerHTML='';
+  for(let i=0;i<N;i++){
+    const div=document.createElement('div'); div.className='wrow';
+    div.innerHTML=`<div class="top"><span>${NAMES[i]}</span>
+        <span><b>${fmtPct(w[i])}</b> <span class="b">Bench ${fmtPct(P.bench[i])}</span></span></div>
+      <div class="bar"><i style="width:${Math.min(100,w[i]*100)}%"></i><b style="left:${Math.min(100,P.bench[i]*100)}%"></b></div>`;
+    wc.appendChild(div);
+  }
+
+  // Nebenbedingungen Soll/Ist
+  const reqHQLA=P.netout*P.minLCR;
+  const av1ab=dot(w,LCR1)*P.volume;
+  const av2a =av1ab+dot(w,LCR2A)*P.volume;
+  const avTot=av2a+dot(w,LCR2B)*P.volume;
+  const rows=[
+    ['Risiko CVaR', fmtNum(P.cvarTarget,4), fmtNum(cv,4), cv<=P.cvarTarget+1e-6],
+    ['Parameter Regularisierung', fmtNum(P.regParam,4), fmtNum(reg,4), reg<=P.regParam+1e-6],
+    ['Mindestens 1a und 1b', fmtEur(reqHQLA*LCR_MIN1AB), fmtEur(av1ab), av1ab>=reqHQLA*LCR_MIN1AB-1e-3],
+    ['Mindestens 2a', fmtEur(reqHQLA*(1-LCR_MAX2B)), fmtEur(av2a), av2a>=reqHQLA*(1-LCR_MAX2B)-1e-3],
+    ['HQLA gesamt', fmtEur(reqHQLA), fmtEur(avTot), avTot>=reqHQLA-1e-3],
+    ['RTF-Belastung', fmtEur(P.maxRTF), fmtEur(dot(w,RTF)*P.volume), dot(w,RTF)*P.volume<=P.maxRTF+1e-3],
+    ['RWA-Belastung', fmtEur(P.maxRWA), fmtEur(dot(w,RWA)*P.volume), dot(w,RWA)*P.volume<=P.maxRWA+1e-3],
+    ['Illiquidität', fmtNum(P.maxIlliq,4), fmtNum(dot(w,ILLIQ),4), dot(w,ILLIQ)<=P.maxIlliq+1e-6],
+  ];
+  const tb=$('constraints').querySelector('tbody'); tb.innerHTML='';
+  for(const [n,soll,ist,ok] of rows){
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${n}</td><td>${soll}</td><td>${ist}</td>
+      <td><span class="badge ${ok?'ok':'bad'}">${ok?'OK':'!'}</span></td>`;
+    tb.appendChild(tr);
+  }
+
+  // LCR Details
+  const lt=$('lcrtab').querySelector('tbody'); lt.innerHTML='';
+  const ld=[
+    ['1a und 1b', av1ab, reqHQLA*LCR_MIN1AB],
+    ['+ 2a', av2a, reqHQLA*(1-LCR_MAX2B)],
+    ['HQLA gesamt', avTot, reqHQLA],
+  ];
+  for(const [n,a,r] of ld){
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${n}</td><td>${fmtEur(a)}</td><td>${fmtEur(r)}</td>`;
+    lt.appendChild(tr);
+  }
+}
+
+$('run').addEventListener('click',()=>{
+  const btn=$('run'); btn.disabled=true; btn.textContent='Optimiere …';
+  setTimeout(()=>{
+    try{
+      const P=readInputs();
+      const w=optimize(P);
+      render(P,w);
+      $('results').scrollIntoView({behavior:'smooth',block:'start'});
+    }catch(e){ alert('Fehler bei der Optimierung: '+e.message); }
+    finally{ btn.disabled=false; btn.textContent='Optimieren'; }
+  },30);
+});
+</script>
+</body>
+</html>
