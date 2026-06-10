@@ -89,7 +89,7 @@
     <div class="grid">
       <div class="wide">
         <label>Zielwert für Risiko CVaR (%)</label>
-        <input id="cvarTarget" type="number" step="any" inputmode="decimal" placeholder="z. B. 10">
+        <input id="cvarTarget" type="text" inputmode="decimal" placeholder="z. B. 10">
         <div class="hint">Obergrenze für das CVaR-Risiko, in % (z. B. 10 = 0,10). Leer = keine CVaR-Grenze.</div>
       </div>
       <div>
@@ -106,7 +106,7 @@
       </div>
       <div>
         <label>Gewünschte Mindest-LCR (%)</label>
-        <input id="minLCR" type="number" step="any" inputmode="decimal" placeholder="z. B. 100">
+        <input id="minLCR" type="text" inputmode="decimal" placeholder="z. B. 100">
         <div class="hint">LCR in % (z. B. 100 = Faktor 1,0). Erforderliche HQLA = Nettoabflüsse × (LCR ÷ 100). Leer = 0.</div>
       </div>
       <div>
@@ -119,7 +119,7 @@
       </div>
       <div class="wide">
         <label>Maximaler Anteil illiquider Assetklassen (%)</label>
-        <input id="maxIlliq" type="number" step="any" inputmode="decimal" placeholder="z. B. 100">
+        <input id="maxIlliq" type="text" inputmode="decimal" placeholder="z. B. 100">
         <div class="hint">Anteil in % des Volumens in illiquiden Klassen (z. B. 100 = volle Freigabe). Leer = 100 %.</div>
       </div>
     </div>
@@ -129,7 +129,7 @@
   <div class="card gold">
     <div class="mm"><div class="hd" style="text-align:left">Assetklasse</div><div class="hd">Min</div><div class="hd">Max</div></div>
     <div id="bounds"></div>
-    <div class="hint">Anteilsgrenzen 0–1. Standard: 0 bis 1 (keine Einzelrestriktion).</div>
+    <div class="hint">Anteilsgrenzen als Wert <b>0–1 (kein %)</b>, z. B. 0,2 = 20 %. Leer = 0 bzw. 1 (keine Restriktion).</div>
   </div>
 
   <h2>Parameter unter Vorbehalt</h2>
@@ -137,12 +137,12 @@
     <div class="grid">
       <div>
         <label>Parameter für die Regularisierung ⓘ</label>
-        <input id="regParam" type="number" step="any" value="0.05">
+        <input id="regParam" type="text" inputmode="decimal" value="0,05">
         <div class="hint">Max. Summe der quadr. Abweichungen von der Risk-Parity-Benchmark. <b>Auto-Lockerung:</b> ist beim gewünschten Wert wegen anderer Nebenbedingungen (z. B. RWA) keine Lösung möglich, wird der Parameter automatisch so wenig wie nötig erhöht. Eine Lösung scheitert nur, wenn CVaR und die übrigen Bedingungen unvereinbar sind.</div>
       </div>
       <div>
         <label>CVaR-Tail-Dämpfung</label>
-        <input id="damping" type="number" step="any" value="1">
+        <input id="damping" type="text" inputmode="decimal" value="1">
         <div class="hint">Skaliert den Tail-Multiplikator in der CVaR-Berechnung.</div>
       </div>
     </div>
@@ -396,8 +396,8 @@ const NOLIM = 1e18;             // interner Platzhalter für „ohne Limit"
   for(let i=0;i<N;i++){
     const row=document.createElement('div'); row.className='mm';
     row.innerHTML=`<div class="nm">${NAMES[i]}</div>
-      <input id="min${i}" type="number" step="any" min="0" max="1" inputmode="decimal" placeholder="0">
-      <input id="max${i}" type="number" step="any" min="0" max="1" inputmode="decimal" placeholder="1">`;
+      <input id="min${i}" type="text" inputmode="decimal" placeholder="0">
+      <input id="max${i}" type="text" inputmode="decimal" placeholder="1">`;
     c.appendChild(row);
   }
 })();
