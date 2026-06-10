@@ -87,9 +87,9 @@
   <div class="card gold">
     <div class="grid">
       <div class="wide">
-        <label>Zielwert für Risiko CVaR</label>
-        <input id="cvarTarget" type="number" step="any" value="0.1">
-        <div class="hint">Obergrenze für das CVaR-Risiko der Allokation.</div>
+        <label>Zielwert für Risiko CVaR (%)</label>
+        <input id="cvarTarget" type="number" step="any" value="10">
+        <div class="hint">Obergrenze für das CVaR-Risiko der Allokation, in % (z. B. 10 = 0,10).</div>
       </div>
       <div>
         <label>Portfoliovolumen (€)</label>
@@ -116,9 +116,9 @@
         <input id="maxRWA" type="number" step="any" value="1000000000">
       </div>
       <div class="wide">
-        <label>Maximaler Anteil illiquider Assetklassen</label>
-        <input id="maxIlliq" type="number" step="any" value="1">
-        <div class="hint">Anteil 0–1 des Volumens, der in illiquiden Klassen liegen darf.</div>
+        <label>Maximaler Anteil illiquider Assetklassen (%)</label>
+        <input id="maxIlliq" type="number" step="any" value="100">
+        <div class="hint">Anteil in % des Volumens, der in illiquiden Klassen liegen darf (z. B. 100 = volle Freigabe).</div>
       </div>
     </div>
   </div>
@@ -251,7 +251,7 @@ function regDev(w, bench){ let s=0; for(let i=0;i<N;i++){const d=w[i]-bench[i]; 
 function project(w, lo, hi){
   // projiziere auf { sum=1, lo<=w<=hi } per Bisektion über Offset tau
   let a=-1e3,b=1e3;
-  for(let k=0;k<60;k++){ const t=(a+b)/2; let s=0; for(let i=0;i<N;i++) s+=Math.min(hi[i],Math.max(lo[i],w[i]+t)); if(s>1) b=t; else a=t; }
+  for(let k=0;k<80;k++){ const t=(a+b)/2; let s=0; for(let i=0;i<N;i++) s+=Math.min(hi[i],Math.max(lo[i],w[i]+t)); if(s>1) b=t; else a=t; }
   const t=(a+b)/2, out=[]; for(let i=0;i<N;i++) out[i]=Math.min(hi[i],Math.max(lo[i],w[i]+t)); return out;
 }
 function buildG(P){
@@ -278,26 +278,30 @@ function solveOnce(w0, P, gfun){
     return expReturn(w) - pen/(2*rho);
   };
   const grad=(w,lam,rho)=>{
-    const eps=1e-7, f0=merit(w,lam,rho), g=[];
-    for(let i=0;i<N;i++){ const wp=w.slice(); wp[i]+=eps; g[i]=(merit(wp,lam,rho)-f0)/eps; }
+    // zentrale Differenz (genauer als Vorwärtsdifferenz)
+    const eps=1e-6, g=[];
+    for(let i=0;i<N;i++){
+      const wp=w.slice(); wp[i]+=eps; const wm=w.slice(); wm[i]-=eps;
+      g[i]=(merit(wp,lam,rho)-merit(wm,lam,rho))/(2*eps);
+    }
     return g;
   };
   let w=project(w0.slice(),P.lo,P.hi);
   let lam=new Array(M).fill(0), rho=10.0;
-  for(let o=0;o<30;o++){
-    for(let it=0;it<60;it++){
+  for(let o=0;o<60;o++){
+    for(let it=0;it<150;it++){
       const gr=grad(w,lam,rho); let step=0.5; const base=merit(w,lam,rho); let wn=w;
-      for(let ls=0;ls<25;ls++){
+      for(let ls=0;ls<40;ls++){
         const cand=[]; for(let i=0;i<N;i++) cand[i]=w[i]+step*gr[i];
         const pc=project(cand,P.lo,P.hi);
         if(merit(pc,lam,rho)>=base){ wn=pc; break; }
         step*=0.5;
       }
       let mv=0; for(let i=0;i<N;i++) mv=Math.max(mv,Math.abs(wn[i]-w[i]));
-      w=wn; if(mv<1e-11) break;
+      w=wn; if(mv<1e-12) break;
     }
     const g=gfun(w); let maxv=0; for(let k=0;k<M;k++){ lam[k]=Math.max(0,lam[k]+rho*g[k]); maxv=Math.max(maxv,g[k]); }
-    rho = (maxv<1e-9) ? Math.min(rho*1.5,1e8) : Math.min(rho*3,1e8);
+    rho = (maxv<1e-10) ? Math.min(rho*1.5,1e10) : Math.min(rho*3,1e10);
   }
   return w;
 }
@@ -306,13 +310,13 @@ function optimize(P){
   const starts=[ P.bench.slice(), new Array(N).fill(1/N) ];
   // ein paar deterministische Pseudo-Zufallsstarts für Robustheit
   let seed=12345; const rnd=()=>{ seed=(seed*1103515245+12345)&0x7fffffff; return seed/0x7fffffff; };
-  for(let s=0;s<3;s++){ const v=[]; let su=0; for(let i=0;i<N;i++){v[i]=rnd();su+=v[i];} for(let i=0;i<N;i++) v[i]/=su; starts.push(v); }
+  for(let s=0;s<6;s++){ const v=[]; let su=0; for(let i=0;i<N;i++){v[i]=rnd();su+=v[i];} for(let i=0;i<N;i++) v[i]/=su; starts.push(v); }
   let best=null, bestRet=-1e18;
   for(const st of starts){
     const w=solveOnce(st,P,gfun);
     const g=gfun(w); let maxv=0; for(const x of g) maxv=Math.max(maxv,x);
     const r=expReturn(w);
-    if(maxv<1e-6 && r>bestRet){ best=w; bestRet=r; }
+    if(maxv<1e-8 && r>bestRet){ best=w; bestRet=r; }
   }
   if(!best){ // kein streng zulässiger Punkt: nimm geringste Verletzung
     let bv=1e18;
@@ -343,9 +347,9 @@ function readInputs(){
   const num=id=>{ const v=parseFloat($(id).value.replace(',','.')); return isFinite(v)?v:0; };
   const lo=[],hi=[]; for(let i=0;i<N;i++){ lo[i]=num('min'+i); hi[i]=num('max'+i); }
   const P={
-    cvarTarget:num('cvarTarget'), volume:num('volume'), istLiq:num('istLiq'),
+    cvarTarget:num('cvarTarget')/100, volume:num('volume'), istLiq:num('istLiq'),
     netout:num('netout'), minLCR:num('minLCR'), maxRTF:num('maxRTF'), maxRWA:num('maxRWA'),
-    maxIlliq:num('maxIlliq'), regParam:num('regParam'), damping:num('damping'), lo, hi
+    maxIlliq:num('maxIlliq')/100, regParam:num('regParam'), damping:num('damping'), lo, hi
   };
   P.bench=benchmarkWeights(P.istLiq,P.volume);
   return P;
@@ -358,7 +362,7 @@ function render(P,w){
   // Banner Zulässigkeit
   const gfun=buildG(P); const g=gfun(w); let maxv=0; for(const x of g) maxv=Math.max(maxv,x);
   const sum=w.reduce((a,b)=>a+b,0);
-  const feasible = maxv<1e-4 && Math.abs(sum-1)<1e-5;
+  const feasible = maxv<1e-5 && Math.abs(sum-1)<1e-6;
   const bn=$('banner');
   bn.className='banner '+(feasible?'ok':'bad');
   bn.textContent = feasible
@@ -367,7 +371,7 @@ function render(P,w){
 
   // KPIs
   $('kRet').textContent=fmtPct(ret);
-  $('kCvar').textContent=fmtNum(cv,4);
+  $('kCvar').textContent=fmtPct(cv);
 
   // Gewichte
   const wc=$('weights'); wc.innerHTML='';
@@ -385,14 +389,14 @@ function render(P,w){
   const av2a =av1ab+dot(w,LCR2A)*P.volume;
   const avTot=av2a+dot(w,LCR2B)*P.volume;
   const rows=[
-    ['Risiko CVaR', fmtNum(P.cvarTarget,4), fmtNum(cv,4), cv<=P.cvarTarget+1e-6],
+    ['Risiko CVaR', fmtPct(P.cvarTarget), fmtPct(cv), cv<=P.cvarTarget+1e-6],
     ['Parameter Regularisierung', fmtNum(P.regParam,4), fmtNum(reg,4), reg<=P.regParam+1e-6],
     ['Mindestens 1a und 1b', fmtEur(reqHQLA*LCR_MIN1AB), fmtEur(av1ab), av1ab>=reqHQLA*LCR_MIN1AB-1e-3],
     ['Mindestens 2a', fmtEur(reqHQLA*(1-LCR_MAX2B)), fmtEur(av2a), av2a>=reqHQLA*(1-LCR_MAX2B)-1e-3],
     ['HQLA gesamt', fmtEur(reqHQLA), fmtEur(avTot), avTot>=reqHQLA-1e-3],
     ['RTF-Belastung', fmtEur(P.maxRTF), fmtEur(dot(w,RTF)*P.volume), dot(w,RTF)*P.volume<=P.maxRTF+1e-3],
     ['RWA-Belastung', fmtEur(P.maxRWA), fmtEur(dot(w,RWA)*P.volume), dot(w,RWA)*P.volume<=P.maxRWA+1e-3],
-    ['Illiquidität', fmtNum(P.maxIlliq,4), fmtNum(dot(w,ILLIQ),4), dot(w,ILLIQ)<=P.maxIlliq+1e-6],
+    ['Illiquidität', fmtPct(P.maxIlliq), fmtPct(dot(w,ILLIQ)), dot(w,ILLIQ)<=P.maxIlliq+1e-6],
   ];
   const tb=$('constraints').querySelector('tbody'); tb.innerHTML='';
   for(const [n,soll,ist,ok] of rows){
