@@ -48,8 +48,18 @@ Eigenständige Single-File-HTML-App (kein Build, kein Server).
   LCR-HQLA (1a/1b, 2a, 2b mit 60 %/15 %); Min/Max je Assetklasse.
 - **CVaR-Formel:** `√(wᵀΣw) · ((wᵀ(CVaR-Cutoff+μ)/wᵀσ)·Tail-Dämpfung) − E[r]`.
 - **Benchmark:** inverse Vola, Liquiditätsanteil = Ist-Liquidität/Volumen.
-- **Solver (im Browser):** Augmented Lagrangian + Simplex-Projektion, Multistart,
-  zentrale Differenzen. Reproduziert die Excel-Lösung (E[r]≈4,42 %, CVaR=0,10, reg=0,05).
+- **Solver (im Browser):** Augmented Lagrangian + Simplex-Projektion, zentrale Differenzen,
+  **100 Multistart-Punkte** (asynchron mit Fortschrittsanzeige, harte Zeitobergrenze ~22 s).
+  Reproduziert die Excel-Lösung (E[r]≈4,42 %, CVaR=0,10, reg=0,05).
+- **Auto-Lockerung der Regularisierung:** Ist beim vom Nutzer gesetzten Reg-Parameter wegen
+  anderer Nebenbedingungen (z. B. max. RWA) keine Lösung möglich, wird der Parameter
+  automatisch **so wenig wie nötig** erhöht (geometrisch + Bisektion auf das Minimum). Eine
+  Lösung scheitert nur, wenn CVaR + übrige Bedingungen selbst ohne Reg-Bindung unvereinbar
+  sind (dann feasible=false, ehrliche Meldung). Günstige Proben (`BUD_FAST`) für die Suche,
+  genau EINE teure 100-Start-Lösung (`BUD_STRICT`) am Ende.
+- **NaN-Schutz:** `cvar()` fängt Division durch ~0 ab (große endliche Strafe statt NaN),
+  sonst degenerieren Gewichte (Σ≠1) und der Solver hängt. Bei Solver-Änderungen IMMER
+  mit extremem CVaR-Ziel (z. B. 0,5 %) gegentesten.
 - **Eingabe-Einheiten:** „Zielwert CVaR" und „Maximaler Anteil illiquider Assetklassen"
   werden in **% eingegeben** (intern ÷100). Übrige Min/Max je Klasse sind Anteile 0–1.
 - Modellkonstanten (Mittelwerte, Std-Abw., CVaR-Cutoffs, Korrelationsmatrix, RTF-/RWA-

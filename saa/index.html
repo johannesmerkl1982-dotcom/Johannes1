@@ -63,6 +63,7 @@
   .banner{ padding:12px 14px; border-radius:12px; font-weight:600; margin-bottom:12px; font-size:14px; }
   .banner.ok{ background:rgba(16,185,129,.12); color:#6ee7b7; border:1px solid rgba(16,185,129,.3); }
   .banner.bad{ background:rgba(239,68,68,.12); color:#fca5a5; border:1px solid rgba(239,68,68,.3); }
+  .banner.warn{ background:rgba(245,158,11,.12); color:#fcd34d; border:1px solid rgba(245,158,11,.35); }
   .kpi{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
   .kpi .box{ background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:12px; }
   .kpi .box .v{ font-size:22px; font-weight:800; }
@@ -134,9 +135,9 @@
   <div class="card blk">
     <div class="grid">
       <div>
-        <label>Parameter für die Regularisierung</label>
+        <label>Parameter für die Regularisierung ⓘ</label>
         <input id="regParam" type="number" step="any" value="0.05">
-        <div class="hint">Max. Summe der quadr. Abweichungen von der Risk-Parity-Benchmark.</div>
+        <div class="hint">Max. Summe der quadr. Abweichungen von der Risk-Parity-Benchmark. <b>Auto-Lockerung:</b> ist beim gewünschten Wert wegen anderer Nebenbedingungen (z. B. RWA) keine Lösung möglich, wird der Parameter automatisch so wenig wie nötig erhöht. Eine Lösung scheitert nur, wenn CVaR und die übrigen Bedingungen unvereinbar sind.</div>
       </div>
       <div>
         <label>CVaR-Tail-Dämpfung</label>
@@ -148,6 +149,7 @@
   </div>
 
   <button id="run">Optimieren</button>
+  <div id="progress" class="hint" style="display:none;text-align:center;margin-top:8px">…</div>
 
   <div id="results" class="hidden">
     <div id="banner"></div>
@@ -243,7 +245,9 @@ function cvar(w, damping){
   const pv=Math.sqrt(Math.max(0,quad(w)));
   let num=0; for(let i=0;i<N;i++) num+=w[i]*(Gcut[i]+Bmean[i]);
   const den=dot(w,SD);
-  return pv*((num/den)*damping) - expReturn(w);            // E2
+  if(!(den>1e-12)) return 1e6;          // degenerierte Gewichte -> große, endliche Strafe (kein NaN)
+  const v = pv*((num/den)*damping) - expReturn(w);          // E2
+  return isFinite(v) ? v : 1e6;
 }
 function regDev(w, bench){ let s=0; for(let i=0;i<N;i++){const d=w[i]-bench[i]; s+=d*d;} return s; }
 
@@ -270,7 +274,7 @@ function buildG(P){
     ];
   };
 }
-function solveOnce(w0, P, gfun){
+function solveOnce(w0, P, gfun, B){
   const M=gfun(w0).length;
   const merit=(w,lam,rho)=>{
     const g=gfun(w); let pen=0;
@@ -288,10 +292,10 @@ function solveOnce(w0, P, gfun){
   };
   let w=project(w0.slice(),P.lo,P.hi);
   let lam=new Array(M).fill(0), rho=10.0;
-  for(let o=0;o<60;o++){
-    for(let it=0;it<150;it++){
+  for(let o=0;o<B.outer;o++){
+    for(let it=0;it<B.inner;it++){
       const gr=grad(w,lam,rho); let step=0.5; const base=merit(w,lam,rho); let wn=w;
-      for(let ls=0;ls<40;ls++){
+      for(let ls=0;ls<B.ls;ls++){
         const cand=[]; for(let i=0;i<N;i++) cand[i]=w[i]+step*gr[i];
         const pc=project(cand,P.lo,P.hi);
         if(merit(pc,lam,rho)>=base){ wn=pc; break; }
@@ -305,24 +309,74 @@ function solveOnce(w0, P, gfun){
   }
   return w;
 }
-function optimize(P){
-  const gfun=buildG(P);
+const FEAS_TOL  = 1e-7;          // Toleranz, ab der eine Lösung als zulässig gilt
+const REG_MAX   = 2.0;           // max. mögliche quadr. Abweichung auf dem Simplex (Reg faktisch aus)
+const N_FINAL   = 100;           // Multistart-Punkte für die finale Lösung
+const N_PROBE   = 18;            // günstigere Proben für die Lockerungs-Suche
+const BUD_STRICT= {outer:60, inner:150, ls:40};   // strenges Budget (finale Lösung)
+const BUD_FAST  = {outer:30, inner:70,  ls:25};   // schnelles Budget (Zulässigkeits-Proben)
+const TIME_CAP  = 22000;         // ms: harte Obergrenze gegen pathologisch lange Läufe
+const withReg   = (P,p)=>Object.assign({},P,{regParam:p});
+
+// Ein Multistart-Durchlauf mit gegebenem Regularisierungswert (asynchron, gibt UI frei)
+async function runMulti(P, regParam, nStarts, B, deadline, onTick){
+  const Pr=withReg(P,regParam), gfun=buildG(Pr);
   const starts=[ P.bench.slice(), new Array(N).fill(1/N) ];
-  // ein paar deterministische Pseudo-Zufallsstarts für Robustheit
-  let seed=12345; const rnd=()=>{ seed=(seed*1103515245+12345)&0x7fffffff; return seed/0x7fffffff; };
-  for(let s=0;s<6;s++){ const v=[]; let su=0; for(let i=0;i<N;i++){v[i]=rnd();su+=v[i];} for(let i=0;i<N;i++) v[i]/=su; starts.push(v); }
-  let best=null, bestRet=-1e18;
-  for(const st of starts){
-    const w=solveOnce(st,P,gfun);
-    const g=gfun(w); let maxv=0; for(const x of g) maxv=Math.max(maxv,x);
+  let seed=987654321; const rnd=()=>{ seed=(seed*1103515245+12345)&0x7fffffff; return seed/0x7fffffff; };
+  while(starts.length<nStarts){ const v=[]; let su=0; for(let i=0;i<N;i++){v[i]=rnd();su+=v[i];} for(let i=0;i<N;i++) v[i]/=su; starts.push(v); }
+  let best=null,bestRet=-1e18,bestAny=null,bestViol=1e18;
+  for(let s=0;s<starts.length;s++){
+    const w=solveOnce(starts[s],Pr,gfun,B);
+    let sum=0; for(let i=0;i<N;i++) sum+=w[i];
+    const g=gfun(w); let mv=0; for(const x of g) mv=Math.max(mv,x);
+    const ok = mv<FEAS_TOL && Math.abs(sum-1)<1e-6;   // inkl. Summe=1 (Sicherheitsnetz)
     const r=expReturn(w);
-    if(maxv<1e-8 && r>bestRet){ best=w; bestRet=r; }
+    if(mv<bestViol){ bestViol=mv; bestAny=w; }
+    if(ok && r>bestRet){ best=w; bestRet=r; }
+    if(onTick && (s%3===0)){ onTick(s+1,starts.length); await new Promise(res=>setTimeout(res,0)); }
+    if(deadline && Date.now()>deadline && s>=1) break;   // Zeitlimit (mind. strukturierte Starts)
   }
-  if(!best){ // kein streng zulässiger Punkt: nimm geringste Verletzung
-    let bv=1e18;
-    for(const st of starts){ const w=solveOnce(st,P,gfun); const g=gfun(w); let mv=0; for(const x of g) mv=Math.max(mv,x); if(mv<bv){bv=mv;best=w;} }
+  const w=best||bestAny, g2=gfun(w); let mv2=0; for(const x of g2) mv2=Math.max(mv2,x);
+  return { w, maxviol:mv2, feasible:(best!==null), ret:expReturn(w) };
+}
+
+// Orchestrator: 100-Start-Optimierung; lockert die Regularisierung nur so weit wie nötig,
+// falls beim Nutzer-Parameter wegen anderer Nebenbedingungen keine Lösung existiert.
+// Günstige Proben für die Lockerungs-Suche, genau EINE teure 100-Start-Lösung am Ende.
+async function optimize(P, onProgress){
+  const prog=(l,d,t)=>{ if(onProgress) onProgress(l,d,t); };
+  const deadline=Date.now()+TIME_CAP;
+
+  // Phase A — Zulässigkeit beim vom Nutzer gesetzten Parameter schnell prüfen
+  let probe=await runMulti(P, P.regParam, N_PROBE+6, BUD_FAST, deadline, (d,t)=>prog('Prüfe Lösbarkeit',d,t));
+  let usedReg=P.regParam, relaxed=false;
+
+  if(!probe.feasible){
+    // Phase B — Regularisierung schrittweise lockern (verdoppeln), bis zulässig (günstige Proben)
+    let pInf=P.regParam, pFeas=null, p=P.regParam;
+    for(let k=0;k<8 && p<REG_MAX;k++){
+      p=Math.min(p*2,REG_MAX);
+      const r=await runMulti(P, p, N_PROBE, BUD_FAST, deadline, (d,t)=>prog('Lockere Regularisierung',d,t));
+      if(r.feasible){ pFeas=p; break; } else pInf=p;
+    }
+    if(pFeas===null){
+      // Letzte, gründliche Prüfung ohne Reg-Bindung: bleibt es unlösbar, sind CVaR + übrige Bedingungen unvereinbar
+      const r=await runMulti(P, REG_MAX, N_FINAL, BUD_STRICT, deadline, (d,t)=>prog('Prüfe Lösbarkeit',d,t));
+      if(!r.feasible) return { w:r.w, usedReg:REG_MAX, relaxed:true, feasible:false };
+      pFeas=REG_MAX;
+    }
+    // Bisektion für die minimal nötige Lockerung (Parameter so bindend wie möglich halten)
+    for(let it=0;it<10;it++){
+      const pm=(pInf+pFeas)/2;
+      const r=await runMulti(P, pm, N_PROBE, BUD_FAST, deadline, (d,t)=>prog('Verfeinere Regularisierung',d,t));
+      if(r.feasible) pFeas=pm; else pInf=pm;
+    }
+    usedReg=pFeas; relaxed=(pFeas>P.regParam*(1+1e-9));
   }
-  return best;
+
+  // Phase C — finale, hochwertige 100-Start-Lösung beim final gewählten Parameter
+  const res=await runMulti(P, usedReg, N_FINAL, BUD_STRICT, deadline, (d,t)=>prog(relaxed?'Optimiere (final)':'Optimiere',d,t));
+  return { w:res.w, usedReg, relaxed, feasible:res.feasible };
 }
 
 /* ===================== UI ===================== */
@@ -355,19 +409,25 @@ function readInputs(){
   return P;
 }
 
-function render(P,w){
+function render(P,res){
+  const w=res.w;
   const ret=expReturn(w), cv=cvar(w,P.damping), reg=regDev(w,P.bench);
+  const usedReg=res.usedReg, relaxed=res.relaxed;
   $('results').classList.remove('hidden');
 
-  // Banner Zulässigkeit
-  const gfun=buildG(P); const g=gfun(w); let maxv=0; for(const x of g) maxv=Math.max(maxv,x);
-  const sum=w.reduce((a,b)=>a+b,0);
-  const feasible = maxv<1e-5 && Math.abs(sum-1)<1e-6;
+  // Banner Zulässigkeit / Lockerung
   const bn=$('banner');
-  bn.className='banner '+(feasible?'ok':'bad');
-  bn.textContent = feasible
-    ? '✓ Zulässige optimale Allokation gefunden (alle Nebenbedingungen erfüllt).'
-    : '⚠ Keine vollständig zulässige Lösung — bitte Eingaben/Grenzen prüfen.';
+  if(!res.feasible){
+    bn.className='banner bad';
+    bn.textContent='⚠ Keine zulässige Lösung — selbst ohne Regularisierungs-Bindung lassen sich CVaR und die übrigen Nebenbedingungen nicht in Einklang bringen. Bitte CVaR-Ziel oder andere Grenzen prüfen.';
+  } else if(relaxed){
+    bn.className='banner warn';
+    bn.innerHTML='⚠ Regularisierung automatisch gelockert: von <b>'+fmtNum(P.regParam,4)+'</b> auf <b>'+fmtNum(usedReg,4)+'</b>. '
+      +'Beim gewünschten Wert war wegen anderer Nebenbedingungen keine Lösung möglich; der Parameter wurde so wenig wie nötig erhöht.';
+  } else {
+    bn.className='banner ok';
+    bn.textContent='✓ Zulässige optimale Allokation gefunden — alle Nebenbedingungen erfüllt, Regularisierung beim gewünschten Wert bindend.';
+  }
 
   // KPIs
   $('kRet').textContent=fmtPct(ret);
@@ -390,7 +450,7 @@ function render(P,w){
   const avTot=av2a+dot(w,LCR2B)*P.volume;
   const rows=[
     ['Risiko CVaR', fmtPct(P.cvarTarget), fmtPct(cv), cv<=P.cvarTarget+1e-6],
-    ['Parameter Regularisierung', fmtNum(P.regParam,4), fmtNum(reg,4), reg<=P.regParam+1e-6],
+    ['Parameter Regularisierung'+(relaxed?' (gelockert)':''), fmtNum(usedReg,4)+(relaxed?' ◂ '+fmtNum(P.regParam,4):''), fmtNum(reg,4), reg<=usedReg+1e-6],
     ['Mindestens 1a und 1b', fmtEur(reqHQLA*LCR_MIN1AB), fmtEur(av1ab), av1ab>=reqHQLA*LCR_MIN1AB-1e-3],
     ['Mindestens 2a', fmtEur(reqHQLA*(1-LCR_MAX2B)), fmtEur(av2a), av2a>=reqHQLA*(1-LCR_MAX2B)-1e-3],
     ['HQLA gesamt', fmtEur(reqHQLA), fmtEur(avTot), avTot>=reqHQLA-1e-3],
@@ -420,17 +480,18 @@ function render(P,w){
   }
 }
 
-$('run').addEventListener('click',()=>{
+$('run').addEventListener('click',async ()=>{
   const btn=$('run'); btn.disabled=true; btn.textContent='Optimiere …';
-  setTimeout(()=>{
-    try{
-      const P=readInputs();
-      const w=optimize(P);
-      render(P,w);
-      $('results').scrollIntoView({behavior:'smooth',block:'start'});
-    }catch(e){ alert('Fehler bei der Optimierung: '+e.message); }
-    finally{ btn.disabled=false; btn.textContent='Optimieren'; }
-  },30);
+  const pr=$('progress'); pr.style.display='block';
+  const onProgress=(label,d,t)=>{ pr.textContent=label+' … '+d+' / '+t+' Startpunkte'; };
+  try{
+    const P=readInputs();
+    await new Promise(r=>setTimeout(r,30));      // UI-Update vor dem Rechnen
+    const res=await optimize(P,onProgress);
+    render(P,res);
+    $('results').scrollIntoView({behavior:'smooth',block:'start'});
+  }catch(e){ alert('Fehler bei der Optimierung: '+e.message); }
+  finally{ btn.disabled=false; btn.textContent='Optimieren'; pr.style.display='none'; }
 });
 </script>
 </body>
