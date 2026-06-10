@@ -89,46 +89,47 @@
     <div class="grid">
       <div class="wide">
         <label>Zielwert für Risiko CVaR (%)</label>
-        <input id="cvarTarget" type="number" step="any" value="10">
-        <div class="hint">Obergrenze für das CVaR-Risiko der Allokation, in % (z. B. 10 = 0,10).</div>
+        <input id="cvarTarget" type="text" inputmode="decimal" placeholder="z. B. 10">
+        <div class="hint">Obergrenze für das CVaR-Risiko, in % (z. B. 10 = 0,10). Leer = keine CVaR-Grenze.</div>
       </div>
       <div>
         <label>Portfoliovolumen (€)</label>
-        <input id="volume" type="number" step="any" value="100000000">
+        <input id="volume" type="text" inputmode="numeric" class="eur" placeholder="z. B. 100.000.000">
       </div>
       <div>
         <label>Ist-Liquidität DZ&nbsp;Bank&nbsp;+&nbsp;Buba (€)</label>
-        <input id="istLiq" type="number" step="any" value="10000000">
+        <input id="istLiq" type="text" inputmode="numeric" class="eur" placeholder="z. B. 10.000.000">
       </div>
       <div>
         <label>Nettoabflüsse LCR (€)</label>
-        <input id="netout" type="number" step="any" value="0">
+        <input id="netout" type="text" inputmode="numeric" class="eur" placeholder="z. B. 0">
       </div>
       <div>
-        <label>Gewünschte Mindest-LCR</label>
-        <input id="minLCR" type="number" step="any" value="0">
+        <label>Gewünschte Mindest-LCR (%)</label>
+        <input id="minLCR" type="text" inputmode="decimal" placeholder="z. B. 100">
+        <div class="hint">LCR in % (z. B. 100 = Faktor 1,0). Erforderliche HQLA = Nettoabflüsse × (LCR ÷ 100). Leer = 0.</div>
       </div>
       <div>
         <label>Maximale RTF-Belastung (€)</label>
-        <input id="maxRTF" type="number" step="any" value="1000000000">
+        <input id="maxRTF" type="text" inputmode="numeric" class="eur" placeholder="leer = ohne Limit">
       </div>
       <div>
         <label>Maximale RWA-Belastung (€)</label>
-        <input id="maxRWA" type="number" step="any" value="1000000000">
+        <input id="maxRWA" type="text" inputmode="numeric" class="eur" placeholder="leer = ohne Limit">
       </div>
       <div class="wide">
         <label>Maximaler Anteil illiquider Assetklassen (%)</label>
-        <input id="maxIlliq" type="number" step="any" value="100">
-        <div class="hint">Anteil in % des Volumens, der in illiquiden Klassen liegen darf (z. B. 100 = volle Freigabe).</div>
+        <input id="maxIlliq" type="text" inputmode="decimal" placeholder="z. B. 100">
+        <div class="hint">Anteil in % des Volumens in illiquiden Klassen (z. B. 100 = volle Freigabe). Leer = 100 %.</div>
       </div>
     </div>
   </div>
 
   <h2>Grenzen je Assetklasse (Min / Max)</h2>
   <div class="card gold">
-    <div class="mm"><div class="hd" style="text-align:left">Assetklasse</div><div class="hd">Min</div><div class="hd">Max</div></div>
+    <div class="mm"><div class="hd" style="text-align:left">Assetklasse</div><div class="hd">Min&nbsp;%</div><div class="hd">Max&nbsp;%</div></div>
     <div id="bounds"></div>
-    <div class="hint">Anteilsgrenzen 0–1. Standard: 0 bis 1 (keine Einzelrestriktion).</div>
+    <div class="hint">Anteilsgrenzen <b>in %</b> (z. B. 20 = 20 %). Leer = 0 % bzw. 100 % (keine Restriktion).</div>
   </div>
 
   <h2>Parameter unter Vorbehalt</h2>
@@ -136,12 +137,12 @@
     <div class="grid">
       <div>
         <label>Parameter für die Regularisierung ⓘ</label>
-        <input id="regParam" type="number" step="any" value="0.05">
+        <input id="regParam" type="text" inputmode="decimal" value="0,05">
         <div class="hint">Max. Summe der quadr. Abweichungen von der Risk-Parity-Benchmark. <b>Auto-Lockerung:</b> ist beim gewünschten Wert wegen anderer Nebenbedingungen (z. B. RWA) keine Lösung möglich, wird der Parameter automatisch so wenig wie nötig erhöht. Eine Lösung scheitert nur, wenn CVaR und die übrigen Bedingungen unvereinbar sind.</div>
       </div>
       <div>
         <label>CVaR-Tail-Dämpfung</label>
-        <input id="damping" type="number" step="any" value="1">
+        <input id="damping" type="text" inputmode="decimal" value="1">
         <div class="hint">Skaliert den Tail-Multiplikator in der CVaR-Berechnung.</div>
       </div>
     </div>
@@ -384,6 +385,10 @@ const $=id=>document.getElementById(id);
 const fmtPct=x=>(x*100).toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' %';
 const fmtEur=x=>x.toLocaleString('de-DE',{maximumFractionDigits:0})+' €';
 const fmtNum=(x,d=4)=>x.toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d});
+const fmtEurL=x=>x>=1e17?'ohne Limit':fmtEur(x);
+const fmtPctL=x=>x>=1e15?'ohne Limit':fmtPct(x);
+
+const NOLIM = 1e18;             // interner Platzhalter für „ohne Limit"
 
 // Min/Max-Felder aufbauen
 (function buildBounds(){
@@ -391,19 +396,43 @@ const fmtNum=(x,d=4)=>x.toLocaleString('de-DE',{minimumFractionDigits:d,maximumF
   for(let i=0;i<N;i++){
     const row=document.createElement('div'); row.className='mm';
     row.innerHTML=`<div class="nm">${NAMES[i]}</div>
-      <input id="min${i}" type="number" step="any" min="0" max="1" value="0">
-      <input id="max${i}" type="number" step="any" min="0" max="1" value="1">`;
+      <input id="min${i}" type="text" inputmode="decimal" placeholder="0">
+      <input id="max${i}" type="text" inputmode="decimal" placeholder="100">`;
     c.appendChild(row);
   }
 })();
 
+// Tausenderpunkte für EUR-Felder live formatieren (nur Ganzzahlen)
+function attachThousands(el){
+  el.addEventListener('input',()=>{
+    const d=el.value.replace(/\D/g,'');
+    el.value = d==='' ? '' : Number(d).toLocaleString('de-DE');
+  });
+}
+['volume','istLiq','netout','maxRTF','maxRWA'].forEach(id=>attachThousands($(id)));
+
 function readInputs(){
-  const num=id=>{ const v=parseFloat($(id).value.replace(',','.')); return isFinite(v)?v:0; };
-  const lo=[],hi=[]; for(let i=0;i<N;i++){ lo[i]=num('min'+i); hi[i]=num('max'+i); }
+  const raw  = id => $(id).value.trim();
+  const pnum = id => parseFloat(raw(id).replace(',','.'));                       // % / einfache Zahl
+  const peur = id => parseFloat(raw(id).replace(/[.\s]/g,'').replace(',','.'));  // EUR (Tausenderpunkte raus)
+  const dflt = (id,fn,e) => raw(id)===''||!isFinite(fn(id)) ? e : fn(id);        // leer/ungültig -> Fallback
+
+  const lo=[],hi=[];   // Min/Max je Klasse in % -> Anteil 0–1 (leer = 0 % bzw. 100 %)
+  for(let i=0;i<N;i++){ lo[i]=dflt('min'+i,pnum,0)/100; hi[i]=dflt('max'+i,pnum,100)/100; }
+
   const P={
-    cvarTarget:num('cvarTarget')/100, volume:num('volume'), istLiq:num('istLiq'),
-    netout:num('netout'), minLCR:num('minLCR'), maxRTF:num('maxRTF'), maxRWA:num('maxRWA'),
-    maxIlliq:num('maxIlliq')/100, regParam:num('regParam'), damping:num('damping'), lo, hi
+    // leer = neutral: CVaR/RTF/RWA ohne Limit, Illiquidität 100 %, LCR/Abflüsse 0
+    cvarTarget: raw('cvarTarget')===''||!isFinite(pnum('cvarTarget')) ? NOLIM : pnum('cvarTarget')/100,
+    volume:  dflt('volume',peur,0),
+    istLiq:  dflt('istLiq',peur,0),
+    netout:  dflt('netout',peur,0),
+    minLCR:  dflt('minLCR',pnum,0)/100,           // LCR in % -> Verhältnis (Excel: B5). 100 -> 1,0
+    maxRTF:  dflt('maxRTF',peur,NOLIM),
+    maxRWA:  dflt('maxRWA',peur,NOLIM),
+    maxIlliq:dflt('maxIlliq',pnum,100)/100,       // % -> Anteil; leer = 100 %
+    regParam:dflt('regParam',pnum,0.05),
+    damping: dflt('damping',pnum,1),
+    lo, hi
   };
   P.bench=benchmarkWeights(P.istLiq,P.volume);
   return P;
@@ -449,13 +478,13 @@ function render(P,res){
   const av2a =av1ab+dot(w,LCR2A)*P.volume;
   const avTot=av2a+dot(w,LCR2B)*P.volume;
   const rows=[
-    ['Risiko CVaR', fmtPct(P.cvarTarget), fmtPct(cv), cv<=P.cvarTarget+1e-6],
+    ['Risiko CVaR', fmtPctL(P.cvarTarget), fmtPct(cv), cv<=P.cvarTarget+1e-6],
     ['Parameter Regularisierung'+(relaxed?' (gelockert)':''), fmtNum(usedReg,4)+(relaxed?' ◂ '+fmtNum(P.regParam,4):''), fmtNum(reg,4), reg<=usedReg+1e-6],
     ['Mindestens 1a und 1b', fmtEur(reqHQLA*LCR_MIN1AB), fmtEur(av1ab), av1ab>=reqHQLA*LCR_MIN1AB-1e-3],
     ['Mindestens 2a', fmtEur(reqHQLA*(1-LCR_MAX2B)), fmtEur(av2a), av2a>=reqHQLA*(1-LCR_MAX2B)-1e-3],
     ['HQLA gesamt', fmtEur(reqHQLA), fmtEur(avTot), avTot>=reqHQLA-1e-3],
-    ['RTF-Belastung', fmtEur(P.maxRTF), fmtEur(dot(w,RTF)*P.volume), dot(w,RTF)*P.volume<=P.maxRTF+1e-3],
-    ['RWA-Belastung', fmtEur(P.maxRWA), fmtEur(dot(w,RWA)*P.volume), dot(w,RWA)*P.volume<=P.maxRWA+1e-3],
+    ['RTF-Belastung', fmtEurL(P.maxRTF), fmtEur(dot(w,RTF)*P.volume), dot(w,RTF)*P.volume<=P.maxRTF+1e-3],
+    ['RWA-Belastung', fmtEurL(P.maxRWA), fmtEur(dot(w,RWA)*P.volume), dot(w,RWA)*P.volume<=P.maxRWA+1e-3],
     ['Illiquidität', fmtPct(P.maxIlliq), fmtPct(dot(w,ILLIQ)), dot(w,ILLIQ)<=P.maxIlliq+1e-6],
   ];
   const tb=$('constraints').querySelector('tbody'); tb.innerHTML='';
@@ -486,6 +515,7 @@ $('run').addEventListener('click',async ()=>{
   const onProgress=(label,d,t)=>{ pr.textContent=label+' … '+d+' / '+t+' Startpunkte'; };
   try{
     const P=readInputs();
+    if(!(P.volume>0)){ alert('Bitte ein Portfoliovolumen (> 0 €) eingeben.'); return; }
     await new Promise(r=>setTimeout(r,30));      // UI-Update vor dem Rechnen
     const res=await optimize(P,onProgress);
     render(P,res);
