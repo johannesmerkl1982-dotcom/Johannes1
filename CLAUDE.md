@@ -12,6 +12,14 @@ Baseline-Commit). Jede App liegt in einem eigenen Unterordner = eigene URL:
 | JoMe – Fonds & ETF | `jome/` | `https://johannesmerkl1982-dotcom.github.io/Johannes1/jome/` |
 | SAA-Optimierungsmodell | `saa/` | `https://johannesmerkl1982-dotcom.github.io/Johannes1/saa/` |
 
+Außerdem gibt es eine **App 3 (kein Web-Hosting, sondern ein Skill)**:
+**Fonds-Analyse-PowerPoint** – erzeugt über den Morningstar-MCP-Konnektor zu einem
+beliebigen Stichtag eine fertige `.pptx` (Gliederung nach Anlageklassen + Vergleich +
+Kompaktprofile). Aufruf über das Skill `/fonds-deck`. Dateien: `make_fund_deck.py`,
+`build_deck_dataset.py`, `parse_tool_result3.py`, `parse_portfolio3.py`,
+`data/raw3/` (Universe + Rohdaten), `data/funds3.json` (Snapshot). Details siehe
+`.claude/skills/fonds-deck/SKILL.md`. App 1/App 2 werden dabei NICHT angefasst.
+
 ### So macht man eine App live (bewährter Ablauf)
 1. Quellcode auf dem Arbeits-/Feature-Branch bearbeiten und committen.
 2. Auf den Live-Branch wechseln und **nur** den betroffenen App-Ordner übernehmen
