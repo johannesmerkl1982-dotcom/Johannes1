@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CFS &amp; Longevity – Supplement-Protokoll 2.0</title>
+  <style>
+    :root {
+      --green-deep:#1b4332;--green-mid:#2d6a4f;--green-light:#52b788;
+      --bg:#eef2ee;--card:#ffffff;--text:#1a1a1a;--muted:#5a6a5e;
+      --border:#dce8de;--shadow:0 2px 10px rgba(0,0,0,.06);
+      --shadow-h:0 6px 24px rgba(0,0,0,.12);--r:14px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+         background:var(--bg);color:var(--text);line-height:1.6}
+    header{background:linear-gradient(140deg,var(--green-deep) 0%,var(--green-mid) 100%);
+           color:#fff;padding:2.5rem 1.5rem 2rem;text-align:center}
+    header h1{font-size:1.9rem;font-weight:700;letter-spacing:-.5px;margin-bottom:.5rem}
+    header p{opacity:.82;font-size:.95rem;max-width:700px;margin:0 auto}
+    .v2-badge{display:inline-block;background:rgba(255,255,255,.2);border-radius:50px;
+              padding:.2rem .9rem;font-size:.75rem;font-weight:700;margin-bottom:.75rem;letter-spacing:.5px}
+    .stats{background:var(--green-deep);display:flex;justify-content:center;
+           gap:2rem;padding:.65rem 1.5rem;flex-wrap:wrap}
+    .stat{color:rgba(255,255,255,.85);font-size:.82rem;display:flex;align-items:center;gap:.35rem}
+    .stat strong{color:#95d5b2;font-size:1.05rem}
+    .quality-bar{background:#f0f7f2;border-bottom:1px solid var(--border);
+                 padding:.55rem 1.5rem;text-align:center;font-size:.78rem;color:var(--muted)}
+    .quality-bar span{font-weight:600;color:var(--green-mid)}
+    .controls{max-width:1220px;margin:1.5rem auto 0;padding:0 1.25rem}
+    .filter-label{font-size:.75rem;font-weight:700;text-transform:uppercase;
+                  letter-spacing:.8px;color:var(--muted);margin-bottom:.45rem}
+    .filter-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.9rem}
+    .fbtn{padding:.35rem .95rem;border-radius:50px;border:2px solid var(--border);
+          background:#fff;cursor:pointer;font-size:.82rem;color:var(--muted);
+          transition:all .18s;font-weight:500;white-space:nowrap}
+    .fbtn:hover{border-color:var(--green-light);color:var(--green-deep)}
+    .fbtn.on{background:var(--green-mid);border-color:var(--green-mid);color:#fff}
+    .fbtn.on-p{background:var(--green-deep);border-color:var(--green-deep);color:#fff}
+    .fbtn.on-r{background:#0f766e;border-color:#0f766e;color:#fff}
+    .fbtn.on-t{background:#7c3aed;border-color:#7c3aed;color:#fff}
+    .results{font-size:.82rem;color:var(--muted);margin-bottom:.5rem}
+    .sched-wrap{max-width:1220px;margin:.25rem auto 1rem;padding:0 1.25rem}
+    details{background:#fff;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+    summary{padding:.75rem 1.1rem;font-size:.85rem;font-weight:600;cursor:pointer;
+            color:var(--green-deep);user-select:none;list-style:none;display:flex;align-items:center;gap:.5rem}
+    summary::before{content:"▶";font-size:.65rem;transition:transform .2s;display:inline-block}
+    details[open] summary::before{transform:rotate(90deg)}
+    .sched-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+                gap:.75rem;padding:1rem 1.1rem}
+    .sched-col h4{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:.45rem}
+    .sched-col.morning h4{color:#d97706}
+    .sched-col.midday h4{color:#059669}
+    .sched-col.evening h4{color:#4338ca}
+    .sched-col.kombi h4{color:#dc2626}
+    .sched-col ul{list-style:none;font-size:.78rem;color:var(--muted)}
+    .sched-col ul li{padding:.15rem 0;border-bottom:1px solid #f3f4f6}
+    .sched-col ul li:last-child{border:none}
+    .grid{max-width:1220px;margin:0 auto;padding:0 1.25rem 3rem;
+          display:grid;grid-template-columns:repeat(auto-fill,minmax(370px,1fr));gap:1.1rem}
+    .card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);
+          padding:1.2rem;transition:box-shadow .2s,transform .2s;
+          border:1px solid var(--border);display:flex;flex-direction:column;gap:.72rem}
+    .card:hover{box-shadow:var(--shadow-h);transform:translateY(-2px)}
+    .card.hidden{display:none}
+    .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem}
+    .card-name{font-size:1.02rem;font-weight:700;color:var(--green-deep);line-height:1.3}
+    .card-sub{font-size:.72rem;color:var(--muted);margin-top:.1rem}
+    .badges{display:flex;flex-direction:column;align-items:flex-end;gap:.22rem;flex-shrink:0}
+    .rbadge{font-size:.68rem;font-weight:700;padding:.18rem .6rem;border-radius:50px;white-space:nowrap}
+    .rb-niedrig{background:#dcfce7;color:#14532d;border:1px solid #86efac}
+    .rb-beachten{background:#fef3c7;color:#78350f;border:1px solid #fcd34d}
+    .rb-vorsicht{background:#fee2e2;color:#7f1d1d;border:1px solid #fca5a5}
+    .pbadge{font-size:.64rem;font-weight:700;padding:.15rem .55rem;border-radius:50px;white-space:nowrap}
+    .pb-basis{background:#fef9c3;color:#713f12;border:1px solid #fde047}
+    .pb-erweitert{background:#ede9fe;color:#4c1d95;border:1px solid #c4b5fd}
+    .pb-speziell{background:#dbeafe;color:#1e3a5f;border:1px solid #93c5fd}
+    .pb-pionier{background:#ffedd5;color:#7c2d12;border:1px solid #fdba74}
+    .tags{display:flex;flex-wrap:wrap;gap:.3rem}
+    .tag{font-size:.67rem;font-weight:700;padding:.12rem .5rem;border-radius:50px;
+         text-transform:uppercase;letter-spacing:.3px}
+    .tag-cfs{background:#ffe4e6;color:#be123c}
+    .tag-longevity{background:#f3e8ff;color:#6b21a8}
+    .tag-muskeln{background:#dbeafe;color:#1d4ed8}
+    .tag-gelenke{background:#d1fae5;color:#065f46}
+    .tag-nerven{background:#fef3c7;color:#92400e}
+    .tag-gehirn{background:#ffedd5;color:#9a3412}
+    .tag-darm{background:#dcfce7;color:#14532d}
+    .tag-immunsystem{background:#e0f2fe;color:#075985}
+    .trad-tag{font-size:.65rem;font-weight:700;padding:.1rem .48rem;border-radius:50px;border:1px solid;display:inline-block}
+    .trad-tcm{background:#f0fdf4;color:#15803d;border-color:#86efac}
+    .trad-ayurveda{background:#fff7ed;color:#c2410c;border-color:#fdba74}
+    .trad-islamisch{background:#faf5ff;color:#7e22ce;border-color:#d8b4fe}
+    .trad-unterbelichtet{background:#eff6ff;color:#1d4ed8;border-color:#93c5fd}
+    .evi-row{display:flex;align-items:flex-start;gap:.6rem;flex-wrap:wrap}
+    .stars{color:#f59e0b;font-size:.95rem;letter-spacing:1px;flex-shrink:0}
+    .evi-label{font-size:.73rem;color:var(--muted);flex-shrink:0}
+    .evi-ctx{font-size:.71rem;color:#6b7280;font-style:italic}
+    .desc{font-size:.83rem;color:var(--muted);line-height:1.55}
+    .warn-box{border-radius:8px;padding:.55rem .75rem;font-size:.79rem;line-height:1.5}
+    .warn-beachten{background:#fffbeb;border:1px solid #fcd34d;color:#78350f}
+    .warn-vorsicht{background:#fef2f2;border:1.5px solid #fca5a5;color:#7f1d1d}
+    .warn-box strong{display:block;font-size:.8rem;margin-bottom:.25rem}
+    .warn-box ul{margin-left:1.1rem;margin-top:.2rem}
+    .warn-box ul li{margin-bottom:.1rem}
+    .dg{display:grid;grid-template-columns:72px 1fr;gap:.28rem .5rem;font-size:.8rem}
+    .dk{color:var(--muted);font-weight:600}
+    .dv{color:var(--text)}
+    .prod-head{font-size:.72rem;font-weight:700;text-transform:uppercase;
+               letter-spacing:.5px;color:var(--green-deep);margin-bottom:.4rem}
+    .prod-list{list-style:none;display:flex;flex-direction:column;gap:.3rem}
+    .prod-item{font-size:.79rem;padding:.3rem .6rem;background:#f7faf8;
+               border-radius:8px;border-left:3px solid var(--green-light)}
+    .prod-name{font-weight:600;color:var(--text)}
+    .prod-src{color:var(--muted);font-size:.72rem}
+    .prod-note{color:var(--green-mid);font-size:.71rem;font-style:italic}
+    .note{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;
+          padding:.45rem .7rem;font-size:.78rem;color:#78350f;display:flex;gap:.4rem}
+    .note::before{content:"ℹ";flex-shrink:0}
+    footer{background:var(--green-deep);color:rgba(255,255,255,.65);
+           text-align:center;padding:1.4rem;font-size:.78rem;line-height:1.7}
+    footer strong{color:rgba(255,255,255,.9)}
+    @media(max-width:640px){
+      header h1{font-size:1.45rem}
+      .grid{grid-template-columns:1fr;padding:0 .9rem 2rem}
+      .controls,.sched-wrap{padding:0 .9rem}
+      .stats{gap:1.2rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="v2-badge">Version 2.0 · Sicherheits-Audit · Ayurveda · TCM · Unterbelichtet</div>
+  <h1>CFS &amp; Longevity – Supplement-Protokoll</h1>
+  <p>40 Supplements · Vollständiger Risiko-Audit · Ayurveda, TCM &amp; islamische Medizin ·
+  Pharmaunterdrückt vs. vermarktet · Wahre Evidenz · Deutschland-verfügbar</p>
+</header>
+
+<div class="stats">
+  <div class="stat"><strong id="n-total">40</strong> Supplements</div>
+  <div class="stat"><strong>4</strong> Prioritätsstufen</div>
+  <div class="stat"><strong id="n-niedrig">–</strong> 🟢 Niedriges Risiko</div>
+  <div class="stat"><strong id="n-beachten">–</strong> 🟡 Beachten</div>
+  <div class="stat"><strong id="n-vorsicht">–</strong> 🔴 Vorsicht</div>
+</div>
+
+<div class="quality-bar">
+  Alle empfohlenen Marken: <span>frei von Sucralose, Aspartam, Acesulfam-K, Kunstfarben und unnötigen Füllstoffen</span> ·
+  Thorne · Pure Encapsulations · Sunday Natural · NORSAN · Doctor's Best · Jarrow Formulas · Real Mushrooms
+</div>
+
+<div class="controls">
+  <div class="filter-label">Gesundheitsziel</div>
+  <div class="filter-row" id="goal-row">
+    <button class="fbtn on" data-g="all">Alle</button>
+    <button class="fbtn" data-g="cfs">CFS / Energie</button>
+    <button class="fbtn" data-g="longevity">Longevity</button>
+    <button class="fbtn" data-g="muskeln">Muskel</button>
+    <button class="fbtn" data-g="gelenke">Gelenke &amp; Knorpel</button>
+    <button class="fbtn" data-g="nerven">Nervensystem</button>
+    <button class="fbtn" data-g="gehirn">Gehirn</button>
+    <button class="fbtn" data-g="darm">Darm</button>
+    <button class="fbtn" data-g="immunsystem">Immunsystem</button>
+  </div>
+  <div class="filter-label">Priorität</div>
+  <div class="filter-row" id="prio-row">
+    <button class="fbtn on-p" data-p="all">Alle</button>
+    <button class="fbtn" data-p="basis">⭐ Basis (10)</button>
+    <button class="fbtn" data-p="erweitert">Erweitert (14)</button>
+    <button class="fbtn" data-p="speziell">Speziell (8)</button>
+    <button class="fbtn" data-p="pionier">🔬 Pionier (8)</button>
+  </div>
+  <div class="filter-label">Risikostufe</div>
+  <div class="filter-row" id="risk-row">
+    <button class="fbtn on-r" data-r="all">Alle</button>
+    <button class="fbtn" data-r="niedrig">🟢 Niedriges Risiko</button>
+    <button class="fbtn" data-r="beachten">🟡 Beachten</button>
+    <button class="fbtn" data-r="vorsicht">🔴 Vorsicht</button>
+  </div>
+  <div class="filter-label">Tradition &amp; Herkunft</div>
+  <div class="filter-row" id="trad-row">
+    <button class="fbtn on-t" data-t="all">Alle</button>
+    <button class="fbtn" data-t="tcm">🌿 TCM</button>
+    <button class="fbtn" data-t="ayurveda">🌺 Ayurveda</button>
+    <button class="fbtn" data-t="islamisch">☪ Islamische Medizin</button>
+    <button class="fbtn" data-t="unterbelichtet">⭐ Pharmaunterdrückt</button>
+  </div>
+  <div class="results" id="results"></div>
+</div>
+
+<div class="sched-wrap">
+  <details>
+    <summary>🗓 Tagesplan – Wann nehme ich was? (40 Supplements)</summary>
+    <div class="sched-grid">
+      <div class="sched-col morning">
+        <h4>☀ Morgens (nüchtern / mit Frühstück)</h4>
+        <ul>
+          <li>Rhodiola Rosea (nüchtern, vor Frühstück)</li>
+          <li>Spermidine (nüchtern)</li>
+          <li>NMN / NR</li>
+          <li>Omega-3 (mit Fett!)</li>
+          <li>Vitamin D3 + K2 (mit Fett!)</li>
+          <li>CoQ10 Ubiquinol (mit Fett!)</li>
+          <li>Astaxanthin (mit Fett!)</li>
+          <li>Curcumin BCM-95 (mit Fett!)</li>
+          <li>B-Komplex (aktiviert)</li>
+          <li>Alpha-GPC / CDP-Cholin</li>
+          <li>PQQ</li>
+          <li>Taurin</li>
+          <li>Urolithin A</li>
+          <li>Cordyceps CS-4</li>
+          <li>Schisandra</li>
+        </ul>
+      </div>
+      <div class="sched-col midday">
+        <h4>🌿 Tagsüber (zu Mahlzeiten)</h4>
+        <ul>
+          <li>Creatin (flexibel)</li>
+          <li>Acetyl-L-Carnitin</li>
+          <li>Bacopa Monnieri (mit Mahlzeit)</li>
+          <li>Lion's Mane</li>
+          <li>Berberine (zu jeder Mahlzeit, 2–3×)</li>
+          <li>D-Ribose (mit Mahlzeit)</li>
+          <li>Glucosamin + Chondroitin</li>
+          <li>Boswellia (mit Fett)</li>
+          <li>MSM</li>
+          <li>Shilajit (in warmem Wasser)</li>
+          <li>Nigella Sativa (zu Mahlzeit)</li>
+          <li>Fisetin (mit Fett)</li>
+          <li>Vitamin C + Kollagen-Peptide</li>
+          <li>Selen (zu Mahlzeit)</li>
+        </ul>
+      </div>
+      <div class="sched-col evening">
+        <h4>🌙 Abends (vor dem Schlafen)</h4>
+        <ul>
+          <li>Magnesium Bisglycinat</li>
+          <li>Glycin (3–5 g in Wasser)</li>
+          <li>Zink Bisglycinat (mit kleiner Mahlzeit)</li>
+          <li>Phosphatidylserin</li>
+          <li>L-Theanin</li>
+          <li>Reishi (leicht sedierend)</li>
+          <li>L-Glutamin (nüchtern)</li>
+          <li>Lithium Orotat (zu Abendmahlzeit)</li>
+          <li>Probiotika</li>
+          <li>⚠ Ashwagandha – NUR mit Leberwert-Monitoring</li>
+        </ul>
+      </div>
+      <div class="sched-col kombi">
+        <h4>⚠ Pflicht-Kombis &amp; Warnungen</h4>
+        <ul>
+          <li><strong>Kollagen + Vitamin C</strong> immer zusammen</li>
+          <li><strong>D3 + K2</strong> immer kombiniert</li>
+          <li><strong>PQQ + CoQ10 + NMN</strong> mitochondriales Trio</li>
+          <li><strong>Glycin + NAC</strong> → GlyNAC-Protokoll</li>
+          <li><strong>Zink >15mg</strong> → 1mg Kupfer ergänzen</li>
+          <li><strong>Berberine</strong> bei Diabetesmitteln: Arzt fragen!</li>
+          <li><strong>Ashwagandha</strong> Leberwerte vorab bestimmen!</li>
+          <li><strong>Curcumin</strong> hemmt CYP450 – Medikamente prüfen</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<footer>
+  <strong>Medizinischer Hinweis:</strong> Diese Übersicht dient ausschließlich der persönlichen Information und ersetzt keine ärztliche Beratung.
+  Bei CFS empfiehlt sich die Begleitung durch Arzt oder Heilpraktiker. Basiswerte (Vitamin D, B12, Ferritin, Magnesium, Zink, Selen, ALT/AST/GGT)
+  vor Beginn bestimmen. Risikobewertungen basieren auf wissenschaftlicher Literatur und WHO-Pharmakovigilanz-Daten. · Stand: Juni 2026 · Version 2.0
+</footer>
+
+<script>
+const GL={cfs:'CFS/Energie',longevity:'Longevity',muskeln:'Muskel',gelenke:'Gelenke',
+          nerven:'Nerven',gehirn:'Gehirn',darm:'Darm',immunsystem:'Immunsystem'};
+const TRAD={tcm:'🌿 TCM',ayurveda:'🌺 Ayurveda',islamisch:'☪ Islamisch',unterbelichtet:'⭐ Unterbelichtet'};
+const PRIO_LABEL={basis:'Basis',erweitert:'Erweitert',speziell:'Speziell',pionier:'Pionier'};
+const RISK_LABEL={niedrig:'🟢 Niedrig',beachten:'🟡 Beachten',vorsicht:'🔴 Vorsicht'};
+
+const DATA=[
+/* ═══ BASIS (10) ═══ */
+{name:'Omega-3 (EPA/DHA)',sub:'Essentielle Fettsäuren · Entzündungsmodulation',
+ goals:['cfs','longevity','gehirn','nerven','immunsystem','gelenke'],
+ prio:'basis',evi:3,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'Über 10.000 RCTs und Meta-Analysen. Unabhängig sehr gut belegt. IFOS-Zertifizierung als Reinheitsstandard.',
+ desc:'Das Fundament jedes Protokolls. Entzündungshemmend (COX/LOX-Hemmung), neuroprotektiv, kardioprotektiv. EPA für Entzündung und Stimmung, DHA für Gehirnstruktur. Bei CFS nachweislich niedrigere EPA/DHA-Spiegel.',
+ form:'Triglyzerid-Form (TG) – 70% besser absorbiert als Ethylester (EE)',
+ dose:'2–3 g EPA+DHA täglich',timing:'Mit fettreicher Mahlzeit (fettlöslich)',
+ prods:[{n:'NORSAN Omega-3 Total',s:'norsan.com · Amazon.de',v:'Deutsche Marke, TG-Form, IFOS-zertifiziert – Empfehlung DE'},
+        {n:'Nordic Naturals Ultimate Omega',s:'iHerb · Amazon.de'},
+        {n:'Thorne Super EPA',s:'thorne.com (EU)'}],
+ note:'Qualitätsmerkmal: IFOS-Zertifizierung (PCB, Dioxin-Freiheit). Triglyzerid-Form erkennbar an „TG" oder „Triglyceride" auf der Verpackung.'},
+
+{name:'Vitamin D3 + K2 (MK-7)',sub:'Prohormon + Menaquinon · 200+ Gene reguliert',
+ goals:['immunsystem','longevity','gelenke','muskeln','cfs'],
+ prio:'basis',evi:3,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'Starke unabhängige Evidenz (NIH, Cochrane). Über 200 Gene reguliert. K2 MK-7-Studien aus Japan (Natto-Forschung). NIH-anerkannt.',
+ desc:'D3 wirkt systemisch als Prohormon und reguliert über 200 Gene (Immunmodulation, Muskelkraft, Knochen). K2 MK-7 lenkt Kalzium in Knochen statt in Arterien – essenzielle Kombination, die nie getrennt genommen werden sollte.',
+ form:'D3 (Cholecalciferol) + K2 MK-7 (all-trans, ≥99% Reinheit)',
+ dose:'3000–5000 IU D3 + 100–200 µg K2 MK-7 täglich',timing:'Morgens mit fettreicher Mahlzeit',
+ prods:[{n:'Sunday Natural Vitamin D3+K2',s:'sundaynatural.de',v:'Sauber, ohne Zusätze, in DE hergestellt'},
+        {n:'Thorne Vitamin D/K2 Liquid',s:'thorne.com (EU)'},
+        {n:'Seeking Health D3+K2 Drops',s:'iHerb'}],
+ note:'K2 MK-7 (all-trans) bevorzugen: Halbwertszeit 72 h vs. nur 4 h bei MK-4. Spiegel vorab testen: Zielwert 60–100 ng/ml 25-OH-D3.'},
+
+{name:'Magnesium (Bisglycinat + Malat)',sub:'300+ Enzymreaktionen · ATP · Nerven · CFS',
+ goals:['cfs','nerven','muskeln','gehirn'],
+ prio:'basis',evi:3,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'Jahrzehntelange gut belegte Forschung. Subklinische Defizienz bei ca. 70% der deutschen Bevölkerung. Deutsche Böden veramt. Unabhängige NIH-Studien.',
+ desc:'Cofaktor für über 300 Enzymreaktionen. Subklinische Defizienz betrifft ~70% der Bevölkerung. Zentral für ATP-Produktion, Nervensignalübertragung und Muskelrelaxation. Bei CFS häufig erniedrigt.',
+ form:'Bisglycinat abends (Schlaf/Nerven) + Malat morgens (Energie/CFS)',
+ dose:'300–400 mg elementares Magnesium täglich',timing:'Bisglycinat abends; Malat morgens',
+ prods:[{n:"Doctor's Best High Absorption Magnesium",s:'iHerb · Amazon.de',v:'Bisglycinat, sehr saubere Rezeptur'},
+        {n:'Thorne Magnesium Bisglycinate',s:'thorne.com (EU)'},
+        {n:'Sunday Natural Magnesiummalat',s:'sundaynatural.de'}],
+ note:'Magnesium-L-Threonat (Magtein®) optional für Kognition: passiert Blut-Hirn-Schranke besser. Jarrow MagMind auf iHerb.'},
+
+{name:'Creatin-Monohydrat',sub:'Phosphagen-System · ATP-Puffer · Kognition',
+ goals:['muskeln','gehirn','cfs'],
+ prio:'basis',evi:3,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'Über 500 klinische Studien. Einer der weltweit am besten erforschten Supplements. Creapure® = patentierter Reinheitsstandard aus Deutschland (AlzChem).',
+ desc:'Erhöht intrazelluläre Phosphokreatin-Speicher für schnellere ATP-Regeneration. Belegt für Kraft, Muskelmasse und – oft übersehen – kognitive Funktion und Fatigue-Reduktion bei CFS. Langzeitsicherheit nachgewiesen.',
+ form:'Monohydrat (Creapure®-Standard = deutsche Herstellung, patentiert)',
+ dose:'3–5 g täglich (kein Loading-Protokoll nötig)',timing:'Flexibel, täglich konsistent',
+ prods:[{n:'Bulk Powders Pure Creapure® Creatine',s:'bulkpowders.de',v:'Creapure®-zertifiziert, made in Germany'},
+        {n:'NOW Sports Creatine Monohydrate',s:'iHerb · Amazon.de'},
+        {n:'Thorne Creatine',s:'thorne.com (EU)'}],
+ note:'Gewichtszunahme 0,5–1 kg durch intramuskuläre Wassereinlagerung ist normal. Kognitive Vorteile besonders bei Schlafmangel und veganer Kost belegt.'},
+
+{name:'Vitamin B-Komplex (aktivierte Formen)',sub:'Methylierte B-Vitamine · Mitochondrien-Cofaktoren',
+ goals:['cfs','nerven','gehirn','immunsystem'],
+ prio:'basis',evi:3,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'Gut belegte Cofaktoren (Citratzyklus, β-Oxidation). Aktivierte Formen kaum bekannt, weil kein Patentschutz – aber deutlich besser bioverfügbar.',
+ desc:'Cofaktoren der mitochondrialen Energieproduktion und Myelinsynthese. Aktivierte Formen (Methylcobalamin, 5-MTHF, P5P, Riboflavin-5-Phosphat) sind deutlich besser bioverfügbar als synthetische Standardformen. Bei CFS oft erschöpft.',
+ form:'Vollständig aktiviert: Methylcobalamin, 5-MTHF, P5P (aktives B6), Riboflavin-5-Phosphat',
+ dose:'1 Kapsel täglich',timing:'Morgens mit Frühstück (nicht abends – energetisierend)',
+ prods:[{n:'Thorne B-Complex #12',s:'thorne.com (EU)',v:'Vollständig aktiviertes Profil – Goldstandard'},
+        {n:'Pure Encapsulations B-Complex Plus',s:'Amazon.de · Apotheken DE'},
+        {n:'Seeking Health Optimal B Complex',s:'iHerb'}],
+ note:'Synthetische Folsäure und Cyanocobalamin meiden! Bei CFS sind B1 (Thiamin/TTFD) und B5 (Pantothensäure) oft besonders erschöpft.'},
+
+{name:'Vitamin C (gepuffert)',sub:'Ascorbat · Kollagen-Cofaktor · Antioxidans',
+ goals:['immunsystem','gelenke','longevity','cfs'],
+ prio:'basis',evi:3,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'Sehr gut belegt, NIH-anerkannt. Kollagen-Synthese-Cofaktor unbestritten. Gepufferte Form für höhere Dosen empfohlen.',
+ desc:'Unverzichtbar für Kollagensynthese (Prolyl-Hydroxylase-Cofaktor), Immunmodulation und antioxidativen Schutz. Gepufferte Form schont Magenschleimhaut bei höheren Dosen.',
+ form:'Calciumascorbat oder Natriumascorbat (magenschonend)',
+ dose:'500–1000 mg täglich',timing:'IMMER zusammen mit Kollagen-Peptiden einnehmen',
+ prods:[{n:'Thorne Buffered C Powder',s:'thorne.com (EU)',v:'Calciumascorbat, sehr sauber'},
+        {n:"Doctor's Best Vitamin C-1000",s:'iHerb · Amazon.de'},
+        {n:'Sunday Natural Vitamin C gepuffert',s:'sundaynatural.de'}],
+ note:'Ohne gleichzeitiges Vitamin C ist die Kollagenpeptid-Wirkung deutlich reduziert. Bei Infekten kurzfristig auf 2–3 g täglich steigerbar.'},
+
+{name:'CoQ10 (Ubiquinol)',sub:'Mitochondriales Elektronen-Coenzym · Herzgesundheit',
+ goals:['cfs','longevity','gehirn'],
+ prio:'basis',evi:3,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'Gut belegt für CFS und Herzgesundheit. Statin-induzierte CoQ10-Depletion unbestritten. Ubiquinol-Überlegenheit vs. Ubiquinon gut belegt.',
+ desc:'Herzstück der mitochondrialen Elektronentransportkette (Komplex I–III). Bei CFS nachweislich erniedrigt. Ubiquinol ist die reduzierte, aktive Form mit deutlich höherer Bioverfügbarkeit.',
+ form:'Ubiquinol (ab 35 Jahren bevorzugt – Körper wandelt Ubiquinon nicht mehr effizient um)',
+ dose:'100–200 mg täglich',timing:'Morgens oder mittags mit fettreicher Mahlzeit',
+ prods:[{n:'Jarrow Formulas QH-absorb Ubiquinol',s:'iHerb · Amazon.de'},
+        {n:'Life Extension Super Ubiquinol CoQ10',s:'iHerb'},
+        {n:'Thorne CoQ10 Ubiquinol',s:'thorne.com (EU)'}],
+ note:'Statine erschöpfen CoQ10 erheblich. Synergistisch mit PQQ (Mitochondrien-Biogenese) – Jarrow Formulas bietet beides kombiniert.'},
+
+{name:'Ashwagandha (KSM-66®)',sub:'Adaptogen · HPA-Achse · ⚠ Lebersicherheitsprotokoll',
+ goals:['cfs','nerven','immunsystem','muskeln'],
+ prio:'basis',evi:3,risk:'vorsicht',
+ riskNote:'LEBERSCHÄDEN DOKUMENTIERT: 23+ publizierte Fallberichte (2019–2022, 4 Kontinente). Muster: cholestatische Hepatitis. Pflichtmaßnahmen vor und während der Einnahme erforderlich.',
+ tradition:['ayurveda'],unterbelichtet:false,
+ evidenzKontext:'Ayurveda-Tradition 3000+ Jahre. RCTs für Cortisol und Stressresistenz vorhanden. Sicherheitsdaten alarmierend: WHO-Pharmakovigilanz-Berichte 2019–2022.',
+ desc:'Das adaptogene Mittel mit der größten Zahl hochwertiger RCTs: senkt Cortisol, verbessert Stresstoleranz, Schlafqualität und Ausdauer. Hochrelevant bei HPA-Dysregulation in CFS. ABER: 23+ dokumentierte Leberschäden (2019–2022) haben das Risikoprofil neu definiert.',
+ form:'KSM-66® (Wurzelextrakt, 5% Withanolide) – KEINE hochdosierten Vollspektrum-Extrakte',
+ dose:'300–600 mg KSM-66® täglich (nicht höher dosieren)',timing:'Abends (cortisol-senkend, schlaffördernd)',
+ prods:[{n:'Thorne Ashwagandha (KSM-66®)',s:'thorne.com (EU)',v:'Standardisiert, saubere Rezeptur'},
+        {n:'Jarrow Formulas Ashwagandha KSM-66',s:'iHerb · Amazon.de'},
+        {n:'Sunday Natural Ashwagandha KSM-66',s:'sundaynatural.de'}],
+ note:'Kann TSH leicht erhöhen (bei Hyperthyreose beachten). Cyclisch: max. 3 Monate kontinuierlich, dann 4-Wochen-Pause. Nicht bei vorbestehenden Lebererkrankungen.'},
+
+{name:'Probiotika (Multistamm)',sub:'Darm-Mikrobiom · Darm-Hirn-Achse · Immunmodulation',
+ goals:['darm','immunsystem','gehirn','cfs'],
+ prio:'basis',evi:3,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'70% des Immunsystems im Darm. Darm-Hirn-Achse gut belegt. Stark von Herstellern finanziert – unabhängige Studien bestätigen jedoch grundlegende Wirkungen.',
+ desc:'Die Darm-Hirn-Achse beeinflusst Energie, Neurotransmitter-Produktion (Serotonin: 90% im Darm) und Stimmung direkt. Bei CFS zentraler Ansatzpunkt. Spezifische Stämme mit klinisch belegten Wirkungen bevorzugen.',
+ form:'Multi-Stamm: L. acidophilus, L. rhamnosus GG, B. longum, B. bifidum + S. boulardii',
+ dose:'25–100 Mrd. KBE täglich',timing:'Morgens nüchtern oder abends vor dem Schlafen',
+ prods:[{n:'Jarrow Formulas Jarro-Dophilus Ultra',s:'iHerb · Amazon.de',v:'10 Stämme, 25 Mrd. KBE'},
+        {n:'Garden of Life RAW Probiotics',s:'iHerb · Amazon.de'},
+        {n:'Sunday Natural Probiotika Komplex',s:'sundaynatural.de'}],
+ note:'Im Kühlschrank lagern! S. boulardii bei Antibiotika-Einnahme besonders wertvoll. Mit Präbiotika (Inulin, FOS) für synergistischen Effekt kombinieren.'},
+
+{name:'Zink (Bisglycinat)',sub:'Essentielles Spurenelement · 300+ Enzyme · Immunität',
+ goals:['immunsystem','darm','muskeln'],
+ prio:'basis',evi:3,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'Gut belegt für Immunfunktion, DNA-Reparatur, Testosteron. Deutsche Böden zinkarm. Unabhängige NIH-Studien.',
+ desc:'Cofaktor für über 300 Enzyme. Zentral für Immunfunktion, DNA-Reparatur, Testosteron-Produktion und Integrität der Darmbarriere. In westlichen Ernährungsweisen häufig suboptimal.',
+ form:'Zink-Bisglycinat oder -Picolinat (kein Zink-Oxid – schlechteste Bioverfügbarkeit)',
+ dose:'15–25 mg täglich',timing:'Abends, mit kleiner Mahlzeit (nüchtern → Übelkeit)',
+ prods:[{n:'Thorne Zinc Bisglycinate',s:'thorne.com (EU)'},
+        {n:'Pure Encapsulations Zinc Picolinat',s:'Amazon.de · Apotheken DE'},
+        {n:'NOW Zinc Bisglycinate',s:'iHerb · Amazon.de'}],
+ note:'Bei Einnahme über 15 mg täglich: 1 mg Kupfer (Bisglycinat) ergänzen, da Zink die Kupferabsorption hemmt. Doctor\'s Best Copper Bisglycinate empfohlen.'},
+
+/* ═══ ERWEITERT (14) ═══ */
+{name:'Acetyl-L-Carnitin (ALCAR)',sub:'Mitochondrialer Fettsäure-Transporter · Neuroprotektiv',
+ goals:['cfs','gehirn','nerven'],
+ prio:'erweitert',evi:3,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'Gut belegt für CFS und Kognition. Unabhängige Studien (Ames-Protokoll, Berkeley). Acetyl-Gruppe ermöglicht Blut-Hirn-Schranken-Passage.',
+ desc:'Transportiert langkettige Fettsäuren in die Mitochondrien-Matrix zur Energiegewinnung. Durch die Acetyl-Gruppe zusätzlich neuroprotektiv und unterstützt Acetylcholin-Synthese. Element des Anti-Aging-Trios (Ames).',
+ form:'Acetyl-L-Carnitin (ALCAR) – nicht L-Carnitin pur (kein Blut-Hirn-Schranken-Durchtritt)',
+ dose:'500–1000 mg täglich',timing:'Morgens nüchtern oder zum Frühstück',
+ prods:[{n:'NOW Acetyl-L-Carnitine',s:'iHerb · Amazon.de'},
+        {n:'Jarrow Formulas Acetyl L-Carnitine',s:'iHerb · Amazon.de'},
+        {n:'Life Extension Acetyl-L-Carnitine',s:'iHerb'}],
+ note:'Synergistisch mit R-ALA (200 mg) und CoQ10 – klassisches Anti-Aging-Trio (Ames-Protokoll). Alle drei zusammen für maximale mitochondriale Unterstützung.'},
+
+{name:'NMN / NR (NAD⁺-Vorläufer)',sub:'Nicotinamidmononukleotid / -ribosid · Sirtuin-Aktivierung',
+ goals:['longevity','cfs','gehirn'],
+ prio:'erweitert',evi:2,risk:'beachten',
+ riskNote:'Langzeitdaten beim Menschen fehlen. Hypothetischer Einwand: NAD+-Erhöhung könnte bestehende Tumorprozesse beschleunigen (kontrovers, bei gesunden Personen kein erhöhtes Risiko nachgewiesen). Industrie-Interessenkonflikt bei Studien beachten.',
+ tradition:[],unterbelichtet:false,
+ evidenzKontext:'David Sinclair Lab (Harvard). ChromaDex finanziert NR-Studien (Interessenkonflikt). Wachsende unabhängige Datenlage – Langzeitsicherheit beim Menschen noch offen.',
+ desc:'NAD⁺ sinkt mit dem Alter dramatisch. NR und NMN sind direkte Vorläufer. NR: mehr veröffentlichte Humanstudien (ChromaDex-finanziert – Interessenkonflikt). NMN: möglicherweise höhere zelluläre Aufnahme. Evidenz wächst stetig; Risikoprofil bei Gesunden günstig.',
+ form:'NR (NiaCel® = klinisch validierte Form) oder stabilisiertes NMN',
+ dose:'NR: 300–500 mg · NMN: 250–500 mg täglich',timing:'Morgens (aktivierend, nicht abends)',
+ prods:[{n:'Tru Niagen (ChromaDex NR)',s:'iHerb · Amazon.de',v:'Meiste publizierte Humandaten für NR'},
+        {n:'Thorne NiaCel 400',s:'thorne.com (EU)',v:'Reinste NR-Formulierung'},
+        {n:'ProHealth Longevity NMN Pro',s:'iHerb'}],
+ note:'Resveratrol (250 mg) als optionale Synergie: aktiviert Sirtuine (Sinclair-Protokoll). Keine Langzeitdaten über 5+ Jahre vorhanden.'},
+
+{name:'D-Ribose',sub:'ATP-Synthesepräkursor (Pentose) · CFS-Kernprotokoll',
+ goals:['cfs'],
+ prio:'erweitert',evi:2,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'Teitelbaum et al. SHINE-Protokoll für CFS. Kleine aber valide placebo-kontrollierte Studien. Nicht von Pharmaindustrie verfolgt (Naturprodukt).',
+ desc:'Fünfzucker als direkter Baustein für ATP und NADH. Placebo-kontrollierte Studien (Teitelbaum et al.) zeigen signifikante Verbesserungen bei Fatigue, Schlaf und kognitivem Funktionieren bei CFS/Fibromyalgie.',
+ form:'Reines Pulver (keine Süßungsmittel, keine Aromen)',
+ dose:'5 g 3× täglich initial, nach 4 Wochen auf 5 g 1–2× täglich reduzieren',timing:'Stets zu oder nach einer Mahlzeit',
+ prods:[{n:"Doctor's Best D-Ribose (Bioenergy Ribose®)",s:'iHerb · Amazon.de',v:'Bioenergy Ribose® = klinisch geprüfte Rohstoffform'},
+        {n:'NOW D-Ribose Powder',s:'iHerb · Amazon.de'},
+        {n:'Jarrow Formulas D-Ribose',s:'iHerb'}],
+ note:'Kann Blutzucker kurzfristig absenken – nie nüchtern. Auf Schwindel achten. Zentrales Element des Teitelbaum-SHINE-Protokolls für CFS/Fibromyalgie.'},
+
+{name:'Kollagen-Peptide (Typ I+III) + UC-II',sub:'Strukturprotein · Bänder, Sehnen, Knorpel, Haut',
+ goals:['gelenke','muskeln','longevity'],
+ prio:'erweitert',evi:3,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'Mehrere RCTs für Gelenke und Haut. Industry-funded, aber konsistente Ergebnisse. UC-II (40 mg nativer Typ-II-Knorpel) via Oraltoleranz-Mechanismus gut belegt.',
+ desc:'Hydrolysierte Kollagenpeptide (Typ I+III) stimulieren die körpereigene Kollagensynthese in Bändern, Sehnen und Haut. UC-II (40 mg nativer Typ-II-Knorpel) wirkt über Oraltoleranz-Mechanismus auf Gelenkknorpel.',
+ form:'10–15 g hydrolysierte Kollagen-Peptide (Typ I+III) + 40 mg UC-II (nativer Typ II)',
+ dose:'Täglich, kombiniert',timing:'IMMER zusammen mit Vitamin C einnehmen',
+ prods:[{n:'Ancient Nutrition Multi Collagen Protein',s:'iHerb · Amazon.de',v:'Typ I, II, III, V, X kombiniert'},
+        {n:'Sunday Natural Kollagen Peptide',s:'sundaynatural.de'},
+        {n:"Doctor's Best Collagen UC-II",s:'iHerb · Amazon.de'}],
+ note:'Vitamin C ist enzymatischer Cofaktor (Prolyl-Hydroxylase) – ohne C deutlich geringere Wirkung. Ancient Nutrition enthält etwas C; trotzdem zusätzlich ergänzen.'},
+
+{name:'Glucosamin-Sulfat + Chondroitin',sub:'Knorpelmatrix-Bausteine · NIH-GAIT-Studie',
+ goals:['gelenke'],
+ prio:'erweitert',evi:3,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'NIH-GAIT-Studie (1583 Patienten, unabhängig finanziert): signifikante Wirkung bei moderaten bis schweren Knieschmerzen. Stärkste unabhängige Gelenkstudie überhaupt.',
+ desc:'Strukturbausteine der Proteoglykane im Gelenkknorpel. GAIT-Studie (NIH, 1583 Patienten, unabhängig): Kombination signifikant wirksam bei moderaten bis schweren Knieschmerzen. Langfristiger Knorpelschutz dokumentiert.',
+ form:'Glucosamin-Sulfat (nicht HCl!) + Chondroitin-Sulfat',
+ dose:'1500 mg Glucosamin-Sulfat + 1200 mg Chondroitin-Sulfat täglich',timing:'Mit Mahlzeiten aufgeteilt',
+ prods:[{n:"Doctor's Best Glucosamine Chondroitin MSM",s:'iHerb · Amazon.de',v:'Mit OptiMSM®'},
+        {n:'Jarrow Formulas GlucoSamine + Chondroitin',s:'iHerb · Amazon.de'},
+        {n:'Life Extension Glucosamine/Chondroitin',s:'iHerb'}],
+ note:'Wirkung tritt erst nach 2–3 Monaten ein – Geduld entscheidend. Glucosamin-Sulfat deutlich wirksamer als Glucosamin-HCl.'},
+
+{name:'Boswellia (AKBA-Extrakt)',sub:'Weihrauch · selektiver 5-LOX-Inhibitor · Ayurveda',
+ goals:['gelenke','immunsystem','gehirn'],
+ prio:'erweitert',evi:3,risk:'beachten',
+ riskNote:'Selten: GI-Beschwerden bei hoher Dosis. Bei gleichzeitiger NSAR-Einnahme synergistische Wirkung beachten. Fett verdoppelt AKBA-Absorption.',
+ tradition:['ayurveda'],unterbelichtet:false,
+ evidenzKontext:'Ayurveda-Tradition. 5-LOX-Mechanismus (AKBA) gut belegt. Mehrere RCTs. Patentierte AKBA-Extrakte von Life Extension und Thorne.',
+ desc:'Potenter selektiver 5-Lipoxygenase-Inhibitor. Hemmt entzündliche Leukotriene (LTB4) ohne GI-Nebenwirkungen von NSAR. AKBA (Acetyl-11-keto-β-Boswellsäure) ist die wirksamste Komponente.',
+ form:'Standardisiert auf ≥65% Boswellsäuren und ≥10% AKBA',
+ dose:'300–400 mg Extrakt 2× täglich',timing:'Mit fettreicher Mahlzeit (verdoppelt AKBA-Absorption)',
+ prods:[{n:'Life Extension Super Boswellia (5-Loxin®)',s:'iHerb',v:'Höchste AKBA-Konzentration'},
+        {n:'Thorne Boswellia Phytosome',s:'thorne.com (EU)',v:'Meriva-Technologie: verbesserte Bioverfügbarkeit'},
+        {n:"Doctor's Best Boswellia",s:'iHerb · Amazon.de'}],
+ note:'Synergistisch mit Curcumin BCM-95 für Gelenksentzündung. Olivenöl/Avocado/Nüsse verdoppeln AKBA-Resorption nachweislich.'},
+
+{name:"Lion's Mane (Igelstachelbart)",sub:'NGF-Stimulans · Neuroregenerativ · TCM-Heilpilz',
+ goals:['gehirn','nerven','darm'],
+ prio:'erweitert',evi:2,risk:'beachten',
+ riskNote:'Selten: allergische Reaktionen (Atemnot, Hautausschlag) – bei Pilzallergie kontraindiziert. Nur Fruchtkörper-Extrakt, nicht Myzel auf Getreide (enthält >50% Stärke).',
+ tradition:['tcm'],unterbelichtet:false,
+ evidenzKontext:'TCM-Tradition. Japanische und koreanische RCTs. NGF/BDNF-Stimulation gut belegt. Humanstudien für Kognition und Angstreduktion vorhanden.',
+ desc:'Einziger bekannter Pilz der NGF (Nerve Growth Factor) und BDNF stimuliert. Neuroprotektiv, myelinfördernd, gedächtnisverbessernd. Humanstudien zeigen Effekte auf Kognition und Angst. Positiv auf Darm-Hirn-Achse.',
+ form:'Fruchtkörper-Extrakt mit ≥30% Beta-Glucanen (KEIN Myzel auf Getreide!)',
+ dose:'500–1000 mg täglich',timing:'Morgens',
+ prods:[{n:'Real Mushrooms Lions Mane Extract',s:'iHerb',v:'Fruchtkörper-zertifiziert, 3rd-Party-getestet – Marktstandard'},
+        {n:'Host Defense Lions Mane (Paul Stamets)',s:'iHerb · Amazon.de'},
+        {n:'Thorne Myco-Immune',s:'thorne.com (EU)'}],
+ note:'KRITISCH: Nur „fruiting body extract" kaufen. Beta-Glucan-Gehalt auf dem COA (Certificate of Analysis) prüfen.'},
+
+{name:'Bacopa Monnieri',sub:'Gedächtnis · Lernfähigkeit · Anxiolyse · Ayurveda',
+ goals:['gehirn','nerven'],
+ prio:'erweitert',evi:3,risk:'beachten',
+ riskNote:'Häufig: GI-Beschwerden (Übelkeit, Blähungen) zu Beginn – immer mit Mahlzeit einnehmen. Nicht ohne ärztliche Begleitung mit Schilddrüsenmedikamenten kombinieren.',
+ tradition:['ayurveda'],unterbelichtet:false,
+ evidenzKontext:'Ayurveda-Tradition (Brahmi). Mehrere Meta-Analysen für Gedächtnis (Cochrane-Niveau). BacoMind® und CDRI 08 klinisch validierte Rohstoffe.',
+ desc:'Ayurvedisches Adaptogen mit starker klinischer Evidenz (mehrere Meta-Analysen) für verbesserte Gedächtniskonsolidierung, Lerngeschwindigkeit und Angstreduktion. Wirkung baut sich über 4–8 Wochen auf.',
+ form:'Standardisiert auf 20–55% Bacosides (BacoMind®-Extrakt bevorzugen)',
+ dose:'300 mg täglich',timing:'Mit Mahlzeit (verbesserte Absorption, reduzierte GI-Effekte)',
+ prods:[{n:'Jarrow Formulas Bacopa Monnieri',s:'iHerb · Amazon.de'},
+        {n:'Life Extension Bacopa Extract',s:'iHerb'},
+        {n:'NOW Bacopa Extract',s:'iHerb · Amazon.de'}],
+ note:'Keine sofortige Wirkung – 4–8 Wochen Geduld. Initiale leichte Müdigkeit möglich. Nicht abends, wenn es anregend wirkt.'},
+
+{name:'Phosphatidylserin',sub:'Neuronales Phospholipid · HPA-Modulator · FDA-anerkannt',
+ goals:['gehirn','nerven','cfs'],
+ prio:'erweitert',evi:3,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'FDA-anerkannte qualifizierte Health Claim für kognitive Funktion (2003). Unabhängige Studien vorhanden. HPA-Modulation bei CFS klinisch relevant.',
+ desc:'Strukturphospholipid in Neuronenmembranen. FDA-anerkannte Health Claim für kognitive Funktion. Moduliert HPA-Achse und senkt abendliches Cortisol – hochrelevant bei CFS.',
+ form:'Aus Sonnenblume (Sharp-PS® Green) – cleaner als Soja-Extrakt',
+ dose:'100–300 mg täglich',timing:'Abends (senkt Abend-Cortisol, verbessert Schlaf)',
+ prods:[{n:'Thorne Phosphatidylserine',s:'thorne.com (EU)'},
+        {n:'Jarrow Formulas PS100',s:'iHerb · Amazon.de'},
+        {n:'Life Extension Phosphatidylserine',s:'iHerb'}],
+ note:'Bei CFS mit HPA-Dysregulation (erhöhtes Abend-Cortisol, Schlafstörungen) besonders relevant. Nach intensivem Sport reduziert es den Cortisol-Spike.'},
+
+{name:'L-Theanin',sub:'Alpha-Wellen-Induktor · anxiolytisch · Grüntee-Aminosäure',
+ goals:['nerven','gehirn'],
+ prio:'erweitert',evi:3,risk:'niedrig',riskNote:null,tradition:['tcm'],unterbelichtet:false,
+ evidenzKontext:'Aus Grüntee (TCM-Tradition). EEG-Alpha-Wellen-Induktion gut belegt. Zahlreiche unabhängige RCTs. Eines der sichersten Supplements überhaupt.',
+ desc:'Aminosäure aus Grüntee. Induziert entspannte Wachheit (Alpha-Wellen-EEG) ohne Sedierung. Synergistisch mit Koffein für fokussierte Energie ohne Jitteriness und Absturzphase.',
+ form:'L-Theanin (Suntheanine®-zertifiziert bevorzugen)',
+ dose:'100–200 mg (solo) · 200 mg kombiniert mit 100 mg Koffein',timing:'Abends für Entspannung; tagsüber mit Koffein für Fokus',
+ prods:[{n:'Jarrow Formulas L-Theanine (Suntheanine®)',s:'iHerb · Amazon.de'},
+        {n:'NOW L-Theanine Double Strength (Suntheanine®)',s:'iHerb · Amazon.de'},
+        {n:'Natural Factors Suntheanine',s:'iHerb'}],
+ note:'Koffein 100 mg + L-Theanin 200 mg: durch viele RCTs belegte Synergie für ruhige Wachheit. Exzellentes Risikoprofil.'},
+
+{name:'Rhodiola Rosea',sub:'Adaptogen · Anti-Fatigue · Ausdauer · EU-HMPC',
+ goals:['cfs','gehirn','nerven'],
+ prio:'erweitert',evi:3,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'EU-HMPC-Monographie (offizielle EU-Anerkennung). SHR-5-Extrakt (Swedish Herbal Institute) klinisch validiert. Stärkste Anti-Fatigue-Evidenz unter Adapto­genen.',
+ desc:'Adaptogen mit der stärksten Anti-Fatigue-Evidenz überhaupt (EU-HMPC-Monographie). Steigert Stressresistenz, mentale Ausdauer und physische Performance. Direkte Relevanz für CFS-Fatigue.',
+ form:'Standardisiert auf 3% Rosavine + 1% Salidrosid (Rhodiolife® oder SHR-5-Extrakt)',
+ dose:'200–400 mg',timing:'Morgens NÜCHTERN – energetisierend, abends meiden',
+ prods:[{n:'Life Extension Rhodiola Extract',s:'iHerb'},
+        {n:'Jarrow Formulas Rhodiola Rosea',s:'iHerb · Amazon.de'},
+        {n:'NOW Rhodiola',s:'iHerb · Amazon.de'}],
+ note:'Cyclisch einsetzen: 5 Tage an / 2 Tage Pause. SHR-5-Extrakt (Swedish Herbal Institute) = klinisch am besten validierter Rohstoff.'},
+
+{name:'Alpha-GPC / CDP-Cholin (Citicolin)',sub:'Acetylcholin-Vorläufer · Membransynthese · Kognition',
+ goals:['gehirn','muskeln','nerven'],
+ prio:'erweitert',evi:3,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'Gut belegt. Cognizin® (Citicolin) hat die stärkste klinische Datenlage. Alpha-GPC weit erforscht für kognitive Funktion und Wachstumshormon-Puls.',
+ desc:'Cholinquellen für Acetylcholin-Synthese. CDP-Cholin (Citicolin) liefert zusätzlich Cytidin → Uridin für Zellmembransynthese. Alpha-GPC wirkt direkter und akuter.',
+ form:'Alpha-GPC (akuter Effekt) oder CDP-Cholin/Cognizin® (holistischer)',
+ dose:'Alpha-GPC: 300–600 mg · Citicolin: 250–500 mg täglich',timing:'Morgens (aktivierend)',
+ prods:[{n:'NOW Alpha GPC',s:'iHerb · Amazon.de'},
+        {n:'Life Extension Cognizin® Citicoline',s:'iHerb',v:'Cognizin® = stärkste klinische Evidenz'},
+        {n:'Jarrow Formulas Citicoline CDP Choline',s:'iHerb · Amazon.de'}],
+ note:'Nicht überdosieren: >1000 mg täglich kann „fischigen" Geruch (TMAO) verursachen.'},
+
+{name:'Curcumin BCM-95® (Biocurcumin)',sub:'Entzündungshemmung · Neuroprotektiv · Ayurveda',
+ goals:['gelenke','immunsystem','gehirn','longevity'],
+ prio:'erweitert',evi:3,risk:'beachten',
+ riskNote:'Hemmt CYP3A4 und CYP2C9 – relevante Interaktionen mit Blutverdünnern (Warfarin), Chemotherapeutika. Bei >1 g/Tag antithrombotisch. Medikamenten-Check erforderlich.',
+ tradition:['ayurveda'],unterbelichtet:false,
+ evidenzKontext:'Ayurveda-Tradition (Kurkuma). BCM-95® hat 6 publizierte Humanstudien. 6,93× Bioverfügbarkeit vs. Standard-Curcumin (eigene Studie, Methodik solide).',
+ desc:'BCM-95® ist das Curcumin-Format mit der stärksten klinischen Evidenz. Kombination aus Curcuminoiden + ätherischen Kurkuma-Ölen ergibt 6,93-fache Bioverfügbarkeit – ohne Piperinbedarf. Stark entzündungshemmend (NF-κB-Hemmung), neuroprotektiv, hepatoprotektiv.',
+ form:'BCM-95® oder Meriva® (Phytosom) oder Theracurmin® – NICHT Standard-Curcumin (nahezu wirkungslos)',
+ dose:'500 mg BCM-95® täglich',timing:'Mit fettreicher Mahlzeit',
+ prods:[{n:'EuroPharma Terry Naturally CuraMed (BCM-95®)',s:'iHerb'},
+        {n:'Thorne Meriva-SF (Phytosom-Format)',s:'thorne.com (EU)',v:'Meriva® hat eigene starke Studienlage'},
+        {n:'Life Extension Super Bio-Curcumin (BCM-95®)',s:'iHerb'}],
+ note:'Standard-Curcumin-Kapseln ohne Absorptionsverstärker sind nahezu wirkungslos. Drei validierte Formate: BCM-95® · Meriva® · Theracurmin®.'},
+
+{name:'Cordyceps CS-4',sub:'Anti-Fatigue · ATP/Pi-Ratio · TCM-Heilpilz',
+ goals:['cfs','longevity','immunsystem'],
+ prio:'erweitert',evi:2,risk:'niedrig',riskNote:null,tradition:['tcm'],unterbelichtet:false,
+ evidenzKontext:'TCM-Tradition (Tibet). CS-4-Stamm einzige fermentierte Form mit reproduzierbaren RCTs. RCT n=60 CFS: signifikante FSS-Verbesserung nach 8 Wochen. MRS ATP/Pi-Messung belegt.',
+ desc:'CS-4 ist die fermentierte, standardisierte Cordyceps-Form mit den meisten validen Studien. RCT (n=60 CFS): signifikante Verbesserung der Fatigue Severity Scale nach 8 Wochen. MRS zeigt erhöhte ATP/Pi-Ratio in Skelettmuskel. Stimuliert Adenosin-Rezeptoren ohne Koffein-Nebenwirkungen.',
+ form:'CS-4 Fermentationsextrakt (einzige klinisch validierte Form – nicht Myzel auf Substrat)',
+ dose:'1000–3000 mg täglich',timing:'Morgens bis mittags (leicht anregend)',
+ prods:[{n:'Aloha Medicinals (CS-4)',s:'iHerb',v:'Pionier der CS-4-Forschung, ISO-zertifiziert'},
+        {n:'Real Mushrooms Cordyceps-M',s:'iHerb'},
+        {n:'Thorne Myco-Immune',s:'thorne.com (EU)'}],
+ note:'Natürlicher Cordyceps sinensis (aus Tibetraupen) ist unbezahlbar. CS-4 ist die validierte, erschwingliche Fermentationsalternative.'},
+
+/* ═══ SPEZIELL (8) ═══ */
+{name:'MSM (Methylsulfonylmethan)',sub:'Organischer Schwefel · Knorpelmatrix · OptiMSM®',
+ goals:['gelenke','immunsystem'],
+ prio:'speziell',evi:2,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'Mehrere RCTs für Gelenk- und Muskelschmerzen. OptiMSM® einzige destillativ gereinigte Form. Naturprodukt – mäßiges Industrieinteresse.',
+ desc:'Organische Schwefelverbindung als Strukturbaustein der Knorpelmatrix und Kollagenvernetzung. Entzündungshemmend, antioxidativ. Häufig mit Glucosamin/Chondroitin kombiniert.',
+ form:'OptiMSM® (einzige durch Destillation – nicht Kristallisation – gereinigte Form)',
+ dose:'1–3 g täglich',timing:'Zu den Mahlzeiten, in 2 Dosen aufteilen',
+ prods:[{n:"Doctor's Best MSM with OptiMSM",s:'iHerb · Amazon.de'},
+        {n:'NOW MSM (OptiMSM)',s:'iHerb · Amazon.de'},
+        {n:'Life Extension MSM (OptiMSM)',s:'iHerb'}],
+ note:'Initial niedrig starten (500 mg) – manche berichten kurze Detox-ähnliche Symptome. OptiMSM® als einzige destillierte Form bevorzugen.'},
+
+{name:'Selen (Selenomethionin)',sub:'Glutathion-System · Schilddrüse · NK-Zellen',
+ goals:['immunsystem','longevity'],
+ prio:'speziell',evi:3,risk:'beachten',
+ riskNote:'Selentoxizität ab dauerhaft >400 µg/Tag (Haarausfall, Nagelbrüchigkeit, Neuropathie). Strikt 200 µg als Oberwert einhalten. Laborwert-Kontrolle empfohlen.',
+ tradition:[],unterbelichtet:false,
+ evidenzKontext:'Gut belegt für Glutathionperoxidase-Aktivität und Schilddrüsenfunktion. Deutsche Böden sehr selenarm → DE-weite Empfehlung für Supplementierung häufig.',
+ desc:'Essentielles Spurenelement für Glutathionperoxidase (körpereigenes Antioxidanzsystem), Schilddrüsenhormon-Aktivierung (T4→T3) und NK-Zell-Aktivität. In deutschen Böden sehr arm.',
+ form:'L-Selenomethionin (organisch – beste Bioverfügbarkeit)',
+ dose:'100–200 µg täglich – Obergrenze NICHT überschreiten',timing:'Zu den Mahlzeiten',
+ prods:[{n:'Thorne Selenomethionine',s:'thorne.com (EU)'},
+        {n:'Life Extension Selenium (Selenomethionin)',s:'iHerb'},
+        {n:'NOW Selenium (Selenomethionin)',s:'iHerb · Amazon.de'}],
+ note:'Blutspiegel vorab messen. Zielwert: 120–150 µg/l im Vollblut. Bei Hashimoto-Thyreoiditis besonders häufig niedrig und therapeutisch relevant.'},
+
+{name:'Astaxanthin',sub:'Stärkstes natürliches Karotenoid-Antioxidans · AstaReal®',
+ goals:['longevity','immunsystem','gehirn','gelenke'],
+ prio:'speziell',evi:2,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'AstaReal® (Fuji Chemical): >50 Humanstudien. Natürliches Astaxanthin aus H. pluvialis überlegen gegenüber synthetischem. Passiert Blut-Hirn-Schranke.',
+ desc:'Karotenoid aus Haematococcus-Mikroalgen. Übertrifft Vitamin E um das 550-Fache als Antioxidans in Lipid-Systemen. Passiert Blut-Hirn- und Blut-Retina-Schranke. Anti-Aging, Augen, Entzündungshemmung.',
+ form:'Natürliches Astaxanthin (AstaReal®-Rohstoff aus H. pluvialis – synthetisches meiden)',
+ dose:'6–12 mg täglich',timing:'Mit fettreicher Mahlzeit (fettlöslich)',
+ prods:[{n:'NOW Astaxanthin 10mg (AstaReal®)',s:'iHerb · Amazon.de',v:'AstaReal® = meistuntersuchter Rohstoff'},
+        {n:'Life Extension Astaxanthin (AstaReal®)',s:'iHerb'},
+        {n:'Thorne Astaxanthin',s:'thorne.com (EU)'}],
+ note:'Synthetisches Astaxanthin aus Petrochemie hat nicht die gleiche Stereoisomerie. AstaReal® aus Fuji Chemical ist der Goldstandard.'},
+
+{name:'Spermidine',sub:'Autophagie-Induktor · Zelluläre Erneuerung · Anti-Aging',
+ goals:['longevity','gehirn'],
+ prio:'speziell',evi:2,risk:'beachten',
+ riskNote:'Relativ neue Forschungskategorie – Langzeitdaten beim Menschen begrenzt. Bei Zöliakie: auf glutenfreie Variante achten (Weizenkeimextrakt).',
+ tradition:[],unterbelichtet:false,
+ evidenzKontext:'Forschungsgruppe Madeo (Graz) – unabhängig. Verlängert Lebensspanne in mehreren Modellen. Humanbeobachtungsstudien konsistent. Interventionsstudien laufen.',
+ desc:'Polyamin das Autophagie (zelluläre Selbstreinigung) stimuliert – ähnlich dem Effekt des Fastens. Madeo-Gruppe (Graz): verlängert Lebensspanne und verbessert kardiovaskuläre Marker in Humanbeobachtungsstudien.',
+ form:'Weizenkeimextrakt (standardisierter natürlicher Spermidingehalt, glutenfreie Variante erhältlich)',
+ dose:'1–5 mg Spermidin täglich',timing:'Morgens nüchtern (maximale Autophagie-Induktion)',
+ prods:[{n:'Longevity Labs Spermidin Life®',s:'spermidine-life.com · Amazon.de',v:'Österreichischer Pionier – meiste Humanstudien'},
+        {n:'Don Mello Spermidin',s:'Amazon.de'}],
+ note:'Natürliche Quellen: Weizenkeime, Sojabohnen, Mango, gereifter Käse. Spermidin + intermittierendes Fasten synergistisch (beide aktivieren Autophagie).'},
+
+{name:'L-Glutamin',sub:'Darmbarriere-Repair · Tight Junctions · Mukosa',
+ goals:['darm','immunsystem','muskeln'],
+ prio:'speziell',evi:2,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'Primärer Energielieferant für Enterozyten. Leaky-Gut-Reparatur gut belegt. In der Intensivmedizin klinisch eingesetzt. Orale Daten für CFS/Darm vorhanden.',
+ desc:'Primärer Energielieferant für Enterozyten (Darmzellen). Repariert Tight Junctions der Darmbarriere (Leaky Gut), unterstützt Mukosa-Regeneration. Bei CFS mit gastrointestinaler Beteiligung besonders relevant.',
+ form:'Freie L-Glutamin-Aminosäure (Pulver)',
+ dose:'5–10 g täglich',timing:'Morgens nüchtern oder abends vor dem Schlafen',
+ prods:[{n:'NOW Sports L-Glutamine Powder',s:'iHerb · Amazon.de'},
+        {n:'Jarrow Formulas L-Glutamine',s:'iHerb · Amazon.de'},
+        {n:'Thorne L-Glutamine Powder',s:'thorne.com (EU)'}],
+ note:'Bei ausgeprägtem Leaky-Gut: mit Zink-Carnosin (75 mg 2× täglich, Doctor\'s Best PepZin GI) kombinieren – synergistische Tight-Junction-Reparatur belegt.'},
+
+{name:'Urolithin A',sub:'Mitophagie · Muskelausdauer · Immunalterung',
+ goals:['longevity','muskeln','immunsystem','cfs'],
+ prio:'speziell',evi:2,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'Mehrere unabhängige Phase-I/II-RCTs (Amazentis, Timeline Nutrition). Erst seit 2016 in Humanforschung. PINK1-Parkin-Pathway gut belegt. Sehr vielversprechend.',
+ desc:'Metabolit der Darmflora aus Ellagsäure (Granatapfel, Walnüsse). Stimuliert Mitophagie (Abbau dysfunktionaler Mitochondrien) über PINK1-Parkin-Pathway. RCTs zeigen verbesserte Muskelausdauer, VO2max und NK-Zell-Aktivität.',
+ form:'Urolithin A als Reinsubstanz (Mitopure®-Rohstoff, Timeline Nutrition)',
+ dose:'500–1000 mg täglich',timing:'Morgens, mit oder ohne Mahlzeit',
+ prods:[{n:'Timeline Mitopure Urolithin A',s:'timeline.health · Amazon.de',v:'Klinisch validierter Pionier-Rohstoff'},
+        {n:'Life Extension Urolithin A',s:'iHerb'},
+        {n:'NOW Urolithin A',s:'iHerb'}],
+ note:'~30–40% der Erwachsenen produzieren kein Urolithin A aus Ellagsäure. Diese Personen profitieren am meisten. Synergistisch mit NMN und CoQ10.'},
+
+{name:'Reishi (Ganoderma lucidum)',sub:'Heilpilz · Immunmodulation · Adaptogen · TCM',
+ goals:['immunsystem','cfs','nerven','longevity'],
+ prio:'speziell',evi:2,risk:'beachten',
+ riskNote:'Kann Thrombozytenaggregation hemmen – bei Blutverdünnern (Warfarin, ASS) Abstand halten. Selten: allergische Reaktionen auf Pilzsporen.',
+ tradition:['tcm'],unterbelichtet:false,
+ evidenzKontext:'TCM-Tradition 2000+ Jahre (Ling Zhi). RCT 2023: NK-Zellen und T-Lymphozyten nach 8 Wochen signifikant erhöht. Überwiegend asiatische Studien. Triterpene und Beta-Glucane gut charakterisiert.',
+ desc:'Reishi gilt in der TCM als „Pilz der Unsterblichkeit". RCT (2023): signifikante Erhöhung von NK-Zellen und T-Lymphozyten nach 8 Wochen. Enthält Ganodersäure (Triterpene) und Beta-Glucane. Bidirektionale Immunmodulation. Schlaffördernd.',
+ form:'Fruchtkörper-Wasserextrakt, standardisiert auf Beta-Glucane (≥15%) und Triterpene',
+ dose:'500–1500 mg täglich',timing:'Abends (leicht sedierend, schlaffördernd)',
+ prods:[{n:'Real Mushrooms Reishi Extract',s:'iHerb',v:'Fruchtkörper-zertifiziert, 3rd-Party-getestet'},
+        {n:'Life Extension Reishi Extract',s:'iHerb'},
+        {n:'Host Defense Reishi (Paul Stamets)',s:'iHerb'}],
+ note:'Nur Fruchtkörperextrakte kaufen – Myzel auf Getreide enthält >50% Stärke. COA auf Beta-Glucan-Gehalt prüfen.'},
+
+{name:'Schisandra Chinensis',sub:'Anti-Fatigue · Adaptogen · TCM · EU-HMPC-anerkannt',
+ goals:['cfs','longevity','nerven'],
+ prio:'speziell',evi:2,risk:'niedrig',riskNote:null,tradition:['tcm'],unterbelichtet:false,
+ evidenzKontext:'TCM-Klassiker (Wu Wei Zi). EU-HMPC-Monographie anerkannt. Meta-Analyse 2021 (1712 Teilnehmer, Anti-Fatigue, Grade B Evidenz – stärkste Klasse für Natursubstanzen).',
+ desc:'Wu Wei Zi (5-Geschmack-Beere) – TCM-Adaptogen mit EU-Anerkennung. Meta-Analyse (1712 Teilnehmer, 2021): signifikante Anti-Fatigue-Wirkung (Grade B). Schützt Leber (Schisandrin B), wirkt adaptogen auf HPA-Achse, steigert Ausdauer und kognitive Klarheit.',
+ form:'Standardisierter Extrakt (Schisandrin + Schisandrin B)',
+ dose:'500–1000 mg täglich',timing:'Morgens (energetisierend, adaptogen)',
+ prods:[{n:'Dragon Herbs Schisandra Drops',s:'dragonherbs.com',v:'Hochwertige TCM-Quelle'},
+        {n:'NOW Foods Schisandra 500mg',s:'iHerb · Amazon.de'},
+        {n:'Life Extension Schisandra Extract',s:'iHerb'}],
+ note:'Zusätzliche hepatoprotektive Wirkung (normalisiert Leberenzyme). Synergistisch mit Rhodiola Rosea gegen CFS-Fatigue.'},
+
+/* ═══ PIONIER (8) ═══ */
+{name:'Berberinhydrochlorid',sub:'„Natürliches Metformin" · AMPK · TCM/Ayurveda · Unterbelichtet',
+ goals:['longevity','immunsystem','darm'],
+ prio:'pionier',evi:3,risk:'beachten',
+ riskNote:'Hemmt CYP2D6 und CYP3A4 – Interaktionen mit Medikamenten prüfen. Bei Diabetesmedikamenten Blutzucker engmaschig überwachen. Nicht in Schwangerschaft/Stillzeit.',
+ tradition:['tcm','ayurveda'],unterbelichtet:true,
+ evidenzKontext:'46+ RCTs – Metformin-vergleichbare HbA1c-Reduktion. NICHT patentierbar → kaum Pharma-Interesse trotz starker Evidenz. Überwiegend chinesische Studien, aber konsistent repliziert.',
+ desc:'Das meistunterschätzte Supplement überhaupt. 46+ RCTs: Metformin-vergleichbare HbA1c-Reduktion ohne Metformin-Nebenwirkungen. Aktiviert AMPK (zellulärer Energiesensor), verbessert Darmmikrobiom, stark entzündungshemmend und lipidsenkend. Von TCM und Ayurveda seit Jahrtausenden eingesetzt – von der Pharmaindustrie ignoriert, weil nicht patentierbar.',
+ form:'Berberinhydrochlorid 500 mg oder Dihydroberberine (DHB, 5× besser absorbiert)',
+ dose:'500 mg Berberinhydrochlorid 2–3× täglich ODER 100–200 mg Dihydroberberine täglich',timing:'Zu den Mahlzeiten (senkt postprandialen Blutzucker)',
+ prods:[{n:'Thorne Berberine-500',s:'thorne.com (EU)',v:'Sauberste Berberinhydrochlorid-Formulierung'},
+        {n:'Integrative Therapeutics Berberine',s:'iHerb'},
+        {n:'Renue By Science Berberine (DHB)',s:'iHerb',v:'Dihydroberberine (DHB) für 5× bessere Absorption'}],
+ note:'„Natürliches Metformin" ist nicht übertrieben – Meta-Analysen zeigen vergleichbare Glukose-senkende Wirkung. Bei Diabetesmedikamenten: Arzt konsultieren, da Dosen angepasst werden müssen.'},
+
+{name:'Taurin',sub:'Bedingt essentielle Aminosäure · Science-2023-Longevity-Studie',
+ goals:['longevity','cfs','nerven','gehirn'],
+ prio:'pionier',evi:2,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:true,
+ evidenzKontext:'2023 Science-Studie (Singh et al.): +12% Lebensspanne Mäuse, verbesserte Mitochondrienfunktion Primaten. NIH-Observationsdaten teils uneinheitlicher. Günstig → kein Pharma-Interesse.',
+ desc:'Taurin sinkt nachweislich mit dem Alter. Science-Studie 2023: +12% Lebensspanne Mäuse, verbesserte Mitochondrienfunktion und reduzierte Entzündungsmarker auch bei Primaten. Kardioprotektion, neuroprotektiv, reguliert GABA-Signalwege (anxiolytisch), unterstützt Gallensäure-Metabolismus.',
+ form:'Freie Taurin-Aminosäure (Pulver oder Kapsel)',
+ dose:'1–3 g täglich',timing:'Morgens oder aufgeteilt morgens/abends',
+ prods:[{n:'NOW Sports Taurine Powder',s:'iHerb · Amazon.de',v:'Günstig, rein, ohne Zusätze'},
+        {n:'Thorne Taurine',s:'thorne.com (EU)'},
+        {n:"Doctor's Best Taurine",s:'iHerb · Amazon.de'}],
+ note:'Taurin in Energy-Drinks hat seine Reputation als Longevity-Substanz verdeckt – zu Unrecht. Eines der günstigsten und sichersten Supplements mit einem der aufregendsten 2023-Befunde.'},
+
+{name:'Shilajit / Fulvic Acid',sub:'Himalaya-Exsudat · Testosteron · Mitochondrien · Ayurveda',
+ goals:['cfs','muskeln','longevity'],
+ prio:'pionier',evi:2,risk:'beachten',
+ riskNote:'QUALITÄT KRITISCH: Rohes/unpurified Shilajit kann erhebliche Schwermetalle (Blei, Arsen, Kadmium) enthalten! Nur purified-zertifizierte Marken mit COA-Schwermetalltest kaufen.',
+ tradition:['ayurveda'],unterbelichtet:false,
+ evidenzKontext:'Ayurveda-Rasayana 3000+ Jahre. RCT Testosteron (n=75 Männer, 90 Tage, signifikant). CFS-Tierstudien. Fulvic-Acid-Forschung wächst. Kaum Pharmainteresse.',
+ desc:'Himalaya-Fels-Exsudat als Ayurveda-Rasayana (Verjüngungsmittel). Enthält Fulvic Acid, Dibenzo-α-Pyrone und Humic Acid. RCT (n=75 Männer): signifikante Testosteron-Erhöhung nach 90 Tagen. Verbessert mitochondriale Funktion (CoQ10-Synergist). Fulvic Acid verbessert Mineralabsorption.',
+ form:'Purified Shilajit-Harz (NICHT Rohpulver!), standardisiert auf Fulvic Acid (≥60%)',
+ dose:'300–500 mg täglich',timing:'Morgens in warmem Wasser',
+ prods:[{n:'Jarrow Formulas Shilajit Fulvic Acid Complex',s:'iHerb · Amazon.de',v:'Standardisiert, purified'},
+        {n:'Purblack Live Resin Shilajit',s:'purblack.com',v:'Premium-Harz, 3rd-Party-Schwermetalltest'},
+        {n:'Thorne Shilajit',s:'thorne.com (EU)'}],
+ note:'Nie rohes oder billiges Shilajit kaufen – Schwermetallkontamination ist ein reales Risiko. Certificate of Analysis (COA) mit Schwermetalltest immer anfordern.'},
+
+{name:'Nigella Sativa (Schwarzkümmel)',sub:'Thymoquinon · NF-κB-Hemmung · Islamische Medizin',
+ goals:['immunsystem','longevity'],
+ prio:'pionier',evi:2,risk:'beachten',
+ riskNote:'Thymoquinon kann Blutgerinnung beeinflussen – bei Blutverdünnern Vorsicht. Bei sehr hohen Dosen (Tierversuche) hepatotoxisch – bei normalen humanen Dosen als sicher eingestuft.',
+ tradition:['islamisch'],unterbelichtet:false,
+ evidenzKontext:'Prophet Mohammed: „Heilt alles außer dem Tod" (Hadith). 51+ klinische Studien in PubMed. Thymoquinon-Mechanismus (NF-κB) gut belegt. Nicht patentierbar → kein Pharmainteresse.',
+ desc:'In der islamischen Medizin (Tibb) seit 1400+ Jahren Universalheilpflanze. Über 51 klinische Studien: Wirkung auf Immunsystem, Entzündung, Allergie und Atemwege. Thymoquinon (TQ) ist der Hauptwirkstoff mit gut belegtem NF-κB-hemmenden, antioxidativen Mechanismus.',
+ form:'Kaltgepresstes Schwarzkümmelöl (≥2,5% Thymoquinon) oder Pulver',
+ dose:'Öl: 1–2 TL täglich (ca. 2–5 ml) · Kapseln: 1–2 g Extrakt',timing:'Zu den Mahlzeiten',
+ prods:[{n:'Amazing Herbs Black Seed Oil',s:'iHerb · Amazon.de',v:'Kaltgepresst, 2nd-Party-getestet'},
+        {n:'Henry Lamotte Schwarzkümmelöl',s:'Amazon.de · Reformhäuser DE',v:'Deutsches Qualitätsprodukt, kaltgepresst'},
+        {n:'Now Foods Black Cumin Seed Oil',s:'iHerb'}],
+ note:'Kaltgepresst und unraffiniert kaufen – Raffinierung zerstört Thymoquinon. Kombination mit Honig hat synergistische Wirkung in Studien gezeigt.'},
+
+{name:'Fisetin',sub:'Stärkstes natürliches Senolytikum · Zombie-Zellen · Anti-Aging',
+ goals:['longevity','gehirn'],
+ prio:'pionier',evi:2,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:true,
+ evidenzKontext:'Mayo Clinic 2019 (Pilotdaten). 2024 Pilot (n=40): 4/10 Probanden zeigten Reduktion biologisches DNAm-Alter. Senolytik-Forschung sehr jung (seit 2018). Natürlich aus Erdbeeren → kein Pharmainteresse.',
+ desc:'Das stärkste natürliche Senolytikum: eliminiert selektiv seneszente „Zombie-Zellen", die chronische Entzündungen fördern. Kommt aus Erdbeeren, Äpfeln, Zwiebeln – in pharmakologisch relevanten Mengen nicht über Nahrung erreichbar. 2024-Pilot: 4 von 10 Probanden zeigten reduzierten biologischen DNAm-Alter nach 3 Monaten.',
+ form:'Reines Fisetin (mit Fett für bessere Absorption)',
+ dose:'100 mg täglich ODER pulsierend: 1000–1500 mg an 2–3 Tagen pro Monat',timing:'Mit fettreicher Mahlzeit',
+ prods:[{n:'Life Extension Fisetin 100mg',s:'iHerb',v:'Marktführer in dieser Kategorie'},
+        {n:'Swanson Fisetin',s:'iHerb · Amazon.de'},
+        {n:'NOW Fisetin',s:'iHerb'}],
+ note:'Zwei Strategien: täglich 100 mg (Neuroprotektion) vs. monatliches „Senolytic Dosing" (1000–1500 mg über 2–3 Tage). Das Pulsing-Protokoll ist mechanistisch überzeugender für Senolytik.'},
+
+{name:'Glycin',sub:'Anti-Aging-Aminosäure · GlyNAC-Protokoll · Schlaf · Kollagen',
+ goals:['longevity','nerven','darm','muskeln'],
+ prio:'pionier',evi:3,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:true,
+ evidenzKontext:'Baylor College of Medicine (Sekhar Lab) 2021–2023: GlyNAC (n=24, randomisiert). RCT Schlaf (Yamaguchi 2012, 4g Glycin). Fast zu günstig für Pharmainteresse → mainstream-ignoriert.',
+ desc:'Glycin ist die einfachste Aminosäure und eine der wirkungsvollsten Anti-Aging-Substanzen – zu Unrecht ignoriert. GlyNAC-Studie (Baylor 2023, randomisiert): Glutathion +137%, Körperfett -4%, Kraft +12%. RCT: 4 g vor dem Schlafen verbessert Schlafqualität signifikant. Baustein von Kollagen (1/3 der Aminosäuren).',
+ form:'Freie Glycin-Aminosäure (Pulver, süßlich, gut löslich)',
+ dose:'3–10 g täglich',timing:'Abends 3–4 g für Schlaf; Rest morgens oder zu Mahlzeiten',
+ prods:[{n:'NOW Glycine Powder',s:'iHerb · Amazon.de',v:'Günstig, rein, ohne Zusätze'},
+        {n:'Bulk Supplements Glycine',s:'iHerb'},
+        {n:'Thorne Glycine',s:'thorne.com (EU)'}],
+ note:'GlyNAC-Protokoll: Glycin + NAC (N-Acetylcystein) – dramatische Verbesserungen in 8 von 9 Aging-Biomarkern. NAC separat erhältlich (Jarrow Formulas, NOW). Zu günstig für Pharmainteresse → ignoriert.'},
+
+{name:'Lithium Orotat (niedrig-dosiert)',sub:'Neuroprotektiv · BDNF · Alzheimer-Prävention · Unterbelichtet',
+ goals:['gehirn','nerven','longevity'],
+ prio:'pionier',evi:2,risk:'beachten',
+ riskNote:'WICHTIG: Pharmakologisches Lithiumcarbonat (psychiatrisch, 1000+ mg) ist stark nierentoxisch – das ist NICHT dasselbe! Lithium Orotat 5–20 mg ist eine andere Kategorie. Trotzdem: Kreatinin-Kontrolle vor Beginn empfohlen.',
+ tradition:[],unterbelichtet:true,
+ evidenzKontext:'Harvard/NIH 2025: Low-dose Lithium verlangsamt Alzheimer-Progression signifikant. Epidemiologie (Schrauzer et al.): Gebiete mit natürlichem Lithium im Trinkwasser haben signifikant niedrigere Demenz-/Suizidraten. Natürliches Element → kein Pharmainteresse.',
+ desc:'Low-dose Lithium Orotat (5–20 mg/Tag) ist grundlegend verschieden von Lithiumcarbonat (1000 mg+). Epidemiologische Studien (Texas, Japan) zeigen konsistent: natürliches Lithium im Trinkwasser → deutlich niedrigere Demenz- und Suizidraten. Harvard/NIH 2025: Lithium verlangsamt Alzheimer. Mechanismen: GSK-3β-Hemmung, BDNF-Erhöhung, neuroprotektive Autophagie.',
+ form:'Lithium Orotat 5–10 mg (entspricht ca. 1–2 mg elementarem Lithium)',
+ dose:'5–20 mg Lithium Orotat täglich',timing:'Abends mit Mahlzeit',
+ prods:[{n:'Pure Encapsulations Lithium (Orotat)',s:'Amazon.de · iHerb',v:'Sauberste Formulierung, 5 mg'},
+        {n:'Thorne Lithium',s:'thorne.com (EU)',v:'5 mg Lithium Orotat'},
+        {n:'NOW Lithium Orotate',s:'iHerb'}],
+ note:'Lithiumcarbonat (psychiatrisch, 1000+ mg) ≠ Lithium Orotat (5–20 mg). Nie kombinieren. Kreatinin vor Beginn bestimmen. Eines der meistunterdrückten Supplements – natürliches Element, kein Patent möglich.'},
+
+{name:'PQQ (Pyrroloquinolinquinon)',sub:'Mitochondrien-Biogenese · AMPK-PGC-1α-TFAM · Kognition',
+ goals:['cfs','longevity','gehirn'],
+ prio:'pionier',evi:2,risk:'niedrig',riskNote:null,tradition:[],unterbelichtet:false,
+ evidenzKontext:'Forschung überwiegend aus Japan (MitoBioscience). BioPQQ® klinisch validiert. Mitochondriale Biogenese via AMPK→PGC-1α→TFAM gut belegt. Mechanistisch komplementär zu CoQ10 und NMN.',
+ desc:'PQQ ist das einzige bekannte Supplement, das nachweislich die Bildung neuer Mitochondrien stimuliert (Biogenese via AMPK → PGC-1α → TFAM). Wo CoQ10 vorhandene Mitochondrien optimiert und NMN die NAD+-Übertragung verbessert, schafft PQQ neue Mitochondrien. Humanstudie: verbesserte mitochondriale Funktion und reduzierte Entzündungsmarker.',
+ form:'PQQ-Disodiumsalz (BioPQQ®-Rohstoff bevorzugen)',
+ dose:'10–20 mg täglich',timing:'Morgens (aktivierend)',
+ prods:[{n:'Jarrow Formulas PQQ 20mg (BioPQQ®)',s:'iHerb · Amazon.de',v:'BioPQQ®-Rohstoff, Marktstandard'},
+        {n:'Life Extension PQQ 20mg (BioPQQ®)',s:'iHerb'},
+        {n:'NOW PQQ 40mg',s:'iHerb · Amazon.de'}],
+ note:'Das mitochondriale Trio: CoQ10 (Funktion) + NMN (NAD+-Energie) + PQQ (Biogenese) – drei komplementäre Mechanismen. Synergie wissenschaftlich plausibel; Kombinationsstudien noch ausstehend.'}
+];
+
+/* ── RENDER ── */
+function stars(n){return '★'.repeat(n)+'☆'.repeat(3-n)}
+const eviText={3:'Hohe Evidenz (RCTs/Meta-Analysen)',2:'Moderate Evidenz (mehrere Studien)',1:'Begrenzte Evidenz (Tradition/Einzelstudien)'};
+
+function warnBox(s){
+  if(!s.riskNote) return '';
+  const cls=s.risk==='vorsicht'?'warn-vorsicht':'warn-beachten';
+  let extra='';
+  if(s.name.includes('Ashwagandha')){
+    extra=`<ul>
+      <li><strong>Vor Einnahme:</strong> ALT, AST, GGT als Basiswert bestimmen lassen</li>
+      <li><strong>Während der Einnahme:</strong> monatliche Leberwertkontrollen</li>
+      <li><strong>Maximale Dauer:</strong> 3 Monate kontinuierlich, dann 4-Wochen-Pause</li>
+      <li><strong>SOFORT STOPPEN bei:</strong> Gelbsucht · dunklem Urin · starker Übelkeit · Schmerzen im rechten Oberbauch</li>
+      <li>Bei vorbestehenden Lebererkrankungen: kontraindiziert</li>
+    </ul>`;
+  }
+  return `<div class="warn-box ${cls}"><strong>${s.risk==='vorsicht'?'⚠ SICHERHEITSPROTOKOLL':'⚡ Hinweis'} – ${RISK_LABEL[s.risk]}</strong>${s.riskNote}${extra}</div>`;
+}
+
+function tradTags(s){
+  const tt=s.tradition.map(t=>`<span class="trad-tag trad-${t}">${TRAD[t]}</span>`).join('');
+  const ub=s.unterbelichtet?`<span class="trad-tag trad-unterbelichtet">${TRAD.unterbelichtet}</span>`:'';
+  return tt+ub;
+}
+
+function card(s){
+  const gtags=s.goals.map(g=>`<span class="tag tag-${g}">${GL[g]}</span>`).join('');
+  const prods=s.prods.map(p=>`<li class="prod-item">
+    <div class="prod-name">${p.n}</div><div class="prod-src">${p.s}</div>
+    ${p.v?`<div class="prod-note">${p.v}</div>`:''}
+  </li>`).join('');
+  const tradStr=[...s.tradition,...(s.unterbelichtet?['unterbelichtet']:[])].join(',');
+  return `<div class="card" data-goals="${s.goals.join(',')}" data-prio="${s.prio}" data-risk="${s.risk}" data-trad="${tradStr}">
+    <div class="card-top">
+      <div><div class="card-name">${s.name}</div><div class="card-sub">${s.sub}</div></div>
+      <div class="badges">
+        <span class="rbadge rb-${s.risk}">${RISK_LABEL[s.risk]}</span>
+        <span class="pbadge pb-${s.prio}">${PRIO_LABEL[s.prio]}</span>
+      </div>
+    </div>
+    <div class="tags">${gtags} ${tradTags(s)}</div>
+    <div class="evi-row">
+      <span class="stars">${stars(s.evi)}</span>
+      <span class="evi-label">${eviText[s.evi]}</span>
+      <span class="evi-ctx">${s.evidenzKontext}</span>
+    </div>
+    ${warnBox(s)}
+    <div class="desc">${s.desc}</div>
+    <div class="dg">
+      <span class="dk">Form:</span><span class="dv">${s.form}</span>
+      <span class="dk">Dosis:</span><span class="dv">${s.dose}</span>
+      <span class="dk">Timing:</span><span class="dv">${s.timing}</span>
+    </div>
+    <div>
+      <div class="prod-head">Empfohlene Präparate (in DE verfügbar)</div>
+      <ul class="prod-list">${prods}</ul>
+    </div>
+    ${s.note?`<div class="note">${s.note}</div>`:''}
+  </div>`;
+}
+
+document.getElementById('grid').innerHTML=DATA.map(card).join('');
+document.getElementById('n-niedrig').textContent=DATA.filter(s=>s.risk==='niedrig').length;
+document.getElementById('n-beachten').textContent=DATA.filter(s=>s.risk==='beachten').length;
+document.getElementById('n-vorsicht').textContent=DATA.filter(s=>s.risk==='vorsicht').length;
+
+/* ── FILTER ── */
+let curGoal='all',curPrio='all',curRisk='all',curTrad='all';
+function applyFilter(){
+  let n=0;
+  document.querySelectorAll('.card').forEach(c=>{
+    const goals=c.dataset.goals.split(',');
+    const trad=c.dataset.trad?c.dataset.trad.split(','):[];
+    const show=(curGoal==='all'||goals.includes(curGoal))
+             &&(curPrio==='all'||c.dataset.prio===curPrio)
+             &&(curRisk==='all'||c.dataset.risk===curRisk)
+             &&(curTrad==='all'||trad.includes(curTrad));
+    c.classList.toggle('hidden',!show);
+    if(show)n++;
+  });
+  document.getElementById('results').textContent=`${n} von ${DATA.length} Supplements angezeigt`;
+}
+document.querySelectorAll('[data-g]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('[data-g]').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');curGoal=b.dataset.g;applyFilter();
+}));
+document.querySelectorAll('[data-p]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('[data-p]').forEach(x=>x.classList.remove('on-p'));
+  b.classList.add('on-p');curPrio=b.dataset.p;applyFilter();
+}));
+document.querySelectorAll('[data-r]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('[data-r]').forEach(x=>x.classList.remove('on-r'));
+  b.classList.add('on-r');curRisk=b.dataset.r;applyFilter();
+}));
+document.querySelectorAll('[data-t]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('[data-t]').forEach(x=>x.classList.remove('on-t'));
+  b.classList.add('on-t');curTrad=b.dataset.t;applyFilter();
+}));
+applyFilter();
+</script>
+</body>
+</html>
