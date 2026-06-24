@@ -437,10 +437,28 @@ async function fetchGames() {
 }
 
 async function fetchGameOdds(id) {
-  const data = await apiFetch(`/sports/${S.sportKey}/odds/`, {
-    regions:'eu', markets:'correct_score,h2h,totals', oddsFormat:'decimal', eventIds: id
+  // Stufe 1: correct_score + h2h + totals (Standard-Tier)
+  let data = await apiFetch(`/sports/${S.sportKey}/odds/`, {
+    regions:'eu', markets:'correct_score,h2h,totals', oddsFormat:'decimal', eventIds: id,
   });
-  return data && data[0] ? data[0] : null;
+  if (data && data[0]) return data[0];
+
+  // Stufe 2: ohne correct_score (Free-Tier gibt 422 auf correct_score)
+  data = await apiFetch(`/sports/${S.sportKey}/odds/`, {
+    regions:'eu', markets:'h2h,totals', oddsFormat:'decimal', eventIds: id,
+  });
+  if (data && data[0]) return data[0];
+
+  // Stufe 3: eventIds nicht unterstützt → alle holen und manuell filtern
+  data = await apiFetch(`/sports/${S.sportKey}/odds/`, {
+    regions:'eu', markets:'h2h,totals', oddsFormat:'decimal',
+  });
+  if (data) {
+    const match = data.find(g => g.id === id);
+    if (match) return match;
+  }
+
+  return null;
 }
 
 // ═══════════════════════════════════════════════════════════
