@@ -395,30 +395,37 @@ async function apiFetch(path, params = {}) {
 async function findSportKey() {
   const sports = await apiFetch('/sports/');
 
-  // Alle World-Cup-Schlüssel für Diagnose
-  const allWC = sports.filter(s => s.key.includes('world_cup'));
-
-  // Männer-WM-Turnier: kein "club", kein "women", kein "qualifier"
-  const menWC = allWC.filter(s => {
-    const k = s.key.toLowerCase();
-    return !k.includes('club') && !k.includes('women') && !k.includes('woman') && !k.includes('qualifier');
-  });
-
-  const pool = menWC.length ? menWC : allWC;
-  if (!pool.length) {
-    const sc = sports.filter(s => s.key.includes('soccer')).map(s => s.key).join(', ');
-    throw new Error(`Kein WM-Sport gefunden. Verfügbare Soccer-Schlüssel: ${sc}`);
+  // 1. Bekannte exakte Schlüssel für FIFA Männer-WM 2026 direkt probieren
+  const exactTry = ['soccer_fifa_world_cup', 'soccer_fifa_world_cup_2026',
+                    'soccer_world_cup', 'soccer_world_cup_2026'];
+  for (const k of exactTry) {
+    if (sports.find(s => s.key === k)) return k;
   }
 
-  // Präferenz: aktiv + enthält "2026"; sonst aktiv; sonst erster
-  const active = pool.filter(s => s.active);
-  const prefer = (active.length ? active : pool);
-  const with26 = prefer.find(s => s.key.includes('2026'));
-  const chosen = with26 || prefer[0];
+  // 2. Fuzzy: world_cup, KEIN qualifier, KEIN club, KEIN women
+  const candidates = sports.filter(s => {
+    const k = s.key.toLowerCase();
+    return k.includes('world_cup')
+      && !k.includes('qualifier') && !k.includes('qualifying')
+      && !k.includes('club')
+      && !k.includes('women') && !k.includes('woman');
+  });
 
-  // Alle gefundenen Kandidaten in State speichern (für Diagnose-Anzeige)
-  S._allSportKeys = pool.map(s => s.key);
-  return chosen.key;
+  if (candidates.length) {
+    const active = candidates.filter(s => s.active);
+    const pool = active.length ? active : candidates;
+    return (pool.find(s => s.key.includes('2026')) || pool[0]).key;
+  }
+
+  // 3. Nichts gefunden → alle Soccer-Keys für manuelle Auswahl merken, Fehler werfen
+  S._availableKeys = sports
+    .filter(s => s.key.startsWith('soccer') || s.key.includes('football'))
+    .map(s => s.key);
+  throw new Error(
+    'FIFA WM 2026 nicht in der API gefunden.\n' +
+    'Tipp: Sport-Key manuell eingeben (siehe unten).\n' +
+    'Verfügbare Soccer-Keys: ' + (S._availableKeys.slice(0, 12).join(', '))
+  );
 }
 
 async function fetchGames() {
@@ -551,18 +558,13 @@ function render() {
 // ── Setup ──────────────────────────────────────────────────
 
 function renderSetup() {
-  const cachedKey = S.sportKey ? `<div style="margin-top:10px;font-size:12px;color:var(--text3)">
-      Gecachter Sport-Key: <code style="color:var(--amber)">${escH(S.sportKey)}</code>
-      <button onclick="onClearSportKey()" style="background:none;border:none;color:var(--red);font-size:12px;cursor:pointer;margin-left:6px;">✕ zurücksetzen</button>
-    </div>` : '';
-
   app.innerHTML = `
     <div class="hdr">
       <span class="hdr-icon">⚽</span>
       <span class="hdr-title">WM 2026 Tipp-EV</span>
     </div>
     <div class="page">
-      ${S.error ? `<div class="alert alert-error">⚠️ ${escH(S.error)}</div>` : ''}
+      ${S.error ? `<div class="alert alert-error" style="white-space:pre-wrap">⚠️ ${escH(S.error)}</div>` : ''}
       <div class="card">
         <div class="field">
           <label>The Odds API Key</label>
@@ -570,16 +572,24 @@ function renderSetup() {
             placeholder="xxxxxxxxxxxxxxxxxxxxxxxx"
             autocomplete="off" autocorrect="off" spellcheck="false">
         </div>
+        <div class="field">
+          <label>Sport-Key <span style="color:var(--text3);font-weight:400;text-transform:none">(leer lassen = automatisch erkennen)</span></label>
+          <input type="text" id="skeyIn" value="${escH(S.sportKey)}"
+            placeholder="soccer_fifa_world_cup"
+            autocomplete="off" autocorrect="off" spellcheck="false">
+        </div>
         <button class="btn btn-primary" onclick="onStart()">Spiele laden ›</button>
-        ${cachedKey}
+        ${S.sportKey ? `<div style="margin-top:10px;font-size:12px;color:var(--text3)">
+          Gespeicherter Key: <code style="color:var(--amber)">${escH(S.sportKey)}</code>
+          <button onclick="onClearSportKey()" style="background:none;border:none;color:var(--red);font-size:12px;cursor:pointer;margin-left:6px;">✕</button>
+        </div>` : ''}
       </div>
-      <p class="setup-hint">
-        Kostenloser API-Key auf <a href="https://the-odds-api.com" target="_blank">the-odds-api.com</a>.
-        Correct-Score-Quoten erfordern den Standard-Tier; beim Free-Tier wird ein
-        Poisson-Modell aus 1X2 + Over/Under verwendet.<br><br>
-        Der Key wird lokal im Browser gespeichert und nie übertragen.<br><br>
-        <strong>Falsche Spiele?</strong> Sport-Key oben zurücksetzen — die App erkennt dann die FIFA Männer-WM 2026 neu.
-      </p>
+      <div class="hint">
+        <strong>Richtige Spiele nicht da?</strong><br>
+        Sport-Key-Feld leer lassen → App erkennt automatisch.<br>
+        Oder manuell eingeben: <code>soccer_fifa_world_cup</code><br><br>
+        API-Key: <a href="https://the-odds-api.com" target="_blank" style="color:var(--blue)">the-odds-api.com</a> (kostenlos registrieren)
+      </div>
     </div>`;
   setTimeout(() => document.getElementById('keyIn')?.focus(), 100);
 }
@@ -783,13 +793,20 @@ function renderAnalysis() {
 // ═══════════════════════════════════════════════════════════
 
 async function onStart() {
-  const key = document.getElementById('keyIn')?.value?.trim();
+  const key   = document.getElementById('keyIn')?.value?.trim();
+  const manualSkey = document.getElementById('skeyIn')?.value?.trim();
   if (!key) { set({error:'Bitte API-Key eingeben.'}); return; }
   S.apiKey = key;
   localStorage.setItem('odds_api_key', key);
-  set({ screen:'loading', msg:'Suche FIFA Männer-WM 2026 …', error:'' });
+
+  // Manueller Sport-Key hat Vorrang
+  if (manualSkey) {
+    S.sportKey = manualSkey;
+    localStorage.setItem('wm_sport_key', manualSkey);
+  }
+
+  set({ screen:'loading', msg:'Suche FIFA WM 2026 …', error:'' });
   try {
-    // Immer neu erkennen wenn kein Cache, oder bei Cache trotzdem validieren
     if (!S.sportKey) {
       const sk = await findSportKey();
       S.sportKey = sk;
@@ -797,19 +814,6 @@ async function onStart() {
     }
     set({ msg:`Lade Spiele (${S.sportKey}) …` });
     const games = await fetchGames();
-    if (!games.length && S.sportKey) {
-      // Leere Spielliste → Sport-Key könnte falsch sein, neu suchen
-      S.sportKey = '';
-      localStorage.removeItem('wm_sport_key');
-      set({ msg:'Keine Spiele — suche neu …' });
-      const sk = await findSportKey();
-      S.sportKey = sk;
-      localStorage.setItem('wm_sport_key', sk);
-      set({ msg:`Lade Spiele (${S.sportKey}) …` });
-      const games2 = await fetchGames();
-      set({ screen:'games', games: games2, error:'' });
-      return;
-    }
     set({ screen:'games', games, error:'' });
   } catch (e) {
     S.sportKey = '';
