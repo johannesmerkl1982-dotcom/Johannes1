@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <title>WM 2026 · Tipp-EV</title>
+  <!-- PWA / iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Tipp EV">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#0d1b2a">
+  <link rel="manifest" href="manifest.json">
+  <style>
+    :root {
+      --bg:       #0d1b2a;
+      --surf:     #162336;
+      --surf2:    #1f3048;
+      --surf3:    #263a56;
+      --green:    #22c55e;
+      --blue:     #3b82f6;
+      --amber:    #f59e0b;
+      --red:      #ef4444;
+      --text:     #e2e8f0;
+      --text2:    #94a3b8;
+      --text3:    #64748b;
+      --r:        14px;
+      --r-sm:     8px;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bot: env(safe-area-inset-bottom, 0px);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      overscroll-behavior: none;
+    }
+
+    /* ── HEADER ─────────────────────────────────── */
+    .hdr {
+      background: var(--surf);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      padding: calc(12px + var(--safe-top)) 16px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .hdr-title { font-size: 17px; font-weight: 700; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .hdr-icon  { font-size: 22px; line-height: 1; }
+    .back-btn  { background: none; border: none; color: var(--blue); font-size: 15px; cursor: pointer;
+                 padding: 6px 0; -webkit-tap-highlight-color: transparent; }
+
+    /* ── CONTENT ─────────────────────────────────── */
+    .page { padding: 16px 16px calc(20px + var(--safe-bot)); max-width: 500px; margin: 0 auto; }
+
+    /* ── CARDS ──────────────────────────────────── */
+    .card { background: var(--surf); border-radius: var(--r); padding: 16px; margin-bottom: 12px; }
+
+    /* ── INPUTS ──────────────────────────────────── */
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: 12px; font-weight: 600; text-transform: uppercase;
+                   letter-spacing: .6px; color: var(--text2); margin-bottom: 8px; }
+    .field input {
+      width: 100%;
+      background: var(--bg);
+      border: 1.5px solid var(--surf3);
+      border-radius: var(--r-sm);
+      color: var(--text);
+      font-size: 16px; /* avoid iOS zoom */
+      padding: 13px 14px;
+      outline: none;
+      transition: border-color .15s;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+    .field input:focus { border-color: var(--blue); }
+
+    /* ── BUTTONS ──────────────────────────────────── */
+    .btn {
+      display: block; width: 100%;
+      padding: 15px;
+      border: none; border-radius: var(--r-sm);
+      font-size: 16px; font-weight: 600;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: opacity .15s, transform .1s;
+      user-select: none;
+    }
+    .btn:active { opacity: .82; transform: scale(.985); }
+    .btn-primary   { background: var(--blue);  color: #fff; }
+    .btn-secondary { background: var(--surf3); color: var(--text); }
+    .btn-sm {
+      display: inline-block; width: auto;
+      padding: 8px 14px;
+      font-size: 13px;
+    }
+
+    /* ── GAME LIST ──────────────────────────────── */
+    .game-card {
+      background: var(--surf);
+      border-radius: var(--r);
+      padding: 14px 16px;
+      margin-bottom: 9px;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      -webkit-tap-highlight-color: transparent;
+      transition: border-color .12s, background .12s;
+    }
+    .game-card:active { background: var(--surf2); border-color: var(--blue); }
+    .game-teams { font-size: 15px; font-weight: 600; margin-bottom: 5px; }
+    .game-vs    { color: var(--text3); font-weight: 400; font-size: 13px; }
+    .game-time  { font-size: 13px; color: var(--text2); }
+    .game-arrow { color: var(--text3); font-size: 18px; }
+
+    /* ── SPINNER ──────────────────────────────────── */
+    .spin-wrap { padding: 60px 0; text-align: center; }
+    .spinner {
+      width: 40px; height: 40px;
+      border: 3px solid rgba(255,255,255,.1);
+      border-top-color: var(--blue);
+      border-radius: 50%;
+      animation: spin .75s linear infinite;
+      margin: 0 auto 14px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spin-msg { font-size: 14px; color: var(--text2); }
+
+    /* ── BADGES / STATUS ──────────────────────────── */
+    .badge {
+      display: inline-block;
+      padding: 3px 9px; border-radius: 20px;
+      font-size: 11px; font-weight: 600; letter-spacing: .3px;
+    }
+    .badge-green  { background: rgba(34,197,94,.18);  color: var(--green); }
+    .badge-blue   { background: rgba(59,130,246,.18); color: var(--blue);  }
+    .badge-amber  { background: rgba(245,158,11,.18); color: var(--amber); }
+
+    /* ── ALERT BOXES ──────────────────────────────── */
+    .alert {
+      border-radius: var(--r-sm);
+      padding: 11px 13px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .alert-warn  { background: rgba(245,158,11,.1);  border: 1px solid rgba(245,158,11,.3); color: var(--amber); }
+    .alert-info  { background: rgba(59,130,246,.1);  border: 1px solid rgba(59,130,246,.3); color: var(--blue);  }
+    .alert-error { background: rgba(239,68,68,.1);   border: 1px solid rgba(239,68,68,.3);  color: var(--red);   }
+
+    /* ── RECOMMENDATION BOX ───────────────────────── */
+    .rec-box {
+      background: linear-gradient(135deg, rgba(34,197,94,.15), rgba(34,197,94,.08));
+      border: 1.5px solid rgba(34,197,94,.35);
+      border-radius: var(--r);
+      padding: 16px 18px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .rec-main { flex: 1; }
+    .rec-label { font-size: 11px; text-transform: uppercase; letter-spacing: .7px;
+                 color: var(--text2); font-weight: 600; margin-bottom: 2px; }
+    .rec-score { font-size: 38px; font-weight: 800; color: var(--green); line-height: 1.1; }
+    .rec-ev    { font-size: 13px; color: var(--text2); margin-top: 2px; }
+    .rec-p     { text-align: right; }
+    .rec-p-val { font-size: 26px; font-weight: 700; color: var(--green); }
+    .rec-p-lbl { font-size: 11px; color: var(--text2); }
+
+    /* ── STAT ROW ──────────────────────────────────── */
+    .stat-row { display: flex; gap: 8px; margin-bottom: 14px; }
+    .stat-box {
+      flex: 1;
+      background: var(--surf2);
+      border-radius: var(--r-sm);
+      padding: 10px 6px;
+      text-align: center;
+    }
+    .stat-lbl { font-size: 10px; text-transform: uppercase; letter-spacing: .5px; color: var(--text3); margin-bottom: 3px; }
+    .stat-val { font-size: 16px; font-weight: 700; }
+    .stat-warn { color: var(--amber) !important; }
+
+    /* ── EV TABLE ──────────────────────────────────── */
+    .section-hdr {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .section-title { font-size: 11px; font-weight: 600; text-transform: uppercase;
+                     letter-spacing: .7px; color: var(--text2); }
+    .top-n-sel {
+      background: var(--surf3); color: var(--text);
+      border: none; border-radius: 6px;
+      padding: 5px 10px; font-size: 13px;
+    }
+
+    .ev-table { width: 100%; border-collapse: collapse; }
+    .ev-table th {
+      font-size: 10px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .5px;
+      color: var(--text3);
+      text-align: left; padding: 6px 8px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .ev-table th.r { text-align: right; }
+    .ev-table td   { padding: 10px 8px; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,.04); }
+    .ev-table td.r { text-align: right; }
+    .ev-table tr.top-row td { background: rgba(34,197,94,.08); }
+    .ev-table tr:last-child td { border-bottom: none; }
+
+    .rank-chip {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%;
+      font-size: 11px; font-weight: 700;
+    }
+    .rank-1 { background: var(--green); color: #000; }
+    .rank-2 { background: rgba(255,255,255,.15); color: var(--text); }
+    .rank-n { background: rgba(255,255,255,.07); color: var(--text3); }
+
+    .score-cell       { font-size: 17px; font-weight: 700; }
+    .score-cell.top   { color: var(--green); }
+    .ev-cell          { font-weight: 600; font-variant-numeric: tabular-nums; }
+    .ev-cell.top      { color: var(--green); }
+    .pct              { font-size: 13px; color: var(--text2); font-variant-numeric: tabular-nums; }
+    .pct.hi           { color: var(--text); font-weight: 500; }
+
+    /* ── HINT BOX ──────────────────────────────────── */
+    .hint {
+      background: rgba(255,255,255,.04);
+      border-radius: var(--r-sm);
+      padding: 10px 12px;
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    /* ── SETUP HINTS ──────────────────────────────── */
+    .setup-hint { font-size: 13px; color: var(--text2); line-height: 1.6; margin-top: 14px; }
+    .setup-hint a { color: var(--blue); text-decoration: none; }
+
+    /* ── DIVIDER ──────────────────────────────────── */
+    .divider { height: 1px; background: rgba(255,255,255,.07); margin: 14px 0; }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+'use strict';
+
+// ═══════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════
+
+const S = {
+  screen:   'setup',   // setup | loading | games | loading-match | analysis
+  apiKey:   localStorage.getItem('odds_api_key') || '',
+  sportKey: localStorage.getItem('wm_sport_key') || '',
+  games:    [],
+  result:   null,
+  msg:      '',
+  error:    '',
+  topN:     5,
+};
+
+function set(patch) { Object.assign(S, patch); render(); }
+
+// ═══════════════════════════════════════════════════════════
+// EV KERN-LOGIK (exakt wie wm_ev.py)
+// ═══════════════════════════════════════════════════════════
+
+function tend(h, a) { return h > a ? 'H' : a > h ? 'A' : 'U'; }
+
+// Disjunkte Schalen — hoehere Stufe hat Vorrang.
+// Remis-Tipps: tend=U ⟺ diff=0 → 2-Punkte-Schale strukturell nicht erreichbar.
+function pts(th, ta, rh, ra) {
+  if (th === rh && ta === ra) return 4;
+  const td = th - ta, rd = rh - ra;
+  const tt = tend(th, ta), rt = tend(rh, ra);
+  if (rd === td && rt === tt) return 3;
+  if (rt === tt)              return 2;
+  return 0;
+}
+
+function computeEV(th, ta, probs) {
+  let ev = 0, p4 = 0, p3 = 0, p2 = 0;
+  for (const [k, p] of Object.entries(probs)) {
+    const [rh, ra] = parseKey(k);
+    const s = pts(th, ta, rh, ra);
+    ev += s * p;
+    if (s === 4) p4 += p; else if (s === 3) p3 += p; else if (s === 2) p2 += p;
+  }
+  return { ev, p4, p3, p2 };
+}
+
+function normalizeOdds(rawOdds) {
+  // rawOdds: { "1:0": 8.5, ... }
+  let over = 0;
+  const raw = {};
+  for (const [k, o] of Object.entries(rawOdds)) { raw[k] = 1 / o; over += 1 / o; }
+  const probs = {};
+  for (const [k, p] of Object.entries(raw)) probs[k] = p / over;
+  return { probs, over };
+}
+
+// ═══════════════════════════════════════════════════════════
+// POISSON FALLBACK
+// ═══════════════════════════════════════════════════════════
+
+function poissonPMF(k, lam) {
+  if (lam <= 0) return k === 0 ? 1 : 0;
+  let lp = -lam + k * Math.log(lam);
+  for (let i = 1; i <= k; i++) lp -= Math.log(i);
+  return Math.exp(lp);
+}
+
+function buildPoisson(lh, la, max = 7) {
+  const p = {}; let tot = 0;
+  for (let h = 0; h <= max; h++)
+    for (let a = 0; a <= max; a++) { p[`${h}:${a}`] = poissonPMF(h,lh) * poissonPMF(a,la); tot += p[`${h}:${a}`]; }
+  for (const k in p) p[k] /= tot;
+  return p;
+}
+
+function lambdas(pH, pA, total) {
+  const ratio = pA > 0 ? pH / pA : 1;
+  const la = total / (1 + ratio);
+  return { lh: Math.max(0.3, total - la), la: Math.max(0.3, la) };
+}
+
+// ═══════════════════════════════════════════════════════════
+// HILFSFUNKTIONEN
+// ═══════════════════════════════════════════════════════════
+
+function median(arr) {
+  if (!arr.length) return 0;
+  const s = [...arr].sort((a, b) => a - b), m = s.length >> 1;
+  return s.length % 2 ? s[m] : (s[m-1] + s[m]) / 2;
+}
+
+function parseKey(k) { const [h, a] = k.split(':').map(Number); return [h, a]; }
+
+function escH(s) {
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function fmtTime(iso) {
+  if (!iso) return '?';
+  try {
+    return new Date(iso).toLocaleString('de-DE', {
+      weekday:'short', day:'2-digit', month:'2-digit',
+      hour:'2-digit', minute:'2-digit', timeZone:'Europe/Berlin'
+    }) + ' Uhr';
+  } catch { return iso; }
+}
+
+function fmtPct(p) { return (p * 100).toFixed(1) + '%'; }
+function fmtEV(v)  { return v.toFixed(4); }
+
+// ═══════════════════════════════════════════════════════════
+// API
+// ═══════════════════════════════════════════════════════════
+
+const API = 'https://api.the-odds-api.com/v4';
+
+async function apiFetch(path, params = {}) {
+  params.apiKey = S.apiKey;
+  const qs = new URLSearchParams(params).toString();
+  let resp;
+  try { resp = await fetch(`${API}${path}?${qs}`); }
+  catch (e) { throw new Error('Netzwerkfehler — CORS oder keine Verbindung: ' + e.message); }
+  if (resp.status === 401) throw new Error('Ungültige API-Key (401 Unauthorized)');
+  if (resp.status === 422) return null;
+  if (resp.status === 429) throw new Error('API Rate-Limit (429) — bitte kurz warten');
+  if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${await resp.text().catch(()=>'')}`);
+  return resp.json();
+}
+
+async function findSportKey() {
+  const sports = await apiFetch('/sports/');
+  const wm = sports.filter(s => s.key.includes('world_cup'));
+  if (!wm.length) {
+    const sc = sports.filter(s => s.key.includes('soccer')).map(s => s.key).slice(0,8).join(', ');
+    throw new Error(`Kein WM-Sport gefunden. Soccer: ${sc}`);
+  }
+  return (wm.find(s => s.active) || wm[0]).key;
+}
+
+async function fetchGames() {
+  const data = await apiFetch(`/sports/${S.sportKey}/odds/`, { regions:'eu', markets:'h2h', oddsFormat:'decimal' });
+  return data || [];
+}
+
+async function fetchGameOdds(id) {
+  const data = await apiFetch(`/sports/${S.sportKey}/odds/`, {
+    regions:'eu', markets:'correct_score,h2h,totals', oddsFormat:'decimal', eventIds: id
+  });
+  return data && data[0] ? data[0] : null;
+}
+
+// ═══════════════════════════════════════════════════════════
+// PARSING
+// ═══════════════════════════════════════════════════════════
+
+function parseScoreStr(s) {
+  s = s.replace(/^(home|away|draw)\s+/i,'').trim();
+  const m = s.match(/(\d+)\s*[:\-–]\s*(\d+)/);
+  return m ? `${m[1]}:${m[2]}` : null;
+}
+
+function parseCS(gd) {
+  const all = {};
+  for (const bk of gd.bookmakers||[])
+    for (const mk of bk.markets||[]) {
+      if (mk.key !== 'correct_score') continue;
+      for (const oc of mk.outcomes||[]) {
+        const sc = parseScoreStr(oc.name||''), pr = +oc.price;
+        if (sc && pr > 1) (all[sc] = all[sc]||[]).push(pr);
+      }
+    }
+  if (!Object.keys(all).length) return null;
+  const r = {};
+  for (const [k,v] of Object.entries(all)) r[k] = median(v);
+  return r;
+}
+
+function parseH2H(gd) {
+  const h=[], d=[], a=[];
+  for (const bk of gd.bookmakers||[])
+    for (const mk of bk.markets||[]) {
+      if (mk.key !== 'h2h') continue;
+      for (const oc of mk.outcomes||[]) {
+        const pr = +oc.price; if (pr <= 1) continue;
+        if (oc.name === gd.home_team) h.push(pr);
+        else if (oc.name === gd.away_team) a.push(pr);
+        else d.push(pr);
+      }
+    }
+  if (!h.length || !a.length) return null;
+  const pH=1/median(h), pD=d.length?1/median(d):0, pA=1/median(a), tot=pH+pD+pA;
+  return { pH:pH/tot, pD:pD/tot, pA:pA/tot };
+}
+
+function parseTotals(gd) {
+  const lines=[];
+  for (const bk of gd.bookmakers||[])
+    for (const mk of bk.markets||[]) {
+      if (mk.key !== 'totals') continue;
+      for (const oc of mk.outcomes||[]) if (oc.point != null) lines.push(+oc.point);
+    }
+  return lines.length ? median(lines) : null;
+}
+
+function availableMarkets(gd) {
+  const s = new Set();
+  for (const bk of gd.bookmakers||[]) for (const mk of bk.markets||[]) s.add(mk.key);
+  return [...s].sort();
+}
+
+// ═══════════════════════════════════════════════════════════
+// ANALYSE
+// ═══════════════════════════════════════════════════════════
+
+async function analyze(game) {
+  const gd = await fetchGameOdds(game.id);
+  if (!gd) throw new Error('Keine Daten für dieses Spiel.');
+
+  const csOdds = parseCS(gd);
+
+  if (csOdds) {
+    const { probs, over } = normalizeOdds(csOdds);
+    return buildResult(gd, probs, over, 'cs', {});
+  }
+
+  // Poisson-Fallback
+  const h2h = parseH2H(gd);
+  if (!h2h) throw new Error(`Correct Score & 1X2 nicht verfügbar. Märkte: ${availableMarkets(gd).join(', ')}`);
+  const total = parseTotals(gd) ?? 2.5;
+  const { lh, la } = lambdas(h2h.pH, h2h.pA, total);
+  const probs = buildPoisson(lh, la);
+  return buildResult(gd, probs, 1, 'poisson', { h2h, total, lh, la, markets: availableMarkets(gd) });
+}
+
+function buildResult(gd, probs, over, mode, extra) {
+  const rows = Object.keys(probs).map(k => {
+    const [th, ta] = parseKey(k);
+    return { k, ...computeEV(th, ta, probs) };
+  });
+  rows.sort((a, b) => b.ev - a.ev);
+
+  let pH=0, pD=0, pA=0;
+  for (const [k, p] of Object.entries(probs)) {
+    const [h,a] = parseKey(k);
+    if (h > a) pH += p; else if (a > h) pA += p; else pD += p;
+  }
+  return { gd, rows, over, mode, tend: {pH, pD, pA}, extra };
+}
+
+// ═══════════════════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════════════════
+
+const app = document.getElementById('app');
+
+function render() {
+  const screens = {
+    'setup':         renderSetup,
+    'loading':       renderLoading,
+    'games':         renderGames,
+    'loading-match': renderLoading,
+    'analysis':      renderAnalysis,
+  };
+  (screens[S.screen] || renderSetup)();
+}
+
+// ── Setup ──────────────────────────────────────────────────
+
+function renderSetup() {
+  app.innerHTML = `
+    <div class="hdr">
+      <span class="hdr-icon">⚽</span>
+      <span class="hdr-title">WM 2026 Tipp-EV</span>
+    </div>
+    <div class="page">
+      ${S.error ? `<div class="alert alert-error">⚠️ ${escH(S.error)}</div>` : ''}
+      <div class="card">
+        <div class="field">
+          <label>The Odds API Key</label>
+          <input type="text" id="keyIn" value="${escH(S.apiKey)}"
+            placeholder="xxxxxxxxxxxxxxxxxxxxxxxx"
+            autocomplete="off" autocorrect="off" spellcheck="false">
+        </div>
+        <button class="btn btn-primary" onclick="onStart()">Spiele laden ›</button>
+      </div>
+      <p class="setup-hint">
+        Kostenloser API-Key auf <a href="https://the-odds-api.com" target="_blank">the-odds-api.com</a>.
+        Correct-Score-Quoten erfordern den Standard-Tier; beim Free-Tier wird ein
+        Poisson-Modell aus 1X2 + Over/Under verwendet.<br><br>
+        Der Key wird lokal im Browser gespeichert und nie übertragen.
+      </p>
+    </div>`;
+  setTimeout(() => document.getElementById('keyIn')?.focus(), 100);
+}
+
+// ── Loading ────────────────────────────────────────────────
+
+function renderLoading() {
+  app.innerHTML = `
+    <div class="hdr">
+      <span class="hdr-icon">⚽</span>
+      <span class="hdr-title">WM 2026 Tipp-EV</span>
+    </div>
+    <div class="page">
+      <div class="spin-wrap">
+        <div class="spinner"></div>
+        <div class="spin-msg">${escH(S.msg || 'Laden …')}</div>
+      </div>
+    </div>`;
+}
+
+// ── Spiele-Liste ───────────────────────────────────────────
+
+function renderGames() {
+  const cards = S.games.map((g, i) => `
+    <div class="game-card" onclick="onGame(${i})">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="flex:1">
+          <div class="game-teams">
+            ${escH(g.home_team)} <span class="game-vs">vs</span> ${escH(g.away_team)}
+          </div>
+          <div class="game-time">🕐 ${fmtTime(g.commence_time)}</div>
+        </div>
+        <span class="game-arrow">›</span>
+      </div>
+    </div>`).join('');
+
+  app.innerHTML = `
+    <div class="hdr">
+      <button class="back-btn" onclick="onBack()">← Key</button>
+      <span class="hdr-title">${S.games.length} WM-Spiele</span>
+    </div>
+    <div class="page">
+      ${S.error ? `<div class="alert alert-error">⚠️ ${escH(S.error)}</div>` : ''}
+      <p class="section-title" style="margin-bottom:12px">Spiel antippen → EV-Analyse</p>
+      ${cards || '<div class="hint">Keine anstehenden Spiele gefunden.</div>'}
+    </div>`;
+}
+
+// ── Analyse ────────────────────────────────────────────────
+
+function renderAnalysis() {
+  const r = S.result;
+  if (!r) { set({screen:'games'}); return; }
+  const { gd, rows, over, mode, tend, extra } = r;
+  const top = rows.slice(0, S.topN);
+  const best = rows[0];
+
+  // Modus-Badge
+  const modeBadge = mode === 'cs'
+    ? '<span class="badge badge-green">Live Correct Score</span>'
+    : '<span class="badge badge-blue">Poisson-Modell</span>';
+
+  // Overround-Marge
+  const margeHtml = mode === 'cs' ? (() => {
+    const marge = ((over - 1)*100).toFixed(1);
+    return over > 1.3
+      ? `<div class="alert alert-warn">⚠️ Marge ${marge}% (> 30%) — Platzhalterquoten möglich. Rangfolge brauchbar, EV-Absolutwerte mit Vorsicht.</div>`
+      : '';
+  })() : '';
+
+  // Poisson-Info
+  const poissonHtml = mode === 'poisson' ? `
+    <div class="alert alert-info">
+      🔢 <strong>Poisson-Fallback</strong> — Correct Score nicht verfügbar
+      (Märkte: ${(extra.markets||[]).join(', ')})<br>
+      λ_Heim ${extra.lh?.toFixed(2)}, λ_Ausw ${extra.la?.toFixed(2)}, Total ${extra.total}
+    </div>` : '';
+
+  // EV-Gap-Hinweis
+  let gapHint = '';
+  if (rows.length >= 2) {
+    const gap = rows[0].ev - rows[1].ev;
+    const [h0,a0] = parseKey(rows[0].k), [h1,a1] = parseKey(rows[1].k);
+    if (gap < 0.05 && (h0-a0) !== (h1-a1)) {
+      gapHint = `<div class="hint">💡 <strong>${rows[0].k}</strong> und <strong>${rows[1].k}</strong> liegen nur
+        ${gap.toFixed(4)} EV auseinander und haben verschiedene Tordifferenzen —
+        Fußballwissen nutzen! (1:0 ist historisch häufigster WM-Ausgang)</div>`;
+    }
+  }
+
+  // Tabellen-Zeilen
+  const tRows = top.map((row, i) => {
+    const isTop = i === 0;
+    const rc = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : 'rank-n';
+    return `<tr class="${isTop?'top-row':''}">
+      <td><span class="rank-chip ${rc}">${i+1}</span></td>
+      <td><span class="score-cell${isTop?' top':''}">${row.k}</span></td>
+      <td class="r"><span class="ev-cell${isTop?' top':''}">${fmtEV(row.ev)}</span></td>
+      <td class="r"><span class="pct${isTop?' hi':''}">${fmtPct(row.p4)}</span></td>
+      <td class="r"><span class="pct">${fmtPct(row.p3)}</span></td>
+      <td class="r"><span class="pct">${fmtPct(row.p2)}</span></td>
+    </tr>`;
+  }).join('');
+
+  // Kurztitel im Header
+  const ht = escH(gd.home_team?.split(' ').at(-1) || gd.home_team || '');
+  const at = escH(gd.away_team?.split(' ').at(-1) || gd.away_team || '');
+
+  app.innerHTML = `
+    <div class="hdr">
+      <button class="back-btn" onclick="onBackGames()">← Spiele</button>
+      <span class="hdr-title">${ht} vs ${at}</span>
+    </div>
+    <div class="page">
+
+      <!-- Spielinfo -->
+      <div class="card" style="margin-bottom:12px">
+        <div style="font-size:15px;font-weight:600;margin-bottom:4px">
+          ${escH(gd.home_team)} vs ${escH(gd.away_team)}
+        </div>
+        <div style="font-size:13px;color:var(--text2);margin-bottom:8px">🕐 ${fmtTime(gd.commence_time)}</div>
+        ${modeBadge}
+      </div>
+
+      ${margeHtml}
+      ${poissonHtml}
+
+      <!-- Empfehlung -->
+      <div class="rec-box">
+        <div class="rec-main">
+          <div class="rec-label">Empfohlener Tipp</div>
+          <div class="rec-score">${best.k}</div>
+          <div class="rec-ev">EV = ${fmtEV(best.ev)}</div>
+        </div>
+        <div class="rec-p">
+          <div class="rec-p-val">${fmtPct(best.p4)}</div>
+          <div class="rec-p-lbl">P(exakt)</div>
+        </div>
+      </div>
+
+      <!-- Tendenz-Stats -->
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-lbl">P Heim</div>
+          <div class="stat-val">${(tend.pH*100).toFixed(0)}%</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-lbl">P Remis</div>
+          <div class="stat-val">${(tend.pD*100).toFixed(0)}%</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-lbl">P Ausw.</div>
+          <div class="stat-val">${(tend.pA*100).toFixed(0)}%</div>
+        </div>
+        ${mode==='cs' ? `<div class="stat-box">
+          <div class="stat-lbl">Marge</div>
+          <div class="stat-val${over>1.3?' stat-warn':''}">${((over-1)*100).toFixed(0)}%</div>
+        </div>` : ''}
+      </div>
+
+      ${gapHint}
+
+      <!-- EV-Tabelle -->
+      <div class="section-hdr">
+        <span class="section-title">Top-Tipps nach EV</span>
+        <select class="top-n-sel" onchange="onTopN(this.value)">
+          ${[3,5,8,10].map(n=>`<option value="${n}"${n===S.topN?' selected':''}>${n} Tipps</option>`).join('')}
+        </select>
+      </div>
+
+      <div class="card" style="padding:8px 4px">
+        <table class="ev-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Tipp</th>
+              <th class="r">EV</th>
+              <th class="r">P(exakt)</th>
+              <th class="r">P(diff)</th>
+              <th class="r">P(tend)</th>
+            </tr>
+          </thead>
+          <tbody>${tRows}</tbody>
+        </table>
+      </div>
+
+      <div class="divider"></div>
+      <div style="font-size:11px;color:var(--text3);line-height:1.5">
+        EV-Schalen: 4 Pkt=exakt · 3 Pkt=gleiche Diff+Tendenz · 2 Pkt=gleiche Tendenz · 0 Pkt=falsche Tendenz.
+        ${mode==='cs'?'Quoten: Median aller Bookies, margenbereinigt.':'Poisson: unabhängige Heim/Ausw.-Verteilungen aus h2h+totals.'}
+      </div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════
+// EVENT HANDLER
+// ═══════════════════════════════════════════════════════════
+
+async function onStart() {
+  const key = document.getElementById('keyIn')?.value?.trim();
+  if (!key) { set({error:'Bitte API-Key eingeben.'}); return; }
+  S.apiKey = key;
+  localStorage.setItem('odds_api_key', key);
+  set({ screen:'loading', msg:'Suche WM-Sport …', error:'' });
+  try {
+    if (!S.sportKey) {
+      const sk = await findSportKey();
+      S.sportKey = sk;
+      localStorage.setItem('wm_sport_key', sk);
+    }
+    set({ msg:'Lade Spiele …' });
+    const games = await fetchGames();
+    set({ screen:'games', games, error:'' });
+  } catch (e) {
+    // Wenn sportKey gecacht aber falsch → neu suchen
+    if (S.sportKey) {
+      S.sportKey = '';
+      localStorage.removeItem('wm_sport_key');
+    }
+    set({ screen:'setup', error: e.message });
+  }
+}
+
+async function onGame(i) {
+  const game = S.games[i];
+  if (!game) return;
+  set({ screen:'loading-match', msg:`Lade Quoten für ${game.home_team} vs ${game.away_team} …` });
+  try {
+    const result = await analyze(game);
+    set({ screen:'analysis', result, error:'' });
+  } catch (e) {
+    set({ screen:'games', error: e.message });
+  }
+}
+
+function onBack()      { set({ screen:'setup',  error:'' }); }
+function onBackGames() { set({ screen:'games',  error:'' }); }
+function onTopN(n)     { S.topN = +n; render(); }
+
+// ═══════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════
+
+if (S.apiKey && S.sportKey) {
+  // Key bekannt → direkt Spiele laden
+  (async () => {
+    set({ screen:'loading', msg:'Lade Spiele …' });
+    try {
+      const games = await fetchGames();
+      set({ screen:'games', games });
+    } catch (e) {
+      S.sportKey = '';
+      localStorage.removeItem('wm_sport_key');
+      set({ screen:'setup', error: e.message });
+    }
+  })();
+} else {
+  render();
+}
+</script>
+</body>
+</html>
