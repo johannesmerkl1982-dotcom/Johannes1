@@ -260,6 +260,14 @@
 // STATE
 // ═══════════════════════════════════════════════════════════
 
+// Sport-Key-Cache löschen falls er Qualifier enthält (einmaliger Auto-Fix)
+(function() {
+  const cached = localStorage.getItem('wm_sport_key') || '';
+  if (cached && cached.includes('qualifier')) {
+    localStorage.removeItem('wm_sport_key');
+  }
+})();
+
 const S = {
   screen:   'setup',   // setup | loading | games | loading-match | analysis
   apiKey:   localStorage.getItem('odds_api_key') || '',
@@ -390,10 +398,10 @@ async function findSportKey() {
   // Alle World-Cup-Schlüssel für Diagnose
   const allWC = sports.filter(s => s.key.includes('world_cup'));
 
-  // Männer-WM: kein "club", kein "women" im Schlüssel
+  // Männer-WM-Turnier: kein "club", kein "women", kein "qualifier"
   const menWC = allWC.filter(s => {
     const k = s.key.toLowerCase();
-    return !k.includes('club') && !k.includes('women') && !k.includes('woman');
+    return !k.includes('club') && !k.includes('women') && !k.includes('woman') && !k.includes('qualifier');
   });
 
   const pool = menWC.length ? menWC : allWC;
