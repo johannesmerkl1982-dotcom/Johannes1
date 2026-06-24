@@ -386,12 +386,31 @@ async function apiFetch(path, params = {}) {
 
 async function findSportKey() {
   const sports = await apiFetch('/sports/');
-  const wm = sports.filter(s => s.key.includes('world_cup'));
-  if (!wm.length) {
-    const sc = sports.filter(s => s.key.includes('soccer')).map(s => s.key).slice(0,8).join(', ');
-    throw new Error(`Kein WM-Sport gefunden. Soccer: ${sc}`);
+
+  // Alle World-Cup-Schlüssel für Diagnose
+  const allWC = sports.filter(s => s.key.includes('world_cup'));
+
+  // Männer-WM: kein "club", kein "women" im Schlüssel
+  const menWC = allWC.filter(s => {
+    const k = s.key.toLowerCase();
+    return !k.includes('club') && !k.includes('women') && !k.includes('woman');
+  });
+
+  const pool = menWC.length ? menWC : allWC;
+  if (!pool.length) {
+    const sc = sports.filter(s => s.key.includes('soccer')).map(s => s.key).join(', ');
+    throw new Error(`Kein WM-Sport gefunden. Verfügbare Soccer-Schlüssel: ${sc}`);
   }
-  return (wm.find(s => s.active) || wm[0]).key;
+
+  // Präferenz: aktiv + enthält "2026"; sonst aktiv; sonst erster
+  const active = pool.filter(s => s.active);
+  const prefer = (active.length ? active : pool);
+  const with26 = prefer.find(s => s.key.includes('2026'));
+  const chosen = with26 || prefer[0];
+
+  // Alle gefundenen Kandidaten in State speichern (für Diagnose-Anzeige)
+  S._allSportKeys = pool.map(s => s.key);
+  return chosen.key;
 }
 
 async function fetchGames() {
@@ -524,6 +543,11 @@ function render() {
 // ── Setup ──────────────────────────────────────────────────
 
 function renderSetup() {
+  const cachedKey = S.sportKey ? `<div style="margin-top:10px;font-size:12px;color:var(--text3)">
+      Gecachter Sport-Key: <code style="color:var(--amber)">${escH(S.sportKey)}</code>
+      <button onclick="onClearSportKey()" style="background:none;border:none;color:var(--red);font-size:12px;cursor:pointer;margin-left:6px;">✕ zurücksetzen</button>
+    </div>` : '';
+
   app.innerHTML = `
     <div class="hdr">
       <span class="hdr-icon">⚽</span>
@@ -539,12 +563,14 @@ function renderSetup() {
             autocomplete="off" autocorrect="off" spellcheck="false">
         </div>
         <button class="btn btn-primary" onclick="onStart()">Spiele laden ›</button>
+        ${cachedKey}
       </div>
       <p class="setup-hint">
         Kostenloser API-Key auf <a href="https://the-odds-api.com" target="_blank">the-odds-api.com</a>.
         Correct-Score-Quoten erfordern den Standard-Tier; beim Free-Tier wird ein
         Poisson-Modell aus 1X2 + Over/Under verwendet.<br><br>
-        Der Key wird lokal im Browser gespeichert und nie übertragen.
+        Der Key wird lokal im Browser gespeichert und nie übertragen.<br><br>
+        <strong>Falsche Spiele?</strong> Sport-Key oben zurücksetzen — die App erkennt dann die FIFA Männer-WM 2026 neu.
       </p>
     </div>`;
   setTimeout(() => document.getElementById('keyIn')?.focus(), 100);
@@ -589,6 +615,10 @@ function renderGames() {
     </div>
     <div class="page">
       ${S.error ? `<div class="alert alert-error">⚠️ ${escH(S.error)}</div>` : ''}
+      <div style="font-size:11px;color:var(--text3);margin-bottom:12px">
+        Sport-Key: <code style="color:var(--text2)">${escH(S.sportKey)}</code>
+        — <button onclick="onClearSportKey();onBack();" style="background:none;border:none;color:var(--red);font-size:11px;cursor:pointer;">falsch? zurücksetzen</button>
+      </div>
       <p class="section-title" style="margin-bottom:12px">Spiel antippen → EV-Analyse</p>
       ${cards || '<div class="hint">Keine anstehenden Spiele gefunden.</div>'}
     </div>`;
@@ -749,24 +779,41 @@ async function onStart() {
   if (!key) { set({error:'Bitte API-Key eingeben.'}); return; }
   S.apiKey = key;
   localStorage.setItem('odds_api_key', key);
-  set({ screen:'loading', msg:'Suche WM-Sport …', error:'' });
+  set({ screen:'loading', msg:'Suche FIFA Männer-WM 2026 …', error:'' });
   try {
+    // Immer neu erkennen wenn kein Cache, oder bei Cache trotzdem validieren
     if (!S.sportKey) {
       const sk = await findSportKey();
       S.sportKey = sk;
       localStorage.setItem('wm_sport_key', sk);
     }
-    set({ msg:'Lade Spiele …' });
+    set({ msg:`Lade Spiele (${S.sportKey}) …` });
     const games = await fetchGames();
-    set({ screen:'games', games, error:'' });
-  } catch (e) {
-    // Wenn sportKey gecacht aber falsch → neu suchen
-    if (S.sportKey) {
+    if (!games.length && S.sportKey) {
+      // Leere Spielliste → Sport-Key könnte falsch sein, neu suchen
       S.sportKey = '';
       localStorage.removeItem('wm_sport_key');
+      set({ msg:'Keine Spiele — suche neu …' });
+      const sk = await findSportKey();
+      S.sportKey = sk;
+      localStorage.setItem('wm_sport_key', sk);
+      set({ msg:`Lade Spiele (${S.sportKey}) …` });
+      const games2 = await fetchGames();
+      set({ screen:'games', games: games2, error:'' });
+      return;
     }
+    set({ screen:'games', games, error:'' });
+  } catch (e) {
+    S.sportKey = '';
+    localStorage.removeItem('wm_sport_key');
     set({ screen:'setup', error: e.message });
   }
+}
+
+function onClearSportKey() {
+  S.sportKey = '';
+  localStorage.removeItem('wm_sport_key');
+  set({ error:'' }); // re-render setup ohne cachedKey
 }
 
 async function onGame(i) {
