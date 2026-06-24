@@ -383,15 +383,18 @@ function fmtEV(v)  { return v.toFixed(4); }
 const API = 'https://api.the-odds-api.com/v4';
 
 async function apiFetch(path, params = {}) {
-  params.apiKey = S.apiKey;
-  const qs = new URLSearchParams(params).toString();
+  const p = Object.assign({}, params, { apiKey: S.apiKey });
+  const qs = new URLSearchParams(p).toString();
   let resp;
   try { resp = await fetch(`${API}${path}?${qs}`); }
-  catch (e) { throw new Error('Netzwerkfehler — CORS oder keine Verbindung: ' + e.message); }
-  if (resp.status === 401) throw new Error('Ungültige API-Key (401 Unauthorized)');
-  if (resp.status === 422) return null;
-  if (resp.status === 429) throw new Error('API Rate-Limit (429) — bitte kurz warten');
-  if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${await resp.text().catch(()=>'')}`);
+  catch (e) { throw new Error('Netzwerkfehler: ' + e.message); }
+  if (resp.status === 401) throw new Error('Ungültige API-Key (401)');
+  if (resp.status === 422) return null;   // Markt/Parameter nicht im Tier
+  if (resp.status === 429) throw new Error('Rate-Limit (429) — kurz warten');
+  if (!resp.ok) {
+    const body = await resp.text().catch(() => '');
+    throw new Error(`HTTP ${resp.status}: ${body.slice(0,120)}`);
+  }
   return resp.json();
 }
 
@@ -437,21 +440,28 @@ async function fetchGames() {
 }
 
 async function fetchGameOdds(id) {
-  // Stufe 1: correct_score + h2h + totals (Standard-Tier)
+  // Stufe 1: alles inkl. correct_score (Standard-Tier+)
   let data = await apiFetch(`/sports/${S.sportKey}/odds/`, {
     regions:'eu', markets:'correct_score,h2h,totals', oddsFormat:'decimal', eventIds: id,
   });
   if (data && data[0]) return data[0];
 
-  // Stufe 2: ohne correct_score (Free-Tier gibt 422 auf correct_score)
+  // Stufe 2: h2h+totals, kein correct_score
   data = await apiFetch(`/sports/${S.sportKey}/odds/`, {
     regions:'eu', markets:'h2h,totals', oddsFormat:'decimal', eventIds: id,
   });
   if (data && data[0]) return data[0];
 
-  // Stufe 3: eventIds nicht unterstützt → alle holen und manuell filtern
+  // Stufe 3: nur h2h (Free-Tier Basis), mit eventIds
   data = await apiFetch(`/sports/${S.sportKey}/odds/`, {
-    regions:'eu', markets:'h2h,totals', oddsFormat:'decimal',
+    regions:'eu', markets:'h2h', oddsFormat:'decimal', eventIds: id,
+  });
+  if (data && data[0]) return data[0];
+
+  // Stufe 4: nur h2h, OHNE eventIds → alle laden, manuell filtern
+  // (identisch zu fetchGames → muss funktionieren wenn Spielliste geladen hat)
+  data = await apiFetch(`/sports/${S.sportKey}/odds/`, {
+    regions:'eu', markets:'h2h', oddsFormat:'decimal',
   });
   if (data) {
     const match = data.find(g => g.id === id);
@@ -526,7 +536,11 @@ function availableMarkets(gd) {
 
 async function analyze(game) {
   const gd = await fetchGameOdds(game.id);
-  if (!gd) throw new Error('Keine Daten für dieses Spiel.');
+  if (!gd) throw new Error(
+    `Keine Quoten für "${game.home_team} vs ${game.away_team}" (ID: ${game.id}).\n` +
+    `Alle 4 Fallback-Stufen gaben null zurück.\n` +
+    `Sport-Key: ${S.sportKey} | API-Key-Prefix: ${S.apiKey.slice(0,6)}…`
+  );
 
   const csOdds = parseCS(gd);
 
