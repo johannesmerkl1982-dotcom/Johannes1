@@ -101,6 +101,20 @@ langsam; bei Bedarf mit diesen 10 Datenpunkt-IDs für alle 98 IDs (2 Hälften à
 neu abrufen, parsen nach `data/raw2/profile/p01.json` / `p02.json`, dann neu bauen:
 `OF00L,OS38B,HR002,MMR01,OS00M,RC0A4,OS99B,LS468,OS00F,PM032`
 
+## Portfolio-Zusammensetzung (Factsheet beim Klick) – gelegentlich
+Die kategoriegerechte Detailansicht (Anlagemix, Morningstar Style-Box Aktien/Renten,
+Sektoren, Regionen, Länder, Ø Bonität, Duration, Titelzahl, Top-10-Konzentration)
+speist sich aus `data/raw2/comp/`. Ändert sich quartalsweise. Neu holen mit dem
+`morningstar-data-tool` (batchbar!) für alle 98 IDs, diese **34 X-Ray-Datenpunkte**:
+`HS02E,HS02D,HS00X,HS05A,HS00L,HS00C,HS02F,HS00J,HS03W,HS008,HS07J,AA03K,AA03L,AA03M,AA03N,AA03O,AA03P,AA03Q,AA03R,AA03S,AA03T,AA03U,HS009,HS03D,HS03C,HS02N,HS09L,HS10Y,HS09S,HS10G,HS10F,HS10W,HS10M,HS09O`
+Antworten parsen nach `data/raw2/comp/c01.json …`, dann `build_dataset2.py` /
+`build_webapp2.py`. (HS02E/HS02D/HS00X = Aktien/Anleihen/Kasse-%; HS05A = Aktien-
+Style-Box, HS00L = Renten-Style-Box, HS00C = Ø Bonität, HS02F = Duration, HS00J/HS008
+= #Anleihen/#Positionen, HS07J = Top-10-%, HS03W = Ø Marktkap.; AA03K–AA03U = 11
+Sektoren; HS009/HS03D/HS03C/HS02N = Regionen; HS09L…HS09O = Länder.)
+Der Punkt „größte Titel/Holdings" (`morningstar-fund-holdings-tool`) braucht eine
+separate Tool-Freigabe und ist deshalb noch nicht enthalten.
+
 ## Wichtig
 - **App 1 nicht anfassen** (eigene Dateien: `build_dataset.py`, `build_webapp.py`,
   `data/funds.json`, `webapp/`, Root-`index.html`).

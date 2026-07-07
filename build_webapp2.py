@@ -90,6 +90,31 @@ HTML = r"""<!DOCTYPE html>
   .chips{ display:flex; flex-wrap:wrap; gap:4px 10px; }
   .chip{ font-variant-numeric:tabular-nums; }
   .chip b{ color:var(--muted); font-weight:600; font-size:11px; margin-right:3px; }
+  /* Factsheet */
+  .sec{ margin-top:16px; }
+  .sec h3{ font-size:12px; color:var(--muted); margin:0 0 8px; text-transform:uppercase; letter-spacing:.05em; }
+  .alloc{ display:flex; height:16px; border-radius:6px; overflow:hidden; border:1px solid var(--line); }
+  .alloc span{ display:block; height:100%; }
+  .alloc .aeq{ background:#6366f1; } .alloc .abd{ background:#10b981; }
+  .alloc .aca{ background:#f59e0b; } .alloc .aot{ background:#6b7280; }
+  .alegend{ display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:7px; font-size:12px; color:var(--muted); }
+  .alegend i{ display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:5px; vertical-align:baseline; }
+  .brow{ display:grid; grid-template-columns:96px 1fr 46px; gap:8px; align-items:center;
+         font-size:12.5px; margin:5px 0; }
+  .brow .bl{ color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .track{ background:#252b36; border-radius:5px; height:9px; overflow:hidden; }
+  .track i{ display:block; height:100%; background:var(--quoniam); border-radius:5px; }
+  .brow .bv{ text-align:right; font-variant-numeric:tabular-nums; }
+  .sbox{ display:inline-grid; grid-template-columns:repeat(3,26px); grid-auto-rows:26px; gap:3px; }
+  .sbox div{ background:#252b36; border-radius:4px; }
+  .sbox div.on{ background:var(--quoniam); box-shadow:0 0 0 2px rgba(59,130,246,.35); }
+  .sbaxis{ display:flex; gap:14px; margin-top:8px; font-size:11px; color:var(--muted); flex-wrap:wrap; }
+  .fikpi{ display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:10px; }
+  .fikpi .k{ background:#20252f; border:1px solid var(--line); border-radius:10px; padding:8px 10px; }
+  .fikpi .k .kl{ font-size:11px; color:var(--muted); } .fikpi .k .kn{ font-size:16px; font-weight:700; }
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:6px 18px; }
+  @media(max-width:520px){ .grid2{ grid-template-columns:1fr; } }
+  .catline{ font-size:12px; color:var(--muted); margin-top:3px; }
 </style>
 </head>
 <body>
@@ -302,34 +327,121 @@ function fmtAum(v){ if(v==null) return null;
 function stars(r){ const n=parseInt(r,10); if(!n) return null;
   return `<span class="stars">${"★".repeat(n)}<span class="off">${"★".repeat(5-n)}</span></span> <span style="color:var(--muted)">(${n}/5)</span>`; }
 
-function openDetail(f){
-  const rows = [];
-  const kv = (k,v,left)=> v!=null && v!=="" ? `<dt>${k}</dt><dd class="${left?'l':''}">${v}</dd>` : "";
-  let facts = "";
-  facts += kv("Rating", stars(f.rating));
-  facts += kv("Medalist", f.medalist ? `<span class="medal">${esc(f.medalist)}</span>` : "");
-  facts += kv("Kategorie", esc(f.category), true);
-  facts += kv("Benchmark", f.bench ? esc(f.bench) : "", true);
-  if (f.benchcat && f.benchcat!==f.bench) facts += kv("Kategorie-Index", esc(f.benchcat), true);
-  facts += kv("Laufende Kosten", f.ter!=null ? f.ter.toFixed(2).replace(".",",")+" % p.a." : "");
-  facts += kv("Ausschüttungsrendite", f.yield!=null ? f.yield.toFixed(2).replace(".",",")+" %" : "");
-  facts += kv("Fondsvolumen", fmtAum(f.aum));
-  facts += kv("Währung", esc(f.ccy));
-  facts += kv("Auflage", esc(f.incepdate));
-  facts += kv("ISIN", esc(f.isin));
+const SB_SIZE = {large:"Groß",mid:"Mittel",small:"Klein"};
+const SB_STYLE = {value:"Substanz",blend:"Misch",core:"Kern",growth:"Wachstum"};
+const FI_CR = {high:"Hoch",medium:"Mittel",low:"Niedrig"};
+const FI_RT = {limited:"Kurz",moderate:"Mittel",extensive:"Lang"};
+const SEC_LBL = {ba:"Grundstoffe",co:"Kommunikation",cy:"Zykl. Konsum",df:"Def. Konsum",
+  he:"Gesundheit",in:"Industrie",re:"Immobilien",te:"Technologie",en:"Energie",
+  fi:"Finanzen",ut:"Versorger"};
+const REG_LBL = {am:"Amerika",eu:"Europa",as:"Asien",em:"Schwellenländer"};
+const CTR_LBL = {us:"USA",uk:"Großbritannien",jp:"Japan",de:"Deutschland",
+  fr:"Frankreich",ch:"Schweiz",nl:"Niederlande",cn:"China"};
 
-  let mt = "";
-  for (const [key,m] of Object.entries(METRICS)){
-    const chips = m.periods.filter(p=>f.metrics[key+"_"+p]!=null)
-      .map(p=>`<span class="chip"><b>${PLABEL[p]}</b>${fmtVal(f.metrics[key+"_"+p], m.pct)}</span>`).join("");
-    if (chips) mt += `<div class="mrow"><div class="ml">${m.label}</div><div class="chips">${chips}</div></div>`;
+function bars(obj, labels, max){
+  const items = Object.entries(obj).map(([k,v])=>[labels[k]||k, v]).sort((a,b)=>b[1]-a[1]);
+  const top = max ? items.slice(0,max) : items;
+  const hi = Math.max(...top.map(x=>x[1]), 1);
+  return top.map(([l,v])=>`<div class="brow"><div class="bl">${esc(l)}</div>
+    <div class="track"><i style="width:${Math.max(2,v/hi*100).toFixed(0)}%"></i></div>
+    <div class="bv">${v.toFixed(1)} %</div></div>`).join("");
+}
+function sboxGrid(row,col){
+  let cells="";
+  for(let r=0;r<3;r++) for(let c=0;c<3;c++) cells+=`<div class="${r===row&&c===col?'on':''}"></div>`;
+  return `<div class="sbox">${cells}</div>`;
+}
+function styleBoxEq(s){
+  const t=(s||"").toLowerCase(), p=(s||"").split(" ");
+  const row = t.includes("large")?0 : t.includes("mid")?1 : t.includes("small")?2 : -1;
+  const col = t.includes("value")?0 : t.includes("growth")?2 : (t.includes("blend")||t.includes("core"))?1 : -1;
+  return sboxGrid(row,col)+`<div class="sbaxis">
+    <span>Größe: ${esc(SB_SIZE[(p[0]||"").toLowerCase()]||p[0]||"–")}</span>
+    <span>Stil: ${esc(SB_STYLE[(p[1]||"").toLowerCase()]||p[1]||"–")}</span></div>`;
+}
+function styleBoxFi(s){
+  const p=(s||"").split(" "), cr=(p[0]||"").toLowerCase(), rt=(p[1]||"").toLowerCase();
+  const row = cr==="high"?0 : cr==="medium"?1 : cr==="low"?2 : -1;
+  const col = rt==="limited"?0 : rt==="moderate"?1 : rt==="extensive"?2 : -1;
+  return sboxGrid(row,col)+`<div class="sbaxis">
+    <span>Bonität: ${esc(FI_CR[cr]||"–")}</span>
+    <span>Zinssensitivität: ${esc(FI_RT[rt]||"–")}</span></div>`;
+}
+function fmtMc(m){
+  if(m>=1e6) return (m/1e6).toFixed(1).replace(".",",")+" Bio. USD";
+  if(m>=1e3) return (m/1e3).toFixed(1).replace(".",",")+" Mrd. USD";
+  return Math.round(m).toLocaleString("de-DE")+" Mio. USD";
+}
+function kpiBox(list){
+  return `<div class="fikpi">${list.map(([l,v])=>
+    `<div class="k"><div class="kl">${l}</div><div class="kn">${v}</div></div>`).join("")}</div>`;
+}
+function compHTML(c){
+  let h="";
+  const eq=c.eq||0, bd=c.bd||0, ca=c.ca||0, ot=Math.max(0,+(100-eq-bd-ca).toFixed(1));
+  if(eq+bd+ca>0){
+    const seg=(v,cl)=> v>0?`<span class="${cl}" style="width:${v}%"></span>`:"";
+    const leg=(v,col,l)=> v>0?`<span><i style="background:${col}"></i>${l} ${v.toFixed(1)} %</span>`:"";
+    h+=`<div class="sec"><h3>Anlagemix</h3>
+      <div class="alloc">${seg(eq,'aeq')}${seg(bd,'abd')}${seg(ca,'aca')}${seg(ot,'aot')}</div>
+      <div class="alegend">${leg(eq,'#6366f1','Aktien')}${leg(bd,'#10b981','Anleihen')}${leg(ca,'#f59e0b','Kasse')}${leg(ot,'#6b7280','Sonstiges')}</div></div>`;
   }
-  $("ovbody").innerHTML =
-    `<h2>${esc(f.name)}</h2>
-     <div class="isin"><span class="badge ${badgeClass(f.branding)}">${f.branding}</span></div>
-     <dl class="kv">${facts}</dl>
-     <div class="mt"><h3>Kennzahlen (alle Laufzeiten)</h3>${mt || '<div class="empty">Keine Kennzahlen.</div>'}</div>`;
-  $("ov").hidden = false;
+  if(c.kind==="equity" || c.sEq || c.sec){
+    if(c.sEq) h+=`<div class="sec"><h3>Morningstar Style-Box · Aktien</h3>${styleBoxEq(c.sEq)}</div>`;
+    if(c.sec) h+=`<div class="sec"><h3>Sektoren</h3>${bars(c.sec,SEC_LBL,0)}</div>`;
+    if(c.reg){
+      const reg=Object.assign({},c.reg), em=reg.em; delete reg.em;
+      h+=`<div class="sec"><h3>Regionen</h3>${bars(reg,REG_LBL,0)}
+        ${em!=null?`<div class="catline">davon Schwellenländer: ${em.toFixed(1)} %</div>`:""}</div>`;
+    }
+    if(c.ctr) h+=`<div class="sec"><h3>Top-Länder (Aktien)</h3>${bars(c.ctr,CTR_LBL,6)}</div>`;
+  }
+  if(c.kind==="bond" || c.sFi || c.cr){
+    if(c.sFi) h+=`<div class="sec"><h3>Morningstar Style-Box · Renten</h3>${styleBoxFi(c.sFi)}</div>`;
+    const k=[];
+    if(c.cr) k.push(["Ø Bonität (Rating)", esc(c.cr)]);
+    if(c.du!=null) k.push(["Ø Duration", c.du.toFixed(2).replace(".",",")+" J"]);
+    if(c.nb!=null) k.push(["Anzahl Anleihen", c.nb.toLocaleString("de-DE")]);
+    if(c.t10!=null) k.push(["Top-10-Anteil", c.t10.toFixed(1).replace(".",",")+" %"]);
+    if(k.length) h+=`<div class="sec"><h3>Renten-Kennzahlen</h3>${kpiBox(k)}</div>`;
+  }
+  const st=[];
+  if(c.nh!=null) st.push(["Positionen gesamt", c.nh.toLocaleString("de-DE")]);
+  if(c.mc!=null) st.push(["Ø Marktkap.", fmtMc(c.mc)]);
+  if(c.kind!=="bond" && c.t10!=null) st.push(["Top-10-Anteil", c.t10.toFixed(1).replace(".",",")+" %"]);
+  if(st.length) h+=`<div class="sec"><h3>Portfolio-Statistik</h3>${kpiBox(st)}</div>`;
+  return h;
+}
+
+function openDetail(f){
+  const c=f.comp;
+  const kindLbl = c ? ({equity:"Aktienfonds",bond:"Rentenfonds",other:"Multi-Asset / Sonstige"}[c.kind]||"") : "";
+  let head=`<h2>${esc(f.name)}</h2>
+    <div class="isin"><span class="badge ${badgeClass(f.branding)}">${f.branding}</span>${f.rating?" "+stars(f.rating):""}${f.medalist?` <span class="medal">${esc(f.medalist)}</span>`:""}</div>
+    <div class="catline">${esc(normCat(f.category))}${kindLbl?" · "+kindLbl:""}</div>`;
+
+  let body = c ? compHTML(c)
+    : `<div class="catline" style="margin-top:14px">Für dieses Wertpapier liegen keine Portfolio-Detaildaten vor (z. B. physisches Gold / ETC).</div>`;
+
+  const pm=METRICS.performance;
+  const pchips=pm.periods.filter(p=>f.metrics["performance_"+p]!=null)
+    .map(p=>`<span class="chip"><b>${PLABEL[p]}</b>${fmtVal(f.metrics["performance_"+p],true)}</span>`).join("");
+  if(pchips) body+=`<div class="sec"><h3>Performance (annualisiert p.a.)</h3><div class="chips">${pchips}</div></div>`;
+
+  const kv=(k,v,left)=> v!=null&&v!=="" ? `<dt>${k}</dt><dd class="${left?'l':''}">${v}</dd>` : "";
+  let facts="";
+  facts+=kv("Benchmark", f.bench?esc(f.bench):"", true);
+  if(f.benchcat && f.benchcat!==f.bench) facts+=kv("Kategorie-Index", esc(f.benchcat), true);
+  facts+=kv("Laufende Kosten", f.ter!=null?f.ter.toFixed(2).replace(".",",")+" % p.a.":"");
+  facts+=kv("Ausschüttungsrendite", f.yield!=null?f.yield.toFixed(2).replace(".",",")+" %":"");
+  facts+=kv("Fondsvolumen", fmtAum(f.aum));
+  facts+=kv("Währung", esc(f.ccy));
+  facts+=kv("Auflage", esc(f.incepdate));
+  facts+=kv("ISIN", esc(f.isin));
+  if(facts) body+=`<div class="sec"><h3>Stammdaten</h3><dl class="kv">${facts}</dl></div>`;
+
+  $("ovbody").innerHTML=head+body;
+  $("ov").hidden=false;
 }
 function closeDetail(){ $("ov").hidden = true; }
 
@@ -379,7 +491,7 @@ def main():
         "funds": [{k: f[k] for k in
                    ("name", "branding", "isin", "category", "metrics",
                     "bench", "benchcat", "rating", "medalist", "ter",
-                    "aum", "ccy", "incepdate", "yield") if k in f}
+                    "aum", "ccy", "incepdate", "yield", "comp") if k in f}
                   for f in data["funds"]],
     }
     payload = json.dumps(slim, ensure_ascii=False, separators=(",", ":"))

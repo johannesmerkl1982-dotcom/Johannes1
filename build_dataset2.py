@@ -23,8 +23,17 @@ from datetime import date
 RAW_UNI = "data/raw2/universe.json"
 RAW_METRICS = "data/raw2/metrics"
 RAW_PROFILE = "data/raw2/profile"
+RAW_COMP = "data/raw2/comp"
 OUT = "data/funds2.json"
 BETA_MIN_ABS = 0.05
+
+# Portfolio-Zusammensetzung (morningstar-data-tool X-Ray-Datenpunkte) -> kurze Keys
+COMP_SECTORS = {"AA03K": "ba", "AA03L": "co", "AA03M": "cy", "AA03N": "df",
+                "AA03O": "he", "AA03P": "in", "AA03Q": "re", "AA03R": "te",
+                "AA03S": "en", "AA03T": "fi", "AA03U": "ut"}
+COMP_REGIONS = {"HS009": "am", "HS03D": "eu", "HS03C": "as", "HS02N": "em"}
+COMP_COUNTRIES = {"HS09L": "us", "HS10Y": "uk", "HS09S": "jp", "HS10G": "de",
+                  "HS10F": "fr", "HS10W": "ch", "HS10M": "nl", "HS09O": "cn"}
 
 DATAPOINTS = {
     "RR010": ("sharpe", "1y"), "RR011": ("sharpe", "3y"), "RR012": ("sharpe", "5y"), "RR013": ("sharpe", "10y"),
@@ -98,6 +107,73 @@ def profile_fields(p: dict) -> dict:
     return out
 
 
+def comp_fields(c: dict) -> dict | None:
+    """Baut die Portfolio-Zusammensetzung (Morningstar X-Ray) je Fonds:
+    Anlagemix, Style-Box (Aktien + Renten), Sektoren, Regionen, Länder,
+    durchschn. Bonität, Duration, Titelzahl, Top-10-Konzentration."""
+    if not c:
+        return None
+
+    def num(k):
+        try:
+            return float(c[k])
+        except (KeyError, TypeError, ValueError):
+            return None
+
+    out = {}
+    eq, bd, ca = num("HS02E"), num("HS02D"), num("HS00X")
+    if eq is not None:
+        out["eq"] = round(eq, 1)
+    if bd is not None:
+        out["bd"] = round(bd, 1)
+    if ca is not None:
+        out["ca"] = round(ca, 1)
+    eqp, bdp = eq or 0, bd or 0
+    kind = "equity" if (eqp >= bdp and eqp >= 40) else \
+           "bond" if (bdp > eqp and bdp >= 40) else "other"
+    out["kind"] = kind
+
+    # Aktien-spezifisch
+    if c.get("HS05A"):
+        out["sEq"] = c["HS05A"]
+    mc = num("HS03W")
+    if mc is not None and mc > 0:
+        out["mc"] = round(mc)
+    sec = {d: round(v, 1) for s, d in COMP_SECTORS.items()
+           if (v := num(s)) is not None and v != 0}
+    if sec:
+        out["sec"] = sec
+    reg = {d: round(v, 1) for s, d in COMP_REGIONS.items()
+           if (v := num(s)) is not None and v != 0}
+    if reg:
+        out["reg"] = reg
+    ctr = {d: round(v, 1) for s, d in COMP_COUNTRIES.items()
+           if (v := num(s)) is not None and v != 0}
+    if ctr:
+        out["ctr"] = ctr
+
+    # Renten-spezifisch (nur wenn nennenswerter Anleiheanteil, sonst Störwerte)
+    if bdp >= 25:
+        if c.get("HS00L"):
+            out["sFi"] = c["HS00L"]
+        if c.get("HS00C"):
+            out["cr"] = c["HS00C"]
+        du = num("HS02F")
+        if du is not None:
+            out["du"] = round(du, 2)
+        nb = num("HS00J")
+        if nb is not None and nb > 0:
+            out["nb"] = int(nb)
+
+    nh = num("HS008")
+    if nh is not None and nh > 0:
+        out["nh"] = int(nh)
+    t10 = num("HS07J")
+    if t10 is not None:
+        out["t10"] = round(t10, 1)
+    return out
+
+
 def main() -> None:
     uni = json.load(open(RAW_UNI, encoding="utf-8"))["investments"]
     raw = {}
@@ -108,6 +184,10 @@ def main() -> None:
     for path in sorted(glob.glob(os.path.join(RAW_PROFILE, "*.json"))):
         for fid, dps in json.load(open(path, encoding="utf-8")).items():
             prof.setdefault(fid, {}).update(dps)
+    comp = {}
+    for path in sorted(glob.glob(os.path.join(RAW_COMP, "*.json"))):
+        for fid, dps in json.load(open(path, encoding="utf-8")).items():
+            comp.setdefault(fid, {}).update(dps)
 
     funds = []
     for fid, meta in uni.items():
@@ -142,6 +222,9 @@ def main() -> None:
             "category": category, "metrics": metrics,
         }
         fund.update(profile_fields(prof.get(fid, {})))
+        cf = comp_fields(comp.get(fid, {}))
+        if cf:
+            fund["comp"] = cf
         funds.append(fund)
 
     funds.sort(key=lambda f: (f["branding"], f["name"]))
