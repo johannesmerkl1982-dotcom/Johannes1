@@ -22,6 +22,7 @@ from datetime import date
 
 RAW_UNI = "data/raw2/universe.json"
 RAW_METRICS = "data/raw2/metrics"
+RAW_PROFILE = "data/raw2/profile"
 OUT = "data/funds2.json"
 BETA_MIN_ABS = 0.05
 
@@ -60,12 +61,53 @@ def provider_bucket(name: str, typ: str, branding: str) -> str:
     return "Sonstige Fonds"
 
 
+def _num(v):
+    try:
+        return float(v)
+    except (TypeError, ValueError):
+        return None
+
+
+def profile_fields(p: dict) -> dict:
+    """Baut die Profil-/Stammdaten je Fonds aus den Morningstar-Datenpunkten."""
+    out = {}
+    bench = p.get("OF00L") or p.get("OS38B")          # Prospekt-Benchmark, sonst Kategorie-Index
+    if bench and bench not in ("N/A", "NA"):
+        out["bench"] = bench
+    if p.get("OS38B"):
+        out["benchcat"] = p["OS38B"]                  # Morningstar-Kategorie-Index
+    if p.get("HR002") and p["HR002"] not in ("NA", "N/A"):
+        out["rating"] = p["HR002"]                    # 1..5 Sterne
+    if p.get("MMR01") and p["MMR01"] not in ("NA", "N/A", "Not Ratable"):
+        out["medalist"] = p["MMR01"]                  # Gold/Silver/Bronze/Neutral/Negative
+    ter = _num(p.get("RC0A4"))
+    if ter is None:
+        ter = _num(p.get("OS00M"))
+    if ter is not None:
+        out["ter"] = round(ter, 2)                    # laufende Kosten % p.a.
+    aum = _num(p.get("OS99B"))
+    if aum is not None:
+        out["aum"] = aum                              # Fondsvolumen USD
+    if p.get("LS468"):
+        out["ccy"] = p["LS468"]
+    if p.get("OS00F"):
+        out["incepdate"] = p["OS00F"]
+    y = _num(p.get("PM032"))
+    if y is not None:
+        out["yield"] = round(y, 2)                    # 12M-Ausschuettungsrendite %
+    return out
+
+
 def main() -> None:
     uni = json.load(open(RAW_UNI, encoding="utf-8"))["investments"]
     raw = {}
     for path in sorted(glob.glob(os.path.join(RAW_METRICS, "*.json"))):
         for fid, dps in json.load(open(path, encoding="utf-8")).items():
             raw.setdefault(fid, {}).update(dps)
+    prof = {}
+    for path in sorted(glob.glob(os.path.join(RAW_PROFILE, "*.json"))):
+        for fid, dps in json.load(open(path, encoding="utf-8")).items():
+            prof.setdefault(fid, {}).update(dps)
 
     funds = []
     for fid, meta in uni.items():
@@ -94,11 +136,13 @@ def main() -> None:
             s, sd, be = metrics.get(f"sharpe_{p}"), risk.get(f"stddev_{p}"), risk.get(f"beta_{p}")
             if s is not None and sd is not None and be is not None and abs(be) >= BETA_MIN_ABS:
                 metrics[f"treynor_{p}"] = round(s * sd / be, 4)
-        funds.append({
+        fund = {
             "id": fid, "isin": meta.get("isin"), "name": meta.get("name", ""),
             "branding": prov, "wkntype": meta.get("type"),
             "category": category, "metrics": metrics,
-        })
+        }
+        fund.update(profile_fields(prof.get(fid, {})))
+        funds.append(fund)
 
     funds.sort(key=lambda f: (f["branding"], f["name"]))
     payload = {

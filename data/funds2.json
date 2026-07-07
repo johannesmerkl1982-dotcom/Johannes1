@@ -56,7 +56,16 @@
         "volatility_10y": 1.482,
         "beta_10y": 0.766,
         "treynor_10y": 0.296
-      }
+      },
+      "bench": "Bloomberg EUR Corporate 0-3 Year TR EUR",
+      "benchcat": "Bloomberg Euro Agg Corp 1-3 Yr TR EUR",
+      "rating": "3",
+      "medalist": "Silver",
+      "ter": 0.2,
+      "aum": 723160220.0,
+      "ccy": "Euro",
+      "incepdate": "2013-08-27",
+      "yield": 2.95
     },
     {
       "id": "F00000237E",
@@ -85,7 +94,11 @@
         "volatility_3y": 17.964,
         "volatility_5y": 16.262,
         "volatility_10y": 14.786
-      }
+      },
+      "bench": "Gold Spot Price",
+      "ter": 0.0,
+      "aum": 22927234910.0,
+      "incepdate": "2007-12-14"
     },
     {
       "id": "F0000157U7",
@@ -111,7 +124,11 @@
         "volatility_1y": 30.297,
         "volatility_3y": 22.317,
         "volatility_5y": 21.171
-      }
+      },
+      "ter": 0.24,
+      "aum": 1183508585.0,
+      "incepdate": "2020-05-20",
+      "yield": 0.0
     },
     {
       "id": "F00000UDVM",
@@ -141,7 +158,13 @@
         "volatility_3y": 1.614,
         "volatility_5y": 3.343,
         "volatility_10y": 5.149
-      }
+      },
+      "bench": "iBoxx EUR Liq HY 2027 3Y Rolling TR EUR",
+      "ter": 0.3,
+      "aum": 292823390.0,
+      "ccy": "Euro",
+      "incepdate": "2015-01-08",
+      "yield": 4.02
     },
     {
       "id": "F00000LIJ7",
@@ -171,7 +194,12 @@
         "volatility_3y": 22.739,
         "volatility_5y": 21.46,
         "volatility_10y": 19.633
-      }
+      },
+      "ter": 0.59,
+      "aum": 2103327654.0,
+      "ccy": "Euro",
+      "incepdate": "2010-06-15",
+      "yield": 0.0
     },
     {
       "id": "F000000GL3",
@@ -219,7 +247,16 @@
         "volatility_10y": 13.299,
         "beta_10y": 1.0,
         "treynor_10y": 9.6152
-      }
+      },
+      "bench": "MSCI Europe NR EUR",
+      "benchcat": "Morningstar DM Eur TME NR EUR",
+      "rating": "4",
+      "medalist": "Gold",
+      "ter": 0.12,
+      "aum": 12304995760.0,
+      "ccy": "Euro",
+      "incepdate": "2007-07-06",
+      "yield": 2.46
     },
     {
       "id": "F0GBR04J6F",
@@ -267,7 +304,15 @@
         "volatility_10y": 16.205,
         "beta_10y": 0.984,
         "treynor_10y": 9.7164
-      }
+      },
+      "bench": "FSE DAX TR EUR",
+      "benchcat": "Morningstar Germany TME NR EUR",
+      "rating": "4",
+      "medalist": "Bronze",
+      "ter": 0.16,
+      "aum": 9809256954.0,
+      "ccy": "Euro",
+      "incepdate": "2000-12-27"
     },
     {
       "id": "F000002OFK",
@@ -315,7 +360,16 @@
         "volatility_10y": 4.831,
         "beta_10y": 0.99,
         "treynor_10y": 0.4636
-      }
+      },
+      "bench": "Bloomberg Euro Corp TR EUR",
+      "benchcat": "Morningstar EZN Corp Bd GR EUR",
+      "rating": "3",
+      "medalist": "Bronze",
+      "ter": 0.09,
+      "aum": 11170877898.0,
+      "ccy": "Euro",
+      "incepdate": "2009-03-06",
+      "yield": 3.31
     },
     {
       "id": "F00000457U",
@@ -363,7 +417,16 @@
         "volatility_10y": 2.868,
         "beta_10y": 1.557,
         "treynor_10y": 0.2468
-      }
+      },
+      "bench": "Bloomberg EUR Corp bonds 1-5Y TR EUR",
+      "benchcat": "Bloomberg Euro Agg Corp 1-3 Yr TR EUR",
+      "rating": "3",
+      "medalist": "Bronze",
+      "ter": 0.2,
+      "aum": 4106249096.0,
+      "ccy": "Euro",
+      "incepdate": "2009-09-25",
+      "yield": 3.02
     },
     {
       "id": "F00000PX01",
@@ -411,7 +474,16 @@
         "volatility_10y": 4.679,
         "beta_10y": 0.945,
         "treynor_10y": 0.7922
-      }
+      },
+      "bench": "Bloomberg Euro Agg Fincls TR EUR",
+      "benchcat": "Morningstar EZN Corp Bd GR EUR",
+      "rating": "4",
+      "medalist": "Neutral",
+      "ter": 0.2,
+      "aum": 559678015.0,
+      "ccy": "Euro",
+      "incepdate": "2013-05-07",
+      "yield": 3.17
     },
     {
       "id": "F00000JTWF",
@@ -459,7 +531,16 @@
         "volatility_10y": 6.686,
         "beta_10y": 0.94,
         "treynor_10y": 2.9091
-      }
+      },
+      "bench": "Markit iBoxx Liquid High Yield TR EUR",
+      "benchcat": "Morningstar EZN HY Bd GR EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 0.5,
+      "aum": 6590368793.0,
+      "ccy": "Euro",
+      "incepdate": "2010-09-03",
+      "yield": 6.52
     },
     {
       "id": "F0GBR05VZU",
@@ -508,7 +589,16 @@
         "volatility_10y": 16.54,
         "beta_10y": 0.98,
         "treynor_10y": 8.6413
-      }
+      },
+      "bench": "EURO STOXX Select Dividend 30 NR EUR",
+      "benchcat": "Morningstar Dev Ezn TME NR EUR",
+      "rating": "3",
+      "medalist": "Silver",
+      "ter": 0.31,
+      "aum": 653792772.0,
+      "ccy": "Euro",
+      "incepdate": "2005-05-03",
+      "yield": 4.06
     },
     {
       "id": "F000004580",
@@ -556,7 +646,16 @@
         "volatility_10y": 17.434,
         "beta_10y": 1.02,
         "treynor_10y": 8.3068
-      }
+      },
+      "bench": "MSCI EM NR USD",
+      "benchcat": "Morningstar EM TME NR USD",
+      "rating": "3",
+      "medalist": "Bronze",
+      "ter": 0.18,
+      "aum": 10010996009.0,
+      "ccy": "US Dollar",
+      "incepdate": "2009-09-25",
+      "yield": 0.0
     },
     {
       "id": "F00000JY1R",
@@ -586,7 +685,13 @@
         "volatility_3y": 14.862,
         "volatility_5y": 18.181,
         "volatility_10y": 17.459
-      }
+      },
+      "bench": "MSCI World 100% Hdg NR EUR",
+      "ter": 0.55,
+      "aum": 6079310999.0,
+      "ccy": "Euro",
+      "incepdate": "2010-09-30",
+      "yield": 0.0
     },
     {
       "id": "F0GBR05V6L",
@@ -634,7 +739,16 @@
         "volatility_10y": 13.443,
         "beta_10y": 1.01,
         "treynor_10y": 9.5698
-      }
+      },
+      "bench": "STOXX Europe 600 NR EUR",
+      "benchcat": "Morningstar DM Eur TME NR EUR",
+      "rating": "4",
+      "medalist": "Silver",
+      "ter": 0.2,
+      "aum": 10884360577.0,
+      "ccy": "Euro",
+      "incepdate": "2004-02-13",
+      "yield": 2.47
     },
     {
       "id": "F0GBR05V6O",
@@ -682,7 +796,16 @@
         "volatility_10y": 15.368,
         "beta_10y": 1.111,
         "treynor_10y": 7.9952
-      }
+      },
+      "bench": "STOXX Europe Mid 200 NR EUR",
+      "benchcat": "Morningstar DM Eur TME NR EUR",
+      "rating": "4",
+      "medalist": "Bronze",
+      "ter": 0.2,
+      "aum": 657441927.0,
+      "ccy": "Euro",
+      "incepdate": "2005-04-04",
+      "yield": 2.78
     },
     {
       "id": "F0GBR05V6N",
@@ -730,7 +853,16 @@
         "volatility_10y": 16.134,
         "beta_10y": 1.037,
         "treynor_10y": 7.9036
-      }
+      },
+      "bench": "STOXX Europe Small 200 NR EUR",
+      "benchcat": "Morningstar Dev Eur SMID TME NR EUR",
+      "rating": "4",
+      "medalist": "Bronze",
+      "ter": 0.2,
+      "aum": 678233945.0,
+      "ccy": "Euro",
+      "incepdate": "2005-04-04",
+      "yield": 3.09
     },
     {
       "id": "F000005GVD",
@@ -779,7 +911,16 @@
         "volatility_10y": 15.654,
         "beta_10y": 1.054,
         "treynor_10y": 7.0547
-      }
+      },
+      "bench": "STOXX Global Select Dividend 100 NR EUR",
+      "benchcat": "Morningstar Gbl High Div Yld NR USD",
+      "rating": "3",
+      "medalist": "Gold",
+      "ter": 0.46,
+      "aum": 5288706778.0,
+      "ccy": "Euro",
+      "incepdate": "2009-09-25",
+      "yield": 3.76
     },
     {
       "id": "F0GBR052VJ",
@@ -827,7 +968,16 @@
         "volatility_10y": 5.064,
         "beta_10y": 0.865,
         "treynor_10y": -1.9144
-      }
+      },
+      "bench": "FSE Eb.Rexx Gov Germ5.5-10.5 TR EUR",
+      "benchcat": "Morningstar EZN Trsy Bd GR EUR",
+      "rating": "2",
+      "medalist": "Neutral",
+      "ter": 0.16,
+      "aum": 446353747.0,
+      "ccy": "Euro",
+      "incepdate": "2003-06-11",
+      "yield": 1.35
     },
     {
       "id": "F0GBR04GEX",
@@ -875,7 +1025,16 @@
         "volatility_10y": 3.438,
         "beta_10y": 0.571,
         "treynor_10y": -2.4927
-      }
+      },
+      "bench": "FSE Eb.Rexx Gov Germ Overall TR EUR",
+      "benchcat": "Morningstar EZN Trsy Bd GR EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 0.16,
+      "aum": 240343479.0,
+      "ccy": "Euro",
+      "incepdate": "2003-02-04",
+      "yield": 0.89
     },
     {
       "id": "F00000V3RT",
@@ -924,7 +1083,16 @@
         "volatility_10y": 14.137,
         "beta_10y": 1.026,
         "treynor_10y": 12.6213
-      }
+      },
+      "bench": "MSCI Europe NR EUR",
+      "benchcat": "Morningstar DM Eur TME NR EUR",
+      "rating": "5",
+      "medalist": "Silver",
+      "ter": 0.7,
+      "aum": 1442798887.0,
+      "ccy": "Euro",
+      "incepdate": "2014-11-28",
+      "yield": 2.1
     },
     {
       "id": "F00001S9LY",
@@ -945,7 +1113,14 @@
         "volatility_1y": 13.716,
         "beta_1y": 1.069,
         "treynor_1y": 11.5348
-      }
+      },
+      "bench": "Morningstar Dev Eur Sml TME NR EUR",
+      "benchcat": "Morningstar Dev Eur Sml TME NR EUR",
+      "ter": 0.9,
+      "aum": 45539829.0,
+      "ccy": "Euro",
+      "incepdate": "2025-06-03",
+      "yield": 0.42
     },
     {
       "id": "F00000V3RR",
@@ -994,7 +1169,16 @@
         "volatility_10y": 14.425,
         "beta_10y": 0.81,
         "treynor_10y": 9.7413
-      }
+      },
+      "bench": "MSCI EM NR EUR",
+      "benchcat": "Morningstar EM TME NR USD",
+      "rating": "4",
+      "medalist": "Bronze",
+      "ter": 0.9,
+      "aum": 227111696.0,
+      "ccy": "Euro",
+      "incepdate": "2014-11-28",
+      "yield": 2.21
     },
     {
       "id": "F00000V3RV",
@@ -1043,7 +1227,16 @@
         "volatility_10y": 5.117,
         "beta_10y": 1.045,
         "treynor_10y": 0.6562
-      }
+      },
+      "bench": "Markit iBoxx EUR Corp TR",
+      "benchcat": "Morningstar EZN Corp Bd GR EUR",
+      "rating": "4",
+      "medalist": "Bronze",
+      "ter": 0.4,
+      "aum": 256438260.0,
+      "ccy": "Euro",
+      "incepdate": "2014-11-28",
+      "yield": 2.49
     },
     {
       "id": "F00000J75J",
@@ -1092,7 +1285,15 @@
         "volatility_10y": 2.849,
         "beta_10y": 0.426,
         "treynor_10y": 0.6019
-      }
+      },
+      "benchcat": "Morningstar Gbl Corp Bd GR Hdg EUR",
+      "rating": "4",
+      "medalist": "Neutral",
+      "ter": 0.5,
+      "aum": 3927606.0,
+      "ccy": "Euro",
+      "incepdate": "2010-04-12",
+      "yield": 2.88
     },
     {
       "id": "F00000V3RW",
@@ -1141,7 +1342,15 @@
         "volatility_10y": 2.848,
         "beta_10y": 0.425,
         "treynor_10y": 0.9717
-      }
+      },
+      "benchcat": "Morningstar Gbl Corp Bd GR Hdg EUR",
+      "rating": "5",
+      "medalist": "Neutral",
+      "ter": 0.4,
+      "aum": 339221950.0,
+      "ccy": "Euro",
+      "incepdate": "2014-11-28",
+      "yield": 3.05
     },
     {
       "id": "F00001HM9W",
@@ -1181,7 +1390,15 @@
         "volatility_5y": 2.87,
         "beta_5y": 0.375,
         "treynor_5y": -1.3699
-      }
+      },
+      "benchcat": "Morningstar Gbl Corp Bd GR Hdg USD",
+      "rating": "5",
+      "medalist": "Neutral",
+      "ter": 0.4,
+      "aum": 38613408.0,
+      "ccy": "Euro",
+      "incepdate": "2017-03-31",
+      "yield": 1.14
     },
     {
       "id": "F00000V3RU",
@@ -1211,7 +1428,13 @@
         "volatility_3y": 13.037,
         "volatility_5y": 15.981,
         "volatility_10y": 14.865
-      }
+      },
+      "bench": "MSCI World NR EUR",
+      "ter": 0.7,
+      "aum": 170356314.0,
+      "ccy": "Euro",
+      "incepdate": "2014-11-28",
+      "yield": 1.12
     },
     {
       "id": "F00000XNAF",
@@ -1260,7 +1483,16 @@
         "volatility_10y": 5.041,
         "beta_10y": 0.703,
         "treynor_10y": 1.9648
-      }
+      },
+      "bench": "ICE BofA Global Hi Yield BB-B TR EUR",
+      "benchcat": "Morningstar Gbl HY Bd GR Hdg EUR",
+      "rating": "2",
+      "medalist": "Neutral",
+      "ter": 0.7,
+      "aum": 160886093.0,
+      "ccy": "Euro",
+      "incepdate": "2016-06-15",
+      "yield": 5.25
     },
     {
       "id": "F00000WS4W",
@@ -1309,7 +1541,16 @@
         "volatility_10y": 1.516,
         "beta_10y": 0.708,
         "treynor_10y": 0.1435
-      }
+      },
+      "bench": "Not Benchmarked",
+      "benchcat": "Bloomberg Euro Agg Corp 1-3 Yr TR EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 0.2,
+      "aum": 150514249.0,
+      "ccy": "Euro",
+      "incepdate": "2015-12-15",
+      "yield": 0.15
     },
     {
       "id": "F00001PPHE",
@@ -1331,7 +1572,15 @@
         "volatility_1y": 3.107,
         "beta_1y": 1.001,
         "treynor_1y": 0.4904
-      }
+      },
+      "bench": "Bloomberg Global Agg Corporate H EUR",
+      "benchcat": "Morningstar Gbl Corp Bd GR Hdg EUR",
+      "medalist": "Neutral",
+      "ter": 0.4,
+      "aum": 13259605.0,
+      "ccy": "Euro",
+      "incepdate": "2024-10-28",
+      "yield": 3.86
     },
     {
       "id": "F0GBR06U04",
@@ -1361,7 +1610,13 @@
         "volatility_3y": 18.332,
         "volatility_5y": 20.221,
         "volatility_10y": 19.972
-      }
+      },
+      "bench": "MS RADAR ex Agr&Liv Com hdg+€STR-0,4%",
+      "ter": 1.1,
+      "aum": 1395369024.0,
+      "ccy": "Euro",
+      "incepdate": "2006-04-25",
+      "yield": 2.01
     },
     {
       "id": "F0GBR04BK2",
@@ -1410,7 +1665,16 @@
         "volatility_10y": 17.274,
         "beta_10y": 1.103,
         "treynor_10y": 7.5642
-      }
+      },
+      "bench": "MSCI AC Asia Ex Japan NR EUR [75.00%]; MSCI Japan NR LCL [25.00%]",
+      "benchcat": "Morningstar APAC TME NR USD",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 1.4,
+      "aum": 518784479.0,
+      "ccy": "Euro",
+      "incepdate": "1989-11-03",
+      "yield": 0.0
     },
     {
       "id": "F0GBR04BJZ",
@@ -1459,7 +1723,16 @@
         "volatility_10y": 19.575,
         "beta_10y": 1.221,
         "treynor_10y": 7.7274
-      }
+      },
+      "bench": "MSCI EM Asia ex China Index NR LCL [70.00%]; MSCI Japan NR USD [30.00%]",
+      "benchcat": "Morningstar APAC TME NR USD",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 1.5,
+      "aum": 779863608.0,
+      "ccy": "Euro",
+      "incepdate": "1999-10-01",
+      "yield": 1.07
     },
     {
       "id": "F0000005RW",
@@ -1508,7 +1781,15 @@
         "volatility_10y": 19.181,
         "beta_10y": 0.972,
         "treynor_10y": 4.6374
-      }
+      },
+      "bench": "SDAX",
+      "benchcat": "MSCI Germany Small Cap NR EUR",
+      "rating": "2",
+      "medalist": "Negative",
+      "ter": 1.8,
+      "aum": 1341716170.0,
+      "ccy": "Euro",
+      "incepdate": "2006-10-04"
     },
     {
       "id": "F0GBR0573C",
@@ -1557,7 +1838,16 @@
         "volatility_10y": 12.83,
         "beta_10y": 0.904,
         "treynor_10y": 7.7065
-      }
+      },
+      "bench": "MSCI Europe High Div Yld NR EUR",
+      "benchcat": "Morningstar DM Eur Div Yld >2.5% NR EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 1.5,
+      "aum": 1185201690.0,
+      "ccy": "Euro",
+      "incepdate": "2004-03-15",
+      "yield": 3.78
     },
     {
       "id": "F0GBR04BKA",
@@ -1606,7 +1896,16 @@
         "volatility_10y": 13.73,
         "beta_10y": 0.999,
         "treynor_10y": 8.315
-      }
+      },
+      "bench": "MSCI Europe Growth GR EUR",
+      "benchcat": "Morningstar Dev Europe Grt TME NR EUR",
+      "rating": "4",
+      "medalist": "Neutral",
+      "ter": 1.5,
+      "aum": 790452347.0,
+      "ccy": "Euro",
+      "incepdate": "1997-10-01",
+      "yield": 1.6
     },
     {
       "id": "F0GBR04BKB",
@@ -1655,7 +1954,16 @@
         "volatility_10y": 17.647,
         "beta_10y": 1.071,
         "treynor_10y": 11.9953
-      }
+      },
+      "bench": "MSCI World Growth PR LCL",
+      "benchcat": "Morningstar Gbl Growth TME NR USD",
+      "rating": "5",
+      "medalist": "Bronze",
+      "ter": 1.5,
+      "aum": 761301281.0,
+      "ccy": "Euro",
+      "incepdate": "1998-08-19",
+      "yield": 1.49
     },
     {
       "id": "F0GBR04HGO",
@@ -1704,7 +2012,16 @@
         "volatility_10y": 19.177,
         "beta_10y": 1.103,
         "treynor_10y": 6.5372
-      }
+      },
+      "bench": "MSCI EM Free TR EUR",
+      "benchcat": "Morningstar EM TME NR USD",
+      "rating": "2",
+      "medalist": "Neutral",
+      "ter": 1.8,
+      "aum": 667660508.0,
+      "ccy": "Euro",
+      "incepdate": "2000-10-02",
+      "yield": 1.16
     },
     {
       "id": "F00000J4K6",
@@ -1753,7 +2070,15 @@
         "volatility_10y": 16.786,
         "beta_10y": 1.009,
         "treynor_10y": 8.4845
-      }
+      },
+      "bench": "HDAX TR EUR",
+      "benchcat": "Morningstar Germany TME NR EUR",
+      "rating": "4",
+      "ter": 1.0,
+      "aum": 133769939.0,
+      "ccy": "Euro",
+      "incepdate": "2009-12-01",
+      "yield": 1.18
     },
     {
       "id": "F00000GV7A",
@@ -1802,7 +2127,16 @@
         "volatility_10y": 14.741,
         "beta_10y": 0.945,
         "treynor_10y": 10.0769
-      }
+      },
+      "bench": "MSCI Europe NR EUR",
+      "benchcat": "Morningstar Dev Ezn TME NR EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 1.0,
+      "aum": 177656221.0,
+      "ccy": "Euro",
+      "incepdate": "2009-12-01",
+      "yield": 1.45
     },
     {
       "id": "F000010NU6",
@@ -1842,7 +2176,15 @@
         "volatility_5y": 15.732,
         "beta_5y": 1.028,
         "treynor_5y": 4.4839
-      }
+      },
+      "bench": "MSCI World NR EUR",
+      "benchcat": "Morningstar Global TME NR USD",
+      "rating": "3",
+      "medalist": "Negative",
+      "ter": 1.4,
+      "aum": 282977470.0,
+      "ccy": "Euro",
+      "incepdate": "2018-06-01"
     },
     {
       "id": "F0GBR04PNW",
@@ -1891,7 +2233,16 @@
         "volatility_10y": 15.146,
         "beta_10y": 0.98,
         "treynor_10y": 9.9376
-      }
+      },
+      "bench": "EURO STOXX NR EUR",
+      "benchcat": "Morningstar Dev Ezn TME NR EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 1.4,
+      "aum": 4089087821.0,
+      "ccy": "Euro",
+      "incepdate": "1998-10-12",
+      "yield": 1.26
     },
     {
       "id": "F0GBR054RM",
@@ -1940,7 +2291,16 @@
         "volatility_10y": 2.759,
         "beta_10y": 1.39,
         "treynor_10y": 0.125
-      }
+      },
+      "bench": "ICE BofA 1-3Y EUR Corp TR EUR",
+      "benchcat": "Bloomberg Euro Agg Corp 1-3 Yr TR EUR",
+      "rating": "2",
+      "medalist": "Neutral",
+      "ter": 0.7,
+      "aum": 979064300.0,
+      "ccy": "Euro",
+      "incepdate": "2003-05-15",
+      "yield": 2.3
     },
     {
       "id": "F0GBR06GPA",
@@ -1989,7 +2349,16 @@
         "volatility_10y": 5.253,
         "beta_10y": 1.053,
         "treynor_10y": 0.5587
-      }
+      },
+      "bench": "BofAML EMU Corp. TR EUR",
+      "benchcat": "Morningstar EZN Corp Bd GR EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 0.7,
+      "aum": 1125884585.0,
+      "ccy": "Euro",
+      "incepdate": "2000-10-02",
+      "yield": 2.72
     },
     {
       "id": "F0GBR04PO1",
@@ -2038,7 +2407,16 @@
         "volatility_10y": 7.348,
         "beta_10y": 1.017,
         "treynor_10y": 2.3771
-      }
+      },
+      "bench": "BofAML Euro BB-B NFin Fx&Fl HY Cs",
+      "benchcat": "Morningstar EZN HY Bd GR EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 1.0,
+      "aum": 590756425.0,
+      "ccy": "Euro",
+      "incepdate": "1999-07-01",
+      "yield": 3.83
     },
     {
       "id": "F0GBR04BKD",
@@ -2087,7 +2465,16 @@
         "volatility_10y": 17.343,
         "beta_10y": 1.076,
         "treynor_10y": 6.0765
-      }
+      },
+      "bench": "STOXX Europe Mid 200 NR EUR [50.00%]; STOXX Europe Small 200 NR EUR [50.00%]",
+      "benchcat": "Morningstar Dev Eur SMID TME NR EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 2.0,
+      "aum": 374086902.0,
+      "ccy": "Euro",
+      "incepdate": "1998-09-15",
+      "yield": 1.66
     },
     {
       "id": "F000002F7M",
@@ -2136,7 +2523,15 @@
         "volatility_10y": 15.338,
         "beta_10y": 1.018,
         "treynor_10y": 10.9084
-      }
+      },
+      "bench": "MSCI World NR USD",
+      "benchcat": "Morningstar Global TME NR USD",
+      "rating": "5",
+      "medalist": "Neutral",
+      "ter": 1.0,
+      "aum": 808730477.0,
+      "ccy": "Euro",
+      "incepdate": "2008-07-01"
     },
     {
       "id": "F0GBR04PQE",
@@ -2184,7 +2579,16 @@
         "volatility_10y": 17.023,
         "beta_10y": 1.014,
         "treynor_10y": 8.1925
-      }
+      },
+      "bench": "DAX UCITS Capped NR",
+      "benchcat": "Morningstar Germany TME NR EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 1.51,
+      "aum": 4347965801.0,
+      "ccy": "Euro",
+      "incepdate": "1956-04-12",
+      "yield": 1.36
     },
     {
       "id": "F00000ZB3N",
@@ -2224,7 +2628,15 @@
         "volatility_5y": 13.338,
         "beta_5y": 0.964,
         "treynor_5y": 3.3622
-      }
+      },
+      "benchcat": "Morningstar Gbl High Div Yld NR USD",
+      "rating": "2",
+      "medalist": "Negative",
+      "ter": 1.4,
+      "aum": 1655490202.0,
+      "ccy": "Euro",
+      "incepdate": "2017-07-12",
+      "yield": 3.46
     },
     {
       "id": "F000002F7I",
@@ -2273,7 +2685,15 @@
         "volatility_10y": 15.134,
         "beta_10y": 1.014,
         "treynor_10y": 11.2087
-      }
+      },
+      "bench": "MSCI World NR EUR",
+      "benchcat": "Morningstar Global TME NR USD",
+      "rating": "5",
+      "medalist": "Neutral",
+      "ter": 1.0,
+      "aum": 1374624974.0,
+      "ccy": "Euro",
+      "incepdate": "2008-07-01"
     },
     {
       "id": "F0000107Y9",
@@ -2313,7 +2733,16 @@
         "volatility_5y": 17.184,
         "beta_5y": 0.92,
         "treynor_5y": 6.6308
-      }
+      },
+      "bench": "MSCI ACWI NR EUR",
+      "benchcat": "Morningstar Gbl Growth TME NR USD",
+      "rating": "4",
+      "medalist": "Neutral",
+      "ter": 1.5,
+      "aum": 2426178512.0,
+      "ccy": "Euro",
+      "incepdate": "2018-02-28",
+      "yield": 1.93
     },
     {
       "id": "F000014J7J",
@@ -2353,7 +2782,16 @@
         "volatility_5y": 17.2,
         "beta_5y": 0.921,
         "treynor_5y": 7.3954
-      }
+      },
+      "bench": "MSCI ACWI NR EUR",
+      "benchcat": "Morningstar Gbl Growth TME NR USD",
+      "rating": "4",
+      "medalist": "Silver",
+      "ter": 0.8,
+      "aum": 157730454.0,
+      "ccy": "Euro",
+      "incepdate": "2019-12-02",
+      "yield": 0.0
     },
     {
       "id": "F000016S88",
@@ -2393,7 +2831,16 @@
         "volatility_5y": 14.551,
         "beta_5y": 0.942,
         "treynor_5y": 0.3862
-      }
+      },
+      "bench": "STOXX Global Broad Infrastructure NR EUR",
+      "benchcat": "Morningstar Gbl Eq Infra NR USD",
+      "rating": "2",
+      "medalist": "Neutral",
+      "ter": 0.9,
+      "aum": 274531846.0,
+      "ccy": "Euro",
+      "incepdate": "2021-04-01",
+      "yield": 1.48
     },
     {
       "id": "F00000WYW3",
@@ -2442,7 +2889,16 @@
         "volatility_10y": 8.007,
         "beta_10y": 1.251,
         "treynor_10y": 2.413
-      }
+      },
+      "bench": "ICE BofA Euro Non-Fin Subod TR EUR",
+      "benchcat": "Markit iBoxx EUR Corp Subordinated TR",
+      "rating": "3",
+      "medalist": "Bronze",
+      "ter": 0.6,
+      "aum": 367067286.0,
+      "ccy": "Euro",
+      "incepdate": "2016-02-15",
+      "yield": 2.97
     },
     {
       "id": "F00000YMLB",
@@ -2482,7 +2938,15 @@
         "volatility_5y": 13.545,
         "beta_5y": 0.947,
         "treynor_5y": 3.8904
-      }
+      },
+      "benchcat": "Morningstar Gbl High Div Yld NR USD",
+      "rating": "2",
+      "medalist": "Negative",
+      "ter": 0.9,
+      "aum": 287183042.0,
+      "ccy": "Euro",
+      "incepdate": "2017-03-01",
+      "yield": 2.41
     },
     {
       "id": "F000005NQW",
@@ -2531,7 +2995,16 @@
         "volatility_10y": 7.97,
         "beta_10y": 0.898,
         "treynor_10y": 0.0266
-      }
+      },
+      "bench": "ICE BofA Q106 Custom hedged EUR EUR",
+      "benchcat": "Morningstar EM Sov Bd GR Hdg EUR",
+      "rating": "2",
+      "medalist": "Negative",
+      "ter": 0.8,
+      "aum": 423723364.0,
+      "ccy": "Euro",
+      "incepdate": "1999-11-01",
+      "yield": 4.43
     },
     {
       "id": "F0GBR06MS2",
@@ -2580,7 +3053,16 @@
         "volatility_10y": 8.291,
         "beta_10y": 0.929,
         "treynor_10y": 0.0357
-      }
+      },
+      "bench": "ICE BofA Q23A Custom hedged EUR EUR",
+      "benchcat": "Morningstar EM Sov Bd GR Hdg EUR",
+      "rating": "2",
+      "medalist": "Negative",
+      "ter": 0.8,
+      "aum": 411973365.0,
+      "ccy": "Euro",
+      "incepdate": "1999-07-01",
+      "yield": 4.24
     },
     {
       "id": "F00000WTMS",
@@ -2629,7 +3111,16 @@
         "volatility_10y": 3.52,
         "beta_10y": 0.458,
         "treynor_10y": 0.269
-      }
+      },
+      "bench": "Not Benchmarked",
+      "benchcat": "Morningstar EM Crp 10% CN Cap GR Hdg EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 0.6,
+      "aum": 472235257.0,
+      "ccy": "Euro",
+      "incepdate": "2016-02-01",
+      "yield": 2.68
     },
     {
       "id": "F00000YJ03",
@@ -2669,7 +3160,16 @@
         "volatility_5y": 5.652,
         "beta_5y": 0.788,
         "treynor_5y": -0.8894
-      }
+      },
+      "bench": "JPM CEMBI Broad Diversified Hdg TR EUR",
+      "benchcat": "Morningstar EM Crp 10% CN Cap GR Hdg EUR",
+      "rating": "4",
+      "medalist": "Neutral",
+      "ter": 0.8,
+      "aum": 131098801.0,
+      "ccy": "Euro",
+      "incepdate": "2017-02-01",
+      "yield": 5.39
     },
     {
       "id": "F00000LYLZ",
@@ -2718,7 +3218,16 @@
         "volatility_10y": 5.166,
         "beta_10y": 0.662,
         "treynor_10y": -0.6399
-      }
+      },
+      "bench": "ICEBofA Q479 1m+I GLCEMC+exLGSB4%C H EUR",
+      "benchcat": "Morningstar EM Crp 10% CN Cap GR Hdg EUR",
+      "rating": "2",
+      "medalist": "Negative",
+      "ter": 0.8,
+      "aum": 407433065.0,
+      "ccy": "Euro",
+      "incepdate": "2011-01-21",
+      "yield": 3.27
     },
     {
       "id": "F00000GWV1",
@@ -2767,7 +3276,15 @@
         "volatility_10y": 8.984,
         "beta_10y": 0.981,
         "treynor_10y": 0.8334
-      }
+      },
+      "benchcat": "Morningstar EM Sov Bd GR Hdg EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 0.7,
+      "aum": 277452887.0,
+      "ccy": "Euro",
+      "incepdate": "2016-12-31",
+      "yield": 4.96
     },
     {
       "id": "F000000JV9",
@@ -2816,7 +3333,16 @@
         "volatility_10y": 3.558,
         "beta_10y": 0.676,
         "treynor_10y": -1.3
-      }
+      },
+      "bench": "Markit iBoxx EUR Covered 3-5 TR [50.00%]; Markit iBoxx EUR Covered 5-7 TR [50.00%]",
+      "benchcat": "Morningstar EZN Core Bd GR EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 0.5,
+      "aum": 340038733.0,
+      "ccy": "Euro",
+      "incepdate": "2006-10-10",
+      "yield": 1.81
     },
     {
       "id": "F00000XHX4",
@@ -2865,7 +3391,16 @@
         "volatility_10y": 1.439,
         "beta_10y": 0.53,
         "treynor_10y": 0.5647
-      }
+      },
+      "bench": "ICE BofA EUR Broad Market 0-1 Y EUR",
+      "benchcat": "Morningstar EZN 1-3Y Core Bd GR EUR",
+      "rating": "4",
+      "medalist": "Neutral",
+      "ter": 0.2,
+      "aum": 5601278556.0,
+      "ccy": "Euro",
+      "incepdate": "2016-02-15",
+      "yield": 2.43
     },
     {
       "id": "F0000100W4",
@@ -2905,7 +3440,16 @@
         "volatility_5y": 4.06,
         "beta_5y": 0.644,
         "treynor_5y": -4.1987
-      }
+      },
+      "bench": "iBoxx € Germany 1-10",
+      "benchcat": "Morningstar EZN Core Bd GR EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 0.4,
+      "aum": 122727892.0,
+      "ccy": "Euro",
+      "incepdate": "2017-12-08",
+      "yield": 2.7
     },
     {
       "id": "F00000VS95",
@@ -2954,7 +3498,15 @@
         "volatility_10y": 7.003,
         "beta_10y": 0.86,
         "treynor_10y": 2.0683
-      }
+      },
+      "benchcat": "Morningstar EZN Core Bd GR EUR",
+      "rating": "4",
+      "medalist": "Silver",
+      "ter": 0.7,
+      "aum": 812819142.0,
+      "ccy": "Euro",
+      "incepdate": "2014-06-10",
+      "yield": 4.45
     },
     {
       "id": "F0GBR0615O",
@@ -3003,7 +3555,16 @@
         "volatility_10y": 11.682,
         "beta_10y": 0.835,
         "treynor_10y": 8.2683
-      }
+      },
+      "bench": "MSCI Europe NR EUR",
+      "benchcat": "Morningstar DM Eur TME NR EUR",
+      "rating": "3",
+      "medalist": "Bronze",
+      "ter": 0.6,
+      "aum": 470374225.0,
+      "ccy": "Euro",
+      "incepdate": "1998-03-31",
+      "yield": 2.68
     },
     {
       "id": "F0GBR0612J",
@@ -3033,7 +3594,13 @@
         "volatility_3y": 0.355,
         "volatility_5y": 0.296,
         "volatility_10y": 0.26
-      }
+      },
+      "bench": "Not Benchmarked",
+      "ter": 1.0,
+      "aum": 3224228482.0,
+      "ccy": "Euro",
+      "incepdate": "2004-01-02",
+      "yield": 2.68
     },
     {
       "id": "F0000100W2",
@@ -3073,7 +3640,16 @@
         "volatility_5y": 5.376,
         "beta_5y": 0.805,
         "treynor_5y": -3.3992
-      }
+      },
+      "bench": "Iboxx Euro cov TR EUR [20.00%]; ICE BofA Euro Government NR EUR [80.00%]",
+      "benchcat": "Morningstar EZN Trsy Bd GR EUR",
+      "rating": "4",
+      "medalist": "Neutral",
+      "ter": 0.4,
+      "aum": 358900714.0,
+      "ccy": "Euro",
+      "incepdate": "2017-12-08",
+      "yield": 2.87
     },
     {
       "id": "F00000V7UX",
@@ -3122,7 +3698,16 @@
         "volatility_10y": 13.571,
         "beta_10y": 0.991,
         "treynor_10y": 8.6411
-      }
+      },
+      "bench": "MSCI Europe NR EUR",
+      "benchcat": "Morningstar DM Eur TME NR EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 0.9,
+      "aum": 111671992.0,
+      "ccy": "Euro",
+      "incepdate": "2014-12-15",
+      "yield": 0.0
     },
     {
       "id": "F00000Q61W",
@@ -3163,7 +3748,15 @@
         "volatility_5y": 6.302,
         "beta_5y": 1.068,
         "treynor_5y": -1.1624
-      }
+      },
+      "benchcat": "Morningstar EZN Corp Bd GR EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 0.7,
+      "aum": 512268277.0,
+      "ccy": "Euro",
+      "incepdate": "2012-11-02",
+      "yield": 3.2
     },
     {
       "id": "F00000Q61X",
@@ -3193,7 +3786,13 @@
         "volatility_3y": 0.47,
         "volatility_5y": 0.403,
         "volatility_10y": 0.508
-      }
+      },
+      "bench": "Not Benchmarked",
+      "ter": 0.9,
+      "aum": 912531725.0,
+      "ccy": "Euro",
+      "incepdate": "2012-10-17",
+      "yield": 2.48
     },
     {
       "id": "F00000SX9U",
@@ -3242,7 +3841,16 @@
         "volatility_10y": 8.389,
         "beta_10y": 0.756,
         "treynor_10y": 5.2154
-      }
+      },
+      "bench": "FTSE Convertible Global Focus Hgd TR EUR",
+      "benchcat": "Refinitiv Global Hgd CB TR EUR",
+      "rating": "4",
+      "medalist": "Neutral",
+      "ter": 1.0,
+      "aum": 999627985.0,
+      "ccy": "Euro",
+      "incepdate": "2014-01-13",
+      "yield": 0.0
     },
     {
       "id": "F000000RDC",
@@ -3291,7 +3899,16 @@
         "volatility_10y": 8.342,
         "beta_10y": 0.752,
         "treynor_10y": 5.48
-      }
+      },
+      "bench": "FTSE Global Focus Hgd CB TR EUR",
+      "benchcat": "Refinitiv Global Hgd CB TR EUR",
+      "rating": "4",
+      "medalist": "Neutral",
+      "ter": 0.9,
+      "aum": 632550920.0,
+      "ccy": "Euro",
+      "incepdate": "2007-10-01",
+      "yield": 0.31
     },
     {
       "id": "F000010BS5",
@@ -3331,7 +3948,15 @@
         "volatility_5y": 5.857,
         "beta_5y": 0.751,
         "treynor_5y": -3.0728
-      }
+      },
+      "benchcat": "Morningstar Gbl Corp Bd GR Hdg EUR",
+      "rating": "4",
+      "medalist": "Neutral",
+      "ter": 0.7,
+      "aum": 299946857.0,
+      "ccy": "Euro",
+      "incepdate": "2018-03-27",
+      "yield": 3.43
     },
     {
       "id": "F0GBR06MRQ",
@@ -3380,7 +4005,16 @@
         "volatility_10y": 5.934,
         "beta_10y": 0.958,
         "treynor_10y": 0.1796
-      }
+      },
+      "bench": "ICE BofA Euro Non-Fin Subod TR EUR [65.00%]; ICE BofA US Industrial TR USD [35.00%]",
+      "benchcat": "Morningstar Gbl Corp Bd GR Hdg EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 0.5,
+      "aum": 921232015.0,
+      "ccy": "Euro",
+      "incepdate": "2001-11-15",
+      "yield": 3.35
     },
     {
       "id": "F00000NCFL",
@@ -3429,7 +4063,15 @@
         "volatility_10y": 3.36,
         "beta_10y": 0.596,
         "treynor_10y": -1.6405
-      }
+      },
+      "benchcat": "Morningstar EZN Corp Bd GR EUR",
+      "rating": "1",
+      "medalist": "Neutral",
+      "ter": 0.5,
+      "aum": 223852689.0,
+      "ccy": "Euro",
+      "incepdate": "2011-11-01",
+      "yield": 1.45
     },
     {
       "id": "F00000VS97",
@@ -3478,7 +4120,16 @@
         "volatility_10y": 5.336,
         "beta_10y": 0.865,
         "treynor_10y": -0.2344
-      }
+      },
+      "bench": "ML EMU Crprt idx Tp-snr TR EUR [80.00%]; ML US Corp LC TR USD [15.00%]; ML Euro BBB Nn-Fnc Fx&Fl R HY Ctn TR EUR [5.00%]",
+      "benchcat": "Morningstar Gbl Corp Bd GR Hdg EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 0.8,
+      "aum": 261468873.0,
+      "ccy": "Euro",
+      "incepdate": "2014-08-18",
+      "yield": 3.34
     },
     {
       "id": "F00000SX9T",
@@ -3527,7 +4178,15 @@
         "volatility_10y": 4.841,
         "beta_10y": 0.524,
         "treynor_10y": 3.1134
-      }
+      },
+      "benchcat": "Morningstar Gbl Corp Bd GR Hdg EUR",
+      "rating": "5",
+      "medalist": "Neutral",
+      "ter": 0.6,
+      "aum": 772527666.0,
+      "ccy": "Euro",
+      "incepdate": "2014-01-27",
+      "yield": 3.06
     },
     {
       "id": "F00001DKKA",
@@ -3558,7 +4217,16 @@
         "volatility_3y": 13.778,
         "beta_3y": 1.032,
         "treynor_3y": 9.4523
-      }
+      },
+      "bench": "MSCI World NR EUR",
+      "benchcat": "Morningstar Global TME NR USD",
+      "rating": "2",
+      "medalist": "Neutral",
+      "ter": 0.9,
+      "aum": 189366587.0,
+      "ccy": "Euro",
+      "incepdate": "2022-03-01",
+      "yield": 0.0
     },
     {
       "id": "F00000JXUB",
@@ -3607,7 +4275,15 @@
         "volatility_10y": 12.302,
         "beta_10y": 0.822,
         "treynor_10y": 6.6149
-      }
+      },
+      "benchcat": "Morningstar Gbl High Div Yld NR USD",
+      "rating": "2",
+      "medalist": "Neutral",
+      "ter": 0.7,
+      "aum": 797611924.0,
+      "ccy": "Euro",
+      "incepdate": "2010-09-01",
+      "yield": 2.33
     },
     {
       "id": "F00000Z1O1",
@@ -3647,7 +4323,16 @@
         "volatility_5y": 7.108,
         "beta_5y": 1.211,
         "treynor_5y": -2.7822
-      }
+      },
+      "bench": "ICE Euro Corporate Green Bond EUR",
+      "benchcat": "Morningstar EZN Corp Bd GR EUR",
+      "rating": "1",
+      "medalist": "Neutral",
+      "ter": 0.5,
+      "aum": 219294156.0,
+      "ccy": "Euro",
+      "incepdate": "2017-04-28",
+      "yield": 2.44
     },
     {
       "id": "F0GBR06CHZ",
@@ -3696,7 +4381,16 @@
         "volatility_10y": 7.943,
         "beta_10y": 1.083,
         "treynor_10y": 1.9729
-      }
+      },
+      "bench": "ICE BofA BB-B Eu HY NF F&FR Cons TR EUR [90.00%]; BofAML German Federal Govt 3-5Y TR EUR [10.00%]",
+      "benchcat": "Morningstar EZN HY Bd GR EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 0.9,
+      "aum": 855122700.0,
+      "ccy": "Euro",
+      "incepdate": "2005-06-01",
+      "yield": 3.64
     },
     {
       "id": "F0000019PX",
@@ -3745,7 +4439,16 @@
         "volatility_10y": 4.819,
         "beta_10y": 0.984,
         "treynor_10y": 0.4016
-      }
+      },
+      "bench": "Markit iBoxx EUR Corp NonFin All TR",
+      "benchcat": "Morningstar EZN Corp Bd GR EUR",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 0.5,
+      "aum": 914007536.0,
+      "ccy": "Euro",
+      "incepdate": "2003-08-15",
+      "yield": 2.55
     },
     {
       "id": "F00000ZYE2",
@@ -3785,7 +4488,16 @@
         "volatility_5y": 15.488,
         "beta_5y": 0.975,
         "treynor_5y": 2.621
-      }
+      },
+      "bench": "MSCI ACWI NR EUR",
+      "benchcat": "Morningstar Global TME NR USD",
+      "rating": "2",
+      "medalist": "Neutral",
+      "ter": 1.0,
+      "aum": 210148839.0,
+      "ccy": "Euro",
+      "incepdate": "2017-12-22",
+      "yield": 0.47
     },
     {
       "id": "F0GBR06BC2",
@@ -3815,7 +4527,13 @@
         "volatility_3y": 6.991,
         "volatility_5y": 8.242,
         "volatility_10y": 7.826
-      }
+      },
+      "bench": "3 M Euribor 30bps",
+      "ter": 0.7,
+      "aum": 1093120356.0,
+      "ccy": "Euro",
+      "incepdate": "2003-10-01",
+      "yield": 3.33
     },
     {
       "id": "F000015J9F",
@@ -3841,7 +4559,12 @@
         "volatility_1y": 6.135,
         "volatility_3y": 6.885,
         "volatility_5y": 8.477
-      }
+      },
+      "bench": "Not Benchmarked",
+      "ter": 0.5,
+      "aum": 553577826.0,
+      "incepdate": "2020-06-08",
+      "yield": 3.56
     },
     {
       "id": "F00000UPJY",
@@ -3871,7 +4594,12 @@
         "volatility_3y": 7.899,
         "volatility_5y": 10.705,
         "volatility_10y": 13.034
-      }
+      },
+      "ter": 0.9,
+      "aum": 317678460.0,
+      "ccy": "Euro",
+      "incepdate": "2014-09-29",
+      "yield": 0.0
     },
     {
       "id": "F0GBR04BJP",
@@ -3920,7 +4648,16 @@
         "volatility_10y": 14.463,
         "beta_10y": 0.962,
         "treynor_10y": 11.3659
-      }
+      },
+      "bench": "MSCI ACWI PR EUR",
+      "benchcat": "Morningstar Global TME NR USD",
+      "rating": "4",
+      "medalist": "Neutral",
+      "ter": 1.87,
+      "aum": 716143202.0,
+      "ccy": "Euro",
+      "incepdate": "2000-02-01",
+      "yield": 1.77
     },
     {
       "id": "F0GBR04PQF",
@@ -3969,7 +4706,15 @@
         "volatility_10y": 15.328,
         "beta_10y": 0.967,
         "treynor_10y": 13.0296
-      }
+      },
+      "bench": "MSCI USA NR USD",
+      "benchcat": "Morningstar US LM Cap Mkt NR USD",
+      "rating": "4",
+      "medalist": "Neutral",
+      "ter": 1.5,
+      "aum": 1052155499.0,
+      "ccy": "Euro",
+      "incepdate": "1993-10-01"
     },
     {
       "id": "F0GBR04PO2",
@@ -4017,7 +4762,16 @@
         "volatility_10y": 6.906,
         "beta_10y": 1.054,
         "treynor_10y": -3.5251
-      }
+      },
+      "bench": "ICE BofA World Sovereign Bond",
+      "benchcat": "Morningstar Gbl Core Bd GR USD",
+      "rating": "1",
+      "medalist": "Negative",
+      "ter": 1.0,
+      "aum": 291086072.0,
+      "ccy": "Euro",
+      "incepdate": "1968-12-30",
+      "yield": 2.32
     },
     {
       "id": "F0GBR04BJW",
@@ -4066,7 +4820,16 @@
         "volatility_10y": 17.545,
         "beta_10y": 0.882,
         "treynor_10y": 10.9805
-      }
+      },
+      "bench": "MSCI World Free PR USD",
+      "benchcat": "Morningstar Global Bas Mat TME NR USD",
+      "rating": "3",
+      "medalist": "Negative",
+      "ter": 2.0,
+      "aum": 220234154.0,
+      "ccy": "Euro",
+      "incepdate": "1999-10-01",
+      "yield": 1.36
     },
     {
       "id": "F0GBR04BJV",
@@ -4115,7 +4878,16 @@
         "volatility_10y": 13.85,
         "beta_10y": 0.987,
         "treynor_10y": 4.5746
-      }
+      },
+      "bench": "MSCI World/Health Care PR USD",
+      "benchcat": "Morningstar Gbl Health NR USD",
+      "rating": "3",
+      "medalist": "Neutral",
+      "ter": 1.8,
+      "aum": 770076103.0,
+      "ccy": "Euro",
+      "incepdate": "1999-10-01",
+      "yield": 0.18
     },
     {
       "id": "F0GBR04BJT",
@@ -4164,7 +4936,16 @@
         "volatility_10y": 21.153,
         "beta_10y": 1.006,
         "treynor_10y": 19.2185
-      }
+      },
+      "bench": "MSCI World/IT 10/40 NR EUR",
+      "benchcat": "Morningstar Gbl Tech NR USD",
+      "rating": "4",
+      "medalist": "Neutral",
+      "ter": 1.8,
+      "aum": 3113425037.0,
+      "ccy": "Euro",
+      "incepdate": "1999-10-01",
+      "yield": 1.36
     },
     {
       "id": "F00001JXY3",
@@ -4186,7 +4967,15 @@
         "volatility_1y": 36.892,
         "beta_1y": 1.217,
         "treynor_1y": 23.7055
-      }
+      },
+      "bench": "Not Benchmarked",
+      "benchcat": "Morningstar Gbl Tech NR USD",
+      "medalist": "Neutral",
+      "ter": 1.7,
+      "aum": 383206712.0,
+      "ccy": "Euro",
+      "incepdate": "2024-02-29",
+      "yield": 1.37
     },
     {
       "id": "F0GBR04MIJ",
@@ -4235,7 +5024,16 @@
         "volatility_10y": 14.877,
         "beta_10y": 0.976,
         "treynor_10y": 8.1702
-      }
+      },
+      "bench": "MSCI World Value NR EUR",
+      "benchcat": "Morningstar Gbl Val TME NR USD",
+      "rating": "3",
+      "medalist": "Negative",
+      "ter": 1.92,
+      "aum": 1181619285.0,
+      "ccy": "Euro",
+      "incepdate": "2001-03-12",
+      "yield": 1.56
     },
     {
       "id": "F00001A20S",
@@ -4266,7 +5064,16 @@
         "volatility_3y": 12.495,
         "beta_3y": 1.046,
         "treynor_3y": 8.3619
-      }
+      },
+      "bench": "MSCI World Value NR EUR",
+      "benchcat": "Morningstar Gbl Val TME NR USD",
+      "rating": "2",
+      "medalist": "Neutral",
+      "ter": 1.0,
+      "aum": 114336031.0,
+      "ccy": "Euro",
+      "incepdate": "2021-07-01",
+      "yield": 0.0
     },
     {
       "id": "F00000OO26",
@@ -4315,7 +5122,16 @@
         "volatility_10y": 10.657,
         "beta_10y": 1.024,
         "treynor_10y": -2.3937
-      }
+      },
+      "bench": "JPM GBI-EM Global Diversified TR LCL",
+      "benchcat": "Morningstar EM Govt Bd LCCY GR USD",
+      "rating": "2",
+      "medalist": "Negative",
+      "ter": 0.8,
+      "aum": 136191857.0,
+      "ccy": "Euro",
+      "incepdate": "2012-08-01",
+      "yield": 5.81
     }
   ]
 }

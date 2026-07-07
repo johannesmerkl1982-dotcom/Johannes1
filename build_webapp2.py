@@ -52,10 +52,44 @@ HTML = r"""<!DOCTYPE html>
           margin-top:3px; color:#fff; }
   .b-union{ background:var(--union); } .b-quoniam{ background:var(--quoniam); }
   .b-etf{ background:var(--etf); } .b-sonstige{ background:var(--sonst); }
+  .bench{ font-size:11px; color:var(--muted); margin-top:3px; line-height:1.3;
+          overflow:hidden; text-overflow:ellipsis; display:-webkit-box;
+          -webkit-line-clamp:1; -webkit-box-orient:vertical; }
+  li.tap{ cursor:pointer; } li.tap:active{ background:#20252f; }
+  .chev{ color:var(--muted); font-size:13px; }
   .val{ font-variant-numeric:tabular-nums; font-weight:700; font-size:16px; text-align:right; }
   .pos{ color:#34d399; } .neg{ color:#f87171; }
   .empty{ color:var(--muted); text-align:center; padding:30px 10px; }
   footer{ color:var(--muted); font-size:11px; text-align:center; padding:18px; }
+  /* Detail-Overlay */
+  .overlay{ position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:20;
+            display:flex; align-items:flex-end; justify-content:center; }
+  .overlay[hidden]{ display:none; }
+  .sheet{ background:var(--card); width:100%; max-width:760px; max-height:88vh;
+          overflow-y:auto; border-radius:16px 16px 0 0; border:1px solid var(--line);
+          padding:16px 16px 28px; -webkit-overflow-scrolling:touch; }
+  @media(min-width:600px){ .overlay{ align-items:center; } .sheet{ border-radius:16px; } }
+  .sheet h2{ font-size:17px; margin:2px 0 2px; padding-right:34px; }
+  .sheet .isin{ color:var(--muted); font-size:12px; font-variant-numeric:tabular-nums; }
+  .x{ position:absolute; top:12px; right:14px; background:#2a2f3a; color:#fff;
+      width:30px; height:30px; border-radius:999px; border:0; font-size:16px; }
+  .shead{ position:relative; }
+  .stars{ color:#f5c518; letter-spacing:2px; font-size:15px; }
+  .stars .off{ color:#3a3f4a; }
+  .medal{ display:inline-block; font-size:11px; padding:1px 8px; border-radius:999px;
+          background:#3a3f4a; color:#fff; }
+  .kv{ display:grid; grid-template-columns:auto 1fr; gap:4px 12px; margin:12px 0;
+       font-size:13px; }
+  .kv dt{ color:var(--muted); } .kv dd{ margin:0; text-align:right; font-variant-numeric:tabular-nums; }
+  .kv dd.l{ text-align:left; }
+  .mt{ margin-top:14px; }
+  .mt h3{ font-size:13px; color:var(--muted); margin:0 0 6px; text-transform:uppercase; letter-spacing:.04em; }
+  .mrow{ display:grid; grid-template-columns:118px 1fr; gap:8px; padding:6px 0;
+         border-top:1px solid var(--line); font-size:13px; align-items:baseline; }
+  .mrow .ml{ color:var(--muted); }
+  .chips{ display:flex; flex-wrap:wrap; gap:4px 10px; }
+  .chip{ font-variant-numeric:tabular-nums; }
+  .chip b{ color:var(--muted); font-weight:600; font-size:11px; margin-right:3px; }
 </style>
 </head>
 <body>
@@ -106,6 +140,16 @@ HTML = r"""<!DOCTYPE html>
 
   <ol id="results"></ol>
 </main>
+
+<div id="ov" class="overlay" hidden>
+  <div class="sheet">
+    <div class="shead">
+      <button class="x" id="ovclose" aria-label="Schliessen">×</button>
+      <div id="ovbody"></div>
+    </div>
+  </div>
+</div>
+
 <footer id="foot"></footer>
 
 <script id="data" type="application/json">__DATA__</script>
@@ -125,6 +169,7 @@ const METRICS = {
 const PLABEL = {"1m":"1 Monat","3m":"3 Monate","6m":"6 Monate",
                 "1y":"1 Jahr","3y":"3 Jahre","5y":"5 Jahre","10y":"10 Jahre","incep":"seit Auflage"};
 const $ = id => document.getElementById(id);
+let SHOWN = [];
 
 function normCat(c){ return (c||"").replace(/^EAA Fund /, "").trim(); }
 // Anbieter-Bucket vergleichen; "uq" = Union + Quoniam zusammengefasst.
@@ -204,7 +249,7 @@ function currentRows(){
     .filter(f=> !ac || assetClass(f.category)===ac)
     .filter(f=> !cat || normCat(f.category)===cat)
     .filter(f=> f.metrics && f.metrics[key]!=null)
-    .map(f=>({name:f.name, branding:f.branding, value:f.metrics[key]}));
+    .map(f=>({fund:f, name:f.name, branding:f.branding, value:f.metrics[key]}));
   const higher = METRICS[metric].higher;
   rows.sort((a,b)=> higher ? b.value-a.value : a.value-b.value);
   return rows;
@@ -234,17 +279,59 @@ function render(){
   $("count").textContent =
     `${tag}: ${shown.length} von ${rows.length} Wertpapieren · ${m.label} (${PLABEL[$("period").value]})`;
   const ol = $("results");
+  SHOWN = shown;
   if (!shown.length){ ol.innerHTML = `<div class="empty">Keine Wertpapiere mit Werten für diese Auswahl.</div>`; return; }
   ol.innerHTML = shown.map((r,i)=>{
     const cls = badgeClass(r.branding);
     const vcls = r.value>=0 ? "pos":"neg";
     const txt = m.pct ? r.value.toFixed(2)+" %" : r.value.toFixed(3);
-    return `<li><div class="rank">${i+1}</div>
-      <div><div class="name">${r.name}</div>
-      <span class="badge ${cls}">${r.branding}</span></div>
+    const bench = r.fund.bench ? `<div class="bench">Benchmark: ${esc(r.fund.bench)}</div>` : "";
+    return `<li class="tap" data-i="${i}"><div class="rank">${i+1}</div>
+      <div><div class="name">${esc(r.name)} <span class="chev">›</span></div>
+      <span class="badge ${cls}">${r.branding}</span>${bench}</div>
       <div class="val ${vcls}">${txt}</div></li>`;
   }).join("");
 }
+
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function fmtVal(v, pct){ return pct ? v.toFixed(2)+" %" : v.toFixed(3); }
+function fmtAum(v){ if(v==null) return null;
+  if(v>=1e9) return (v/1e9).toFixed(v>=1e10?0:1).replace(".",",")+" Mrd. USD";
+  if(v>=1e6) return (v/1e6).toFixed(0)+" Mio. USD";
+  return Math.round(v).toLocaleString("de-DE")+" USD"; }
+function stars(r){ const n=parseInt(r,10); if(!n) return null;
+  return `<span class="stars">${"★".repeat(n)}<span class="off">${"★".repeat(5-n)}</span></span> <span style="color:var(--muted)">(${n}/5)</span>`; }
+
+function openDetail(f){
+  const rows = [];
+  const kv = (k,v,left)=> v!=null && v!=="" ? `<dt>${k}</dt><dd class="${left?'l':''}">${v}</dd>` : "";
+  let facts = "";
+  facts += kv("Rating", stars(f.rating));
+  facts += kv("Medalist", f.medalist ? `<span class="medal">${esc(f.medalist)}</span>` : "");
+  facts += kv("Kategorie", esc(f.category), true);
+  facts += kv("Benchmark", f.bench ? esc(f.bench) : "", true);
+  if (f.benchcat && f.benchcat!==f.bench) facts += kv("Kategorie-Index", esc(f.benchcat), true);
+  facts += kv("Laufende Kosten", f.ter!=null ? f.ter.toFixed(2).replace(".",",")+" % p.a." : "");
+  facts += kv("Ausschüttungsrendite", f.yield!=null ? f.yield.toFixed(2).replace(".",",")+" %" : "");
+  facts += kv("Fondsvolumen", fmtAum(f.aum));
+  facts += kv("Währung", esc(f.ccy));
+  facts += kv("Auflage", esc(f.incepdate));
+  facts += kv("ISIN", esc(f.isin));
+
+  let mt = "";
+  for (const [key,m] of Object.entries(METRICS)){
+    const chips = m.periods.filter(p=>f.metrics[key+"_"+p]!=null)
+      .map(p=>`<span class="chip"><b>${PLABEL[p]}</b>${fmtVal(f.metrics[key+"_"+p], m.pct)}</span>`).join("");
+    if (chips) mt += `<div class="mrow"><div class="ml">${m.label}</div><div class="chips">${chips}</div></div>`;
+  }
+  $("ovbody").innerHTML =
+    `<h2>${esc(f.name)}</h2>
+     <div class="isin"><span class="badge ${badgeClass(f.branding)}">${f.branding}</span></div>
+     <dl class="kv">${facts}</dl>
+     <div class="mt"><h3>Kennzahlen (alle Laufzeiten)</h3>${mt || '<div class="empty">Keine Kennzahlen.</div>'}</div>`;
+  $("ov").hidden = false;
+}
+function closeDetail(){ $("ov").hidden = true; }
 
 function exportCSV(){
   const rows = currentRows();
@@ -268,6 +355,13 @@ function exportCSV(){
 
 ["metric","period","provider","assetclass","category","topn"].forEach(id=>$(id).addEventListener("change",render));
 $("csv").addEventListener("click", exportCSV);
+$("results").addEventListener("click", e=>{
+  const li = e.target.closest("li.tap"); if(!li) return;
+  const r = SHOWN[parseInt(li.dataset.i,10)]; if(r && r.fund) openDetail(r.fund);
+});
+$("ovclose").addEventListener("click", closeDetail);
+$("ov").addEventListener("click", e=>{ if(e.target===$("ov")) closeDetail(); });
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeDetail(); });
 $("srcline").textContent = `Quelle: Morningstar · Stand: ${DATA.meta.as_of} · ${DATA.meta.fund_count} Wertpapiere`;
 $("foot").textContent = "Performance 3/5/10 J und seit Auflage sind annualisiert (p.a.); seit Auflage je Fonds anderer Zeitraum. Treynor berechnet (Sharpe x StdAbw / Beta). Volatilitaet & Tracking Error: niedriger = besser. Daten-Snapshot, nicht live.";
 fillProviders(); fillMetrics(); render();
@@ -282,8 +376,10 @@ def main():
     slim = {
         "meta": {"as_of": data["meta"].get("as_of"),
                  "fund_count": data["meta"].get("fund_count")},
-        "funds": [{"name": f["name"], "branding": f["branding"],
-                   "category": f["category"], "metrics": f["metrics"]}
+        "funds": [{k: f[k] for k in
+                   ("name", "branding", "isin", "category", "metrics",
+                    "bench", "benchcat", "rating", "medalist", "ter",
+                    "aum", "ccy", "incepdate", "yield") if k in f}
                   for f in data["funds"]],
     }
     payload = json.dumps(slim, ensure_ascii=False, separators=(",", ":"))

@@ -94,6 +94,13 @@ In **claude.ai/code/routines** → **New routine**:
   > Erfolg = auf `gh-pages` liegt eine aktualisierte `jome/index.html` mit
   > heutigem `as_of`-Datum.
 
+## Profil-/Stammdaten (Detailansicht) – seltener nötig
+Für die Klick-Detailansicht (Benchmark, Rating, Kosten, Volumen, Währung, Auflage,
+Ausschüttungsrendite) liegen die Rohdaten in `data/raw2/profile/`. Ändern sich
+langsam; bei Bedarf mit diesen 10 Datenpunkt-IDs für alle 98 IDs (2 Hälften à 49)
+neu abrufen, parsen nach `data/raw2/profile/p01.json` / `p02.json`, dann neu bauen:
+`OF00L,OS38B,HR002,MMR01,OS00M,RC0A4,OS99B,LS468,OS00F,PM032`
+
 ## Wichtig
 - **App 1 nicht anfassen** (eigene Dateien: `build_dataset.py`, `build_webapp.py`,
   `data/funds.json`, `webapp/`, Root-`index.html`).
