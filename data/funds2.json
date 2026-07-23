@@ -1,6 +1,6 @@
 {
   "meta": {
-    "as_of": "2026-07-07",
+    "as_of": "2026-07-23",
     "source": "Morningstar MCP connector (id-lookup + data-tool)",
     "providers": [
       "ETF",
@@ -55,7 +55,11 @@
         "treynor_5y": -0.3758,
         "volatility_10y": 1.482,
         "beta_10y": 0.766,
-        "treynor_10y": 0.296
+        "treynor_10y": 0.296,
+        "alphacat_1y": -0.1125,
+        "alphacat_3y": -0.4516,
+        "alphacat_5y": -0.1021,
+        "alphacat_10y": -0.2744
       },
       "bench": "Bloomberg EUR Corporate 0-3 Year TR EUR",
       "benchcat": "Bloomberg Euro Agg Corp 1-3 Yr TR EUR",
@@ -278,7 +282,11 @@
         "treynor_5y": 9.0207,
         "volatility_10y": 13.299,
         "beta_10y": 1.0,
-        "treynor_10y": 9.6152
+        "treynor_10y": 9.6152,
+        "alphacat_1y": 0.1334,
+        "alphacat_3y": 0.0598,
+        "alphacat_5y": 0.2013,
+        "alphacat_10y": 0.1363
       },
       "bench": "MSCI Europe NR EUR",
       "benchcat": "Morningstar DM Eur TME NR EUR",
@@ -372,7 +380,11 @@
         "treynor_5y": 8.5442,
         "volatility_10y": 16.205,
         "beta_10y": 0.984,
-        "treynor_10y": 9.7164
+        "treynor_10y": 9.7164,
+        "alphacat_1y": 0.8073,
+        "alphacat_3y": 0.8382,
+        "alphacat_5y": 1.5871,
+        "alphacat_10y": 1.0581
       },
       "bench": "FSE DAX TR EUR",
       "benchcat": "Morningstar Germany TME NR EUR",
@@ -459,7 +471,11 @@
         "treynor_5y": -1.6465,
         "volatility_10y": 4.831,
         "beta_10y": 0.99,
-        "treynor_10y": 0.4636
+        "treynor_10y": 0.4636,
+        "alphacat_1y": 0.1707,
+        "alphacat_3y": 0.2348,
+        "alphacat_5y": 0.2636,
+        "alphacat_10y": 0.2192
       },
       "bench": "Bloomberg Euro Corp TR EUR",
       "benchcat": "Morningstar EZN Corp Bd GR EUR",
@@ -528,7 +544,11 @@
         "treynor_5y": -0.4719,
         "volatility_10y": 2.868,
         "beta_10y": 1.557,
-        "treynor_10y": 0.2468
+        "treynor_10y": 0.2468,
+        "alphacat_1y": -0.0188,
+        "alphacat_3y": 0.2583,
+        "alphacat_5y": -0.6087,
+        "alphacat_10y": -0.1393
       },
       "bench": "Bloomberg EUR Corp bonds 1-5Y TR EUR",
       "benchcat": "Bloomberg Euro Agg Corp 1-3 Yr TR EUR",
@@ -597,7 +617,11 @@
         "treynor_5y": -1.3432,
         "volatility_10y": 4.679,
         "beta_10y": 0.945,
-        "treynor_10y": 0.7922
+        "treynor_10y": 0.7922,
+        "alphacat_1y": 0.1054,
+        "alphacat_3y": 0.8237,
+        "alphacat_5y": 0.6424,
+        "alphacat_10y": 0.5165
       },
       "bench": "Bloomberg Euro Agg Fincls TR EUR",
       "benchcat": "Morningstar EZN Corp Bd GR EUR",
@@ -666,7 +690,11 @@
         "treynor_5y": 1.1226,
         "volatility_10y": 6.686,
         "beta_10y": 0.94,
-        "treynor_10y": 2.9091
+        "treynor_10y": 2.9091,
+        "alphacat_1y": -0.5251,
+        "alphacat_3y": -1.1289,
+        "alphacat_5y": -0.4297,
+        "alphacat_10y": -0.7353
       },
       "bench": "Markit iBoxx Liquid High Yield TR EUR",
       "benchcat": "Morningstar EZN HY Bd GR EUR",
@@ -744,7 +772,11 @@
         "treynor_5y": 10.9366,
         "volatility_10y": 16.54,
         "beta_10y": 0.98,
-        "treynor_10y": 8.6413
+        "treynor_10y": 8.6413,
+        "alphacat_1y": -0.8903,
+        "alphacat_3y": 4.0436,
+        "alphacat_5y": -1.1439,
+        "alphacat_10y": -2.4714
       },
       "bench": "EURO STOXX Select Dividend 30 NR EUR",
       "benchcat": "Morningstar Dev Ezn TME NR EUR",
@@ -829,7 +861,11 @@
         "treynor_5y": 4.8329,
         "volatility_10y": 17.434,
         "beta_10y": 1.02,
-        "treynor_10y": 8.3068
+        "treynor_10y": 8.3068,
+        "alphacat_1y": 1.841,
+        "alphacat_3y": 0.8617,
+        "alphacat_5y": -0.1906,
+        "alphacat_10y": -0.4739
       },
       "bench": "MSCI EM NR USD",
       "benchcat": "Morningstar EM TME NR USD",
@@ -994,7 +1030,11 @@
         "treynor_5y": 8.6077,
         "volatility_10y": 13.443,
         "beta_10y": 1.01,
-        "treynor_10y": 9.5698
+        "treynor_10y": 9.5698,
+        "alphacat_1y": -0.2299,
+        "alphacat_3y": 0.1318,
+        "alphacat_5y": -0.1365,
+        "alphacat_10y": 0.1658
       },
       "bench": "STOXX Europe 600 NR EUR",
       "benchcat": "Morningstar DM Eur TME NR EUR",
@@ -1088,7 +1128,11 @@
         "treynor_5y": 4.9373,
         "volatility_10y": 15.368,
         "beta_10y": 1.111,
-        "treynor_10y": 7.9952
+        "treynor_10y": 7.9952,
+        "alphacat_1y": -5.3826,
+        "alphacat_3y": -0.2571,
+        "alphacat_5y": -3.9847,
+        "alphacat_10y": -0.9954
       },
       "bench": "STOXX Europe Mid 200 NR EUR",
       "benchcat": "Morningstar DM Eur TME NR EUR",
@@ -1181,7 +1225,11 @@
         "treynor_5y": 2.6847,
         "volatility_10y": 16.134,
         "beta_10y": 1.037,
-        "treynor_10y": 7.9036
+        "treynor_10y": 7.9036,
+        "alphacat_1y": -1.8929,
+        "alphacat_3y": -3.1074,
+        "alphacat_5y": -2.4034,
+        "alphacat_10y": -0.6681
       },
       "bench": "STOXX Europe Small 200 NR EUR",
       "benchcat": "Morningstar Dev Eur SMID TME NR EUR",
@@ -1275,7 +1323,11 @@
         "treynor_5y": 6.7682,
         "volatility_10y": 15.654,
         "beta_10y": 1.054,
-        "treynor_10y": 7.0547
+        "treynor_10y": 7.0547,
+        "alphacat_1y": 4.5693,
+        "alphacat_3y": 0.4291,
+        "alphacat_5y": -0.5345,
+        "alphacat_10y": -1.9137
       },
       "bench": "STOXX Global Select Dividend 100 NR EUR",
       "benchcat": "Morningstar Gbl High Div Yld NR USD",
@@ -1370,7 +1422,11 @@
         "treynor_5y": -4.6469,
         "volatility_10y": 5.064,
         "beta_10y": 0.865,
-        "treynor_10y": -1.9144
+        "treynor_10y": -1.9144,
+        "alphacat_1y": -1.0171,
+        "alphacat_3y": -1.1111,
+        "alphacat_5y": -0.5391,
+        "alphacat_10y": -0.7623
       },
       "bench": "FSE Eb.Rexx Gov Germ5.5-10.5 TR EUR",
       "benchcat": "Morningstar EZN Trsy Bd GR EUR",
@@ -1402,44 +1458,48 @@
       "wkntype": "FE",
       "category": "EUR Government Bond",
       "metrics": {
-        "information_3y": -0.349,
-        "sharpe_5y": -0.742,
-        "alpha_10y": -0.915,
-        "alpha_5y": -0.811,
-        "trackingerror_5y": 2.686,
-        "performance_5y": -1.4109,
-        "performance_6m": 0.477,
-        "performance_3y": 2.0515,
-        "performance_10y": -0.7661,
-        "trackingerror_3y": 1.939,
-        "sortino_1y": -0.632,
-        "performance_incep": 1.9267,
-        "sortino_10y": -0.513,
-        "trackingerror_10y": 2.74,
-        "sharpe_10y": -0.414,
-        "sharpe_1y": -0.56,
-        "alpha_3y": -0.73,
-        "performance_3m": 1.0644,
-        "information_5y": 0.24,
+        "performance_6m": 0.7761,
+        "sharpe_10y": -0.405,
+        "alpha_1y": -0.8,
+        "performance_10y": -0.7366,
+        "sortino_3y": -0.255,
+        "performance_1y": 0.6839,
+        "performance_3y": 2.1526,
+        "alpha_5y": -0.744,
+        "trackingerror_3y": 1.912,
+        "sortino_1y": -0.504,
+        "information_3y": -0.301,
+        "alpha_10y": -0.884,
+        "trackingerror_5y": 2.672,
+        "information_5y": 0.263,
+        "trackingerror_10y": 2.734,
+        "sortino_5y": -0.867,
+        "performance_3m": 1.3653,
+        "sharpe_1y": -0.436,
+        "alpha_3y": -0.63,
+        "performance_5y": -1.3523,
+        "sharpe_3y": -0.19,
+        "information_10y": -0.156,
         "performance_1m": 0.418,
-        "information_10y": -0.166,
-        "sortino_5y": -0.883,
-        "performance_1y": 0.3851,
-        "sharpe_3y": -0.219,
-        "sortino_3y": -0.293,
-        "alpha_1y": -1.112,
-        "volatility_1y": 2.632,
-        "beta_1y": 0.667,
-        "treynor_1y": -2.2098,
-        "volatility_3y": 3.474,
-        "beta_3y": 0.675,
-        "treynor_3y": -1.1271,
-        "volatility_5y": 4.44,
-        "beta_5y": 0.64,
-        "treynor_5y": -5.1476,
-        "volatility_10y": 3.438,
-        "beta_10y": 0.571,
-        "treynor_10y": -2.4927
+        "sortino_10y": -0.502,
+        "performance_incep": 1.9397,
+        "sharpe_5y": -0.726,
+        "volatility_1y": 2.7,
+        "beta_1y": 0.691,
+        "treynor_1y": -1.7036,
+        "volatility_3y": 3.486,
+        "beta_3y": 0.679,
+        "treynor_3y": -0.9755,
+        "volatility_5y": 4.45,
+        "beta_5y": 0.641,
+        "treynor_5y": -5.0401,
+        "volatility_10y": 3.444,
+        "beta_10y": 0.572,
+        "treynor_10y": -2.4385,
+        "alphacat_1y": -0.6038,
+        "alphacat_3y": -0.5749,
+        "alphacat_5y": 0.7033,
+        "alphacat_10y": -0.4258
       },
       "bench": "FSE Eb.Rexx Gov Germ Overall TR EUR",
       "benchcat": "Morningstar EZN Trsy Bd GR EUR",
@@ -1509,7 +1569,11 @@
         "treynor_5y": 14.0624,
         "volatility_10y": 14.137,
         "beta_10y": 1.026,
-        "treynor_10y": 12.6213
+        "treynor_10y": 12.6213,
+        "alphacat_1y": 15.596,
+        "alphacat_3y": 9.2015,
+        "alphacat_5y": 6.0456,
+        "alphacat_10y": 3.6609
       },
       "bench": "MSCI Europe NR EUR",
       "benchcat": "Morningstar DM Eur TME NR EUR",
@@ -1576,7 +1640,8 @@
         "sharpe_1y": 0.899,
         "volatility_1y": 13.716,
         "beta_1y": 1.069,
-        "treynor_1y": 11.5348
+        "treynor_1y": 11.5348,
+        "alphacat_1y": 2.1226
       },
       "bench": "Morningstar Dev Eur Sml TME NR EUR",
       "benchcat": "Morningstar Dev Eur Sml TME NR EUR",
@@ -1665,7 +1730,11 @@
         "treynor_5y": 9.8028,
         "volatility_10y": 14.425,
         "beta_10y": 0.81,
-        "treynor_10y": 9.7413
+        "treynor_10y": 9.7413,
+        "alphacat_1y": -12.2517,
+        "alphacat_3y": -3.835,
+        "alphacat_5y": 3.9387,
+        "alphacat_10y": -0.9362
       },
       "bench": "MSCI EM NR EUR",
       "benchcat": "Morningstar EM TME NR USD",
@@ -1755,7 +1824,11 @@
         "treynor_5y": -1.7392,
         "volatility_10y": 5.117,
         "beta_10y": 1.045,
-        "treynor_10y": 0.6562
+        "treynor_10y": 0.6562,
+        "alphacat_1y": 0.1791,
+        "alphacat_3y": 0.2168,
+        "alphacat_5y": 0.108,
+        "alphacat_10y": 0.4342
       },
       "bench": "Markit iBoxx EUR Corp TR",
       "benchcat": "Morningstar EZN Corp Bd GR EUR",
@@ -1825,7 +1898,11 @@
         "treynor_5y": -1.5687,
         "volatility_10y": 2.849,
         "beta_10y": 0.426,
-        "treynor_10y": 0.6019
+        "treynor_10y": 0.6019,
+        "alphacat_1y": 0.2247,
+        "alphacat_3y": 0.6461,
+        "alphacat_5y": 2.5114,
+        "alphacat_10y": 0.3487
       },
       "benchcat": "Morningstar Gbl Corp Bd GR Hdg EUR",
       "rating": "4",
@@ -1894,7 +1971,11 @@
         "treynor_5y": -1.1347,
         "volatility_10y": 2.848,
         "beta_10y": 0.425,
-        "treynor_10y": 0.9717
+        "treynor_10y": 0.9717,
+        "alphacat_1y": 0.3292,
+        "alphacat_3y": 0.7923,
+        "alphacat_5y": 2.6624,
+        "alphacat_10y": 0.5018
       },
       "benchcat": "Morningstar Gbl Corp Bd GR Hdg EUR",
       "rating": "5",
@@ -1954,7 +2035,10 @@
         "treynor_3y": 4.0095,
         "volatility_5y": 2.87,
         "beta_5y": 0.375,
-        "treynor_5y": -1.3699
+        "treynor_5y": -1.3699,
+        "alphacat_1y": 0.2016,
+        "alphacat_3y": 0.5153,
+        "alphacat_5y": 2.4057
       },
       "benchcat": "Morningstar Gbl Corp Bd GR Hdg USD",
       "rating": "5",
@@ -2098,7 +2182,11 @@
         "treynor_5y": -0.1945,
         "volatility_10y": 5.041,
         "beta_10y": 0.703,
-        "treynor_10y": 1.9648
+        "treynor_10y": 1.9648,
+        "alphacat_1y": -0.9507,
+        "alphacat_3y": -1.7438,
+        "alphacat_5y": -0.7354,
+        "alphacat_10y": -1.7667
       },
       "bench": "ICE BofA Global Hi Yield BB-B TR EUR",
       "benchcat": "Morningstar Gbl HY Bd GR Hdg EUR",
@@ -2168,7 +2256,11 @@
         "treynor_5y": -0.7026,
         "volatility_10y": 1.516,
         "beta_10y": 0.708,
-        "treynor_10y": 0.1435
+        "treynor_10y": 0.1435,
+        "alphacat_1y": 0.1613,
+        "alphacat_3y": -0.4918,
+        "alphacat_5y": -0.2298,
+        "alphacat_10y": -0.3919
       },
       "bench": "Not Benchmarked",
       "benchcat": "Bloomberg Euro Agg Corp 1-3 Yr TR EUR",
@@ -2211,7 +2303,8 @@
         "sortino_1y": 0.187,
         "volatility_1y": 3.107,
         "beta_1y": 1.001,
-        "treynor_1y": 0.4904
+        "treynor_1y": 0.4904,
+        "alphacat_1y": 0.1076
       },
       "bench": "Bloomberg Global Agg Corporate H EUR",
       "benchcat": "Morningstar Gbl Corp Bd GR Hdg EUR",
@@ -2328,7 +2421,11 @@
         "treynor_5y": 3.186,
         "volatility_10y": 17.274,
         "beta_10y": 1.103,
-        "treynor_10y": 7.5642
+        "treynor_10y": 7.5642,
+        "alphacat_1y": 12.018,
+        "alphacat_3y": 0.4342,
+        "alphacat_5y": -1.8488,
+        "alphacat_10y": -0.923
       },
       "bench": "MSCI AC Asia Ex Japan NR EUR [75.00%]; MSCI Japan NR LCL [25.00%]",
       "benchcat": "Morningstar APAC TME NR USD",
@@ -2418,7 +2515,11 @@
         "treynor_5y": 4.781,
         "volatility_10y": 19.575,
         "beta_10y": 1.221,
-        "treynor_10y": 7.7274
+        "treynor_10y": 7.7274,
+        "alphacat_1y": 34.1517,
+        "alphacat_3y": 4.9997,
+        "alphacat_5y": 0.1802,
+        "alphacat_10y": -0.1686
       },
       "bench": "MSCI EM Asia ex China Index NR LCL [70.00%]; MSCI Japan NR USD [30.00%]",
       "benchcat": "Morningstar APAC TME NR USD",
@@ -2507,7 +2608,11 @@
         "treynor_5y": -5.3813,
         "volatility_10y": 19.181,
         "beta_10y": 0.972,
-        "treynor_10y": 4.6374
+        "treynor_10y": 4.6374,
+        "alphacat_1y": -11.8842,
+        "alphacat_3y": -2.3781,
+        "alphacat_5y": -4.8059,
+        "alphacat_10y": -3.6938
       },
       "bench": "SDAX",
       "benchcat": "MSCI Germany Small Cap NR EUR",
@@ -2594,7 +2699,11 @@
         "treynor_5y": 8.1622,
         "volatility_10y": 12.83,
         "beta_10y": 0.904,
-        "treynor_10y": 7.7065
+        "treynor_10y": 7.7065,
+        "alphacat_1y": -6.4685,
+        "alphacat_3y": -3.9729,
+        "alphacat_5y": -3.2554,
+        "alphacat_10y": -2.3321
       },
       "bench": "MSCI Europe High Div Yld NR EUR",
       "benchcat": "Morningstar DM Eur Div Yld >2.5% NR EUR",
@@ -2687,7 +2796,11 @@
         "treynor_5y": 4.2594,
         "volatility_10y": 13.73,
         "beta_10y": 0.999,
-        "treynor_10y": 8.315
+        "treynor_10y": 8.315,
+        "alphacat_1y": -9.4807,
+        "alphacat_3y": -2.7417,
+        "alphacat_5y": -1.7949,
+        "alphacat_10y": -0.5823
       },
       "bench": "MSCI Europe Growth GR EUR",
       "benchcat": "Morningstar Dev Europe Grt TME NR EUR",
@@ -2781,7 +2894,11 @@
         "treynor_5y": 8.5779,
         "volatility_10y": 17.647,
         "beta_10y": 1.071,
-        "treynor_10y": 11.9953
+        "treynor_10y": 11.9953,
+        "alphacat_1y": 5.5007,
+        "alphacat_3y": 0.3233,
+        "alphacat_5y": 2.2852,
+        "alphacat_10y": 0.5071
       },
       "bench": "MSCI World Growth PR LCL",
       "benchcat": "Morningstar Gbl Growth TME NR USD",
@@ -2878,7 +2995,11 @@
         "treynor_5y": 2.1825,
         "volatility_10y": 19.177,
         "beta_10y": 1.103,
-        "treynor_10y": 6.5372
+        "treynor_10y": 6.5372,
+        "alphacat_1y": 9.6115,
+        "alphacat_3y": -2.1877,
+        "alphacat_5y": -2.3828,
+        "alphacat_10y": -2.5064
       },
       "bench": "MSCI EM Free TR EUR",
       "benchcat": "Morningstar EM TME NR USD",
@@ -2971,7 +3092,11 @@
         "treynor_5y": 6.4221,
         "volatility_10y": 16.786,
         "beta_10y": 1.009,
-        "treynor_10y": 8.4845
+        "treynor_10y": 8.4845,
+        "alphacat_1y": 8.032,
+        "alphacat_3y": 1.2595,
+        "alphacat_5y": -0.5883,
+        "alphacat_10y": -0.1092
       },
       "bench": "HDAX TR EUR",
       "benchcat": "Morningstar Germany TME NR EUR",
@@ -3060,7 +3185,11 @@
         "treynor_5y": 8.0096,
         "volatility_10y": 14.741,
         "beta_10y": 0.945,
-        "treynor_10y": 10.0769
+        "treynor_10y": 10.0769,
+        "alphacat_1y": -1.484,
+        "alphacat_3y": -3.6969,
+        "alphacat_5y": -2.6616,
+        "alphacat_10y": -0.9506
       },
       "bench": "MSCI Europe NR EUR",
       "benchcat": "Morningstar Dev Ezn TME NR EUR",
@@ -3144,7 +3273,10 @@
         "treynor_3y": 9.5085,
         "volatility_5y": 15.732,
         "beta_5y": 1.028,
-        "treynor_5y": 4.4839
+        "treynor_5y": 4.4839,
+        "alphacat_1y": -5.4427,
+        "alphacat_3y": -6.559,
+        "alphacat_5y": -2.8235
       },
       "bench": "MSCI World NR EUR",
       "benchcat": "Morningstar Global TME NR USD",
@@ -3238,7 +3370,11 @@
         "treynor_5y": 8.3409,
         "volatility_10y": 15.146,
         "beta_10y": 0.98,
-        "treynor_10y": 9.9376
+        "treynor_10y": 9.9376,
+        "alphacat_1y": 3.6247,
+        "alphacat_3y": 0.1721,
+        "alphacat_5y": -1.5251,
+        "alphacat_10y": -0.8118
       },
       "bench": "EURO STOXX NR EUR",
       "benchcat": "Morningstar Dev Ezn TME NR EUR",
@@ -3329,7 +3465,11 @@
         "treynor_5y": -1.2152,
         "volatility_10y": 2.759,
         "beta_10y": 1.39,
-        "treynor_10y": 0.125
+        "treynor_10y": 0.125,
+        "alphacat_1y": -0.282,
+        "alphacat_3y": -0.6532,
+        "alphacat_5y": -1.0231,
+        "alphacat_10y": -0.3404
       },
       "bench": "ICE BofA 1-3Y EUR Corp TR EUR",
       "benchcat": "Bloomberg Euro Agg Corp 1-3 Yr TR EUR",
@@ -3399,7 +3539,11 @@
         "treynor_5y": -1.999,
         "volatility_10y": 5.253,
         "beta_10y": 1.053,
-        "treynor_10y": 0.5587
+        "treynor_10y": 0.5587,
+        "alphacat_1y": 0.2559,
+        "alphacat_3y": 0.4662,
+        "alphacat_5y": -0.0288,
+        "alphacat_10y": 0.3299
       },
       "bench": "BofAML EMU Corp. TR EUR",
       "benchcat": "Morningstar EZN Corp Bd GR EUR",
@@ -3469,7 +3613,11 @@
         "treynor_5y": 0.1063,
         "volatility_10y": 7.348,
         "beta_10y": 1.017,
-        "treynor_10y": 2.3771
+        "treynor_10y": 2.3771,
+        "alphacat_1y": -0.4027,
+        "alphacat_3y": -0.6925,
+        "alphacat_5y": -1.4179,
+        "alphacat_10y": -1.1023
       },
       "bench": "BofAML Euro BB-B NFin Fx&Fl HY Cs",
       "benchcat": "Morningstar EZN HY Bd GR EUR",
@@ -3517,16 +3665,16 @@
         "sortino_5y": -0.04,
         "performance_incep": 2.1565,
         "information_1y": -0.6615,
-        "sortino_1y": 0.162,
         "sharpe_5y": -0.029,
+        "sortino_1y": 0.162,
         "trackingerror_3y": 5.826,
         "information_3y": -1.358,
         "performance_10y": 5.8789,
         "performance_6m": 4.5604,
         "information_5y": -1.02,
         "performance_1y": 2.437,
-        "sharpe_3y": 0.304,
         "trackingerror_10y": 5.4,
+        "sharpe_3y": 0.304,
         "alpha_10y": -2.823,
         "volatility_1y": 17.06,
         "beta_1y": 1.371,
@@ -3539,7 +3687,11 @@
         "treynor_5y": -0.4666,
         "volatility_10y": 17.343,
         "beta_10y": 1.076,
-        "treynor_10y": 6.0765
+        "treynor_10y": 6.0765,
+        "alphacat_1y": -12.7423,
+        "alphacat_3y": -7.9125,
+        "alphacat_5y": -5.8667,
+        "alphacat_10y": -2.6397
       },
       "bench": "STOXX Europe Mid 200 NR EUR [50.00%]; STOXX Europe Small 200 NR EUR [50.00%]",
       "benchcat": "Morningstar Dev Eur SMID TME NR EUR",
@@ -3633,7 +3785,11 @@
         "treynor_5y": 8.7754,
         "volatility_10y": 15.338,
         "beta_10y": 1.018,
-        "treynor_10y": 10.9084
+        "treynor_10y": 10.9084,
+        "alphacat_1y": 6.8714,
+        "alphacat_3y": -0.0444,
+        "alphacat_5y": 2.1446,
+        "alphacat_10y": 0.0178
       },
       "bench": "MSCI World NR USD",
       "benchcat": "Morningstar Global TME NR USD",
@@ -3726,7 +3882,11 @@
         "treynor_5y": 4.3112,
         "volatility_10y": 17.023,
         "beta_10y": 1.014,
-        "treynor_10y": 8.1925
+        "treynor_10y": 8.1925,
+        "alphacat_1y": 4.5529,
+        "alphacat_3y": 1.9766,
+        "alphacat_5y": -2.7026,
+        "alphacat_10y": -0.4133
       },
       "bench": "DAX UCITS Capped NR",
       "benchcat": "Morningstar Germany TME NR EUR",
@@ -3807,7 +3967,10 @@
         "treynor_3y": 6.4157,
         "volatility_5y": 13.338,
         "beta_5y": 0.964,
-        "treynor_5y": 3.3622
+        "treynor_5y": 3.3622,
+        "alphacat_1y": -10.1733,
+        "alphacat_3y": -9.389,
+        "alphacat_5y": -4.276
       },
       "benchcat": "Morningstar Gbl High Div Yld NR USD",
       "rating": "2",
@@ -3903,7 +4066,11 @@
         "treynor_5y": 7.8083,
         "volatility_10y": 15.134,
         "beta_10y": 1.014,
-        "treynor_10y": 11.2087
+        "treynor_10y": 11.2087,
+        "alphacat_1y": -0.5361,
+        "alphacat_3y": -3.0929,
+        "alphacat_5y": 1.1074,
+        "alphacat_10y": 0.3505
       },
       "bench": "MSCI World NR EUR",
       "benchcat": "Morningstar Global TME NR USD",
@@ -3989,7 +4156,10 @@
         "treynor_3y": 16.4415,
         "volatility_5y": 17.184,
         "beta_5y": 0.92,
-        "treynor_5y": 6.6308
+        "treynor_5y": 6.6308,
+        "alphacat_1y": 7.153,
+        "alphacat_3y": -1.2882,
+        "alphacat_5y": -0.5891
       },
       "bench": "MSCI ACWI NR EUR",
       "benchcat": "Morningstar Gbl Growth TME NR USD",
@@ -4077,7 +4247,10 @@
         "treynor_3y": 17.1733,
         "volatility_5y": 17.2,
         "beta_5y": 0.921,
-        "treynor_5y": 7.3954
+        "treynor_5y": 7.3954,
+        "alphacat_1y": 8.0544,
+        "alphacat_3y": -0.4528,
+        "alphacat_5y": 0.1774
       },
       "bench": "MSCI ACWI NR EUR",
       "benchcat": "Morningstar Gbl Growth TME NR USD",
@@ -4165,7 +4338,10 @@
         "treynor_3y": 3.8945,
         "volatility_5y": 14.551,
         "beta_5y": 0.942,
-        "treynor_5y": 0.3862
+        "treynor_5y": 0.3862,
+        "alphacat_1y": -9.7283,
+        "alphacat_3y": -6.6239,
+        "alphacat_5y": -3.7758
       },
       "bench": "STOXX Global Broad Infrastructure NR EUR",
       "benchcat": "Morningstar Gbl Eq Infra NR USD",
@@ -4256,7 +4432,11 @@
         "treynor_5y": 0.3207,
         "volatility_10y": 8.007,
         "beta_10y": 1.251,
-        "treynor_10y": 2.413
+        "treynor_10y": 2.413,
+        "alphacat_1y": 0.823,
+        "alphacat_3y": 3.2483,
+        "alphacat_5y": 0.2389,
+        "alphacat_10y": 0.3001
       },
       "bench": "ICE BofA Euro Non-Fin Subod TR EUR",
       "benchcat": "Markit iBoxx EUR Corp Subordinated TR",
@@ -4317,7 +4497,10 @@
         "treynor_3y": 9.5629,
         "volatility_5y": 13.545,
         "beta_5y": 0.947,
-        "treynor_5y": 3.8904
+        "treynor_5y": 3.8904,
+        "alphacat_1y": -4.7377,
+        "alphacat_3y": -6.1368,
+        "alphacat_5y": -3.8379
       },
       "benchcat": "Morningstar Gbl High Div Yld NR USD",
       "rating": "2",
@@ -4410,7 +4593,11 @@
         "treynor_5y": -2.9473,
         "volatility_10y": 7.97,
         "beta_10y": 0.898,
-        "treynor_10y": 0.0266
+        "treynor_10y": 0.0266,
+        "alphacat_1y": 0.1059,
+        "alphacat_3y": -0.6628,
+        "alphacat_5y": -0.2096,
+        "alphacat_10y": -0.1495
       },
       "bench": "ICE BofA Q106 Custom hedged EUR EUR",
       "benchcat": "Morningstar EM Sov Bd GR Hdg EUR",
@@ -4480,7 +4667,11 @@
         "treynor_5y": -3.3031,
         "volatility_10y": 8.291,
         "beta_10y": 0.929,
-        "treynor_10y": 0.0357
+        "treynor_10y": 0.0357,
+        "alphacat_1y": -0.0546,
+        "alphacat_3y": -0.3188,
+        "alphacat_5y": -0.766,
+        "alphacat_10y": -0.1667
       },
       "bench": "ICE BofA Q23A Custom hedged EUR EUR",
       "benchcat": "Morningstar EM Sov Bd GR Hdg EUR",
@@ -4550,7 +4741,11 @@
         "treynor_5y": -3.1628,
         "volatility_10y": 3.52,
         "beta_10y": 0.458,
-        "treynor_10y": 0.269
+        "treynor_10y": 0.269,
+        "alphacat_1y": -2.2652,
+        "alphacat_3y": -1.6557,
+        "alphacat_5y": 1.2827,
+        "alphacat_10y": -0.8362
       },
       "bench": "Not Benchmarked",
       "benchcat": "Morningstar EM Crp 10% CN Cap GR Hdg EUR",
@@ -4611,7 +4806,10 @@
         "treynor_3y": 4.1028,
         "volatility_5y": 5.652,
         "beta_5y": 0.788,
-        "treynor_5y": -0.8894
+        "treynor_5y": -0.8894,
+        "alphacat_1y": -0.4189,
+        "alphacat_3y": 0.5254,
+        "alphacat_5y": 1.6154
       },
       "bench": "JPM CEMBI Broad Diversified Hdg TR EUR",
       "benchcat": "Morningstar EM Crp 10% CN Cap GR Hdg EUR",
@@ -4681,7 +4879,11 @@
         "treynor_5y": -4.1323,
         "volatility_10y": 5.166,
         "beta_10y": 0.662,
-        "treynor_10y": -0.6399
+        "treynor_10y": -0.6399,
+        "alphacat_1y": -2.7074,
+        "alphacat_3y": -2.5958,
+        "alphacat_5y": -0.5725,
+        "alphacat_10y": -1.4521
       },
       "bench": "ICEBofA Q479 1m+I GLCEMC+exLGSB4%C H EUR",
       "benchcat": "Morningstar EM Crp 10% CN Cap GR Hdg EUR",
@@ -4751,7 +4953,11 @@
         "treynor_5y": -1.0781,
         "volatility_10y": 8.984,
         "beta_10y": 0.981,
-        "treynor_10y": 0.8334
+        "treynor_10y": 0.8334,
+        "alphacat_1y": 2.7928,
+        "alphacat_3y": 2.3215,
+        "alphacat_5y": 1.3308,
+        "alphacat_10y": 0.5541
       },
       "benchcat": "Morningstar EM Sov Bd GR Hdg EUR",
       "rating": "3",
@@ -4820,7 +5026,11 @@
         "treynor_5y": -4.1718,
         "volatility_10y": 3.558,
         "beta_10y": 0.676,
-        "treynor_10y": -1.3
+        "treynor_10y": -1.3,
+        "alphacat_1y": 0.0912,
+        "alphacat_3y": 0.4031,
+        "alphacat_5y": 0.5506,
+        "alphacat_10y": -0.1036
       },
       "bench": "Markit iBoxx EUR Covered 3-5 TR [50.00%]; Markit iBoxx EUR Covered 5-7 TR [50.00%]",
       "benchcat": "Morningstar EZN Core Bd GR EUR",
@@ -4890,7 +5100,11 @@
         "treynor_5y": -0.2775,
         "volatility_10y": 1.439,
         "beta_10y": 0.53,
-        "treynor_10y": 0.5647
+        "treynor_10y": 0.5647,
+        "alphacat_1y": 0.8751,
+        "alphacat_3y": 0.3134,
+        "alphacat_5y": 0.8237,
+        "alphacat_10y": 0.4605
       },
       "bench": "ICE BofA EUR Broad Market 0-1 Y EUR",
       "benchcat": "Morningstar EZN 1-3Y Core Bd GR EUR",
@@ -4951,7 +5165,10 @@
         "treynor_3y": 0.4402,
         "volatility_5y": 4.06,
         "beta_5y": 0.644,
-        "treynor_5y": -4.1987
+        "treynor_5y": -4.1987,
+        "alphacat_1y": 0.4047,
+        "alphacat_3y": -0.078,
+        "alphacat_5y": 0.8117
       },
       "bench": "iBoxx € Germany 1-10",
       "benchcat": "Morningstar EZN Core Bd GR EUR",
@@ -5021,7 +5238,11 @@
         "treynor_5y": -1.0515,
         "volatility_10y": 7.003,
         "beta_10y": 0.86,
-        "treynor_10y": 2.0683
+        "treynor_10y": 2.0683,
+        "alphacat_1y": 1.6578,
+        "alphacat_3y": 3.0922,
+        "alphacat_5y": 2.4947,
+        "alphacat_10y": 2.3632
       },
       "benchcat": "Morningstar EZN Core Bd GR EUR",
       "rating": "4",
@@ -5090,7 +5311,11 @@
         "treynor_5y": 8.4809,
         "volatility_10y": 11.682,
         "beta_10y": 0.835,
-        "treynor_10y": 8.2683
+        "treynor_10y": 8.2683,
+        "alphacat_1y": 0.7961,
+        "alphacat_3y": 0.0788,
+        "alphacat_5y": -1.825,
+        "alphacat_10y": -2.589
       },
       "bench": "MSCI Europe NR EUR",
       "benchcat": "Morningstar DM Eur TME NR EUR",
@@ -5160,8 +5385,8 @@
         "performance_5y": 2.8544,
         "performance_3y": 2.7606,
         "performance_10y": 2.7644,
-        "sharpe_5y": 1.684,
         "sortino_1y": 1.651,
+        "sharpe_5y": 1.684,
         "volatility_1y": 0.376,
         "volatility_3y": 0.355,
         "volatility_5y": 0.296,
@@ -5219,7 +5444,10 @@
         "treynor_3y": 1.2561,
         "volatility_5y": 5.376,
         "beta_5y": 0.805,
-        "treynor_5y": -3.3992
+        "treynor_5y": -3.3992,
+        "alphacat_1y": 1.2348,
+        "alphacat_3y": 1.1433,
+        "alphacat_5y": 1.1432
       },
       "bench": "Iboxx Euro cov TR EUR [20.00%]; ICE BofA Euro Government NR EUR [80.00%]",
       "benchcat": "Morningstar EZN Trsy Bd GR EUR",
@@ -5289,7 +5517,11 @@
         "treynor_5y": 5.3091,
         "volatility_10y": 13.571,
         "beta_10y": 0.991,
-        "treynor_10y": 8.6411
+        "treynor_10y": 8.6411,
+        "alphacat_1y": -14.5044,
+        "alphacat_3y": -6.4443,
+        "alphacat_5y": -3.8134,
+        "alphacat_10y": -1.0263
       },
       "bench": "MSCI Europe NR EUR",
       "benchcat": "Morningstar DM Eur TME NR EUR",
@@ -5375,7 +5607,11 @@
         "treynor_3y": 2.5566,
         "volatility_5y": 6.302,
         "beta_5y": 1.068,
-        "treynor_5y": -1.1624
+        "treynor_5y": -1.1624,
+        "alphacat_1y": 0.769,
+        "alphacat_3y": 0.7359,
+        "alphacat_5y": 0.552,
+        "alphacat_10y": 0.8712
       },
       "benchcat": "Morningstar EZN Corp Bd GR EUR",
       "rating": "3",
@@ -5488,7 +5724,11 @@
         "treynor_5y": -0.0227,
         "volatility_10y": 8.389,
         "beta_10y": 0.756,
-        "treynor_10y": 5.2154
+        "treynor_10y": 5.2154,
+        "alphacat_1y": -14.0863,
+        "alphacat_3y": -7.4718,
+        "alphacat_5y": -4.1995,
+        "alphacat_10y": -4.1481
       },
       "bench": "FTSE Convertible Global Focus Hgd TR EUR",
       "benchcat": "Refinitiv Global Hgd CB TR EUR",
@@ -5517,8 +5757,8 @@
       "category": "Convertible Bond - Global, EUR Hedged",
       "metrics": {
         "performance_1m": -1.6704,
-        "sortino_1y": 2.006,
         "sharpe_5y": 0.008,
+        "sortino_1y": 2.006,
         "information_3y": -2.157,
         "performance_6m": 8.5362,
         "performance_1y": 12.3164,
@@ -5554,7 +5794,11 @@
         "treynor_5y": 0.0901,
         "volatility_10y": 8.342,
         "beta_10y": 0.752,
-        "treynor_10y": 5.48
+        "treynor_10y": 5.48,
+        "alphacat_1y": -15.3468,
+        "alphacat_3y": -6.6792,
+        "alphacat_5y": -4.1181,
+        "alphacat_10y": -3.9659
       },
       "bench": "FTSE Global Focus Hgd CB TR EUR",
       "benchcat": "Refinitiv Global Hgd CB TR EUR",
@@ -5611,7 +5855,10 @@
         "treynor_3y": 3.8089,
         "volatility_5y": 5.857,
         "beta_5y": 0.751,
-        "treynor_5y": -3.0728
+        "treynor_5y": -3.0728,
+        "alphacat_1y": 0.4085,
+        "alphacat_3y": 1.3053,
+        "alphacat_5y": 0.6695
       },
       "benchcat": "Morningstar Gbl Corp Bd GR Hdg EUR",
       "rating": "4",
@@ -5680,7 +5927,11 @@
         "treynor_5y": -2.8031,
         "volatility_10y": 5.934,
         "beta_10y": 0.958,
-        "treynor_10y": 0.1796
+        "treynor_10y": 0.1796,
+        "alphacat_1y": 0.1349,
+        "alphacat_3y": 0.7362,
+        "alphacat_5y": 0.2301,
+        "alphacat_10y": 0.1348
       },
       "bench": "ICE BofA Euro Non-Fin Subod TR EUR [65.00%]; ICE BofA US Industrial TR USD [35.00%]",
       "benchcat": "Morningstar Gbl Corp Bd GR Hdg EUR",
@@ -5737,8 +5988,8 @@
         "performance_1y": 1.4564,
         "sortino_1y": -0.184,
         "trackingerror_5y": 2.103,
-        "sortino_10y": -0.351,
         "alpha_5y": -1.495,
+        "sortino_10y": -0.351,
         "volatility_1y": 2.637,
         "beta_1y": 0.792,
         "treynor_1y": -0.5261,
@@ -5750,7 +6001,11 @@
         "treynor_5y": -4.0311,
         "volatility_10y": 3.36,
         "beta_10y": 0.596,
-        "treynor_10y": -1.6405
+        "treynor_10y": -1.6405,
+        "alphacat_1y": -0.9527,
+        "alphacat_3y": -1.2606,
+        "alphacat_5y": -0.9282,
+        "alphacat_10y": -1.1338
       },
       "benchcat": "Morningstar EZN Corp Bd GR EUR",
       "rating": "1",
@@ -5819,7 +6074,11 @@
         "treynor_5y": -2.733,
         "volatility_10y": 5.336,
         "beta_10y": 0.865,
-        "treynor_10y": -0.2344
+        "treynor_10y": -0.2344,
+        "alphacat_1y": -0.5876,
+        "alphacat_3y": 0.1209,
+        "alphacat_5y": 0.4801,
+        "alphacat_10y": -0.2039
       },
       "bench": "ML EMU Crprt idx Tp-snr TR EUR [80.00%]; ML US Corp LC TR USD [15.00%]; ML Euro BBB Nn-Fnc Fx&Fl R HY Ctn TR EUR [5.00%]",
       "benchcat": "Morningstar Gbl Corp Bd GR Hdg EUR",
@@ -5889,7 +6148,11 @@
         "treynor_5y": 1.5008,
         "volatility_10y": 4.841,
         "beta_10y": 0.524,
-        "treynor_10y": 3.1134
+        "treynor_10y": 3.1134,
+        "alphacat_1y": 1.2873,
+        "alphacat_3y": 2.2664,
+        "alphacat_5y": 3.5364,
+        "alphacat_10y": 1.6496
       },
       "benchcat": "Morningstar Gbl Corp Bd GR Hdg EUR",
       "rating": "5",
@@ -5940,7 +6203,9 @@
         "treynor_1y": 6.3568,
         "volatility_3y": 13.778,
         "beta_3y": 1.032,
-        "treynor_3y": 9.4523
+        "treynor_3y": 9.4523,
+        "alphacat_1y": -10.5485,
+        "alphacat_3y": -6.9082
       },
       "bench": "MSCI World NR EUR",
       "benchcat": "Morningstar Global TME NR USD",
@@ -6032,7 +6297,11 @@
         "treynor_5y": 4.4998,
         "volatility_10y": 12.302,
         "beta_10y": 0.822,
-        "treynor_10y": 6.6149
+        "treynor_10y": 6.6149,
+        "alphacat_1y": -3.3637,
+        "alphacat_3y": -6.1829,
+        "alphacat_5y": -3.4046,
+        "alphacat_10y": -3.5426
       },
       "benchcat": "Morningstar Gbl High Div Yld NR USD",
       "rating": "2",
@@ -6117,7 +6386,10 @@
         "treynor_3y": 1.1181,
         "volatility_5y": 7.108,
         "beta_5y": 1.211,
-        "treynor_5y": -2.7822
+        "treynor_5y": -2.7822,
+        "alphacat_1y": 0.389,
+        "alphacat_3y": -0.4595,
+        "alphacat_5y": -1.5779
       },
       "bench": "ICE Euro Corporate Green Bond EUR",
       "benchcat": "Morningstar EZN Corp Bd GR EUR",
@@ -6187,7 +6459,11 @@
         "treynor_5y": 1.1718,
         "volatility_10y": 7.943,
         "beta_10y": 1.083,
-        "treynor_10y": 1.9729
+        "treynor_10y": 1.9729,
+        "alphacat_1y": -0.2783,
+        "alphacat_3y": 0.2669,
+        "alphacat_5y": -0.3464,
+        "alphacat_10y": -1.4556
       },
       "bench": "ICE BofA BB-B Eu HY NF F&FR Cons TR EUR [90.00%]; BofAML German Federal Govt 3-5Y TR EUR [10.00%]",
       "benchcat": "Morningstar EZN HY Bd GR EUR",
@@ -6257,7 +6533,11 @@
         "treynor_5y": -2.0428,
         "volatility_10y": 4.819,
         "beta_10y": 0.984,
-        "treynor_10y": 0.4016
+        "treynor_10y": 0.4016,
+        "alphacat_1y": -0.241,
+        "alphacat_3y": -0.4354,
+        "alphacat_5y": -0.1941,
+        "alphacat_10y": 0.1567
       },
       "bench": "Markit iBoxx EUR Corp NonFin All TR",
       "benchcat": "Morningstar EZN Corp Bd GR EUR",
@@ -6293,13 +6573,13 @@
         "performance_incep": 8.3851,
         "sharpe_5y": 0.165,
         "information_5y": -1.105,
-        "information_1y": -2.3817,
         "alpha_1y": -4.196,
         "trackingerror_5y": 5.183,
         "sortino_5y": 0.234,
         "information_3y": -1.049,
         "alpha_5y": -5.056,
         "performance_1m": 2.9316,
+        "information_1y": -2.2679,
         "performance_3m": 16.2271,
         "sortino_3y": 1.236,
         "performance_6m": 13.6745,
@@ -6318,7 +6598,10 @@
         "treynor_3y": 9.9523,
         "volatility_5y": 15.488,
         "beta_5y": 0.975,
-        "treynor_5y": 2.621
+        "treynor_5y": 2.621,
+        "alphacat_1y": -2.9864,
+        "alphacat_3y": -6.7209,
+        "alphacat_5y": -4.9525
       },
       "bench": "MSCI ACWI NR EUR",
       "benchcat": "Morningstar Global TME NR USD",
@@ -6539,7 +6822,11 @@
         "treynor_5y": 7.3462,
         "volatility_10y": 14.463,
         "beta_10y": 0.962,
-        "treynor_10y": 11.3659
+        "treynor_10y": 11.3659,
+        "alphacat_1y": -2.456,
+        "alphacat_3y": -2.5927,
+        "alphacat_5y": 0.1363,
+        "alphacat_10y": -0.0159
       },
       "bench": "MSCI ACWI PR EUR",
       "benchcat": "Morningstar Global TME NR USD",
@@ -6636,7 +6923,11 @@
         "treynor_5y": 9.515,
         "volatility_10y": 15.328,
         "beta_10y": 0.967,
-        "treynor_10y": 13.0296
+        "treynor_10y": 13.0296,
+        "alphacat_1y": 4.0079,
+        "alphacat_3y": -2.1014,
+        "alphacat_5y": 0.9498,
+        "alphacat_10y": -0.4095
       },
       "bench": "MSCI USA NR USD",
       "benchcat": "Morningstar US LM Cap Mkt NR USD",
@@ -6726,7 +7017,11 @@
         "treynor_5y": -6.4536,
         "volatility_10y": 6.906,
         "beta_10y": 1.054,
-        "treynor_10y": -3.5251
+        "treynor_10y": -3.5251,
+        "alphacat_1y": 0.1152,
+        "alphacat_3y": -3.0629,
+        "alphacat_5y": -0.3735,
+        "alphacat_10y": -1.7505
       },
       "bench": "ICE BofA World Sovereign Bond",
       "benchcat": "Morningstar Gbl Core Bd GR USD",
@@ -6766,8 +7061,8 @@
         "trackingerror_3y": 5.866,
         "sharpe_5y": 0.399,
         "sharpe_3y": 0.801,
-        "alpha_5y": 4.109,
         "information_3y": 0.973,
+        "alpha_5y": 4.109,
         "sortino_3y": 1.339,
         "sortino_1y": 2.306,
         "sortino_10y": 0.836,
@@ -6796,7 +7091,11 @@
         "treynor_5y": 8.3742,
         "volatility_10y": 17.545,
         "beta_10y": 0.882,
-        "treynor_10y": 10.9805
+        "treynor_10y": 10.9805,
+        "alphacat_1y": 4.5338,
+        "alphacat_3y": 3.8965,
+        "alphacat_5y": 5.0003,
+        "alphacat_10y": 0.3971
       },
       "bench": "MSCI World Free PR USD",
       "benchcat": "Morningstar Global Bas Mat TME NR USD",
@@ -6893,7 +7192,11 @@
         "treynor_5y": -0.0279,
         "volatility_10y": 13.85,
         "beta_10y": 0.987,
-        "treynor_10y": 4.5746
+        "treynor_10y": 4.5746,
+        "alphacat_1y": -1.0382,
+        "alphacat_3y": -4.952,
+        "alphacat_5y": 0.1822,
+        "alphacat_10y": -1.9549
       },
       "bench": "MSCI World/Health Care PR USD",
       "benchcat": "Morningstar Gbl Health NR USD",
@@ -6982,7 +7285,11 @@
         "treynor_5y": 16.2971,
         "volatility_10y": 21.153,
         "beta_10y": 1.006,
-        "treynor_10y": 19.2185
+        "treynor_10y": 19.2185,
+        "alphacat_1y": 3.592,
+        "alphacat_3y": 0.8665,
+        "alphacat_5y": 0.1008,
+        "alphacat_10y": -2.9584
       },
       "bench": "MSCI World/IT 10/40 NR EUR",
       "benchcat": "Morningstar Gbl Tech NR USD",
@@ -7042,7 +7349,8 @@
         "alpha_1y": -19.703,
         "volatility_1y": 36.892,
         "beta_1y": 1.217,
-        "treynor_1y": 23.7055
+        "treynor_1y": 23.7055,
+        "alphacat_1y": -15.1092
       },
       "bench": "Not Benchmarked",
       "benchcat": "Morningstar Gbl Tech NR USD",
@@ -7126,7 +7434,11 @@
         "treynor_5y": 4.9777,
         "volatility_10y": 14.877,
         "beta_10y": 0.976,
-        "treynor_10y": 8.1702
+        "treynor_10y": 8.1702,
+        "alphacat_1y": -5.0666,
+        "alphacat_3y": -7.2845,
+        "alphacat_5y": -2.8333,
+        "alphacat_10y": -1.9465
       },
       "bench": "MSCI World Value NR EUR",
       "benchcat": "Morningstar Gbl Val TME NR USD",
@@ -7204,7 +7516,9 @@
         "treynor_1y": 12.1389,
         "volatility_3y": 12.495,
         "beta_3y": 1.046,
-        "treynor_3y": 8.3619
+        "treynor_3y": 8.3619,
+        "alphacat_1y": -4.465,
+        "alphacat_3y": -6.7268
       },
       "bench": "MSCI World Value NR EUR",
       "benchcat": "Morningstar Gbl Val TME NR USD",
@@ -7283,8 +7597,8 @@
         "information_5y": -0.128,
         "information_10y": -0.98,
         "sortino_5y": -0.196,
-        "trackingerror_10y": 3.708,
         "sharpe_3y": 0.241,
+        "trackingerror_10y": 3.708,
         "sortino_10y": -0.286,
         "sortino_1y": 0.804,
         "alpha_10y": -3.525,
@@ -7300,7 +7614,11 @@
         "treynor_5y": -1.4291,
         "volatility_10y": 10.657,
         "beta_10y": 1.024,
-        "treynor_10y": -2.3937
+        "treynor_10y": -2.3937,
+        "alphacat_1y": 4.386,
+        "alphacat_3y": -2.0412,
+        "alphacat_5y": 0.4223,
+        "alphacat_10y": -3.9207
       },
       "bench": "JPM GBI-EM Global Diversified TR LCL",
       "benchcat": "Morningstar EM Govt Bd LCCY GR USD",

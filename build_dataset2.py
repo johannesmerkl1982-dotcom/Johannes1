@@ -24,6 +24,7 @@ RAW_UNI = "data/raw2/universe.json"
 RAW_METRICS = "data/raw2/metrics"
 RAW_PROFILE = "data/raw2/profile"
 RAW_COMP = "data/raw2/comp"
+RAW_CATIDX = "data/raw2/catindex"
 OUT = "data/funds2.json"
 BETA_MIN_ABS = 0.05
 
@@ -188,6 +189,15 @@ def main() -> None:
     for path in sorted(glob.glob(os.path.join(RAW_COMP, "*.json"))):
         for fid, dps in json.load(open(path, encoding="utf-8")).items():
             comp.setdefault(fid, {}).update(dps)
+    # Kategorie-Index (fuer sachgerechtes, vergleichbares Alpha):
+    #   Fonds -> Kategorie-Index-Id  und  Index-Id -> Trailing-Returns
+    fund_catid, idx_ret = {}, {}
+    fcp = os.path.join(RAW_CATIDX, "fund_catid.json")
+    irp = os.path.join(RAW_CATIDX, "index_returns.json")
+    if os.path.exists(fcp):
+        fund_catid = json.load(open(fcp, encoding="utf-8"))
+    if os.path.exists(irp):
+        idx_ret = json.load(open(irp, encoding="utf-8"))
 
     funds = []
     for fid, meta in uni.items():
@@ -216,6 +226,17 @@ def main() -> None:
             s, sd, be = metrics.get(f"sharpe_{p}"), risk.get(f"stddev_{p}"), risk.get(f"beta_{p}")
             if s is not None and sd is not None and be is not None and abs(be) >= BETA_MIN_ABS:
                 metrics[f"treynor_{p}"] = round(s * sd / be, 4)
+        # Sachgerechtes Alpha ggue. dem Morningstar-Kategorie-Index (fuer aehnliche
+        # Fonds IDENTISCH -> vergleichbar): aktive Mehrrendite = Fonds- minus Index-
+        # Rendite je Laufzeit (annualisiert). RR002-005 (Jensen, Standardindex)
+        # bleiben als Nebenwert erhalten.
+        cid = fund_catid.get(fid)
+        ir = idx_ret.get(cid) if cid else None
+        if ir:
+            for p in ("1y", "3y", "5y", "10y"):
+                fp, ipp = metrics.get(f"performance_{p}"), ir.get(p)
+                if fp is not None and ipp is not None:
+                    metrics[f"alphacat_{p}"] = round(fp - ipp, 4)
         fund = {
             "id": fid, "isin": meta.get("isin"), "name": meta.get("name", ""),
             "branding": prov, "wkntype": meta.get("type"),

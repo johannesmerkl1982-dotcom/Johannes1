@@ -115,6 +115,22 @@ Sektoren; HS009/HS03D/HS03C/HS02N = Regionen; HS09L…HS09O = Länder.)
 Der Punkt „größte Titel/Holdings" (`morningstar-fund-holdings-tool`) braucht eine
 separate Tool-Freigabe und ist deshalb noch nicht enthalten.
 
+## Sachgerechtes Alpha ggü. Kategorie-Index (WICHTIG, monatlich mitziehen)
+Das Standard-Alpha von Morningstar (`RR002-005`, Jensen) wird gegen den **Standard-
+Index** gerechnet – der je Fonds unterschiedlich ist, daher zwischen ähnlichen Fonds
+NICHT vergleichbar (Ursache der ETF-Alpha-Ausreißer). Die App weist deshalb zusätzlich
+ein **Alpha ggü. dem Morningstar-Kategorie-Index** aus (für alle Fonds einer Kategorie
+IDENTISCH → fair vergleichbar): `alphacat_p = Fondsrendite_p − Kategorie-Index-Rendite_p`
+(je Laufzeit, annualisiert). Daten in `data/raw2/catindex/`:
+- **`fund_catid.json`** = Fonds-ID → Kategorie-Index-ID. Ändert sich selten. Neu erzeugen:
+  `OS38A` (Kategorie-Index-ID) je Fonds abrufen, Fonds→Kategorie→Index-ID mappen.
+- **`index_returns.json`** = Kategorie-Index-ID → {1y,3y,5y,10y}. **Monatlich mitziehen:**
+  die distinct Kategorie-Index-IDs (aus `fund_catid.json`) mit `morningstar-data-tool`
+  und `PM00C,PM00E,PM00G,PM00I` abrufen (Indizes sind wie Fonds abfragbar), Ergebnis als
+  `{id:{"1y":..,"3y":..,"5y":..,"10y":..}}` speichern. `build_dataset2.py` rechnet daraus
+  `alphacat_*`. (Hinweis: Fonds-Rendite in Fondswährung, Index ggf. andere Währung –
+  innerhalb einer Kategorie für alle gleich, Ranking bleibt fair.)
+
 ## Wichtig
 - **App 1 nicht anfassen** (eigene Dateien: `build_dataset.py`, `build_webapp.py`,
   `data/funds.json`, `webapp/`, Root-`index.html`).

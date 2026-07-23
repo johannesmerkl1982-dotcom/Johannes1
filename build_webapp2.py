@@ -60,6 +60,10 @@ HTML = r"""<!DOCTYPE html>
   .val{ font-variant-numeric:tabular-nums; font-weight:700; font-size:16px; text-align:right; }
   .pos{ color:#34d399; } .neg{ color:#f87171; }
   .empty{ color:var(--muted); text-align:center; padding:30px 10px; }
+  .hint{ color:var(--muted); font-size:11.5px; line-height:1.4; margin:2px 2px 10px;
+         padding:8px 10px; background:#181c24; border:1px solid var(--line); border-radius:9px; }
+  .hint:empty{ display:none; }
+  .hint b{ color:var(--fg); font-weight:600; }
   footer{ color:var(--muted); font-size:11px; text-align:center; padding:18px; }
   /* Detail-Overlay */
   .overlay{ position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:20;
@@ -162,6 +166,7 @@ HTML = r"""<!DOCTYPE html>
     <span class="count" id="count"></span>
     <button id="csv">CSV teilen / speichern</button>
   </div>
+  <div class="hint" id="hint"></div>
 
   <ol id="results"></ol>
 </main>
@@ -182,11 +187,12 @@ HTML = r"""<!DOCTYPE html>
 const DATA = JSON.parse(document.getElementById('data').textContent);
 const METRICS = {
   performance:  {label:"Performance (Rendite)", periods:["1m","3m","6m","1y","3y","5y","10y","incep"], higher:true,  pct:true},
+  alphacat:     {label:"Alpha (ggü. Kategorie-Index)", periods:["1y","3y","5y","10y"],   higher:true,  pct:true},
+  alpha:        {label:"Jensens Alpha (Std.-Index)", periods:["1y","3y","5y","10y"],     higher:true,  pct:true},
   sharpe:       {label:"Sharpe Ratio",          periods:["1y","3y","5y","10y"],          higher:true,  pct:false},
   sortino:      {label:"Sortino Ratio",         periods:["1y","3y","5y","10y"],          higher:true,  pct:false},
   information:  {label:"Information Ratio",      periods:["1y","3y","5y","10y"],          higher:true,  pct:false},
   treynor:      {label:"Treynor Ratio",         periods:["1y","3y","5y","10y"],          higher:true,  pct:false},
-  alpha:        {label:"Jensens Alpha",         periods:["1y","3y","5y","10y"],          higher:true,  pct:true},
   volatility:   {label:"Volatilität",           periods:["1y","3y","5y","10y"],          higher:false, pct:true},
   beta:         {label:"Beta",                  periods:["1y","3y","5y","10y"],          higher:true,  pct:false},
   trackingerror:{label:"Tracking Error",        periods:["3y","5y","10y"],               higher:false, pct:true},
@@ -303,14 +309,22 @@ function render(){
   const tag = topn>0 ? `Top ${topn}` : topn<0 ? `Flop ${-topn}` : "alle";
   $("count").textContent =
     `${tag}: ${shown.length} von ${rows.length} Wertpapieren · ${m.label} (${PLABEL[$("period").value]})`;
+  const hk = $("metric").value;
+  $("hint").innerHTML =
+    hk==="alphacat" ? `<b>Alpha ggü. Kategorie-Index:</b> Mehrrendite p.a. gegenüber dem <b>Morningstar-Kategorie-Index</b> – für alle Fonds einer Kategorie identisch, daher fair vergleichbar. (Rendite abzüglich Index-Rendite; Index-Währung ggf. abweichend.)` :
+    hk==="alpha" ? `<b>Jensens Alpha</b> von Morningstar wird gegen den <b>Standard-Index</b> gerechnet (je Fonds unterschiedlich) – nur eingeschränkt zwischen ähnlichen Fonds vergleichbar. Für den fairen Vergleich „Alpha (ggü. Kategorie-Index)" wählen.` : "";
   const ol = $("results");
   SHOWN = shown;
   if (!shown.length){ ol.innerHTML = `<div class="empty">Keine Wertpapiere mit Werten für diese Auswahl.</div>`; return; }
+  const mkey = $("metric").value;
+  const showCat = (mkey==="alphacat");
   ol.innerHTML = shown.map((r,i)=>{
     const cls = badgeClass(r.branding);
     const vcls = r.value>=0 ? "pos":"neg";
     const txt = m.pct ? r.value.toFixed(2)+" %" : r.value.toFixed(3);
-    const bench = r.fund.bench ? `<div class="bench">Benchmark: ${esc(r.fund.bench)}</div>` : "";
+    const btxt = showCat ? (r.fund.benchcat||r.fund.bench) : r.fund.bench;
+    const blbl = showCat ? "Kategorie-Index" : "Benchmark";
+    const bench = btxt ? `<div class="bench">${blbl}: ${esc(btxt)}</div>` : "";
     return `<li class="tap" data-i="${i}"><div class="rank">${i+1}</div>
       <div><div class="name">${esc(r.name)} <span class="chev">›</span></div>
       <span class="badge ${cls}">${r.branding}</span>${bench}</div>
@@ -428,6 +442,18 @@ function openDetail(f){
     .map(p=>`<span class="chip"><b>${PLABEL[p]}</b>${fmtVal(f.metrics["performance_"+p],true)}</span>`).join("");
   if(pchips) body+=`<div class="sec"><h3>Performance (annualisiert p.a.)</h3><div class="chips">${pchips}</div></div>`;
 
+  // Alpha sachgerecht: Mehrrendite ggü. Kategorie-Index (vergleichbar) + Jensen (Std.-Index)
+  const per=["1y","3y","5y","10y"];
+  const chipsFor=pre=>per.filter(p=>f.metrics[pre+p]!=null)
+    .map(p=>`<span class="chip"><b>${PLABEL[p]}</b>${fmtVal(f.metrics[pre+p],true)}</span>`).join("");
+  const acC=chipsFor("alphacat_"), ajC=chipsFor("alpha_");
+  if(acC||ajC){
+    let a=`<div class="sec"><h3>Alpha · Mehrrendite</h3>`;
+    if(acC) a+=`<div class="mrow"><div class="ml">ggü. Kategorie-Index${f.benchcat?`<br><span style="font-size:10px;opacity:.8">${esc(f.benchcat)}</span>`:""}</div><div class="chips">${acC}</div></div>`;
+    if(ajC) a+=`<div class="mrow"><div class="ml">Jensen<br><span style="font-size:10px;opacity:.8">Morningstar-Standardindex</span></div><div class="chips">${ajC}</div></div>`;
+    body+=a+`</div>`;
+  }
+
   const kv=(k,v,left)=> v!=null&&v!=="" ? `<dt>${k}</dt><dd class="${left?'l':''}">${v}</dd>` : "";
   let facts="";
   facts+=kv("Benchmark", f.bench?esc(f.bench):"", true);
@@ -475,7 +501,7 @@ $("ovclose").addEventListener("click", closeDetail);
 $("ov").addEventListener("click", e=>{ if(e.target===$("ov")) closeDetail(); });
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeDetail(); });
 $("srcline").textContent = `Quelle: Morningstar · Stand: ${DATA.meta.as_of} · ${DATA.meta.fund_count} Wertpapiere`;
-$("foot").textContent = "Performance 3/5/10 J und seit Auflage sind annualisiert (p.a.); seit Auflage je Fonds anderer Zeitraum. Treynor berechnet (Sharpe x StdAbw / Beta). Volatilitaet & Tracking Error: niedriger = besser. Daten-Snapshot, nicht live.";
+$("foot").textContent = "Alpha (ggue. Kategorie-Index) = Mehrrendite p.a. gegenueber dem fuer alle Fonds einer Kategorie identischen Morningstar-Kategorie-Index und damit fair vergleichbar (Fondsrendite minus Index-Rendite; Index-Waehrung ggf. abweichend). Jensens Alpha nutzt dagegen den Morningstar-Standardindex (je Fonds verschieden, nur eingeschraenkt vergleichbar). Performance 3/5/10 J und seit Auflage annualisiert (p.a.). Treynor berechnet (Sharpe x StdAbw / Beta). Volatilitaet & Tracking Error: niedriger = besser. Daten-Snapshot, nicht live.";
 fillProviders(); fillMetrics(); render();
 </script>
 </body>
