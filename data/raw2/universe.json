@@ -1,0 +1,511 @@
+{
+ "investments": {
+  "F000002F7I": {
+   "isin": "DE000A0M80N0",
+   "name": "UniGlobal I",
+   "type": "FO"
+  },
+  "F000002F7M": {
+   "isin": "DE000A0M80M2",
+   "name": "UniFavorit: Aktien I",
+   "type": "FO"
+  },
+  "F00001DKKA": {
+   "isin": "LU2436152594",
+   "name": "UniInstitutional Global Equities Conc",
+   "type": "FO"
+  },
+  "F0GBR04BJP": {
+   "isin": "LU0103244595",
+   "name": "UniMarktfuehrer A",
+   "type": "FO"
+  },
+  "F000010NU6": {
+   "isin": "DE000A2H9AX8",
+   "name": "UniESG Aktien Global I",
+   "type": "FO"
+  },
+  "F000016S88": {
+   "isin": "DE000A2QFXJ2",
+   "name": "UniInstitutional Akt Infrstrkt ESG",
+   "type": "FO"
+  },
+  "F00000ZYE2": {
+   "isin": "LU1726237438",
+   "name": "UniInstitutional SDG Equities",
+   "type": "FO"
+  },
+  "F00000V3RU": {
+   "isin": "LU1120174617",
+   "name": "Quoniam Fds Sel Glb Eqs MnRsk EUR H I dis",
+   "type": "FO"
+  },
+  "F00000JY1R": {
+   "isin": "IE00B441G979",
+   "name": "iShares MSCI World EUR Hedged ETF Acc",
+   "type": "FE"
+  },
+  "F0GBR04PQF": {
+   "isin": "DE0009750075",
+   "name": "UniNordamerika",
+   "type": "FO"
+  },
+  "F0GBR04BK2": {
+   "isin": "LU0037079034",
+   "name": "UniAsia",
+   "type": "FO"
+  },
+  "F0GBR04BJZ": {
+   "isin": "LU0100937670",
+   "name": "UniAsiaPacific A",
+   "type": "FO"
+  },
+  "F0GBR04HGO": {
+   "isin": "LU0115904467",
+   "name": "UniEM Global A",
+   "type": "FO"
+  },
+  "F00000V3RR": {
+   "isin": "LU1120174450",
+   "name": "Quoniam Fds Sel EmMktsEqsMnRsk EUR I dis",
+   "type": "FO"
+  },
+  "F000004580": {
+   "isin": "IE00B4L5YC18",
+   "name": "iShares MSCI EM ETF USD Acc",
+   "type": "FE"
+  },
+  "F00000JXUB": {
+   "isin": "DE000A0RPAP8",
+   "name": "UniInstitutional Global High Dividend Eq",
+   "type": "FO"
+  },
+  "F00000ZB3N": {
+   "isin": "LU1570401114",
+   "name": "UniGlobal Dividende A",
+   "type": "FO"
+  },
+  "F000005GVD": {
+   "isin": "DE000A0F5UH1",
+   "name": "iShares STOXX Global Sel Div 100 (DE)",
+   "type": "FE"
+  },
+  "F00000YMLB": {
+   "isin": "DE000A2AR3U4",
+   "name": "UniInstitutional Dividend ESG",
+   "type": "FO"
+  },
+  "F0GBR04BKB": {
+   "isin": "LU0089558679",
+   "name": "UniDynamicFonds: Global A",
+   "type": "FO"
+  },
+  "F0GBR04MIJ": {
+   "isin": "LU0126315885",
+   "name": "UniValueFonds: Global A",
+   "type": "FO"
+  },
+  "F00001A20S": {
+   "isin": "LU2355246864",
+   "name": "UniValueFonds: Global I",
+   "type": "FO"
+  },
+  "F0GBR04BJT": {
+   "isin": "LU0101441672",
+   "name": "UniSector: HighTech A",
+   "type": "FO"
+  },
+  "F000014J7J": {
+   "isin": "LU2082316857",
+   "name": "UniIndustrie 4.0 I",
+   "type": "FO"
+  },
+  "F0000107Y9": {
+   "isin": "LU1772413420",
+   "name": "UniIndustrie 4.0 A",
+   "type": "FO"
+  },
+  "F00001JXY3": {
+   "isin": "DE000A3CU5D7",
+   "name": "UniThemen Blockchain A",
+   "type": "FO"
+  },
+  "F0GBR04BJV": {
+   "isin": "LU0101441086",
+   "name": "UniSector: BioPharma A",
+   "type": "FO"
+  },
+  "F0GBR04BJW": {
+   "isin": "LU0101442050",
+   "name": "UniSector: BasicIndustries A",
+   "type": "FO"
+  },
+  "F00000V7UX": {
+   "isin": "LU1131313493",
+   "name": "UniInstitutional Eurp Eq Concentrated",
+   "type": "FO"
+  },
+  "F0GBR0615O": {
+   "isin": "DE0009750554",
+   "name": "UniInstitutional European MinRisk Eq",
+   "type": "FO"
+  },
+  "F00000V3RT": {
+   "isin": "LU1120174377",
+   "name": "QFS SICAV - European Eqs EUR I dis",
+   "type": "FO"
+  },
+  "F000000GL3": {
+   "isin": "IE00B1YZSC51",
+   "name": "iShares Cor MSCI Eurp UCITS ETF EUR Dist",
+   "type": "FE"
+  },
+  "F0GBR05V6L": {
+   "isin": "DE0002635307",
+   "name": "iShares STOXX Europe 600 (DE) Dist",
+   "type": "FE"
+  },
+  "F0GBR04PNW": {
+   "isin": "DE0009757740",
+   "name": "UniEuroAktien",
+   "type": "FO"
+  },
+  "F00000GV7A": {
+   "isin": "LU0458547873",
+   "name": "UniESG Aktien Europa I",
+   "type": "FO"
+  },
+  "F00000J4K6": {
+   "isin": "DE000A0Q2HY7",
+   "name": "UniESG Aktien Deutschland I",
+   "type": "FO"
+  },
+  "F0GBR04PQE": {
+   "isin": "DE0008491002",
+   "name": "UniFonds",
+   "type": "FO"
+  },
+  "F0GBR04J6F": {
+   "isin": "DE0005933931",
+   "name": "iShares Core DAX ETF (DE) Acc",
+   "type": "FE"
+  },
+  "F0GBR05VZU": {
+   "isin": "DE0002635281",
+   "name": "iShares EURO STOXX Select Div 30 (DE)",
+   "type": "FE"
+  },
+  "F0GBR0573C": {
+   "isin": "LU0186860408",
+   "name": "UniDividendenAss A",
+   "type": "FO"
+  },
+  "F0GBR04BKA": {
+   "isin": "LU0085167236",
+   "name": "UniDynamicFonds: Europa A",
+   "type": "FO"
+  },
+  "F0GBR05V6N": {
+   "isin": "DE000A0D8QZ7",
+   "name": "iShares STOXX Europe Small 200 (DE)",
+   "type": "FE"
+  },
+  "F0GBR05V6O": {
+   "isin": "DE0005933998",
+   "name": "iShares STOXX Europe Mid 200 (DE)",
+   "type": "FE"
+  },
+  "F0GBR04BKD": {
+   "isin": "LU0090772608",
+   "name": "UniEuropa Mid&Small Caps",
+   "type": "FO"
+  },
+  "F00001S9LY": {
+   "isin": "LU3056066346",
+   "name": "QFS SICAV - European Small Cap EUR I dis",
+   "type": "FO"
+  },
+  "F0000005RW": {
+   "isin": "DE0009750497",
+   "name": "UniDeutschland XS",
+   "type": "FO"
+  },
+  "F000000RDC": {
+   "isin": "LU0315299569",
+   "name": "UniInstitutional Global Convertibles",
+   "type": "FO"
+  },
+  "F00000SX9U": {
+   "isin": "LU0993947141",
+   "name": "UniInstitutional Global Conv ESG EUR A",
+   "type": "FO"
+  },
+  "F00000PX01": {
+   "isin": "IE00B87RLX93",
+   "name": "iShares EUR Corp Bond Fncl ETF EUR Dist",
+   "type": "FE"
+  },
+  "F00000V3RV": {
+   "isin": "LU1120174880",
+   "name": "Quoniam Fds Sel Euro Credit EUR I dis",
+   "type": "FO"
+  },
+  "F0GBR06GPA": {
+   "isin": "LU0117073196",
+   "name": "UniEuroRenta Corporates M",
+   "type": "FO"
+  },
+  "F0000019PX": {
+   "isin": "DE0005326599",
+   "name": "UniInstitutional Premium Corporate Bonds",
+   "type": "FO"
+  },
+  "F000002OFK": {
+   "isin": "IE00B3F81R35",
+   "name": "iShares Core EUR Corp Bond ETF EUR Dist",
+   "type": "FE"
+  },
+  "F00000Q61W": {
+   "isin": "LU0847345435",
+   "name": "UniInstitutional German Corporate Bds +",
+   "type": "FO"
+  },
+  "F00000VS95": {
+   "isin": "LU1078111769",
+   "name": "UniInstitutional European Corporate Bds+",
+   "type": "FO"
+  },
+  "F0GBR06MRQ": {
+   "isin": "DE0006352719",
+   "name": "UniInstitutional Global Corporate Bonds",
+   "type": "FO"
+  },
+  "F00000VS97": {
+   "isin": "LU1089802497",
+   "name": "UniInstitutional Global Cred ESG",
+   "type": "FO"
+  },
+  "F000010BS5": {
+   "isin": "DE000A2DMVJ0",
+   "name": "UniInstitutional Global Corporate Bds + (A2DMVJ)",
+   "type": "FO"
+  },
+  "F00001PPHE": {
+   "isin": "LU2877720255",
+   "name": "Quoniam Select Global Credit EUR H I dis",
+   "type": "FO"
+  },
+  "F00000Z1O1": {
+   "isin": "DE000A2AR3W0",
+   "name": "UniInstitutional Green Bonds",
+   "type": "FO"
+  },
+  "F00000J75J": {
+   "isin": "LU0489951441",
+   "name": "Quoniam Fds Sel Glb Crdt MnRsk EUR H A dis",
+   "type": "FO"
+  },
+  "F00000SX9T": {
+   "isin": "LU1006579020",
+   "name": "UniInstitutional Global Crp Bds Shrt Dur",
+   "type": "FO"
+  },
+  "F0GBR054RM": {
+   "isin": "LU0168092178",
+   "name": "UniEuroKapital Corporates A",
+   "type": "FO"
+  },
+  "F00000V3RW": {
+   "isin": "LU1120174708",
+   "name": "Quoniam Fds Sel Glb Crdt MnRsk EUR H I dis",
+   "type": "FO"
+  },
+  "F00000WS4W": {
+   "isin": "LU1262880427",
+   "name": "Quoniam Sel Glb Crdt MnRsk Defesv EUR H I dis",
+   "type": "FO"
+  },
+  "F00000QE2F": {
+   "isin": "IE00BC7GZW19",
+   "name": "SPDR Blmbrg 0-3Yr EUR Corp Bd ETF",
+   "type": "FE"
+  },
+  "F00000457U": {
+   "isin": "IE00B4L60045",
+   "name": "iShares EUR Corp Bond 1-5yr ETF EUR Dist",
+   "type": "FE"
+  },
+  "F0GBR06CHZ": {
+   "isin": "LU0220302995",
+   "name": "UniInstitutional High Yield Bonds",
+   "type": "FO"
+  },
+  "F0GBR04PO1": {
+   "isin": "DE0009757831",
+   "name": "UniEuroRenta HighYield",
+   "type": "FO"
+  },
+  "F00000WYW3": {
+   "isin": "LU1341439245",
+   "name": "UniInstitutional Corp Hybr Bds I EUR",
+   "type": "FO"
+  },
+  "F00000XNAF": {
+   "isin": "LU1120175770",
+   "name": "Quoniam Fds Sel Glb HY MnRsk EUR H I dis",
+   "type": "FO"
+  },
+  "F00000UDVM": {
+   "isin": "LU1109939865",
+   "name": "Xtrackers II RollngTarMatSep2027 EUR HY ETF",
+   "type": "FE"
+  },
+  "F00000JTWF": {
+   "isin": "IE00B66F4759",
+   "name": "iShares EUR High Yield Corp Bd ETF EUR Dist",
+   "type": "FE"
+  },
+  "F0GBR06MS2": {
+   "isin": "DE0009757732",
+   "name": "UniInstitutional EM Bonds Spezial",
+   "type": "FO"
+  },
+  "F000005NQW": {
+   "isin": "DE0009757955",
+   "name": "UniInstitutional EM Bonds",
+   "type": "FO"
+  },
+  "F00000LYLZ": {
+   "isin": "LU0578899691",
+   "name": "UniInstitutional EM Corporate Bonds",
+   "type": "FO"
+  },
+  "F00000YJ03": {
+   "isin": "LU1545615871",
+   "name": "UniInstitutional EM Corp Bds Flex EUR",
+   "type": "FO"
+  },
+  "F00000GWV1": {
+   "isin": "LU0482734919",
+   "name": "UniInstitutional EM Sovereign Bonds",
+   "type": "FO"
+  },
+  "F00000WTMS": {
+   "isin": "LU1342556849",
+   "name": "UniInstitutional EM Corp Bd Low Dur ESG",
+   "type": "FO"
+  },
+  "F00000OO26": {
+   "isin": "LU0809575300",
+   "name": "UniWirtschaftsAspirant I",
+   "type": "FO"
+  },
+  "F0GBR04PO2": {
+   "isin": "DE0008491028",
+   "name": "UniRenta",
+   "type": "FO"
+  },
+  "F00001HM9W": {
+   "isin": "LU1565453252",
+   "name": "Quoniam Fds Sel Glb Crdt MnRsk USD Hdg I",
+   "type": "FO"
+  },
+  "F00000XHX4": {
+   "isin": "DE000A1C81J5",
+   "name": "UniInstitutional Euro Reserve Plus",
+   "type": "FO"
+  },
+  "F000000JV9": {
+   "isin": "DE0009757633",
+   "name": "UniInstitutional Eur Cov Bds 4-6 yrs ESG",
+   "type": "FO"
+  },
+  "F00000NCFL": {
+   "isin": "LU0694230862",
+   "name": "UniInstitutional Global Covered Bonds",
+   "type": "FO"
+  },
+  "F0GBR052VJ": {
+   "isin": "DE0006289499",
+   "name": "iShares eb.rexx GovtGer 5.5-10.5yr (DE)",
+   "type": "FE"
+  },
+  "F0GBR04GEX": {
+   "isin": "DE0006289465",
+   "name": "iShares eb.rexx GovtGer ETF (DE)",
+   "type": "FE"
+  },
+  "F0000100W4": {
+   "isin": "LU1672071542",
+   "name": "UniInstitutional European Bd:Diversified",
+   "type": "FO"
+  },
+  "F0000100W2": {
+   "isin": "LU1672071385",
+   "name": "UniInstitutional Eurp Bd: Gvn Peripherie",
+   "type": "FO"
+  },
+  "F00000237E": {
+   "isin": "DE000A0S9GB0",
+   "name": "Xetra-Gold",
+   "type": "FE"
+  },
+  "F00000LIJ7": {
+   "isin": "DE000A1EK0G3",
+   "name": "Xtrackers Physical Gold EUR Hedged ETC",
+   "type": "FE"
+  },
+  "F0000157U7": {
+   "isin": "DE000A2T5DZ1",
+   "name": "Xtrackers IE Physical Gold EUR Hdg ETC",
+   "type": "FE"
+  },
+  "F0GBR06U04": {
+   "isin": "LU0249047092",
+   "name": "Commodities-Invest",
+   "type": "FO"
+  },
+  "F0GBR06BC2": {
+   "isin": "LU0175818722",
+   "name": "UniInstitutional Short Term Credit",
+   "type": "FO"
+  },
+  "F000015J9F": {
+   "isin": "LU2163020105",
+   "name": "UniInstitutional Structured Credit HG",
+   "type": "FO"
+  },
+  "F00000UPJY": {
+   "isin": "LU1099836758",
+   "name": "UniInstitutional Structured Credit HY",
+   "type": "FO"
+  },
+  "F0GBR0612J": {
+   "isin": "DE0009805549",
+   "name": "UniInstitutional European Real Estate",
+   "type": "FO"
+  },
+  "F00000Q61X": {
+   "isin": "DE000A1J16Q1",
+   "name": "UniInstitutional German Real Estate",
+   "type": "FO"
+  }
+ },
+ "not_found": [
+  "DE0005326789",
+  "LU2250014219",
+  "DE000A2PPJ64",
+  "LU1120175424",
+  "LU1120175341",
+  "FR0010754119",
+  "FR0010737544",
+  "LU0356243922",
+  "LU1087802150",
+  "LU0509230370",
+  "LU0055734320",
+  "LU0201780276",
+  "LU1832180779",
+  "LU2106052587"
+ ],
+ "datapoints_note": "type FE=ETF, FO=Fonds; Anbieter-Bucket via FC001 (Union/Quoniam/Sonstige) bzw. ETF wenn FE"
+}
